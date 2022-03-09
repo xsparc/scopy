@@ -344,7 +344,7 @@ QPushButton[subsection_arrow_button=true]{
 	border: none;
 	image: url(:/icons/scopy-light/icons/sba_cmb_box_arrow_right.svg);
 }
-QPushButton#btnSubsectionSeparator:checked {
+QPushButton#btnSubsectionSeparator:checked, QPushButton#toggleChannels:checked {
 	max-height: 12px;
 	max-width:  12px;
 	border: none;
@@ -357,7 +357,7 @@ QPushButton[subsection_arrow_button=true]:checked {
 	border-image: url(:/icons/scopy-light/icons/sba_cmb_box_arrow_right.svg);
 }
 
-QPushButton#btnSubsectionSeparator {
+QPushButton#btnSubsectionSeparator, QPushButton#toggleChannels {
 	max-height: 8px;
 	max-width:  12px;
 	border-image: url(:/icons/scopy-light/icons/sba_cmb_box_arrow_right.svg);
