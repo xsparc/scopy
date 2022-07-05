@@ -1,0 +1,152 @@
+[
+    {
+        "layout": "verticalLayout",
+        "stylesheet":"background:blue; border: 3px solid black;",
+        "iio_widgets": [
+            {
+                "widget": {
+                    "name": "voltage0 bb_dc_offset_tracking_en",
+                    "widget_type": "checkbox",
+                    "widget_params": {
+                        "description": "bb_dc_offset_tracking_en"
+                    },
+                    "readonly": false
+                },
+                "io": {
+                    "type": "iio_chan_attr",
+                    "io_params": {
+                        "iio_dev": "ad9361-phy",
+                        "iio_chan": "voltage0",
+                        "iio_attr": "bb_dc_offset_tracking_en"
+                    }
+                }
+            },
+            {
+                "widget": {
+                    "name": "voltage0 quadrature_tracking_en",
+                    "widget_type": "checkbox",
+                    "widget_params": {
+                        "description": "quadrature_tracking_en"
+                    },
+                    "readonly": true
+                },
+                "io": {
+                    "type": "iio_chan_attr",
+                    "io_params": {
+                        "iio_dev": "ad9361-phy",
+                        "iio_chan": "voltage0",
+                        "iio_attr": "quadrature_tracking_en"
+                    }
+                }
+            },
+            {
+                "layout": "horizontalLayout",
+                "stylesheet":"background:red",
+                "iio_widgets": [
+                    {
+                        "widget": {
+                            "name": "voltage0 bb_dc_offset_tracking_en",
+                            "widget_type": "checkbox",
+                            "widget_params": {
+                                "description": "bb_dc_offset_tracking_en"
+                            },
+                            "readonly": false
+                        },
+                        "io": {
+                            "type": "iio_chan_attr",
+                            "io_params": {
+                                "iio_dev": "ad9361-phy",
+                                "iio_chan": "voltage0",
+                                "iio_attr": "bb_dc_offset_tracking_en"
+                            }
+                        }
+                    },
+                    {
+                        "layout": "verticalLayout",
+                        "stylesheet":"background:green",
+                        "iio_widgets": [
+                            {
+                                "widget": {
+                                    "name": "voltage0 bb_dc_offset_tracking_en",
+                                    "widget_type": "checkbox",
+                                    "widget_params": {
+                                        "description": "bb_dc_offset_tracking_en"
+                                    },
+                                    "readonly": false
+                                },
+                                "io": {
+                                    "type": "iio_chan_attr",
+                                    "io_params": {
+                                        "iio_dev": "ad9361-phy",
+                                        "iio_chan": "voltage0",
+                                        "iio_attr": "bb_dc_offset_tracking_en"
+                                    }
+                                }
+                            },
+                            {
+                                "widget": {
+                                    "name": "voltage0 quadrature_tracking_en",
+                                    "widget_type": "checkbox",
+                                    "widget_params": {
+                                        "description": "quadrature_tracking_en"
+                                    },
+                                    "readonly": true
+                                },
+                                "io": {
+                                    "type": "iio_chan_attr",
+                                    "io_params": {
+                                        "iio_dev": "ad9361-phy",
+                                        "iio_chan": "voltage0",
+                                        "iio_attr": "quadrature_tracking_en"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "layout": "horizontalLayout",
+        "stylesheet":"background:orange; border: 3px solid black;",
+        "iio_widgets": [
+            {
+                "widget": {
+                    "name": "voltage0 bb_dc_offset_tracking_en",
+                    "widget_type": "checkbox",
+                    "widget_params": {
+                        "description": "bb_dc_offset_tracking_en"
+                    },
+                    "readonly": false
+                },
+                "io": {
+                    "type": "iio_chan_attr",
+                    "io_params": {
+                        "iio_dev": "ad9361-phy",
+                        "iio_chan": "voltage0",
+                        "iio_attr": "bb_dc_offset_tracking_en"
+                    }
+                }
+            },
+            {
+                "widget": {
+                    "name": "voltage0 quadrature_tracking_en",
+                    "widget_type": "checkbox",
+                    "widget_params": {
+                        "description": "quadrature_tracking_en"
+                    },
+                    "readonly": true
+                },
+                "io": {
+                    "type": "iio_chan_attr",
+                    "io_params": {
+                        "iio_dev": "ad9361-phy",
+                        "iio_chan": "voltage0",
+                        "iio_attr": "quadrature_tracking_en"
+                    }
+                }
+            }
+        ]
+    }
+]

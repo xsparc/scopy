@@ -1,0 +1,169 @@
+[
+	{
+		"io_widget": {
+			"name": "voltage0 bb_dc_offset_tracking_en",
+			"widget_type": "checkbox",
+			"widget_params": {
+				"description": "bb_dc_offset_tracking_en"
+			},
+			"readonly": false
+		},
+		"io": {
+			"type": "iio_chan_attr",
+			"io_params": {
+				"iio_dev": "ad9361-phy",
+				"iio_chan": "voltage0",
+				"iio_attr": "bb_dc_offset_tracking_en"
+			}
+		}
+	},
+	{
+		"io_widget": {
+			"name": "voltage0 quadrature_tracking_en",
+			"widget_type": "checkbox",
+			"widget_params": {
+				"description": "quadrature_tracking_en"
+			},
+			"readonly": true
+		},
+		"io": {
+			"type": "iio_chan_attr",
+			"io_params": {
+				"iio_dev": "ad9361-phy",
+				"iio_chan": "voltage0",
+				"iio_attr": "quadrature_tracking_en"
+			}
+		}
+	},
+	{
+		"io_widget": {
+			"name": "voltage3 raw",
+			"widget_type": "edittext",
+			"widget_params": {
+				"description": "raw"
+			},
+			"readonly": true
+		},
+		"io": {
+			"type": "iio_chan_attr",
+			"io_params": {
+				"iio_dev": "ad9361-phy",
+				"iio_chan": "voltage3",
+				"iio_attr": "raw"
+			}
+		}
+	},
+	{
+		"io_widget": {
+			"name": "voltage0 hardwaregain",
+			"widget_type": "edittext",
+			"widget_params": {
+				"description": "hardwaregain"
+			},
+			"readonly": false
+		},
+		"io": {
+			"type": "iio_chan_attr",
+			"io_params": {
+				"iio_dev": "ad9361-phy",
+				"iio_chan": "voltage0",
+				"iio_attr": "hardwaregain"
+			}
+		}
+	},
+	{
+		"io_widget": {
+			"name": "voltage0 gain_control_mode",
+			"widget_type": "combobox",
+			"widget_params": {
+				"description": "gain_control_mode",
+				"available_values":[ "manual", "fast_attack", "slow_attack", "hybrid"]
+			},
+			"readonly": false
+		},
+		"io": {
+			"type": "iio_chan_attr",
+			"io_params": {
+				"iio_dev": "ad9361-phy",
+				"iio_chan": "voltage0",
+				"iio_attr": "gain_control_mode"
+			}
+		}
+	},
+	{
+		"io_widget": {
+			"name": "voltage0 sampling_frequency",
+			"widget_type": "edittext",
+			"widget_params": {
+				"description": "sampling_frequency"
+			},
+			"readonly": false
+		},
+		"io": {
+			"type": "iio_chan_attr",
+			"io_params": {
+				"iio_dev": "ad9361-phy",
+				"iio_chan": "voltage0",
+				"iio_attr": "sampling_frequency"
+			}
+		}
+	},
+	{
+		"io_widget": {
+			"name": "voltage0 rf_port_select",
+			"widget_type": "combobox",
+			"widget_params": {
+				"description": "rf_port_select",
+				"available_values":[ "B_BALANCED","A_BALANCED", "C_BALANCED", "A_N", "A_P", "B_N","B_P", "C_N", "C_P", "TX_MONITOR1", "TX_MONITOR2", "TX_MONITOR1_2"]
+			},
+			"readonly": false
+		},
+		"io": {
+			"type": "iio_chan_attr",
+			"io_params": {
+				"iio_dev": "ad9361-phy",
+				"iio_chan": "voltage0",
+				"iio_attr": "rf_port_select"
+			}
+		}
+	}
+	,
+	{
+		"io_widget": {
+			"name": "voltage0 rssi",
+			"widget_type": "label",
+			"widget_params": {
+				"description": "rssi"
+			}
+		},
+		"io": {
+			"type": "iio_chan_attr",
+			"io_params": {
+				"iio_dev": "ad9361-phy",
+				"iio_chan": "voltage0",
+				"iio_attr": "rssi"
+			}
+		}
+	},
+	{
+		"io_widget": {
+			"name": "voltage0 sampling_frequency",
+			"widget_type": "spinbox",
+			"widget_params": {
+				"description": "sampling_frequency",
+				"min_range": "2083333",
+				"max_range": "61440000",
+				"step": "1"
+			},
+			"readonly": false
+		},
+		"io": {
+			"type": "iio_chan_attr",
+			"io_params": {
+				"iio_dev": "ad9361-phy",
+				"iio_chan": "voltage0",
+				"iio_attr": "sampling_frequency"
+			}
+		}
+	}
+]

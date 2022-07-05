@@ -1,0 +1,193 @@
+[
+    {
+        "widget": {
+            "name": "main",
+            "type": "empty",
+            "params": {
+                "layout": "verticalLayout",
+                "stylesheet": "background: red ; border: 3px solid grey;"
+            }
+        }
+    },
+    {
+        "widget": {
+            "name": "main",
+            "params": {
+                "layout": "verticalLayout",
+                "stylesheet": "background: green ; border: 3px solid grey;"
+            },
+            "content": [
+                {
+                    "widget": {
+                        "name": "voltage0 bb_dc_offset_tracking_en",
+                        "type": "iiowidget",
+                        "params": {
+                            "stylesheet": "background: purple ; border: 3px solid grey;",
+                            "io_widget": {
+                                "widget_type": "checkbox",
+                                "description": "bb_dc_offset_tracking_en",
+                                "readonly": false
+                            },
+                            "io": {
+                                "type": "iio_chan_attr",
+                                "io_params": {
+                                    "iio_dev": "ad9361-phy",
+                                    "iio_chan": "voltage0",
+                                    "iio_attr": "bb_dc_offset_tracking_en"
+                                }
+                            }
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "widget": {
+            "name": "main",
+            "type": "tabwidget",
+            "params": {
+                "layout": "horizontalLayout",
+                "stylesheet": "background: orange ; border: 3px solid grey;"
+            },
+            "content": [
+                {
+                    "widget": {
+                        "name": "voltage0 bb_dc_offset_tracking_en",
+                        "type": "iiowidget",
+                        "params": {
+                            "stylesheet": "background: blue ; border: 3px solid grey;",
+                            "io_widget": {
+                                "widget_type": "checkbox",
+                                "description": "bb_dc_offset_tracking_en",
+                                "readonly": false
+                            },
+                            "io": {
+                                "type": "iio_chan_attr",
+                                "io_params": {
+                                    "iio_dev": "ad9361-phy",
+                                    "iio_chan": "voltage0",
+                                    "iio_attr": "bb_dc_offset_tracking_en"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "widget": {
+                        "name": "main",
+                        "params": {
+                            "layout": "verticalLayout",
+                            "stylesheet": "background: red ; border: 3px solid black;"
+                        },
+                        "content": [
+                            {
+                                "widget": {
+                                    "name": "voltage0 gain_control_mode",
+                                    "type": "iiowidget",
+                                    "params": {
+                                        "io_widget": {
+                                            "widget_type": "combobox",
+                                            "description": "gain_control_mode",
+                                            "available_values": [
+                                                "manual",
+                                                "fast_attack",
+                                                "slow_attack",
+                                                "hybrid"
+                                            ],
+                                            "readonly": false
+                                        },
+                                        "io": {
+                                            "type": "iio_chan_attr",
+                                            "io_params": {
+                                                "iio_dev": "ad9361-phy",
+                                                "iio_chan": "voltage0",
+                                                "iio_attr": "gain_control_mode"
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "widget": {
+                                    "name": "voltage0 bb_dc_offset_tracking_en",
+                                    "type": "iiowidget",
+                                    "params": {
+                                        "io_widget": {
+                                            "widget_type": "checkbox",
+                                            "description": "bb_dc_offset_tracking_en",
+                                            "readonly": false
+                                        },
+                                        "io": {
+                                            "type": "iio_chan_attr",
+                                            "io_params": {
+                                                "iio_dev": "ad9361-phy",
+                                                "iio_chan": "voltage0",
+                                                "iio_attr": "bb_dc_offset_tracking_en"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "widget": {
+                        "name": "test",
+                        "type": "tabwidget",
+                        "params": {
+                            "layout": "verticalLayout",
+                            "stylesheet": "background: pink ; border: 3px solid black;"
+                        },
+                        "content": [
+                            {
+                                "widget": {
+                                    "name": "voltage0 bb_dc_offset_tracking_en",
+                                    "type": "iiowidget",
+                                    "params": {
+                                        "io_widget": {
+                                            "widget_type": "checkbox",
+                                            "description": "bb_dc_offset_tracking_en",
+                                            "readonly": false
+                                        },
+                                        "io": {
+                                            "type": "iio_chan_attr",
+                                            "io_params": {
+                                                "iio_dev": "ad9361-phy",
+                                                "iio_chan": "voltage0",
+                                                "iio_attr": "bb_dc_offset_tracking_en"
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "widget": {
+                                    "name": "voltage0 bb_dc_offset_tracking_en",
+                                    "type": "iiowidget",
+                                    "params": {
+                                        "stylesheet": "background: yellow ; border: 3px solid grey;",
+                                        "io_widget": {
+                                            "widget_type": "checkbox",
+                                            "description": "bb_dc_offset_tracking_en",
+                                            "readonly": false
+                                        },
+                                        "io": {
+                                            "type": "iio_chan_attr",
+                                            "io_params": {
+                                                "iio_dev": "ad9361-phy",
+                                                "iio_chan": "voltage0",
+                                                "iio_attr": "bb_dc_offset_tracking_en"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            ]
+        }
+    }
+]
