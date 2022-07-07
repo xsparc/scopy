@@ -1,9 +1,18 @@
 #include "jsonparser.hpp"
 #include "qdebug.h"
 
-#include <chnattrreadwrite.hpp>
-#include <iiocheckbox.hpp>
 #include <iiowidget.hpp>
+
+#include <chnattrreadwrite.hpp>
+#include <devattrreadwrite.hpp>
+#include <contextattrreadwrite.hpp>
+
+#include <customcheckboxwidget.hpp>
+#include <customcomboboxwidget.hpp>
+#include <customedittextwidget.hpp>
+#include <customlabelwidget.h>
+#include <customspinboxwidget.hpp>
+
 #include <qboxlayout.h>
 #include <qfile.h>
 #include <qjsonarray.h>
@@ -15,48 +24,6 @@ JsonParser::JsonParser(struct iio_context *ctx, QObject *parent)
 	:QObject{parent}
 {
 	this->ctx = ctx;
-}
-
-QVector<IioWidget*> JsonParser::parse(QString path)
-{
-
-	QVector<IioWidget*> result;
-
-	QString val;
-	QFile file;
-	file.setFileName(path);
-	file.open(QIODevice::ReadOnly | QIODevice::Text);
-	val = file.readAll();
-	file.close();
-	QJsonDocument d = QJsonDocument::fromJson(val.toUtf8());
-
-	QJsonArray jsonArray = d.array();
-
-	for (auto obj : jsonArray) {
-
-		IioWidget *iioWidget = getIioWidgetFromJson(obj.toObject());
-
-		if (iioWidget) {
-			result.push_back(iioWidget);
-		}
-	}
-
-	return result;
-}
-
-IioWidget *JsonParser::getIioWidgetFromJson(QJsonObject object)
-{
-	QJsonObject params = object.value(QString("params")).toObject();
-
-	//create io based on JSON info
-	QJsonObject io = params.value(QString("io")).toObject();
-	ReadWriteInterface* readWrite = getReadWrite(io);
-
-	// widget type and params
-	QJsonObject widget = params.value(QString("io_widget")).toObject();
-	CustomWidgetInterface* customWidget = getWidget(widget);
-
-	return new IioWidget(customWidget,readWrite);
 }
 
 QVector<QWidget *> JsonParser::getWidgets(QString path)
@@ -82,6 +49,28 @@ QVector<QWidget *> JsonParser::getWidgets(QString path)
 	}
 
 	return result;
+}
+
+IioWidget *JsonParser::getIioWidgetFromJson(QJsonObject object)
+{
+	QJsonObject params = object.value(QString("params")).toObject();
+
+	//create io based on JSON info
+	QJsonObject io = params.value(QString("io")).toObject();
+	ReadWriteInterface* readWrite = getReadWrite(io);
+
+	double timer = 0;
+	// if timer is needed get timer value
+	if (io.value(QString("io_params")).toObject().contains("read_timer")) {
+		QJsonValue read_timer = io.value(QString("io_params")).toObject()["read_timer"];
+		timer = read_timer.toDouble();
+	}
+
+	// widget type and params
+	QJsonObject widget = params.value(QString("io_widget")).toObject();
+	CustomWidgetInterface* customWidget = getWidget(widget);
+
+	return new IioWidget(customWidget,readWrite,timer);
 }
 
 
@@ -121,7 +110,7 @@ QWidget *JsonParser::getWidgetFromJson(QJsonObject object)
 			return result;
 		}
 
-		// is widget type is iiowidget we draw the widget
+		// if widget type is iiowidget we draw the widget
 		if (type == "iiowidget") {
 			auto  iioWidget = getIioWidgetFromJson(widget)->getWidget();
 			iioWidget->setStyleSheet(result->styleSheet());
@@ -134,6 +123,7 @@ QWidget *JsonParser::getWidgetFromJson(QJsonObject object)
 			tabs->setStyleSheet(result->styleSheet());
 
 			//check if the widget contains other widgets
+			//for tab widgets all containing widgets are it's tabs
 			if (widget.contains("content")) {
 				QJsonValue content = widget.value(QString("content"));
 
@@ -141,8 +131,6 @@ QWidget *JsonParser::getWidgetFromJson(QJsonObject object)
 					QString name = aux.toObject().value(QString("widget"))["name"].toString();
 					tabs->addTab(getContent(aux.toObject(),result), name);
 				}
-			} else {
-				//TO CHECK can widgets not have content
 			}
 			return tabs;
 		}
@@ -150,7 +138,6 @@ QWidget *JsonParser::getWidgetFromJson(QJsonObject object)
 		return getContent(widget,result);
 	}
 
-	//TO CHECK can we have other objects except widget? what kind of objects ?
 	//if no known widget type is found return empty widget
 	return result;
 }
@@ -163,10 +150,10 @@ QWidget* JsonParser::getContent(QJsonObject object, QWidget* parent)
 
 	//apply parent stylesheet and init layout as default value
 	result->setStyleSheet(parent->styleSheet());
-	result->setLayout(new QHBoxLayout());
+	result->setLayout(parent->layout());
 
 	if (object.contains("content")) {
-		// if the widget contains more widgets pull all the conained widgets inside the widget
+		// if the widget contains more widgets put all the conained widgets inside the widget
 		QJsonValue content = object.value(QString("content"));
 		if (content.isArray()) {
 			for (auto widget : content.toArray()) {
@@ -180,6 +167,7 @@ QWidget* JsonParser::getContent(QJsonObject object, QWidget* parent)
 
 	return result;
 }
+
 iio_device* JsonParser::getIioDevice(const char *dev_name)
 {
 	auto deviceCount = iio_context_get_devices_count(ctx);
@@ -217,7 +205,11 @@ ReadWriteInterface *JsonParser::getReadWrite(QJsonObject object)
 	}
 
 	if (type == "iio_dev_attr") {
-		//TOOD generate DevAttrRW
+		return getDevReadWrite(object);
+	}
+
+	if (type == "iio_ctx_attr") {
+		return getCtxReadWrite(object);
 	}
 
 	if (type == "cmd") {
@@ -230,19 +222,34 @@ ReadWriteInterface *JsonParser::getReadWrite(QJsonObject object)
 ChnAttrReadWrite *JsonParser::getChnReadWrite(QJsonObject object)
 {
 	QJsonObject io_params = object.value(QString("io_params")).toObject();
-	qDebug()<< " io_params = " << io_params;
-
 	QJsonValue iio_dev = io_params["iio_dev"];
 	iio_device* dev = getIioDevice(iio_dev.toString().toStdString().c_str());
-
 	QJsonValue iio_chan = io_params["iio_chan"];
 	iio_channel* chn = getIioCh(dev,iio_chan.toString().toStdString().c_str());
-
 	QJsonValue iio_attr = io_params["iio_attr"];
-
 	auto attr_s = iio_attr.toString()+ '\0';
 
 	return new ChnAttrReadWrite(chn,attr_s);
+}
+
+DevAttrReadWrite *JsonParser::getDevReadWrite(QJsonObject object)
+{
+	QJsonObject io_params = object.value(QString("io_params")).toObject();
+	QJsonValue iio_dev = io_params["iio_dev"];
+	iio_device* dev = getIioDevice(iio_dev.toString().toStdString().c_str());
+	QJsonValue iio_attr = io_params["iio_attr"];
+	auto attr_s = iio_attr.toString()+ '\0';
+
+	return new DevAttrReadWrite(dev,attr_s);
+}
+
+ContextAttrReadWrite *JsonParser::getCtxReadWrite(QJsonObject object)
+{
+	QJsonObject io_params = object.value(QString("io_params")).toObject();
+	QJsonValue iio_attr = io_params["iio_attr"];
+	auto attr_s = iio_attr.toString()+ '\0';
+
+	return new ContextAttrReadWrite(ctx,attr_s);
 }
 
 CustomWidgetInterface *JsonParser::getWidget(QJsonObject object)
@@ -288,20 +295,21 @@ CustomComboBoxWidget *JsonParser::getComboBoxWidget(QJsonObject object)
 {
 	QJsonValue readonly = object.value(QString("readonly"));
 	QJsonValue description = object.value(QString("description"));
-
 	QJsonArray availableValuesList = object.value(QString("available_values")).toArray();
 	QStringList available;
+
 	for (auto value : availableValuesList) {
 		available.append(value.toString());
 	}
 
-	return new CustomComboBoxWidget(description.toString().toStdString().c_str(), available, readonly.toBool());
+	return new CustomComboBoxWidget(description.toString().toStdString().c_str(),
+					available, readonly.toBool());
 }
 
 CustomLabelWidget *JsonParser::getLabelWidget(QJsonObject object)
 {
-	QJsonValue name = object.value(QString("name"));
-	return new CustomLabelWidget(name.toString().toStdString().c_str());
+	QJsonValue description = object.value(QString("description"));
+	return new CustomLabelWidget(description.toString().toStdString().c_str());
 }
 
 CustomSpinBoxWidget *JsonParser::getSpinBoxWidget(QJsonObject object)
@@ -311,11 +319,13 @@ CustomSpinBoxWidget *JsonParser::getSpinBoxWidget(QJsonObject object)
 	QJsonValue max_range = object.value(QString("max_range"));
 	QJsonValue step = object.value(QString("step"));
 	QJsonValue readonly = object.value(QString("readonly"));
+	QJsonValue type = object.value(QString("type"));
 
 	return new CustomSpinBoxWidget(description.toString().toStdString().c_str(),
 				       min_range.toString().toStdString().c_str(),
 				       max_range.toString().toStdString().c_str(),
 				       step.toString().toStdString().c_str(),
+				       type.toString(),
 				       readonly.toBool());
 }
 

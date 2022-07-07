@@ -27,3 +27,8 @@ QWidget *CustomLabelWidget::getWidget()
 {
 	return ui->widget;
 }
+
+void CustomLabelWidget::giveFeedback(bool interaction, const char* msg)
+{
+
+}

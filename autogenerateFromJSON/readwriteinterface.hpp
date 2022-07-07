@@ -18,6 +18,8 @@ public:
 
 signals:
 	void readDone(const char *value);
+	void writeError(const char *err);
+	void writeSuccess();
 };
 
 #endif // READWRITEINTERFACE_H

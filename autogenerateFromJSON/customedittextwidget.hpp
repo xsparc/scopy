@@ -24,6 +24,10 @@ public:
 	void updateValue(const char *val);
 	QWidget *getWidget();
 	bool readOnly;
+
+	// CustomWidgetInterface interface
+public:
+	void giveFeedback(bool interaction, const char* msg);
 };
 
 #endif // CUSTOMEDITTEXTWIDGET_HPP

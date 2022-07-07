@@ -12,17 +12,14 @@ public:
 	explicit ChnAttrReadWrite(struct iio_channel *chn, QString attr, QObject *parent = nullptr);
 	~ChnAttrReadWrite();
 
-signals:
-
-
-	// AttrReadWriteInterface interface
-public:
-	void read();
-	void write(const char *val);
-
 private:
 	const struct iio_channel *chn;
 	char *attr = nullptr;
+
+	// AttrReadWriteInterface interface
+public:
+	void read() override;
+	void write(const char *val) override;
 };
 
 #endif // CHNATTRREADWRITE_HPP

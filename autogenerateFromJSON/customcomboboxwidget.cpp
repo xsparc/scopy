@@ -11,7 +11,7 @@ CustomComboBoxWidget::CustomComboBoxWidget(const char * attr, QStringList availa
 	ui->comboBox->addItems(available_values);
 
 	connect(this, &CustomComboBoxWidget::valueChanged, ui->comboBox, [=](const char* val){
-		ui->comboBox->setCurrentText(val);
+		updateValue(val);
 	});
 
 	connect(ui->comboBox, &QComboBox::currentTextChanged, this, [=](){
@@ -38,4 +38,9 @@ void CustomComboBoxWidget::updateValue(const char *val)
 QWidget *CustomComboBoxWidget::getWidget()
 {
 	return ui->mainWidget;
+}
+
+void CustomComboBoxWidget::giveFeedback(bool interaction, const char* msg)
+{
+
 }

@@ -4,21 +4,21 @@
 #include <readwriteinterface.hpp>
 
 
-
 class DevAttrReadWrite: public ReadWriteInterface
 {
 	Q_OBJECT
 public:
-	explicit DevAttrReadWrite(const struct iio_device *dev, const char *attr, QObject *parent = nullptr);
-
-	// AttrReadWriteInterface interface
-public:
-	void readAttr();
-	void writeAttr(const char *val);
+	explicit DevAttrReadWrite(struct iio_device *dev, QString attr, QObject *parent = nullptr);
+	~DevAttrReadWrite();
 
 private:
 	const struct iio_device *dev;
-	const char *attr;
+	char *attr = nullptr;
+
+	// ReadWriteInterface interface
+public:
+	void read() override;
+	void write(const char *val) override;
 };
 
 #endif // DEVATTRREADWRITE_HPP

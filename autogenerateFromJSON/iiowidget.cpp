@@ -1,14 +1,33 @@
 #include "iiowidget.hpp"
 
-IioWidget::IioWidget(CustomWidgetInterface *customWidget, ReadWriteInterface *readWrite,QObject *parent)
+#include <QTimer>
+
+IioWidget::IioWidget(CustomWidgetInterface *customWidget, ReadWriteInterface *readWrite, double readTimer, QObject *parent)
 	: QObject{parent}
 	, customWidget(customWidget)
 	, readWrite(readWrite)
 {
 	connect(readWrite, &ReadWriteInterface::readDone, customWidget, &CustomWidgetInterface::updateValue);
+	connect(customWidget, &CustomWidgetInterface::valueChanged, readWrite, &ReadWriteInterface::write);
+
 	readWrite->read();
 
-	connect(customWidget, &CustomWidgetInterface::valueChanged, readWrite, &ReadWriteInterface::write);
+	if (readTimer > 0) {
+		timer = new QTimer();
+
+		connect(timer, &QTimer::timeout, this, [=](){
+			readWrite->read();
+		});
+
+		timer->start(readTimer);
+	}
+
+	connect(readWrite, &ReadWriteInterface::writeError, customWidget, [=](const char* err){
+		customWidget->giveFeedback(false, err);
+	});
+	connect(readWrite, &ReadWriteInterface::writeSuccess, customWidget, [=](){
+		customWidget->giveFeedback(true, "ok");
+	});
 
 }
 
@@ -21,5 +40,6 @@ IioWidget::~IioWidget()
 {
 	delete customWidget;
 	delete readWrite;
+	delete timer;
 }
 

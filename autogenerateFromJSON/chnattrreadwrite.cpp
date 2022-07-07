@@ -27,7 +27,6 @@ void ChnAttrReadWrite::read()
 		qDebug()<< "channel read err";
 	} else {
 		Q_EMIT readDone(val);
-
 	}
 
 	free(val);
@@ -37,7 +36,10 @@ void ChnAttrReadWrite::write( const char *val)
 {
 	ssize_t write = iio_channel_attr_write(chn, attr, val);
 	if (write < 0) {
+		Q_EMIT writeError(strerror(-1 * write));
 		qDebug()<< "channel write err";
+	} else {
+		Q_EMIT writeSuccess();
 	}
 	read();
 }

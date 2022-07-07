@@ -23,6 +23,10 @@ private:
 public:
 	void updateValue(const char *val);
 	QWidget *getWidget();
+
+	// CustomWidgetInterface interface
+public:
+	void giveFeedback(bool interaction, const char* msg);
 };
 
 #endif // CUSTOMLABELWIDGET_H

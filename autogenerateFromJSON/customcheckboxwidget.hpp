@@ -19,13 +19,15 @@ public:
 private:
 	Ui::CustomCheckBoxWidget *ui;
 
-
-
 	// CustomWidget interface
 public:
 	void updateValue(const char *val);
 	QWidget* getWidget();
 	bool readOnly;
+
+	// CustomWidgetInterface interface
+public:
+	void giveFeedback(bool interaction, const char* msg);
 };
 
 #endif // CUSTOMCHECKBOXWIDGET_HPP

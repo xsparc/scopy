@@ -10,7 +10,7 @@ CustomEditTextWidget::CustomEditTextWidget(const char * attr, bool readOnly, QWi
 	ui->title->setText(attr);
 
 	connect(this, &CustomEditTextWidget::valueChanged, ui->value, [=](const char* val){
-		ui->value->setText(val);
+		updateValue(val);
 	});
 
 	connect(ui->updateButton, &QPushButton::clicked, this, [=](){
@@ -38,4 +38,9 @@ void CustomEditTextWidget::updateValue(const char *val)
 QWidget *CustomEditTextWidget::getWidget()
 {
 	return ui->mainWidget;
+}
+
+void CustomEditTextWidget::giveFeedback(bool interaction, const char* msg)
+{
+
 }

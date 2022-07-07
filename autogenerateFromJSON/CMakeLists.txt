@@ -20,19 +20,18 @@ set(PROJECT_SOURCES
         mainwindow.cpp
         mainwindow.h
         mainwindow.ui
-	readwriteinterface.hpp readwriteinterface.cpp
-	customwidgetinterface.hpp customwidgetinterface.cpp
+	jsonparser.hpp jsonparser.cpp
 	iiowidget.hpp iiowidget.cpp
+	readwriteinterface.hpp readwriteinterface.cpp
 	chnattrreadwrite.hpp chnattrreadwrite.cpp
 	devattrreadwrite.hpp devattrreadwrite.cpp
+	contextattrreadwrite.hpp contextattrreadwrite.cpp
+	customwidgetinterface.hpp customwidgetinterface.cpp
 	customcheckboxwidget.hpp customcheckboxwidget.cpp customcheckboxwidget.ui
 	customedittextwidget.hpp customedittextwidget.cpp customedittextwidget.ui
 	customcomboboxwidget.hpp customcomboboxwidget.cpp customcomboboxwidget.ui
 	customlabelwidget.h customlabelwidget.cpp customlabelwidget.ui
 	customspinboxwidget.hpp customspinboxwidget.cpp customspinboxwidget.ui
-	iiocheckbox.hpp iiocheckbox.cpp
-	jsonparser.hpp jsonparser.cpp
-
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

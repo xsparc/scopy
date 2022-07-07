@@ -1,19 +1,23 @@
 #ifndef JSONPARSER_HPP
 #define JSONPARSER_HPP
 
-#include "iiowidget.hpp"
-
-#include <chnattrreadwrite.hpp>
-#include <customcheckboxwidget.hpp>
-#include <customcomboboxwidget.hpp>
-#include <customedittextwidget.hpp>
-#include <customlabelwidget.h>
-#include <customspinboxwidget.hpp>
 #include <iio.h>
 #include <qobject.h>
 #include <qstring.h>
 
+class IioWidget;
 
+class ReadWriteInterface;
+class ChnAttrReadWrite;
+class DevAttrReadWrite;
+class ContextAttrReadWrite;
+
+class CustomWidgetInterface;
+class CustomCheckBoxWidget;
+class CustomEditTextWidget;
+class CustomComboBoxWidget;
+class CustomLabelWidget;
+class CustomSpinBoxWidget;
 
 class JsonParser: public QObject
 {
@@ -21,17 +25,15 @@ class JsonParser: public QObject
 public:
 	JsonParser(struct iio_context *ctx, QObject *parent = nullptr);
 
-	QVector<IioWidget*> parse(QString path);
-
 	QVector<QWidget*> getWidgets(QString path);
 
 	iio_device* getIioDevice(const char* dev_name);
 	iio_channel* getIioCh(iio_device* dev, const char* ch_name);
 
-
-
 	ReadWriteInterface* getReadWrite(QJsonObject object);
 	ChnAttrReadWrite* getChnReadWrite(QJsonObject object);
+	DevAttrReadWrite* getDevReadWrite(QJsonObject object);
+	ContextAttrReadWrite* getCtxReadWrite(QJsonObject object);
 
 	CustomWidgetInterface* getWidget(QJsonObject object);
 	CustomCheckBoxWidget* getCheckBoxWidget(QJsonObject object);

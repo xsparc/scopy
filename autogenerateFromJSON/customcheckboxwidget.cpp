@@ -10,11 +10,7 @@ CustomCheckBoxWidget::CustomCheckBoxWidget(const char* attr, bool readOnly, QWid
 	ui->checkBox->setText(attr);
 
 	connect(this, &CustomCheckBoxWidget::valueChanged, ui->checkBox, [=](const char* val){
-		bool toggle = false;
-		if(strncmp(val,"1",2) == 0)  {
-			toggle = true;
-		}
-		ui->checkBox->setChecked(toggle);
+		updateValue(val);
 	});
 
 	connect(ui->checkBox, &QCheckBox::toggled, this, [=](bool toggled){
@@ -47,4 +43,9 @@ void CustomCheckBoxWidget::updateValue(const char *val)
 QWidget* CustomCheckBoxWidget::getWidget()
 {
 	return ui->checkBox;
+}
+
+void CustomCheckBoxWidget::giveFeedback(bool interaction, const char* msg)
+{
+
 }
