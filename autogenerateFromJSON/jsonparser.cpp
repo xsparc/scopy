@@ -7,6 +7,7 @@
 #include <devattrreadwrite.hpp>
 #include <contextattrreadwrite.hpp>
 
+#include <cmdreadwrite.hpp>
 #include <customcheckboxwidget.hpp>
 #include <customcomboboxwidget.hpp>
 #include <customedittextwidget.hpp>
@@ -51,29 +52,6 @@ QVector<QWidget *> JsonParser::getWidgets(QString path)
 	return result;
 }
 
-IioWidget *JsonParser::getIioWidgetFromJson(QJsonObject object)
-{
-	QJsonObject params = object.value(QString("params")).toObject();
-
-	//create io based on JSON info
-	QJsonObject io = params.value(QString("io")).toObject();
-	ReadWriteInterface* readWrite = getReadWrite(io);
-
-	double timer = 0;
-	// if timer is needed get timer value
-	if (io.value(QString("io_params")).toObject().contains("read_timer")) {
-		QJsonValue read_timer = io.value(QString("io_params")).toObject()["read_timer"];
-		timer = read_timer.toDouble();
-	}
-
-	// widget type and params
-	QJsonObject widget = params.value(QString("io_widget")).toObject();
-	CustomWidgetInterface* customWidget = getWidget(widget);
-
-	return new IioWidget(customWidget,readWrite,timer);
-}
-
-
 QWidget *JsonParser::getWidgetFromJson(QJsonObject object)
 {
 	QWidget* result = new QWidget();
@@ -85,19 +63,7 @@ QWidget *JsonParser::getWidgetFromJson(QJsonObject object)
 		QJsonObject params = widget.value(QString("params")).toObject();
 
 		// apply layout if exists
-		if (params.contains("layout")) {
-			QString layout = params["layout"].toString();
-
-			if (layout == "verticalLayout") {
-				result->setLayout(new QVBoxLayout());
-			}
-
-			if (layout == "horizontalLayout") {
-				result->setLayout(new QHBoxLayout());
-			}
-		} else {
-			result->setLayout(new QHBoxLayout());
-		}
+		result->setLayout(getLayout(params));
 
 		// apply stykesheet if exists
 		if (params.contains("stylesheet")) {
@@ -108,6 +74,10 @@ QWidget *JsonParser::getWidgetFromJson(QJsonObject object)
 
 		if (type == "empty") {
 			return result;
+		}
+
+		if (type == "label") {
+			return getLabelWidget( widget["params"].toObject());
 		}
 
 		// if widget type is iiowidget we draw the widget
@@ -145,7 +115,6 @@ QWidget *JsonParser::getWidgetFromJson(QJsonObject object)
 
 QWidget* JsonParser::getContent(QJsonObject object, QWidget* parent)
 {
-
 	QWidget* result = new QWidget(parent);
 
 	//apply parent stylesheet and init layout as default value
@@ -166,6 +135,42 @@ QWidget* JsonParser::getContent(QJsonObject object, QWidget* parent)
 	}
 
 	return result;
+}
+
+IioWidget *JsonParser::getIioWidgetFromJson(QJsonObject object)
+{
+	QJsonObject params = object.value(QString("params")).toObject();
+
+	//create io based on JSON info
+	QJsonObject io = params.value(QString("io")).toObject();
+	ReadWriteInterface* readWrite = getReadWrite(io);
+
+	double timer = 0;
+	// if timer is needed get timer value
+	if (io.value(QString("io_params")).toObject().contains("read_timer")) {
+		QJsonValue read_timer = io.value(QString("io_params")).toObject()["read_timer"];
+		timer = read_timer.toDouble();
+	}
+
+	// widget type and params
+	QJsonObject widget = params.value(QString("io_widget")).toObject();
+	CustomWidgetInterface* customWidget = getWidget(widget);
+
+	return new IioWidget(customWidget,readWrite,timer);
+}
+
+QLayout *JsonParser::getLayout(QJsonObject object)
+{
+	QString layout = "";
+	if (object.contains("layout")) {
+		layout = object["layout"].toString();
+	}
+
+	if (layout == "verticalLayout") {
+		return new QVBoxLayout();
+	}
+
+	return new QHBoxLayout();
 }
 
 iio_device* JsonParser::getIioDevice(const char *dev_name)
@@ -213,7 +218,7 @@ ReadWriteInterface *JsonParser::getReadWrite(QJsonObject object)
 	}
 
 	if (type == "cmd") {
-		//TODO create rw based on console cmd
+		return getCmdReadWrite(object);
 	}
 
 	return nullptr;
@@ -250,6 +255,37 @@ ContextAttrReadWrite *JsonParser::getCtxReadWrite(QJsonObject object)
 	auto attr_s = iio_attr.toString()+ '\0';
 
 	return new ContextAttrReadWrite(ctx,attr_s);
+}
+
+CmdReadWrite *JsonParser::getCmdReadWrite(QJsonObject object)
+{
+	QJsonObject io_params = object.value(QString("io_params")).toObject();
+
+	QJsonObject read= io_params.value(QString("read_cmd")).toObject();
+	QJsonValue read_cmd = read["cmd"];
+	QJsonValue read_params = read["params"];
+
+	ConsoleCmd readCmd;
+	readCmd.cmd = read["cmd"].toString();
+
+	QJsonArray readParamList = read.value(QString("params")).toArray();
+	for (auto value : readParamList) {
+		readCmd.params.append(value.toString());
+	}
+
+	QJsonObject write= io_params.value(QString("write_cmd")).toObject();
+	QJsonValue write_cmd = read["cmd"];
+	QJsonValue write_params = read["params"];
+
+	ConsoleCmd writeCmd;
+	writeCmd.cmd = read["cmd"].toString();
+
+	QJsonArray writeParamList = write.value(QString("params")).toArray();
+	for (auto value : writeParamList) {
+		writeCmd.params.append(value.toString());
+	}
+
+	return new CmdReadWrite(readCmd,writeCmd);
 }
 
 CustomWidgetInterface *JsonParser::getWidget(QJsonObject object)
@@ -302,14 +338,27 @@ CustomComboBoxWidget *JsonParser::getComboBoxWidget(QJsonObject object)
 		available.append(value.toString());
 	}
 
+	QLayout* layout = getLayout(object);
+
 	return new CustomComboBoxWidget(description.toString().toStdString().c_str(),
-					available, readonly.toBool());
+					available, readonly.toBool(), layout);
 }
 
 CustomLabelWidget *JsonParser::getLabelWidget(QJsonObject object)
 {
+	QJsonValue type = object.value(QString("type"));
+
 	QJsonValue description = object.value(QString("description"));
-	return new CustomLabelWidget(description.toString().toStdString().c_str());
+	QLayout* layout = getLayout(object);
+
+	if (type.toString() == "image") {
+		QJsonValue url = object.value(QString("url"));
+
+		return new CustomLabelWidget(description.toString().toStdString().c_str(),
+					     url.toString(), layout);
+	}
+
+	return new CustomLabelWidget(description.toString().toStdString().c_str(), layout);
 }
 
 CustomSpinBoxWidget *JsonParser::getSpinBoxWidget(QJsonObject object)

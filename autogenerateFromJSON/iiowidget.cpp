@@ -7,8 +7,20 @@ IioWidget::IioWidget(CustomWidgetInterface *customWidget, ReadWriteInterface *re
 	, customWidget(customWidget)
 	, readWrite(readWrite)
 {
+	connect(readWrite, &ReadWriteInterface::writeError, customWidget, [=](const char* err){
+		customWidget->setStatus("background-color: red", err);
+	});
+	connect(readWrite, &ReadWriteInterface::writeSuccess, customWidget, [=](){
+		customWidget->setStatus("background-color: green", "ok");
+	});
+
+
 	connect(readWrite, &ReadWriteInterface::readDone, customWidget, &CustomWidgetInterface::updateValue);
-	connect(customWidget, &CustomWidgetInterface::valueChanged, readWrite, &ReadWriteInterface::write);
+	connect(customWidget, &CustomWidgetInterface::valueChanged, readWrite, [=](const char *val){
+
+		customWidget->setStatus("background-color: yellow ", "loading");
+		readWrite->write(val);
+	});
 
 	readWrite->read();
 
@@ -20,15 +32,8 @@ IioWidget::IioWidget(CustomWidgetInterface *customWidget, ReadWriteInterface *re
 		});
 
 		timer->start(readTimer);
+
 	}
-
-	connect(readWrite, &ReadWriteInterface::writeError, customWidget, [=](const char* err){
-		customWidget->giveFeedback(false, err);
-	});
-	connect(readWrite, &ReadWriteInterface::writeSuccess, customWidget, [=](){
-		customWidget->giveFeedback(true, "ok");
-	});
-
 }
 
 QWidget* IioWidget::getWidget()

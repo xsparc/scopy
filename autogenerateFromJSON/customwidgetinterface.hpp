@@ -13,7 +13,7 @@ public:
 public:
 	virtual void updateValue(const char *val)=0;
 	virtual QWidget* getWidget()=0;
-	virtual void giveFeedback(bool interaction, const char* msg) = 0;
+	virtual void setStatus(QString styleSheet, const char* msg) = 0;
 	bool readOnly;
 signals:
 	void valueChanged(const char *val);

@@ -1,46 +1,51 @@
 #include "customcomboboxwidget.hpp"
-#include "ui_customcomboboxwidget.h"
 
-CustomComboBoxWidget::CustomComboBoxWidget(const char * attr, QStringList available_values, bool readOnly,QWidget *parent) :
-	ui(new Ui::CustomComboBoxWidget)
+#include <qcombobox.h>
+#include <qlabel.h>
+
+CustomComboBoxWidget::CustomComboBoxWidget(const char * attr, QStringList available_values, bool readOnly, QLayout* layout, QWidget *parent)
 {
-	ui->setupUi(this);
+	widget = new QWidget(this);
+	widget->setLayout(layout);
+	widget->layout()->addWidget(new QLabel(attr));
 
-	ui->name->setText(attr);
+	comboBox = new QComboBox();
+	comboBox->addItems(available_values);
+	widget->layout()->addWidget(comboBox);
 
-	ui->comboBox->addItems(available_values);
-
-	connect(this, &CustomComboBoxWidget::valueChanged, ui->comboBox, [=](const char* val){
+	connect(this, &CustomComboBoxWidget::valueChanged, comboBox, [=](const char* val){
 		updateValue(val);
 	});
 
-	connect(ui->comboBox, &QComboBox::currentTextChanged, this, [=](){
-		auto aux = ui->comboBox->currentText();
+	connect(comboBox, &QComboBox::currentTextChanged, this, [=](){
+		auto aux = comboBox->currentText();
 		const char *val = aux.toStdString().c_str();
 		Q_EMIT CustomWidgetInterface::valueChanged(val);
 	});
 
 	if (readOnly) {
-		ui->comboBox->setEnabled(false);
+		comboBox->setEnabled(false);
 	}
+
+	mainLayout->addWidget(widget);
 }
 
 CustomComboBoxWidget::~CustomComboBoxWidget()
 {
-	delete ui;
+	delete mainLayout;
 }
 
 void CustomComboBoxWidget::updateValue(const char *val)
 {
-	ui->comboBox->setCurrentText(val);
+	comboBox->setCurrentText(val);
 }
 
 QWidget *CustomComboBoxWidget::getWidget()
 {
-	return ui->mainWidget;
+	return widget;
 }
 
-void CustomComboBoxWidget::giveFeedback(bool interaction, const char* msg)
+void CustomComboBoxWidget::setStatus(QString styleSheet, const char* msg)
 {
 
 }

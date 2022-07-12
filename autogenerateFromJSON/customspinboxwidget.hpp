@@ -3,10 +3,10 @@
 
 #include <QWidget>
 #include <customwidgetinterface.hpp>
+#include <qboxlayout.h>
+#include <qpushbutton.h>
 
-namespace Ui {
-class CustomSpinBoxWidget;
-}
+class QDoubleSpinBox;
 
 class CustomSpinBoxWidget : public CustomWidgetInterface
 {
@@ -14,11 +14,15 @@ class CustomSpinBoxWidget : public CustomWidgetInterface
 
 public:
 	explicit CustomSpinBoxWidget(const char * attr, const char * min_range, const char * max_range, const char * step,
-				     QString type, bool readOnly, QWidget *parent = nullptr);
+				     QString type, bool readOnly, QLayout* layout = new QHBoxLayout(), QWidget *parent = nullptr);
 	~CustomSpinBoxWidget();
 
 private:
-	Ui::CustomSpinBoxWidget *ui;
+	QWidget *widget;
+	QDoubleSpinBox *value;
+	QLayout *mainLayout = new QVBoxLayout();
+
+	QPushButton *pushButton;
 	QTimer* timer;
 	bool isInt;
 
@@ -26,7 +30,7 @@ private:
 public:
 	void updateValue(const char *val);
 	QWidget *getWidget();
-	void giveFeedback(bool interaction, const char* msg);
+	void setStatus(QString styleSheet, const char* msg);
 };
 
 #endif // CUSTOMSPINBOXWIDGET_HPP

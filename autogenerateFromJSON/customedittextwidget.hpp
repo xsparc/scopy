@@ -3,21 +3,24 @@
 
 #include <QWidget>
 #include <customwidgetinterface.hpp>
+#include <qboxlayout.h>
 
-namespace Ui {
-class CustomEditTextWidget;
-}
+class QLineEdit;
+class QPushButton;
 
 class CustomEditTextWidget : public CustomWidgetInterface
 {
 	Q_OBJECT
 
 public:
-	explicit CustomEditTextWidget(const char * attr, bool readOnly,QWidget *parent = nullptr);
+	explicit CustomEditTextWidget(const char * attr, bool readOnly, QLayout* layout = new QHBoxLayout(), QWidget *parent = nullptr);
 	~CustomEditTextWidget();
 
 private:
-	Ui::CustomEditTextWidget *ui;
+	QWidget *widget;
+	QLineEdit *value;
+	QPushButton *updateButton;
+	QLayout *mainLayout = new QVBoxLayout();
 
 	// CustomWidgetInterface interface
 public:
@@ -27,7 +30,7 @@ public:
 
 	// CustomWidgetInterface interface
 public:
-	void giveFeedback(bool interaction, const char* msg);
+	void setStatus(QString styleSheet, const char* msg);
 };
 
 #endif // CUSTOMEDITTEXTWIDGET_HPP

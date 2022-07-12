@@ -16,10 +16,10 @@ private:
 	const struct iio_channel *chn;
 	char *attr = nullptr;
 
-	// AttrReadWriteInterface interface
+	// ReadWriteInterface interface
 public:
-	void read() override;
-	void write(const char *val) override;
+	void read();
+	void write(const char *val);
 };
 
 #endif // CHNATTRREADWRITE_HPP

@@ -3,21 +3,24 @@
 
 #include <QWidget>
 #include <customwidgetinterface.hpp>
+#include <qboxlayout.h>
 
-namespace Ui {
-class CustomLabelWidget;
-}
+
+class QLabel;
 
 class CustomLabelWidget : public CustomWidgetInterface
 {
 	Q_OBJECT
 
 public:
-	explicit CustomLabelWidget(const char * attr, QWidget *parent = nullptr);
+	CustomLabelWidget(const char * attr, QString imgPath, QLayout* layout = new QHBoxLayout(), QWidget *parent = nullptr);
+	CustomLabelWidget(const char * attr, QLayout* layout = new QHBoxLayout(), QWidget *parent = nullptr);
 	~CustomLabelWidget();
 
 private:
-	Ui::CustomLabelWidget *ui;
+	QWidget *widget;
+	QLabel *value;
+	QLayout *mainLayout = new QVBoxLayout();
 
 	// CustomWidgetInterface interface
 public:
@@ -26,7 +29,7 @@ public:
 
 	// CustomWidgetInterface interface
 public:
-	void giveFeedback(bool interaction, const char* msg);
+	void setStatus(QString styleSheet, const char* msg);
 };
 
 #endif // CUSTOMLABELWIDGET_H

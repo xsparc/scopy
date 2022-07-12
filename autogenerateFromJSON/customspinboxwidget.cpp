@@ -1,32 +1,41 @@
 #include "customspinboxwidget.hpp"
-#include "ui_customspinboxwidget.h"
 
+#include <QDoubleSpinBox>
+#include <qlabel.h>
 #include <qtimer.h>
 
 CustomSpinBoxWidget::CustomSpinBoxWidget(const char * attr, const char * min_range, const char * max_range, const char * step,
-					 QString type, bool readOnly,QWidget *parent) :
-	ui(new Ui::CustomSpinBoxWidget),
+					 QString type, bool readOnly, QLayout* layout, QWidget *parent) :
 	isInt(false)
 {
-	ui->setupUi(this);
 
-	ui->name->setText(attr);
-	ui->value->setRange(std::stod(min_range),std::stod(max_range));
-	ui->value->setSingleStep(std::stod(step));
 
-	auto current = ui->mainWidget->styleSheet();
+	widget = new QWidget(this);
+	widget->setLayout(layout);
+	widget->layout()->addWidget(new QLabel(attr));
+
+	value = new QDoubleSpinBox();
+	value->setRange(std::stod(min_range),std::stod(max_range));
+	value->setSingleStep(std::stod(step));
+
+	widget->layout()->addWidget(value);
+
+	pushButton = new QPushButton();
+	pushButton->setToolTip("test");
+
+	widget->layout()->addWidget(pushButton);
 
 	if (type == "int") {
 		isInt = true;
 	}
 
-	connect(this, &CustomSpinBoxWidget::valueChanged, ui->value, [=](const char* val){
+	connect(this, &CustomSpinBoxWidget::valueChanged, value, [=](const char* val){
 		updateValue(val);
 	});
 
-	connect(ui->value, &QDoubleSpinBox::textChanged, this, [=](){
+	connect(value, &QDoubleSpinBox::textChanged, this, [=](){
 		//TODO int and double checks
-		auto aux = ui->value->value();
+		auto aux = value->value();
 		char *val;
 		if (isInt) {
 			val =(char*) std::to_string((int)aux).c_str();
@@ -39,45 +48,32 @@ CustomSpinBoxWidget::CustomSpinBoxWidget(const char * attr, const char * min_ran
 	});
 
 	if (readOnly) {
-		ui->value->setEnabled(false);
+		value->setEnabled(false);
 	}
 
 	timer = new QTimer();
 
-	connect(timer, &QTimer::timeout, this, [=](){
-		ui->errorMessage->setVisible(false);
-	});
-
-
-	ui->errorMessage->setVisible(false);
+	mainLayout->addWidget(widget);
 }
 
 CustomSpinBoxWidget::~CustomSpinBoxWidget()
 {
-	delete ui;
+	delete mainLayout;
 }
 
 void CustomSpinBoxWidget::updateValue(const char *val)
 {
-	ui->value->setValue(std::stod(val));
+	value->setValue(std::stod(val));
 }
 
 QWidget *CustomSpinBoxWidget::getWidget()
 {
-	return ui->mainWidget;
+	return widget;
 }
 
-void CustomSpinBoxWidget::giveFeedback(bool interaction,const char* msg)
+void CustomSpinBoxWidget::setStatus(QString styleSheet, const char* msg)
 {
+	pushButton->setStyleSheet(styleSheet);
+	pushButton->setToolTip(msg);
 
-	if (interaction) {
-		ui->errorMessage->setStyleSheet("color: #39FF14");
-	} else {
-		ui->errorMessage->setStyleSheet("color: red");
-
-	}
-	ui->errorMessage->setText(msg);
-	ui->errorMessage->setVisible(true);
-
-	timer->start(1000);
 }

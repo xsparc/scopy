@@ -3,10 +3,8 @@
 
 #include <QWidget>
 #include <customwidgetinterface.hpp>
-
-namespace Ui {
-class CustomCheckBoxWidget;
-}
+#include <qboxlayout.h>
+#include <qcheckbox.h>
 
 class CustomCheckBoxWidget : public CustomWidgetInterface
 {
@@ -17,7 +15,9 @@ public:
 	~CustomCheckBoxWidget();
 
 private:
-	Ui::CustomCheckBoxWidget *ui;
+	QWidget *widget;
+	QCheckBox *checkBox;
+	QLayout *mainLayout;
 
 	// CustomWidget interface
 public:
@@ -27,7 +27,7 @@ public:
 
 	// CustomWidgetInterface interface
 public:
-	void giveFeedback(bool interaction, const char* msg);
+	void setStatus(QString styleSheet, const char* msg);
 };
 
 #endif // CUSTOMCHECKBOXWIDGET_HPP

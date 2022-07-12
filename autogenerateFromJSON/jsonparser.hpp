@@ -1,6 +1,7 @@
 #ifndef JSONPARSER_HPP
 #define JSONPARSER_HPP
 
+#include <QLayout>
 #include <iio.h>
 #include <qobject.h>
 #include <qstring.h>
@@ -11,6 +12,7 @@ class ReadWriteInterface;
 class ChnAttrReadWrite;
 class DevAttrReadWrite;
 class ContextAttrReadWrite;
+class CmdReadWrite;
 
 class CustomWidgetInterface;
 class CustomCheckBoxWidget;
@@ -34,6 +36,7 @@ public:
 	ChnAttrReadWrite* getChnReadWrite(QJsonObject object);
 	DevAttrReadWrite* getDevReadWrite(QJsonObject object);
 	ContextAttrReadWrite* getCtxReadWrite(QJsonObject object);
+	CmdReadWrite* getCmdReadWrite(QJsonObject object);
 
 	CustomWidgetInterface* getWidget(QJsonObject object);
 	CustomCheckBoxWidget* getCheckBoxWidget(QJsonObject object);
@@ -47,6 +50,8 @@ public:
 
 
 	QWidget* getContent(QJsonObject object, QWidget* parent);
+
+	QLayout* getLayout(QJsonObject object);
 
 private:
 	struct iio_context *ctx;

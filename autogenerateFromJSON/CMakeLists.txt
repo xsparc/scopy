@@ -25,13 +25,14 @@ set(PROJECT_SOURCES
 	readwriteinterface.hpp readwriteinterface.cpp
 	chnattrreadwrite.hpp chnattrreadwrite.cpp
 	devattrreadwrite.hpp devattrreadwrite.cpp
+	cmdreadwrite.hpp cmdreadwrite.cpp
 	contextattrreadwrite.hpp contextattrreadwrite.cpp
 	customwidgetinterface.hpp customwidgetinterface.cpp
-	customcheckboxwidget.hpp customcheckboxwidget.cpp customcheckboxwidget.ui
-	customedittextwidget.hpp customedittextwidget.cpp customedittextwidget.ui
-	customcomboboxwidget.hpp customcomboboxwidget.cpp customcomboboxwidget.ui
-	customlabelwidget.h customlabelwidget.cpp customlabelwidget.ui
-	customspinboxwidget.hpp customspinboxwidget.cpp customspinboxwidget.ui
+	customcheckboxwidget.hpp customcheckboxwidget.cpp
+	customedittextwidget.hpp customedittextwidget.cpp
+	customcomboboxwidget.hpp customcomboboxwidget.cpp
+	customlabelwidget.h customlabelwidget.cpp
+	customspinboxwidget.hpp customspinboxwidget.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

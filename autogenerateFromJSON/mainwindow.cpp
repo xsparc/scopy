@@ -2,6 +2,7 @@
 #include "./ui_mainwindow.h"
 
 
+#include <QProcess>
 #include <chnattrreadwrite.hpp>
 #include <iio.h>
 #include <iiowidget.hpp>
@@ -34,6 +35,22 @@ MainWindow::MainWindow(QWidget *parent)
 	for (auto w : widgetList) {
 		ui->centralwidget->layout()->addWidget(w);
 	}
+
+//	QProcess *testProcess = new QProcess();
+
+//	connect(testProcess, &QProcess::readyReadStandardOutput, [=]() {
+//	       QString output = testProcess->readAllStandardOutput();
+//	       qDebug() << "output is " << output;
+//	   });
+//	   connect(testProcess, &QProcess::readyReadStandardError, [=]() {
+//	       QString err = testProcess->readAllStandardError();
+//	       qDebug() << "error: " << err;
+//	   });
+
+//	   QStringList arguments;
+//	   arguments<< "--uri" << "ip:192.168.2.1" << "-i" << "-c"  << "ad9361-phy" << "voltage0" << "hardwaregain" << "10";
+
+//	   testProcess->start("iio_attr",arguments);
 
 }
 

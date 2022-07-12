@@ -1,46 +1,57 @@
 #include "customedittextwidget.hpp"
-#include "ui_customedittextwidget.h"
 
-CustomEditTextWidget::CustomEditTextWidget(const char * attr, bool readOnly, QWidget *parent) :
-	ui(new Ui::CustomEditTextWidget),
+#include <qlabel.h>
+#include <qlineedit.h>
+#include <qpushbutton.h>
+
+CustomEditTextWidget::CustomEditTextWidget(const char * attr, bool readOnly, QLayout* layout, QWidget *parent) :
 	readOnly(readOnly)
 {
-	ui->setupUi(this);
 
-	ui->title->setText(attr);
+	widget = new QWidget(this);
+	widget->setLayout(layout);
+	widget->layout()->addWidget(new QLabel(attr));
 
-	connect(this, &CustomEditTextWidget::valueChanged, ui->value, [=](const char* val){
+	value = new QLineEdit();
+	updateButton = new QPushButton("update");
+
+	widget->layout()->addWidget(value);
+	widget->layout()->addWidget(updateButton);
+
+	connect(this, &CustomEditTextWidget::valueChanged, value, [=](const char* val){
 		updateValue(val);
 	});
 
-	connect(ui->updateButton, &QPushButton::clicked, this, [=](){
-		auto aux = ui->value->text().toStdString();
+	connect(updateButton, &QPushButton::clicked, this, [=](){
+		auto aux = value->text().toStdString();
 		const char *val = aux.c_str();
 		Q_EMIT CustomWidgetInterface::valueChanged(val);
 	});
 
 	if (readOnly) {
-		ui->value->setEnabled(false);
-		ui->updateButton->setEnabled(false);
+		value->setEnabled(false);
+		updateButton->setEnabled(false);
 	}
+
+	mainLayout->addWidget(widget);
 }
 
 CustomEditTextWidget::~CustomEditTextWidget()
 {
-	delete ui;
+	delete mainLayout;
 }
 
 void CustomEditTextWidget::updateValue(const char *val)
 {
-	ui->value->setText(val);
+	value->setText(val);
 }
 
 QWidget *CustomEditTextWidget::getWidget()
 {
-	return ui->mainWidget;
+	return widget;
 }
 
-void CustomEditTextWidget::giveFeedback(bool interaction, const char* msg)
+void CustomEditTextWidget::setStatus(QString styleSheet, const char* msg)
 {
 
 }

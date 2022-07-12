@@ -3,21 +3,22 @@
 
 #include <QWidget>
 #include <customwidgetinterface.hpp>
+#include <qboxlayout.h>
 
-namespace Ui {
-class CustomComboBoxWidget;
-}
+class QComboBox;
 
 class CustomComboBoxWidget : public CustomWidgetInterface
 {
 	Q_OBJECT
 
 public:
-	explicit CustomComboBoxWidget(const char * attr, QStringList available_values, bool readOnly,QWidget *parent = nullptr);
+	explicit CustomComboBoxWidget(const char * attr, QStringList available_values, bool readOnly, QLayout* layout = new QHBoxLayout(), QWidget *parent = nullptr);
 	~CustomComboBoxWidget();
 
 private:
-	Ui::CustomComboBoxWidget *ui;
+	QWidget *widget;
+	QComboBox *comboBox;
+	QLayout *mainLayout = new QVBoxLayout();
 
 	// CustomWidgetInterface interface
 public:
@@ -26,7 +27,7 @@ public:
 
 	// CustomWidgetInterface interface
 public:
-	void giveFeedback(bool interaction, const char* msg);
+	void setStatus(QString styleSheet, const char* msg);
 };
 
 #endif // CUSTOMCOMBOBOXWIDGET_HPP

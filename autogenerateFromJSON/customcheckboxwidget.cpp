@@ -1,19 +1,18 @@
 #include "customcheckboxwidget.hpp"
-#include "ui_customcheckboxwidget.h"
 
 CustomCheckBoxWidget::CustomCheckBoxWidget(const char* attr, bool readOnly, QWidget *parent) :
-	ui(new Ui::CustomCheckBoxWidget),
 	readOnly(readOnly)
 {
-	ui->setupUi(this);
+	mainLayout = new QVBoxLayout(this);
+	checkBox = new QCheckBox();
+	checkBox->setText(attr);
+	mainLayout->addWidget(checkBox);
 
-	ui->checkBox->setText(attr);
-
-	connect(this, &CustomCheckBoxWidget::valueChanged, ui->checkBox, [=](const char* val){
+	connect(this, &CustomCheckBoxWidget::valueChanged, checkBox, [=](const char* val){
 		updateValue(val);
 	});
 
-	connect(ui->checkBox, &QCheckBox::toggled, this, [=](bool toggled){
+	connect(checkBox, &QCheckBox::toggled, this, [=](bool toggled){
 		const char *val = "0";
 		if (toggled) {
 			val = "1";
@@ -22,13 +21,13 @@ CustomCheckBoxWidget::CustomCheckBoxWidget(const char* attr, bool readOnly, QWid
 	});
 
 	if (readOnly) {
-		ui->checkBox->setEnabled(false);
+		checkBox->setEnabled(false);
 	}
 }
 
 CustomCheckBoxWidget::~CustomCheckBoxWidget()
 {
-	delete ui;
+	delete mainLayout;
 }
 
 void CustomCheckBoxWidget::updateValue(const char *val)
@@ -37,15 +36,15 @@ void CustomCheckBoxWidget::updateValue(const char *val)
 	if (strncmp(val,"1",2) == 0) {
 		toggle = true;
 	}
-	ui->checkBox->setChecked(toggle);
+	checkBox->setChecked(toggle);
 }
 
 QWidget* CustomCheckBoxWidget::getWidget()
 {
-	return ui->checkBox;
+	return checkBox;
 }
 
-void CustomCheckBoxWidget::giveFeedback(bool interaction, const char* msg)
+void CustomCheckBoxWidget::setStatus(QString styleSheet, const char* msg)
 {
 
 }
