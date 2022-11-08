@@ -3,17 +3,17 @@
 LIBIIO_VERSION=0ed18cd8f6b2fac5204a99e38922bea73f1f778c
 LIBAD9361_BRANCH=master
 LIBM2K_BRANCH=master
-GRIIO_BRANCH=upgrade-3.8
+#GRIIO_BRANCH=upgrade-3.8
 GNURADIO_FORK=analogdevicesinc
-GNURADIO_BRANCH=scopy
-GRSCOPY_BRANCH=master
+GNURADIO_BRANCH=maint-3.10
+GRSCOPY_BRANCH=3.10
 GRM2K_BRANCH=master
 QWT_BRANCH=qwt-multiaxes
 LIBSIGROKDECODE_BRANCH=master
 LIBTINYIIOD_BRANCH=master
 
 PYTHON="python3"
-PACKAGES=" ${QT_FORMULAE} boost pkg-config cmake fftw bison gettext autoconf automake libtool libzip glib libusb glog $PYTHON"
+PACKAGES=" ${QT_FORMULAE} volk spdlog boost pkg-config cmake fftw bison gettext autoconf automake libtool libzip glib libusb glog $PYTHON"
 PACKAGES="$PACKAGES doxygen wget gnu-sed libmatio dylibbundler libxml2 ghr"
 
 set -e
@@ -287,7 +287,7 @@ build_libad9361
 build_libm2k
 build_log4cpp
 build_gnuradio
-build_griio
+#build_griio
 build_grscopy
 build_grm2k
 build_qwt
