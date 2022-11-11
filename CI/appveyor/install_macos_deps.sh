@@ -4,8 +4,8 @@ LIBIIO_VERSION=0ed18cd8f6b2fac5204a99e38922bea73f1f778c
 LIBAD9361_BRANCH=master
 LIBM2K_BRANCH=master
 #GRIIO_BRANCH=upgrade-3.8
-GNURADIO_FORK=analogdevicesinc
-GNURADIO_BRANCH=maint-3.10
+#GNURADIO_FORK=analogdevicesinc
+#GNURADIO_BRANCH=maint-3.10
 GRSCOPY_BRANCH=3.10
 GRM2K_BRANCH=master
 QWT_BRANCH=qwt-multiaxes
@@ -28,7 +28,7 @@ for pkg in gcc bison gettext cmake python; do
 	brew link --overwrite --force $pkg
 done
 
-pip3 install mako six
+pip3 install mako
 
 # Generate build status info for the about page
 BUILD_STATUS_FILE=${REPO_SRC}/build-status
@@ -285,8 +285,9 @@ build_glibmm
 build_libiio
 build_libad9361
 build_libm2k
-build_log4cpp
-build_gnuradio
+#build_log4cpp
+#build_gnuradio
+brew install gnuradio
 #build_griio
 build_grscopy
 build_grm2k
