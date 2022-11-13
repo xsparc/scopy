@@ -194,7 +194,7 @@ build_grm2k() {
 	save_version_info
 
 	cmake ${CMAKE_OPTS} \
-		-DWITH_PYTHON=OFF \
+		-DENABLE_PYTHON=OFF \
 		${WORKDIR}/gr-m2k
 
 	make -j $JOBS
