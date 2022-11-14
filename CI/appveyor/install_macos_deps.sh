@@ -194,6 +194,7 @@ build_grm2k() {
 
 	cmake ${CMAKE_OPTS} \
 		-DENABLE_PYTHON=OFF \
+		-DDIGITAL=OFF \
 		${WORKDIR}/gr-m2k
 
 	make -j $JOBS
