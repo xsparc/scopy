@@ -4,8 +4,7 @@ LIBIIO_VERSION=0ed18cd8f6b2fac5204a99e38922bea73f1f778c
 LIBAD9361_BRANCH=master
 LIBM2K_BRANCH=master
 #GRIIO_BRANCH=upgrade-3.8
-#GNURADIO_FORK=analogdevicesinc
-#GNURADIO_BRANCH=maint-3.10
+GNURADIO_BRANCH=maint-3.10
 GRSCOPY_BRANCH=3.10
 GRM2K_BRANCH=master
 QWT_BRANCH=qwt-multiaxes
@@ -135,7 +134,7 @@ build_log4cpp() {
 build_gnuradio() {
 	echo "### Building gnuradio - branch $GNURADIO_BRANCH"
 
-	git clone --recurse-submodules https://github.com/$GNURADIO_FORK/gnuradio -b $GNURADIO_BRANCH ${WORKDIR}/gnuradio
+	git clone --recurse-submodules https://github.com/gnuradio/gnuradio.git -b $GNURADIO_BRANCH ${WORKDIR}/gnuradio
 	mkdir ${WORKDIR}/gnuradio/build-${ARCH}
 	cd ${WORKDIR}/gnuradio/build-${ARCH}
 	CURRENT_BUILD=gnuradio
@@ -286,8 +285,7 @@ build_libiio
 build_libad9361
 build_libm2k
 #build_log4cpp
-#build_gnuradio
-brew install gnuradio
+build_gnuradio
 #build_griio
 build_grscopy
 build_grm2k
