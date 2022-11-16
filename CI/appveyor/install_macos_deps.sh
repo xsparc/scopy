@@ -3,7 +3,6 @@
 LIBIIO_VERSION=0ed18cd8f6b2fac5204a99e38922bea73f1f778c
 LIBAD9361_BRANCH=master
 LIBM2K_BRANCH=master
-#GRIIO_BRANCH=upgrade-3.8
 GNURADIO_BRANCH=maint-3.10
 GRSCOPY_BRANCH=3.10
 GRM2K_BRANCH=master
@@ -120,17 +119,6 @@ build_libad9361() {
 	sudo make -j $JOBS install
 }
 
-build_log4cpp() {
-	cd ${WORKDIR}
-	wget https://sourceforge.net/projects/log4cpp/files/latest/log4cpp-1.1.3.tar.gz
-	tar xvzf log4cpp-1.1.3.tar.gz
-	cd log4cpp
-	echo "liblog4cpp - v1.1.3" >> $BUILD_STATUS_FILE
-	./configure --prefix=/usr/local/
-	make -j $JOBS
-	sudo make -j ${JOBS} install
-}
-
 build_gnuradio() {
 	echo "### Building gnuradio - branch $GNURADIO_BRANCH"
 
@@ -162,23 +150,6 @@ build_gnuradio() {
 		-DENABLE_CTRLPORT_THRIFT=OFF \
 		-DCMAKE_C_FLAGS=-fno-asynchronous-unwind-tables \
 		${WORKDIR}/gnuradio
-	make -j $JOBS
-	sudo make -j $JOBS install
-}
-
-build_griio() {
-	echo "### Building gr-iio - branch $GRIIO_BRANCH"
-
-	git clone --depth 1 https://github.com/analogdevicesinc/gr-iio.git -b $GRIIO_BRANCH ${WORKDIR}/gr-iio
-	mkdir ${WORKDIR}/gr-iio/build-${ARCH}
-	cd ${WORKDIR}/gr-iio/build-${ARCH}
-	CURRENT_BUILD=gr-iio
-	save_version_info
-
-	cmake ${CMAKE_OPTS} \
-		-DWITH_PYTHON=OFF \
-		${WORKDIR}/gr-iio
-
 	make -j $JOBS
 	sudo make -j $JOBS install
 }
@@ -285,9 +256,7 @@ build_glibmm
 build_libiio
 build_libad9361
 build_libm2k
-#build_log4cpp
 build_gnuradio
-#build_griio
 build_grscopy
 build_grm2k
 build_qwt
