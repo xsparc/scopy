@@ -41,7 +41,8 @@ ToolMenu::ToolMenu(Preferences *preferences, QWidget *parent):
 									 << tr("Power Supply")
 									 << tr("Debugger")
 									 << tr("Calibration")
-									 << tr("Data Logger");
+									 << tr("Data Logger")
+									 << tr("NewInstrument");
 
 
 	d_availableIcons = QStringList() << "tool_oscilloscope"
@@ -55,7 +56,8 @@ ToolMenu::ToolMenu(Preferences *preferences, QWidget *parent):
 								     << "tool_power_supply"
 								     << "tool_debugger"
 								     << "tool_calibration"
-								     << "tool_calibration";
+								     << "tool_calibration"
+									 << "tool_calibration";
 	_loadState();
 
 	d_buttonGroup = new QButtonGroup(this);

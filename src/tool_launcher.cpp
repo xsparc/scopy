@@ -482,6 +482,11 @@ void ToolLauncher::_toolSelected(enum tool tool)
 			selectedTool = nullptr;
 		}
 		break;
+
+	case TOOL_NEWINSTRUMENT:
+		selectedTool = newInstrument;
+		break;
+
 	case TOOL_LAUNCHER:
 		break;
 	}
