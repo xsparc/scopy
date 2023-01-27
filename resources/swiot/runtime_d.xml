@@ -68,8 +68,8 @@
             <attribute name="scale" filename="in_voltage1_scale" value="0"/>
             <attribute name="offset" filename="in_voltage1_offset" value="0"/>
         </channel>
-        <channel id="voltage" name="fault" type="input">
-            <attribute name="raw" filename="in_voltage_raw" value="0"/>
+        <channel id="voltage" name="swiot_fault" type="input">
+            <attribute name="raw" filename="in_voltage_raw" value="100001"/>
         </channel>
         <debug-attribute name="direct_reg_access" value="0"/>
     </device>
@@ -98,8 +98,8 @@
             <attribute name="do_mode" filename="out_voltage3_do_mode" value="0"/>
             <attribute name="do_mode_available" filename="do_mode_available" value="0"/>
         </channel>
-        <channel id="voltage" name="fault" type="input">
-            <attribute name="raw" filename="in_voltage_raw" value="0"/>
+        <channel id="voltage" name="swiot_fault" type="input">
+            <attribute name="raw" filename="in_voltage_raw" value="121212"/>
         </channel>
         <debug-attribute name="direct_reg_access" value="0"/>
     </device>

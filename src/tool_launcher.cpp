@@ -1907,6 +1907,14 @@ bool adiscope::ToolLauncher::switchContext(const QString& uri)
 				menu->getToolMenuItemFor(TOOL_PATTERN_GENERATOR)->getToolBtn()->click();
 			});
 		}
+
+                if (filter->compatible((TOOL_NEWINSTRUMENT))) {
+                        this->newInstrument = new NewInstrument(ctx, filter, menu->getToolMenuItemFor(TOOL_NEWINSTRUMENT), &js_engine, this);
+                        this->toolList.push_back(this->newInstrument);
+                        QObject::connect(this->newInstrument, &NewInstrument::showTool, [this](){
+                                this->menu->getToolMenuItemFor(TOOL_NEWINSTRUMENT)->getToolBtn()->click();
+                        });
+                }
 	}
 
 	catch (libm2k::m2k_exception &e) {

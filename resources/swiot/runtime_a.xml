@@ -104,8 +104,8 @@
             <attribute name="slew_step" filename="out_current2_slew_step" value="0.1"/>
             <attribute name="slew_step_available" filename="out_slew_step_available" value="0.1"/>
         </channel>
-        <channel id="voltage" name="fault" type="input">
-            <attribute name="raw" filename="in_voltage_raw" value="0.1"/>
+        <channel id="voltage" name="swiot_fault" type="input">
+            <attribute name="raw" filename="in_voltage_raw" value="123"/>
         </channel>
         <debug-attribute name="direct_reg_access" value="0.1"/>
     </device>
@@ -130,8 +130,8 @@
             <attribute name="offset" filename="in_voltage3_offset" value="0"/>
             <attribute name="scale" filename="in_voltage3_scale" value="0.1"/>
         </channel>
-        <channel id="voltage" name="fault" type="input">
-            <attribute name="raw" filename="in_voltage_raw" value="0.1"/>
+        <channel id="voltage" name="swiot_fault" type="input">
+            <attribute name="raw" filename="in_voltage_raw" value="321"/>
         </channel>
         <debug-attribute name="direct_reg_access" value="0.1"/>
     </device>

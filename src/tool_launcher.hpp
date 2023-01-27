@@ -57,7 +57,7 @@
 #include "gui/info_page.hpp"
 #include <gui/info_widget.h>
 #include "device_widget.hpp"
-#include "connectDialog.hpp"
+#include "gui/connectDialog.hpp"
 #include "newinstrument.hpp"
 #include "toolmenu.h"
 #include "session_info.h"
