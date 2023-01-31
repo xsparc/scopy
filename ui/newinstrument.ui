@@ -61,7 +61,8 @@
      <item>
       <widget class="QPushButton" name="ad_reset_button">
        <property name="text">
-        <string>RESET STORED</string>
+        <string>RESET
+STORED</string>
        </property>
       </widget>
      </item>
@@ -124,7 +125,7 @@
           <x>0</x>
           <y>0</y>
           <width>1026</width>
-          <height>90</height>
+          <height>87</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -192,7 +193,8 @@
      <item>
       <widget class="QPushButton" name="max_reset_button">
        <property name="text">
-        <string>RESET STORED</string>
+        <string>RESET
+STORED</string>
        </property>
       </widget>
      </item>
@@ -249,7 +251,7 @@
           <x>0</x>
           <y>0</y>
           <width>1026</width>
-          <height>90</height>
+          <height>88</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_3">

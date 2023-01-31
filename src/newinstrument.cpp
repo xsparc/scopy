@@ -96,6 +96,9 @@ NewInstrument::NewInstrument(struct iio_context *ctx, Filter *filt,
         ui->setupUi(this);
         run_button = nullptr;
 
+        this->ui->ad_reset_button->setProperty("blue_button", QVariant(true));
+        this->ui->max_reset_button->setProperty("blue_button", QVariant(true));
+
         this->connectSignalsAndSlots();
 
         // FIXME: testing only
@@ -173,11 +176,11 @@ void NewInstrument::getAd74413rFaultsNumeric() {
         iio_channel_attr_read(chn, "raw", fau, 100);
         qDebug() << "read attr: " << fau;
 
-        uint32_t result = std::stoi(fau);
-        this->ui->lineEdit_adNumeric->setText(QString::number(result));
+        uint result = std::stoi(fau);
+        this->ui->lineEdit_adNumeric->setText(QString("0x%1").arg(result, 8, 16, QLatin1Char( '0' )));
 
         for (int i = this->ad74413r_faults_num-1; i >= 0; --i) {
-                ad74413r_faults[i].stored = (bool)(result & 0b1);
+                ad74413r_faults[i].active = (bool)(result & 0b1);
                 result >>= 1;
         }
 }
@@ -196,10 +199,10 @@ void NewInstrument::getMax1490bFaultsNumeric() {
         qDebug() << "read attr: " << fau;
 
         uint32_t result = std::stoi(fau);
-        this->ui->lineEdit_maxNumeric->setText(QString::number(result));
+        this->ui->lineEdit_maxNumeric->setText(QString("0x%1").arg(result, 8, 16, QLatin1Char( '0' )));
 
         for (int i = this->max1490b_faults_num-1; i >= 0; --i) {
-                max1490b_faults[i].stored = (bool)(result & 0b1);
+                max1490b_faults[i].active = (bool)(result & 0b1);
                 result >>= 1;
         }
 }
@@ -259,7 +262,7 @@ void NewInstrument::setMax1490bFaults() {
 void NewInstrument::populateAdExplanations() {
         this->ui->ad_faults_explanation->clear();
         for (const auto &ad74413r_fault: ad74413r_faults) {
-                if (ad74413r_fault.active) {
+                if (ad74413r_fault.stored) {
                         this->ui->ad_faults_explanation->append(tr(ad74413r_fault.explanation));
                 }
         }
@@ -273,7 +276,7 @@ void NewInstrument::populateMaxExplanations() {
         this->ui->max_faults_explanation->clear();
 
         for (const auto &max1490b_fault: max1490b_faults) {
-                if (max1490b_fault.active) {
+                if (max1490b_fault.stored) {
                         this->ui->max_faults_explanation->append(tr(max1490b_fault.explanation));
                 }
         }
