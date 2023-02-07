@@ -43,7 +43,8 @@ ToolMenu::ToolMenu(Preferences *preferences, QWidget *parent):
 									 << tr("Calibration")
 									 << tr("Data Logger")
                                                                          << tr("NewInstrument")
-                                                                         << tr("SwiotFaults");
+                                                                         << tr("SwiotFaults")
+									 << tr("Max14906 Tool");
 
 
 	d_availableIcons = QStringList() << "tool_oscilloscope"
@@ -59,7 +60,8 @@ ToolMenu::ToolMenu(Preferences *preferences, QWidget *parent):
 								     << "tool_calibration"
 								     << "tool_calibration"
                                                                      << "tool_calibration"
-                                                                     << "tool_calibration";
+                                                                     << "tool_calibration"
+									<< "tool_calibration";
 	_loadState();
 
 	d_buttonGroup = new QButtonGroup(this);

@@ -49,8 +49,8 @@ namespace adiscope {
 		TOOL_DATALOGGER,
 		TOOL_NEWINSTRUMENT,
                 TOOL_SWIOTFAULTS,
-		TOOL_LAUNCHER,
-
+		TOOL_MAX14906,
+		TOOL_LAUNCHER
 	};
 
 	class Filter

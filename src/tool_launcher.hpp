@@ -60,6 +60,7 @@
 #include "gui/connectDialog.hpp"
 #include "src/newinstrument.hpp"
 #include "src/swiot/swiotfaults.hpp"
+#include "src/swiot/swiotmax14906.hpp"
 #include "toolmenu.h"
 #include "session_info.h"
 
@@ -79,6 +80,7 @@ class SpectrumAnalyzer;
 class DataLogger;
 class SwiotFaults;
 class NewInstrument;
+class Max14906Tool;
 class Debugger;
 class ManualCalibration;
 class UserNotes;
@@ -260,6 +262,7 @@ private:
 	SpectrumAnalyzer *spectrum_analyzer;
         NewInstrument *newInstrument;
 	SwiotFaults *swiotFaults;
+	Max14906Tool *max14906Tool;
 	Debugger *debugger;
 	ManualCalibration *manual_calibration;
 	QWidget *current;

@@ -47,6 +47,7 @@ static const std::string tool_names[] = {
 	"datalogger",
 	"newinstrument",
         "swiotfaults",
+	"max14906tool",
 	"launcher"
 };
 

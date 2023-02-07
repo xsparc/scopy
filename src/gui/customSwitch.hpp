@@ -46,8 +46,18 @@ namespace adiscope {
 		CustomAnimation anim;
 		int duration_ms;
 		bool polarity;
+        public:
+            const QLabel &getOn() const;
 
-		void setDuration(int ms);
+            void setOn(const QLabel &on_);
+
+            const QLabel &getOff() const;
+
+            void setOff(const QLabel &off_);
+
+        private:
+
+            void setDuration(int ms);
 		void updateOnOffLabels();
 
 		void showEvent(QShowEvent *event);

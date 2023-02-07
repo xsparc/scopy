@@ -36,6 +36,7 @@ Q_LOGGING_CATEGORY(CAT_IIO_MANAGER, "iioManager")
 Q_LOGGING_CATEGORY(CAT_PLOT, "plot")
 
 Q_LOGGING_CATEGORY(CAT_NEWINSTRUMENT, "swiotFaults")
+Q_LOGGING_CATEGORY(CAT_MAX14906, "max14906tool")
 #endif
 
 void SetScopyQDebugMessagePattern() {
@@ -44,7 +45,7 @@ void SetScopyQDebugMessagePattern() {
                 "[ "
                 #ifdef QDEBUG_LOG_MSG_TYPE
                 QDEBUG_LOG_MSG_TYPE_STR " "
-			QDEBUG_CATEGORY_STR " "
+                QDEBUG_CATEGORY_STR " "
                 #endif
                 #ifdef QDEBUG_LOG_TIME
                 QDEBUG_LOG_TIME_STR

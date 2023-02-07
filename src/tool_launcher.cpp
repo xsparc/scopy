@@ -101,6 +101,7 @@ ToolLauncher::ToolLauncher(QString prevCrashDump, QWidget *parent) :
 	dio(nullptr), dioManager(nullptr), pattern_generator(nullptr), network_analyzer(nullptr),
 	spectrum_analyzer(nullptr), newInstrument(nullptr),
 	swiotFaults(nullptr), debugger(nullptr),
+        max14906Tool(nullptr),
 	manual_calibration(nullptr),
 	current(nullptr),
 	calib(nullptr),
@@ -240,7 +241,7 @@ ToolLauncher::ToolLauncher(QString prevCrashDump, QWidget *parent) :
 
 	connect(ui->saveBtn, &QPushButton::clicked, this, &ToolLauncher::saveSession);
 	connect(ui->loadBtn, &QPushButton::clicked, this, &ToolLauncher::loadSession);
-    
+
 	connect(ui->menu, &MenuAnim::finished, [=](bool opened) {
 		ui->saveLbl->setVisible(opened);
 		ui->loadLbl->setVisible(opened);
@@ -490,14 +491,21 @@ void ToolLauncher::_toolSelected(enum tool tool)
                         selectedTool = nullptr;
                 }
 		break;
-
         case TOOL_NEWINSTRUMENT:
                 selectedTool = newInstrument;
                 break;
 
+	case TOOL_MAX14906:
+		if (max14906Tool) {
+                        selectedTool = max14906Tool->getMToolView();
+                } else {
+                        selectedTool = nullptr;
+                }
+                break;
+
 	case TOOL_LAUNCHER:
 		break;
-	}
+        }
 
 	if (selectedTool) {
 		swapMenu(selectedTool);
@@ -1406,6 +1414,11 @@ void adiscope::ToolLauncher::destroyContext()
                 newInstrument = nullptr;
         }
 
+	if (max14906Tool) {
+		delete max14906Tool;
+                max14906Tool = nullptr;
+	}
+
 	if (power_control) {
 		delete power_control;
 		power_control = nullptr;
@@ -1933,6 +1946,15 @@ bool adiscope::ToolLauncher::switchContext(const QString& uri)
                         });
                 }
 
+                if (filter->compatible((TOOL_MAX14906))) {
+                        this->max14906Tool = new Max14906Tool(ctx, filter,
+                                                              menu->getToolMenuItemFor(TOOL_MAX14906),
+                                                              &js_engine, this);
+                        this->toolList.push_back(this->max14906Tool);
+                        connect(this->max14906Tool, &Max14906Tool::showTool, [=](){
+                                menu->getToolMenuItemFor(TOOL_MAX14906)->getToolBtn()->click();
+                        });
+                }
                 if (filter->compatible((TOOL_NEWINSTRUMENT))) {
                         this->newInstrument = new NewInstrument(ctx, filter, menu->getToolMenuItemFor(TOOL_NEWINSTRUMENT), &js_engine, this);
                         this->toolList.push_back(this->newInstrument);

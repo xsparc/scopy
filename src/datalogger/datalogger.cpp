@@ -225,9 +225,7 @@ void DataLogger::initMonitorToolView()
 				} else {
 					m_activeChannels.remove(chId);
 					m_customColGrid->removeWidget(widgetId);
-
-
-				}
+                                }
 			});
 			ch_widget->enableButton()->click();
 			chId++;

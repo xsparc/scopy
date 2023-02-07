@@ -131,8 +131,8 @@ int main(int argc, char **argv)
 	QString prevCrashDump = "";
 #endif
         SetScopyQDebugMessagePattern();
-        QLoggingCategory::setFilterRules(""
-					 "*.debug=false\n"
+        QLoggingCategory::setFilterRules(
+                                         "max14906tool.debug=true\n"
         );
 
 	QCommandLineParser parser;

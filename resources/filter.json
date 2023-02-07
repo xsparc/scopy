@@ -10,11 +10,12 @@
 	},
 
 	"swiot": {
-		"compatible": [ "debugger", "datalogger", "swiotfaults", "newinstrument" ],
+		"compatible": [ "debugger", "datalogger", "swiotfaults", "newinstrument", "max14906tool" ],
 		"compatible-devices": [ "ad74413r", "max14906" ],
 		"debugger": [ "ad74413r", "max14906" ],
 		"swiotfaults": [ "ad74413r", "max14906" ],
-		"newinstrument": [ "ad74413r" ]
+		"newinstrument": [ "ad74413r" ],
+		"max14906tool": [ "ad74413r", "max14906" ]
 	},
 
 	"FMComms2-4": {
@@ -38,6 +39,6 @@
 		"spectrum-devices": [ "m2k-adc" ],
 		"debugger": ["m2k-adc", "m2k-dac-a", "m2k-dac-b", "m2k-logic-analyzer-rx", "m2k-logic-analyzer-tx", "m2k-logic-analyzer"],
 		"calibration": ["m2k-adc", "m2k-dac-a", "m2k-dac-b", "m2k-logic-analyzer-rx", "m2k-logic-analyzer-tx", "m2k-logic-analyzer"],
-		"datalogger": ["m2k-adc"]
+		"datalogger": [ "m2k-adc", "m2k-dac-a", "m2k-dac-b", "m2k-logic-analyzer-rx", "m2k-logic-analyzer-tx", "m2k-logic-analyzer" ]
 	}
 }
