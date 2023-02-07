@@ -98,7 +98,7 @@ ToolLauncher::ToolLauncher(QString prevCrashDump, QWidget *parent) :
 	power_control(nullptr), dmm(nullptr), signal_generator(nullptr),
 	oscilloscope(nullptr), current(nullptr), filter(nullptr),
 	logic_analyzer(nullptr), pattern_generator(nullptr), dio(nullptr),
-	network_analyzer(nullptr), spectrum_analyzer(nullptr),data_logger(nullptr), debugger(nullptr),
+	network_analyzer(nullptr), spectrum_analyzer(nullptr),data_logger(nullptr), newInstrument(nullptr) , debugger(nullptr),
 	manual_calibration(nullptr), tl_api(new ToolLauncher_API(this)),
 	dioManager(nullptr),
 	notifier(STDIN_FILENO, QSocketNotifier::Read),
@@ -240,7 +240,7 @@ ToolLauncher::ToolLauncher(QString prevCrashDump, QWidget *parent) :
 
 	connect(ui->saveBtn, &QPushButton::clicked, this, &ToolLauncher::saveSession);
 	connect(ui->loadBtn, &QPushButton::clicked, this, &ToolLauncher::loadSession);
-    
+
 	connect(ui->menu, &MenuAnim::finished, [=](bool opened) {
 		ui->saveLbl->setVisible(opened);
 		ui->loadLbl->setVisible(opened);
@@ -484,8 +484,12 @@ void ToolLauncher::_toolSelected(enum tool tool)
 		break;
 
 	case TOOL_NEWINSTRUMENT:
-		selectedTool = newInstrument;
-		break;
+		if (newInstrument) {
+                        selectedTool = newInstrument->getMToolView();
+                } else {
+                        selectedTool = nullptr;
+                }
+                break;
 
 	case TOOL_LAUNCHER:
 		break;
@@ -1388,6 +1392,11 @@ void adiscope::ToolLauncher::destroyContext()
 		data_logger = nullptr;
 	}
 
+	if (newInstrument) {
+		delete newInstrument;
+		newInstrument = nullptr;
+	}
+
 	if (power_control) {
 		delete power_control;
 		power_control = nullptr;
@@ -1907,7 +1916,14 @@ bool adiscope::ToolLauncher::switchContext(const QString& uri)
 				menu->getToolMenuItemFor(TOOL_PATTERN_GENERATOR)->getToolBtn()->click();
 			});
 		}
-	}
+                if (filter->compatible((TOOL_NEWINSTRUMENT))) {
+                        this->newInstrument = new NewInstrument(ctx, filter,
+                                                                menu->getToolMenuItemFor(TOOL_NEWINSTRUMENT),
+                                                                &js_engine, this);
+                        this->toolList.push_back(this->newInstrument);
+                }
+
+        }
 
 	catch (libm2k::m2k_exception &e) {
 		return false;

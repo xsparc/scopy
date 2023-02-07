@@ -10,9 +10,10 @@
 	},
 
 	"swiot": {
-		"compatible": [ "debugger", "datalogger" ],
+		"compatible": [ "debugger", "datalogger", "newinstrument" ],
 		"compatible-devices": [ "ad74413r", "max14906" ],
-		"debugger": [ "ad74413r", "max14906" ]
+		"debugger": [ "ad74413r", "max14906" ],
+		"newinstrument": [ "ad74413r", "max14906" ]
 	},
 
 	"FMComms2-4": {
@@ -24,7 +25,7 @@
 	},
 
 	"M2K": {
-		"compatible": ["dio", "siggen", "dmm", "power", "osc", "logic", "pattern", "network", "spectrum" , "debugger", "calibration","newinstrument"],
+		"compatible": ["dio", "siggen", "dmm", "power", "osc", "logic", "pattern", "network", "spectrum" , "debugger", "calibration", "datalogger"],
 		"compatible-devices": [ "m2k-adc", "m2k-dac-a", "m2k-dac-b", "m2k-logic-analyzer-rx", "m2k-logic-analyzer-tx", "m2k-logic-analyzer" ],
 		"dio-devices": ["m2k-logic-analyzer"],
 		"osc-devices": [ "m2k-adc" ],
@@ -36,6 +37,6 @@
 		"spectrum-devices": [ "m2k-adc" ],
 		"debugger": ["m2k-adc", "m2k-dac-a", "m2k-dac-b", "m2k-logic-analyzer-rx", "m2k-logic-analyzer-tx", "m2k-logic-analyzer"],
 		"calibration": ["m2k-adc", "m2k-dac-a", "m2k-dac-b", "m2k-logic-analyzer-rx", "m2k-logic-analyzer-tx", "m2k-logic-analyzer"],
-		"newinstrument":["m2k-adc"]
+		"datalogger": [ "m2k-adc", "m2k-dac-a", "m2k-dac-b", "m2k-logic-analyzer-rx", "m2k-logic-analyzer-tx", "m2k-logic-analyzer" ]
 	}
 }
