@@ -94,32 +94,32 @@ ToolLauncher* adiscope::getToolLauncherInstance() {
 
 ToolLauncher::ToolLauncher(QString prevCrashDump, QWidget *parent) :
 	QMainWindow(parent),
-	ui(new Ui::ToolLauncher), ctx(nullptr),
-	power_control(nullptr), dmm(nullptr), signal_generator(nullptr),
-	oscilloscope(nullptr), current(nullptr), filter(nullptr),
-	logic_analyzer(nullptr), pattern_generator(nullptr), dio(nullptr),
-	network_analyzer(nullptr), spectrum_analyzer(nullptr),data_logger(nullptr), debugger(nullptr),
-	manual_calibration(nullptr), tl_api(new ToolLauncher_API(this)),
-	dioManager(nullptr),
-	notifier(STDIN_FILENO, QSocketNotifier::Read),
-	infoWidget(nullptr),
+	infoWidget(nullptr), ui(new Ui::ToolLauncher),
+	ctx(nullptr), m_m2k(nullptr), about(nullptr),
+	menu(nullptr), dmm(nullptr), data_logger(nullptr), power_control(nullptr),
+	signal_generator(nullptr), oscilloscope(nullptr), logic_analyzer(nullptr),
+	dio(nullptr), dioManager(nullptr),pattern_generator(nullptr), network_analyzer(nullptr),
+	spectrum_analyzer(nullptr), newInstrument(nullptr),
+	debugger(nullptr),
+	manual_calibration(nullptr),
+	current(nullptr),
 	calib(nullptr),
-	skip_calibration(false),
-	calibrating(false),
+	filter(nullptr),
+	tl_api(new ToolLauncher_API(this)),
+	notifier(STDIN_FILENO, QSocketNotifier::Read),
+	calibrating(false), skip_calibration(false), skip_calibration_if_already_calibrated(true),
+	initialCalibrationFlag(true),
 	debugger_enabled(false),
-	indexFile(""), deviceInfo(""), pathToFile(""),
 	manual_calibration_enabled(false),
+	indexFile(""),
+	deviceInfo(""),
+	pathToFile(""),
 	devices_btn_group(new QButtonGroup(this)),
 	selectedDev(nullptr),
 	m_use_decoders(true),
-	menu(nullptr),
 	m_useNativeDialogs(true),
-	m_m2k(nullptr),
-	initialCalibrationFlag(true),
-	skip_calibration_if_already_calibrated(true),
-	m_adc_tools_failed(false),
 	m_dac_tools_failed(false),
-	about(nullptr),
+	m_adc_tools_failed(false),
 	openGlLoaded(false)
       #ifdef __ANDROID__
       ,jnienv(new QAndroidJniEnvironment())
@@ -484,7 +484,11 @@ void ToolLauncher::_toolSelected(enum tool tool)
 		break;
 
 	case TOOL_NEWINSTRUMENT:
-		selectedTool = newInstrument;
+                if (newInstrument) {
+			selectedTool = newInstrument->getMToolView();
+                } else {
+                        selectedTool = nullptr;
+                }
 		break;
 
 	case TOOL_LAUNCHER:
@@ -1388,6 +1392,11 @@ void adiscope::ToolLauncher::destroyContext()
 		data_logger = nullptr;
 	}
 
+        if (newInstrument) {
+                delete newInstrument;
+                newInstrument = nullptr;
+        }
+
 	if (power_control) {
 		delete power_control;
 		power_control = nullptr;
@@ -1911,9 +1920,6 @@ bool adiscope::ToolLauncher::switchContext(const QString& uri)
                 if (filter->compatible((TOOL_NEWINSTRUMENT))) {
                         this->newInstrument = new NewInstrument(ctx, filter, menu->getToolMenuItemFor(TOOL_NEWINSTRUMENT), &js_engine, this);
                         this->toolList.push_back(this->newInstrument);
-                        QObject::connect(this->newInstrument, &NewInstrument::showTool, [this](){
-                                this->menu->getToolMenuItemFor(TOOL_NEWINSTRUMENT)->getToolBtn()->click();
-                        });
                 }
 	}
 

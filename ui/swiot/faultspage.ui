@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>NewInstrument</class>
- <widget class="QWidget" name="NewInstrument">
+ <class>FaultsPage</class>
+ <widget class="QWidget" name="FaultsPage">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1103</width>
-    <height>603</height>
+    <width>841</width>
+    <height>493</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_5" stretch="1,2,5,7,2,5,7">
+  <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_9" stretch="1,100">
      <item>
@@ -39,11 +39,20 @@
     </layout>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="3,2,11">
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout">
+       <property name="sizeConstraint">
+        <enum>QLayout::SetMinimumSize</enum>
+       </property>
        <item>
         <widget class="QLabel" name="label_name_ad">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="text">
           <string>ad74413r</string>
          </property>
@@ -51,6 +60,12 @@
        </item>
        <item>
         <widget class="QLineEdit" name="lineEdit_adNumeric">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
          </property>
@@ -60,6 +75,24 @@
      </item>
      <item>
       <widget class="QPushButton" name="ad_reset_button">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <horstretch>100</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>100</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { 	height: 30px; 	font-weight: normal; 	font-style: normal; 	text-align: center; }</string>
+       </property>
        <property name="text">
         <string>RESET
 STORED</string>
@@ -82,71 +115,26 @@ STORED</string>
     </layout>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_2">
+    <layout class="QHBoxLayout" name="horizontalLayout_5">
      <item>
-      <layout class="QVBoxLayout" name="verticalLayout" stretch="2,2,2">
-       <item>
-        <widget class="QLabel" name="label">
-         <property name="text">
-          <string>Stored</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLabel" name="label_2">
-         <property name="text">
-          <string>Active</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLabel" name="label_3">
-         <property name="text">
-          <string>Names</string>
-         </property>
-        </widget>
-       </item>
+      <layout class="QHBoxLayout" name="ad74413rFaults">
+       <property name="sizeConstraint">
+        <enum>QLayout::SetFixedSize</enum>
+       </property>
       </layout>
      </item>
      <item>
-      <widget class="QScrollArea" name="scrollArea">
-       <property name="verticalScrollBarPolicy">
-        <enum>Qt::ScrollBarAsNeeded</enum>
+      <spacer name="horizontalSpacer_6">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
        </property>
-       <property name="widgetResizable">
-        <bool>true</bool>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
        </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-       <widget class="QWidget" name="scrollAreaWidgetContents_3">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>0</y>
-          <width>1026</width>
-          <height>87</height>
-         </rect>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout_4">
-         <property name="leftMargin">
-          <number>0</number>
-         </property>
-         <property name="topMargin">
-          <number>0</number>
-         </property>
-         <property name="rightMargin">
-          <number>0</number>
-         </property>
-         <property name="bottomMargin">
-          <number>0</number>
-         </property>
-         <item>
-          <layout class="QGridLayout" name="gridL_ad_faults"/>
-         </item>
-        </layout>
-       </widget>
-      </widget>
+      </spacer>
      </item>
     </layout>
    </item>
@@ -171,18 +159,33 @@ STORED</string>
     </layout>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="3,2,11">
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_4">
+       <property name="sizeConstraint">
+        <enum>QLayout::SetMaximumSize</enum>
+       </property>
        <item>
         <widget class="QLabel" name="label_name_max">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="text">
-          <string>max1490b</string>
+          <string>max14906</string>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QLineEdit" name="lineEdit_maxNumeric">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
          </property>
@@ -192,6 +195,24 @@ STORED</string>
      </item>
      <item>
       <widget class="QPushButton" name="max_reset_button">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <horstretch>100</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>100</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { 	height: 30px; 	font-weight: normal; 	font-style: normal; 	text-align: center; }</string>
+       </property>
        <property name="text">
         <string>RESET
 STORED</string>
@@ -216,63 +237,24 @@ STORED</string>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_6">
      <item>
-      <layout class="QVBoxLayout" name="verticalLayout_2" stretch="2,2,2">
-       <item>
-        <widget class="QLabel" name="label_4">
-         <property name="text">
-          <string>Stored</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLabel" name="label_5">
-         <property name="text">
-          <string>Active</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLabel" name="label_6">
-         <property name="text">
-          <string>Names</string>
-         </property>
-        </widget>
-       </item>
+      <layout class="QHBoxLayout" name="max14906Faults">
+       <property name="sizeConstraint">
+        <enum>QLayout::SetFixedSize</enum>
+       </property>
       </layout>
      </item>
      <item>
-      <widget class="QScrollArea" name="scrollArea_2">
-       <property name="widgetResizable">
-        <bool>true</bool>
+      <spacer name="horizontalSpacer_7">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
        </property>
-       <widget class="QWidget" name="scrollAreaWidgetContents">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>0</y>
-          <width>1026</width>
-          <height>88</height>
-         </rect>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout_3">
-         <property name="leftMargin">
-          <number>0</number>
-         </property>
-         <property name="topMargin">
-          <number>0</number>
-         </property>
-         <property name="rightMargin">
-          <number>0</number>
-         </property>
-         <property name="bottomMargin">
-          <number>0</number>
-         </property>
-         <item>
-          <layout class="QGridLayout" name="gridL_max_faults"/>
-         </item>
-        </layout>
-       </widget>
-      </widget>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
      </item>
     </layout>
    </item>

@@ -58,7 +58,7 @@
 #include <gui/info_widget.h>
 #include "device_widget.hpp"
 #include "gui/connectDialog.hpp"
-#include "newinstrument.hpp"
+#include "src/swiot/newinstrument.hpp"
 #include "toolmenu.h"
 #include "session_info.h"
 

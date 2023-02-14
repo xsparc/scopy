@@ -6,6 +6,7 @@
         <file>swiot/runtime_c.xml</file>
         <file>swiot/runtime_d.xml</file>
         <!--    remove the files above / development testing only    -->
+        <file>swiot/swiot_faults.json</file> <!-- for reading faults and explanations -->
         <file>filter.json</file>
         <file>icon.ico</file>
         <file>m2k.html</file>

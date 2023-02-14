@@ -75,7 +75,6 @@ ConnectDialog::ConnectDialog(QWidget *widget) : QWidget(widget),
                 QFile::copy(":/swiot/runtime_d.xml", tempFileRuntimeD);
 
 
-//                ui->demoDevicesComboBox->addItem("generic /home/andrei-fabian/adi/generate_from_xml/generated_xmls/ad7124-8.xml");
                 ui->demoDevicesComboBox->addItem("generic " + tempFileConfig);
                 ui->demoDevicesComboBox->addItem("generic " + tempFileRuntimeA);
                 ui->demoDevicesComboBox->addItem("generic " + tempFileRuntimeB);

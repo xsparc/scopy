@@ -242,10 +242,11 @@ FILE(GLOB SRC_LIST  src/*.cpp src/*.cc
 	src/logicanalyzer/*.cpp
 	src/logicanalyzer/*/*.cpp
 	src/datalogger/*.cpp
+	src/swiot/*.cpp
 	src/gui/*.cpp
 )
 
-FILE(GLOB M2KSCOPE_UIS ui/patterns/*.ui ui/*.ui)
+FILE(GLOB M2KSCOPE_UIS ui/patterns/*.ui ui/swiot/*.ui ui/*.ui)
 qt5_wrap_ui (m2kscope_FORMS_HEADERS ${M2KSCOPE_UIS})
 
 FILE(GLOB M2KSCOPE_RESOURCES resources/resources.qrc)
