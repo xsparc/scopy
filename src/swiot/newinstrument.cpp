@@ -1,6 +1,7 @@
 #include "newinstrument.hpp"
 #include "gui/tool_view_builder.hpp"
 #include "gui/channel_manager.hpp"
+#include "logging_categories.h"
 
 #define POLLING_INTERVAL 1000
 #define FAULT_CHANNEL_NAME "voltage"
@@ -15,6 +16,7 @@ NewInstrument::NewInstrument(struct iio_context *ctx, Filter *filt,
         timer(new QTimer(this)),
         thread(new QThread(this)),
         faultsPage(new adiscope::gui::FaultsPage(this)) {
+        qInfo(CAT_NEWINSTRUMENT) << "Initialising SWIOT faults page";
 
         ui->setupUi(this);
         run_button = nullptr;
@@ -92,6 +94,7 @@ void NewInstrument::connectSignalsAndSlots() {
 
         QObject::connect(this->timer, &QTimer::timeout, this, &NewInstrument::pollFaults);
         QObject::connect(this->thread, &QThread::started, this, [&](){
+                qDebug(CAT_NEWINSTRUMENT) << "Faults reader thread started";
                 this->timer->start(POLLING_INTERVAL);
         });
 }
@@ -110,33 +113,33 @@ void NewInstrument::max14906Setup() {
 
 void NewInstrument::getAd74413rFaultsNumeric() {
         iio_device *dev = iio_context_get_device(ctx, 0);
-//        qWarning() << "dev name: " << iio_device_get_name(dev);
+
         iio_channel *chn = iio_device_find_channel(dev, FAULT_CHANNEL_NAME, false);
         if (chn == nullptr) {
-                qWarning() << "Device is not found";
+                qCritical(CAT_NEWINSTRUMENT) << "Device is not found";
                 return;
         }
 
         char fau[100];
         iio_channel_attr_read(chn, "raw", fau, 100);
-//        qWarning() << "read attr: " << fau;
-        qWarning() << "ad74413r_numeric: " << fau;
+
+        qDebug(CAT_NEWINSTRUMENT) << "ad74413r_numeric: " << fau;
         this->ad74413r_numeric = std::stoi(fau);
 }
 
 void NewInstrument::getMax14906FaultsNumeric() {
         iio_device *dev = iio_context_get_device(ctx, 1); // TODO: check if name matches the device name
-//        qWarning() << "dev name: " << iio_device_get_name(dev); // TODO: implement Adi's debug standard
+
         iio_channel *chn = iio_device_find_channel(dev, FAULT_CHANNEL_NAME, false);
         if (chn == nullptr) {
-                qWarning() << "Device is not found";
+                qCritical(CAT_NEWINSTRUMENT) << "Device is not found";
                 return;
         }
 
         char fau[100];
         iio_channel_attr_read(chn, "raw", fau, 100);
-//        qWarning() << "read attr: " << fau;
-        qWarning() << "max14906_numeric: " << fau;
+
+        qDebug(CAT_NEWINSTRUMENT) << "max14906_numeric: " << fau;
         this->max14906_numeric = std::stoi(fau);
 }
 
@@ -171,12 +174,14 @@ void NewInstrument::setMax14906Faults() {
 }
 
 void NewInstrument::resetStoredAd74413r() {
+        qDebug(CAT_NEWINSTRUMENT) << "Resetting Ad74413r Stored";
         for (auto &ad74413r_fault: this->faultsPage->getAdFaultsGroup()->getFaults()) {
                 ad74413r_fault->setStored(false);
         }
 }
 
 void NewInstrument::resetStoredMax14906() {
+        qDebug(CAT_NEWINSTRUMENT) << "Resetting Max14906 Stored";
         for (auto &max1490b_fault: this->faultsPage->getMaxFaultsGroup()->getFaults()) {
                 max1490b_fault->setStored(false);
         }
@@ -205,13 +210,14 @@ void NewInstrument::populateMax14906Explanations() {
 }
 
 void NewInstrument::runButtonClicked() {
+        qDebug(CAT_NEWINSTRUMENT) << "Run button clicked";
         this->m_toolView->getSingleBtn()->setChecked(false);
         if (this->m_toolView->getRunBtn()->isChecked()) {
-                qWarning() << "thread started";
+                qDebug(CAT_NEWINSTRUMENT) << "Reader thread started";
                 this->thread->start();
         } else {
                 if (this->thread->isRunning()) {
-                        qWarning() << "thread stopped";
+                        qDebug(CAT_NEWINSTRUMENT) << "Reader thread stopped";
                         this->thread->quit();
                         this->thread->wait();
                 }
@@ -220,6 +226,7 @@ void NewInstrument::runButtonClicked() {
 }
 
 void NewInstrument::singleButtonClicked() {
+        qDebug(CAT_NEWINSTRUMENT) << "Single button clicked";
         this->m_toolView->getRunBtn()->setChecked(false);
         this->timer->stop();
         this->pollFaults();
@@ -227,7 +234,7 @@ void NewInstrument::singleButtonClicked() {
 }
 
 void NewInstrument::pollFaults() {
-        qWarning() << "polling...";
+        qDebug(CAT_NEWINSTRUMENT) << "Polling faults...";
         this->ad74413rSetup();
         this->max14906Setup();
 }

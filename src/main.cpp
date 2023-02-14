@@ -40,6 +40,7 @@
 //#include "coloreditor.h"
 #include "scopy_color_editor.h"
 #include "application_restarter.h"
+#include "logging_categories.h"
 
 #ifdef __ANDROID__
 	#include <QtAndroidExtras/QtAndroid>
@@ -129,7 +130,10 @@ int main(int argc, char **argv)
 #else
 	QString prevCrashDump = "";
 #endif
-
+        SetScopyQDebugMessagePattern();
+        QLoggingCategory::setFilterRules(""
+					 "*.debug=false\n"
+        );
 
 	QCommandLineParser parser;
 

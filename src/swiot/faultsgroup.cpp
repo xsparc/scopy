@@ -4,6 +4,7 @@
 #include <QJsonArray>
 #include "faultsgroup.hpp"
 #include "ui_faultsgroup.h"
+#include "logging_categories.h"
 
 adiscope::gui::FaultsGroup::FaultsGroup(const QString& name, const QString& path, QWidget *parent) :
                 QWidget(parent),
@@ -16,6 +17,11 @@ adiscope::gui::FaultsGroup::FaultsGroup(const QString& name, const QString& path
         QFile file;
         file.setFileName(path);
         file.open(QIODevice::ReadOnly | QIODevice::Text);
+        if (!file.isOpen()) {
+                qCritical(CAT_NEWINSTRUMENT) << "File could not be opened (read): " << path;
+        } else {
+                qDebug(CAT_NEWINSTRUMENT) << "File opened (read): " << path;
+        }
         contents = file.readAll();
         file.close();
 
