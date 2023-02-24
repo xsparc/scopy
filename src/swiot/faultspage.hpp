@@ -6,13 +6,14 @@
 #include <QTextEdit>
 
 #include "faultsgroup.hpp"
+#include "swiotfaultsdevice.hpp"
 
 namespace Ui {
     class FaultsPage;
 }
 
 namespace adiscope::gui {
-    class FaultsGroup;
+    class FaultsDevice;
 
     class FaultsPage : public QWidget {
     Q_OBJECT
@@ -36,8 +37,9 @@ namespace adiscope::gui {
 
     private:
         Ui::FaultsPage *ui;
-        FaultsGroup* adFaultsGroup;
-        FaultsGroup* maxFaultsGroup;
+
+        FaultsDevice* m_ad74413rFaultsDevice;
+        FaultsDevice* m_max14906FaultsDevice;
     };
 
 }

@@ -4,51 +4,47 @@
 adiscope::gui::FaultsPage::FaultsPage(QWidget *parent) :
 	QWidget(parent),
 	ui(new Ui::FaultsPage),
-	adFaultsGroup(new FaultsGroup("ad74413r", ":/swiot/swiot_faults.json", this)),
-        maxFaultsGroup(new FaultsGroup("max14906", ":/swiot/swiot_faults.json", this))
+        m_ad74413rFaultsDevice(new FaultsDevice("ad74413r", ":/swiot/swiot_faults.json", 16, this)),
+        m_max14906FaultsDevice(new FaultsDevice("max14906", ":/swiot/swiot_faults.json", 32, this))
 {
 	ui->setupUi(this);
 
-        this->ui->ad_reset_button->setProperty("blue_button", QVariant(true));
-        this->ui->max_reset_button->setProperty("blue_button", QVariant(true));
-
-	this->ui->ad74413rFaults->addWidget(this->adFaultsGroup);
-	this->ui->max14906Faults->addWidget(this->maxFaultsGroup);
+        this->ui->mainVerticalLayout->addWidget(this->m_ad74413rFaultsDevice);
+        this->ui->mainVerticalLayout->addWidget(this->m_max14906FaultsDevice);
 }
 
-adiscope::gui::FaultsPage::~FaultsPage()
-{
+adiscope::gui::FaultsPage::~FaultsPage() {
 	delete ui;
 }
 
 QPushButton *adiscope::gui::FaultsPage::getAdResetButton() {
-        return this->ui->ad_reset_button;
+        return this->m_ad74413rFaultsDevice->getResetButton();
 }
 
 QPushButton *adiscope::gui::FaultsPage::getMaxResetButton() {
-        return this->ui->max_reset_button;
+        return this->m_max14906FaultsDevice->getResetButton();
 }
 
 adiscope::gui::FaultsGroup *adiscope::gui::FaultsPage::getAdFaultsGroup() const {
-        return this->adFaultsGroup;
+        return this->m_ad74413rFaultsDevice->getFaultsGroup();
 }
 
 adiscope::gui::FaultsGroup *adiscope::gui::FaultsPage::getMaxFaultsGroup() const {
-        return this->maxFaultsGroup;
+        return this->m_max14906FaultsDevice->getFaultsGroup();
 }
 
 void adiscope::gui::FaultsPage::setAdNumericText(const QString& text) {
-        this->ui->lineEdit_adNumeric->setText(text);
+        this->m_ad74413rFaultsDevice->setNumericText(text);
 }
 
 void adiscope::gui::FaultsPage::setMaxNumericText(const QString &text) {
-        this->ui->lineEdit_maxNumeric->setText(text);
+        this->m_max14906FaultsDevice->setNumericText(text);
 }
 
 QLabel *adiscope::gui::FaultsPage::getAdExplanations() {
-        return this->ui->ad_faults_explanation;
+        return this->m_ad74413rFaultsDevice->getExplanations();
 }
 
 QLabel *adiscope::gui::FaultsPage::getMaxExplanations() {
-        return this->ui->max_faults_explanation;
+        return this->m_max14906FaultsDevice->getExplanations();
 }
