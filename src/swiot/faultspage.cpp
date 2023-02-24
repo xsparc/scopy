@@ -45,10 +45,10 @@ void adiscope::gui::FaultsPage::setMaxNumericText(const QString &text) {
         this->ui->lineEdit_maxNumeric->setText(text);
 }
 
-QTextEdit *adiscope::gui::FaultsPage::getAdExplanations() {
+QLabel *adiscope::gui::FaultsPage::getAdExplanations() {
         return this->ui->ad_faults_explanation;
 }
 
-QTextEdit *adiscope::gui::FaultsPage::getMaxExplanations() {
+QLabel *adiscope::gui::FaultsPage::getMaxExplanations() {
         return this->ui->max_faults_explanation;
 }

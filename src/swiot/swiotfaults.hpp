@@ -1,25 +1,26 @@
-#ifndef NEWINSTRUMENT_HPP
-#define NEWINSTRUMENT_HPP
+#ifndef SWIOTFAULTS_HPP
+#define SWIOTFAULTS_HPP
 
 #include "src/filter.hpp"
 #include "src/tool_launcher.hpp"
-#include "ui_newinstrument.h"
 #include "src/tool.hpp"
-#include "src/swiot/faultwidget.hpp"
-#include "src/swiot/faultsgroup.hpp"
 #include "gui/tool_view.hpp"
 #include "gui/customcolqgridlayout.hpp"
 #include "gui/generic_menu.hpp"
 #include "gui/channel_manager.hpp"
-#include "src/swiot/faultspage.hpp"
 
+#include "ui_swiotfaults.h"
+
+#include "src/swiot/faultsgroup.hpp"
+#include "src/swiot/faultspage.hpp"
+#include "src/swiot/faultwidget.hpp"
 
 namespace adiscope {
-    class NewInstrument : public Tool {
+    class SwiotFaults : public Tool {
     Q_OBJECT
 
     private:
-        Ui::NewInstrument *ui;
+        Ui::SwiotFaults *ui;
         QTimer *timer;
         QThread *thread;
 
@@ -37,22 +38,21 @@ namespace adiscope {
         adiscope::gui::GenericMenu *m_generalSettingsMenu{};
         adiscope::gui::ChannelManager *m_monitorChannelManager{};
         adiscope::gui::FaultsPage *faultsPage{};
-    public:
-        gui::ToolView *getMToolView() const;
-
     private:
-        void connectSignalsAndSlots();
 
+        void connectSignalsAndSlots();
         void setupDynamicUi(ToolLauncher *parent);
 
         gui::GenericMenu *createGeneralSettings(const QString &title, QColor *color);
 
     public:
-        NewInstrument(struct iio_context *ctx, Filter *filt,
-                      ToolMenuItem *toolMenuItem,
-                      QJSEngine *engine, ToolLauncher *parent);
 
-        ~NewInstrument() override;
+        SwiotFaults(struct iio_context *ctx, Filter *filt,
+                    ToolMenuItem *toolMenuItem,
+                    QJSEngine *engine, ToolLauncher *parent);
+        ~SwiotFaults() override;
+
+        gui::ToolView *getMToolView() const;
 
         void ad74413rSetup();
         void max14906Setup();
@@ -68,6 +68,10 @@ namespace adiscope {
 
         void pollFaults();
 
+    Q_SIGNALS:
+
+        void showTool();
+
     protected Q_SLOTS:
 
         void resetStoredAd74413r();
@@ -77,4 +81,4 @@ namespace adiscope {
         void singleButtonClicked();
     };
 }
-#endif // NEWINSTRUMENT_HPP
+#endif // SWIOTFAULTS_HPP

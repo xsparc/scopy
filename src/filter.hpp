@@ -48,6 +48,7 @@ namespace adiscope {
 		TOOL_CALIBRATION,
 		TOOL_DATALOGGER,
 		TOOL_NEWINSTRUMENT,
+                TOOL_SWIOTFAULTS,
 		TOOL_LAUNCHER,
 
 	};

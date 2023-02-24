@@ -10,10 +10,11 @@
 	},
 
 	"swiot": {
-		"compatible": [ "debugger", "datalogger", "newinstrument" ],
+		"compatible": [ "debugger", "datalogger", "swiotfaults", "newinstrument" ],
 		"compatible-devices": [ "ad74413r", "max14906" ],
 		"debugger": [ "ad74413r", "max14906" ],
-		"newinstrument": [ "ad74413r", "max14906" ]
+		"swiotfaults": [ "ad74413r", "max14906" ],
+		"newinstrument": [ "ad74413r" ]
 	},
 
 	"FMComms2-4": {

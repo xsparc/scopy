@@ -41,7 +41,7 @@ adiscope::gui::FaultsGroup::FaultsGroup(const QString& name, const QString& path
                 QJsonObject fault_object = faults_obj[i].toObject();
                 QString fault_name = fault_object.value("name").toString();
                 QString fault_description = fault_object.value("description").toString();
-                auto fault_widget = new FaultWidget(fault_name, fault_description, this);
+                auto fault_widget = new FaultWidget(i, fault_name, fault_description, this);
                 this->faults.push_back(fault_widget);
                 this->ui->horizontalLayout->addWidget(fault_widget);
         }

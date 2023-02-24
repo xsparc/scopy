@@ -25,8 +25,8 @@ namespace adiscope::gui {
         QPushButton* getAdResetButton();
         QPushButton* getMaxResetButton();
 
-        QTextEdit* getAdExplanations();
-        QTextEdit* getMaxExplanations();
+        QLabel* getAdExplanations();
+        QLabel* getMaxExplanations();
 
         adiscope::gui::FaultsGroup *getAdFaultsGroup() const;
         adiscope::gui::FaultsGroup *getMaxFaultsGroup() const;

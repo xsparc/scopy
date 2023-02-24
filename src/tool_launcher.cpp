@@ -98,9 +98,9 @@ ToolLauncher::ToolLauncher(QString prevCrashDump, QWidget *parent) :
 	ctx(nullptr), m_m2k(nullptr), about(nullptr),
 	menu(nullptr), dmm(nullptr), data_logger(nullptr), power_control(nullptr),
 	signal_generator(nullptr), oscilloscope(nullptr), logic_analyzer(nullptr),
-	dio(nullptr), dioManager(nullptr),pattern_generator(nullptr), network_analyzer(nullptr),
+	dio(nullptr), dioManager(nullptr), pattern_generator(nullptr), network_analyzer(nullptr),
 	spectrum_analyzer(nullptr), newInstrument(nullptr),
-	debugger(nullptr),
+	swiotFaults(nullptr), debugger(nullptr),
 	manual_calibration(nullptr),
 	current(nullptr),
 	calib(nullptr),
@@ -483,13 +483,17 @@ void ToolLauncher::_toolSelected(enum tool tool)
 		}
 		break;
 
-	case TOOL_NEWINSTRUMENT:
-                if (newInstrument) {
-			selectedTool = newInstrument->getMToolView();
+	case TOOL_SWIOTFAULTS:
+                if (swiotFaults) {
+			selectedTool = swiotFaults->getMToolView();
                 } else {
                         selectedTool = nullptr;
                 }
 		break;
+
+        case TOOL_NEWINSTRUMENT:
+                selectedTool = newInstrument;
+                break;
 
 	case TOOL_LAUNCHER:
 		break;
@@ -1392,6 +1396,11 @@ void adiscope::ToolLauncher::destroyContext()
 		data_logger = nullptr;
 	}
 
+        if (swiotFaults) {
+                delete swiotFaults;
+		swiotFaults = nullptr;
+        }
+
         if (newInstrument) {
                 delete newInstrument;
                 newInstrument = nullptr;
@@ -1835,97 +1844,106 @@ bool adiscope::ToolLauncher::switchContext(const QString& uri)
 
 	calib = new Calibration(ctx, &js_engine);
 	calib->initialize();
+        try {
+                if (filter->compatible(TOOL_PATTERN_GENERATOR)
+                    || filter->compatible(TOOL_DIGITALIO)) {
+                        dioManager = new DIOManager(ctx, filter);
+                }
+                if (filter->compatible(TOOL_LOGIC_ANALYZER)
+                    || filter->compatible(TOOL_PATTERN_GENERATOR)) {
 
-	try {
-		if (filter->compatible(TOOL_PATTERN_GENERATOR)
-				|| filter->compatible(TOOL_DIGITALIO)) {
-			dioManager = new DIOManager(ctx, filter);
-		}
-		if (filter->compatible(TOOL_LOGIC_ANALYZER)
-				|| filter->compatible(TOOL_PATTERN_GENERATOR)) {
+                        if (!m_use_decoders) {
+                                search_timer->stop();
 
-			if (!m_use_decoders) {
-				search_timer->stop();
-
-				QMessageBox info(this);
-				info.setText(tr("Digital decoders support is disabled. Some features may be missing"));
-				info.exec();
-			} else {
+                                QMessageBox info(this);
+                                info.setText(tr("Digital decoders support is disabled. Some features may be missing"));
+                                info.exec();
+                        } else {
 #if defined __APPLE__
-				bool success = loadDecoders(QCoreApplication::applicationDirPath() + "/decoders");
+                                bool success = loadDecoders(QCoreApplication::applicationDirPath() + "/decoders");
 #else
-				bool success = loadDecoders("decoders");
+                                bool success = loadDecoders("decoders");
 #endif
 
-				if (!success) {
-					search_timer->stop();
+                                if (!success) {
+                                        search_timer->stop();
 
-					QMessageBox error(this);
-					error.setText(tr("There was a problem initializing libsigrokdecode. Some features may be missing"));
-					error.exec();
-				}
+                                        QMessageBox error(this);
+                                        error.setText(tr("There was a problem initializing libsigrokdecode. Some features may be missing"));
+                                        error.exec();
+                                }
 
-			}
-		}
+                        }
+                }
 
-		if (filter->compatible(TOOL_DIGITALIO)) {
-			dio = new DigitalIO(nullptr, filter, menu->getToolMenuItemFor(TOOL_DIGITALIO),
-					    dioManager, &js_engine, this);
-			toolList.push_back(dio);
-			connect(dio, &DigitalIO::showTool, [=]() {
-				menu->getToolMenuItemFor(TOOL_DIGITALIO)->getToolBtn()->click();
-			});
-		}
+                if (filter->compatible(TOOL_DIGITALIO)) {
+                        dio = new DigitalIO(nullptr, filter, menu->getToolMenuItemFor(TOOL_DIGITALIO),
+                                            dioManager, &js_engine, this);
+                        toolList.push_back(dio);
+                        connect(dio, &DigitalIO::showTool, [=]() {
+                            menu->getToolMenuItemFor(TOOL_DIGITALIO)->getToolBtn()->click();
+                        });
+                }
 
-		if (filter->compatible(TOOL_DEBUGGER)) {
-			debugger = new Debugger(ctx, filter,menu->getToolMenuItemFor(TOOL_DEBUGGER),
-						&js_engine, this);
-			QObject::connect(debugger, &Debugger::newDebuggerInstance, this,
-					 &ToolLauncher::addDebugWindow);
-		}
+                if (filter->compatible(TOOL_DEBUGGER)) {
+                        debugger = new Debugger(ctx, filter,menu->getToolMenuItemFor(TOOL_DEBUGGER),
+                                                &js_engine, this);
+                        QObject::connect(debugger, &Debugger::newDebuggerInstance, this,
+                                         &ToolLauncher::addDebugWindow);
+                }
 
-		if (filter->compatible(TOOL_DATALOGGER)) {
-			 data_logger = new DataLogger(ctx, filter, menu->getToolMenuItemFor(TOOL_DATALOGGER),&js_engine, this);
-			 toolList.push_back(data_logger);
-		}
+                if (filter->compatible(TOOL_DATALOGGER)) {
+                        data_logger = new DataLogger(ctx, filter, menu->getToolMenuItemFor(TOOL_DATALOGGER),&js_engine, this);
+                        toolList.push_back(data_logger);
+                }
 
 
-		if (filter->compatible(TOOL_POWER_CONTROLLER)) {
-			power_control = new PowerController(ctx, menu->getToolMenuItemFor(TOOL_POWER_CONTROLLER),
-							    &js_engine, this);
-			toolList.push_back(power_control);
-			connect(power_control, &PowerController::showTool, [=]() {
-				menu->getToolMenuItemFor(TOOL_POWER_CONTROLLER)->getToolBtn()->click();
-			});
-		}
+                if (filter->compatible(TOOL_POWER_CONTROLLER)) {
+                        power_control = new PowerController(ctx, menu->getToolMenuItemFor(TOOL_POWER_CONTROLLER),
+                                                            &js_engine, this);
+                        toolList.push_back(power_control);
+                        connect(power_control, &PowerController::showTool, [=]() {
+                            menu->getToolMenuItemFor(TOOL_POWER_CONTROLLER)->getToolBtn()->click();
+                        });
+                }
 
-		if (filter->compatible(TOOL_LOGIC_ANALYZER)) {
-			logic_analyzer = new logic::LogicAnalyzer(ctx, filter, menu->getToolMenuItemFor(TOOL_LOGIC_ANALYZER),
-								  &js_engine, this);
-			toolList.push_back(logic_analyzer);
-			connect(logic_analyzer, &logic::LogicAnalyzer::showTool, [=]() {
-				menu->getToolMenuItemFor(TOOL_LOGIC_ANALYZER)->getToolBtn()->click();
-			});
-		}
+                if (filter->compatible(TOOL_LOGIC_ANALYZER)) {
+                        logic_analyzer = new logic::LogicAnalyzer(ctx, filter, menu->getToolMenuItemFor(TOOL_LOGIC_ANALYZER),
+                                                                  &js_engine, this);
+                        toolList.push_back(logic_analyzer);
+                        connect(logic_analyzer, &logic::LogicAnalyzer::showTool, [=]() {
+                            menu->getToolMenuItemFor(TOOL_LOGIC_ANALYZER)->getToolBtn()->click();
+                        });
+                }
 
-		if (filter->compatible((TOOL_PATTERN_GENERATOR))) {
-			pattern_generator = new logic::PatternGenerator(ctx, filter,
-									menu->getToolMenuItemFor(TOOL_PATTERN_GENERATOR), &js_engine, dioManager, this);
-			toolList.push_back(pattern_generator);
-			connect(pattern_generator, &logic::PatternGenerator::showTool, [=]() {
-				menu->getToolMenuItemFor(TOOL_PATTERN_GENERATOR)->getToolBtn()->click();
-			});
-		}
+                if (filter->compatible((TOOL_PATTERN_GENERATOR))) {
+                        pattern_generator = new logic::PatternGenerator(ctx, filter,
+                                                                        menu->getToolMenuItemFor(TOOL_PATTERN_GENERATOR), &js_engine, dioManager, this);
+                        toolList.push_back(pattern_generator);
+                        connect(pattern_generator, &logic::PatternGenerator::showTool, [=]() {
+                            menu->getToolMenuItemFor(TOOL_PATTERN_GENERATOR)->getToolBtn()->click();
+                        });
+                }
+
+                if (filter->compatible((TOOL_SWIOTFAULTS))) {
+                        this->swiotFaults = new SwiotFaults(ctx, filter, menu->getToolMenuItemFor(TOOL_SWIOTFAULTS), &js_engine, this);
+                        this->toolList.push_back(this->swiotFaults);
+                        connect(this->swiotFaults, &SwiotFaults::showTool, [=](){
+                            this->menu->getToolMenuItemFor(TOOL_SWIOTFAULTS)->getToolBtn()->click();
+                        });
+                }
 
                 if (filter->compatible((TOOL_NEWINSTRUMENT))) {
                         this->newInstrument = new NewInstrument(ctx, filter, menu->getToolMenuItemFor(TOOL_NEWINSTRUMENT), &js_engine, this);
                         this->toolList.push_back(this->newInstrument);
                 }
-	}
 
-	catch (libm2k::m2k_exception &e) {
-		return false;
-	}
+        }
+
+        catch (libm2k::m2k_exception &e) {
+                return false;
+        }
+
 
 	connect(menu->getToolMenuItemFor(TOOL_NETWORK_ANALYZER)->getToolStopBtn(),
 		&QPushButton::toggled,

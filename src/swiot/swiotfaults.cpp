@@ -1,4 +1,4 @@
-#include "newinstrument.hpp"
+#include "swiotfaults.hpp"
 #include "gui/tool_view_builder.hpp"
 #include "gui/channel_manager.hpp"
 #include "logging_categories.h"
@@ -8,11 +8,11 @@
 
 using namespace adiscope;
 
-NewInstrument::NewInstrument(struct iio_context *ctx, Filter *filt,
-                             ToolMenuItem *toolMenuItem,
-                             QJSEngine *engine, ToolLauncher *parent) :
-        Tool(ctx, toolMenuItem, nullptr, "NewInstrument", parent),
-        ui(new Ui::NewInstrument),
+SwiotFaults::SwiotFaults(struct iio_context *ctx, Filter *filt,
+                         ToolMenuItem *toolMenuItem,
+                         QJSEngine *engine, ToolLauncher *parent) :
+        Tool(ctx, toolMenuItem, nullptr, "SwiotFaults", parent),
+        ui(new Ui::SwiotFaults),
         timer(new QTimer(this)),
         thread(new QThread(this)),
         faultsPage(new adiscope::gui::FaultsPage(this)) {
@@ -31,7 +31,7 @@ NewInstrument::NewInstrument(struct iio_context *ctx, Filter *filt,
         this->max14906Setup();
 }
 
-NewInstrument::~NewInstrument() {
+SwiotFaults::~SwiotFaults() {
         if (this->thread->isRunning()) {
                 this->thread->quit();
                 this->thread->wait();
@@ -40,7 +40,7 @@ NewInstrument::~NewInstrument() {
         delete ui;
 }
 
-void NewInstrument::setupDynamicUi(ToolLauncher *parent) {
+void SwiotFaults::setupDynamicUi(ToolLauncher *parent) {
         adiscope::gui::ToolViewRecipe recipe;
         recipe.helpBtnUrl = "";
         recipe.hasRunBtn = true;
@@ -68,7 +68,7 @@ void NewInstrument::setupDynamicUi(ToolLauncher *parent) {
         this->m_toolView->getGeneralSettingsBtn()->setChecked(true);
 }
 
-adiscope::gui::GenericMenu *NewInstrument::createGeneralSettings(const QString &title, QColor *color) {
+adiscope::gui::GenericMenu *SwiotFaults::createGeneralSettings(const QString &title, QColor *color) {
         auto generalSettingsMenu = new adiscope::gui::GenericMenu(this);
         generalSettingsMenu->initInteractiveMenu();
         generalSettingsMenu->setMenuHeader(title, color, false);
@@ -81,38 +81,52 @@ adiscope::gui::GenericMenu *NewInstrument::createGeneralSettings(const QString &
         return generalSettingsMenu;
 }
 
-void NewInstrument::connectSignalsAndSlots() {
+void SwiotFaults::connectSignalsAndSlots() {
         QObject::connect(this->m_toolView->getRunBtn(), &QPushButton::toggled, this,
-                         &NewInstrument::runButtonClicked);
+                         &SwiotFaults::runButtonClicked);
         QObject::connect(this->m_toolView->getSingleBtn(), &QPushButton::clicked, this,
-                         &NewInstrument::singleButtonClicked);
+                         &SwiotFaults::singleButtonClicked);
 
         QObject::connect(this->faultsPage->getAdResetButton(), &QPushButton::clicked, this,
-                         &NewInstrument::resetStoredAd74413r);
+                         &SwiotFaults::resetStoredAd74413r);
         QObject::connect(this->faultsPage->getMaxResetButton(), &QPushButton::clicked, this,
-                         &NewInstrument::resetStoredMax14906);
+                         &SwiotFaults::resetStoredMax14906);
 
-        QObject::connect(this->timer, &QTimer::timeout, this, &NewInstrument::pollFaults);
+        QObject::connect(this->timer, &QTimer::timeout, this, &SwiotFaults::pollFaults);
         QObject::connect(this->thread, &QThread::started, this, [&](){
                 qDebug(CAT_NEWINSTRUMENT) << "Faults reader thread started";
                 this->timer->start(POLLING_INTERVAL);
         });
 }
 
-void NewInstrument::ad74413rSetup() {
+void SwiotFaults::ad74413rSetup() {
         this->getAd74413rFaultsNumeric();
         this->setAd74413rFaults();
         this->populateAd74413rExplanations();
 }
 
-void NewInstrument::max14906Setup() {
+void SwiotFaults::max14906Setup() {
         this->getMax14906FaultsNumeric();
         this->setMax14906Faults();
         this->populateMax14906Explanations();
 }
 
-void NewInstrument::getAd74413rFaultsNumeric() {
-        iio_device *dev = iio_context_get_device(ctx, 0);
+void SwiotFaults::getAd74413rFaultsNumeric() {
+        iio_device *dev = nullptr;
+        unsigned int devCount = iio_context_get_devices_count(ctx);
+        for (int i = 0; i < devCount; ++i) {
+                iio_device *aux = iio_context_get_device(ctx, i);
+                std::string name = iio_device_get_name(aux);
+                if (name == "ad74413r") {
+                        dev = aux;
+                        break;
+                }
+        }
+
+        if (dev == nullptr) {
+                qCritical(CAT_NEWINSTRUMENT) << "Critical: No device was found";
+                return;
+        }
 
         iio_channel *chn = iio_device_find_channel(dev, FAULT_CHANNEL_NAME, false);
         if (chn == nullptr) {
@@ -127,8 +141,22 @@ void NewInstrument::getAd74413rFaultsNumeric() {
         this->ad74413r_numeric = std::stoi(fau);
 }
 
-void NewInstrument::getMax14906FaultsNumeric() {
-        iio_device *dev = iio_context_get_device(ctx, 1); // TODO: check if name matches the device name
+void SwiotFaults::getMax14906FaultsNumeric() {
+        iio_device *dev = nullptr;
+        unsigned int devCount = iio_context_get_devices_count(ctx);
+        for (int i = 0; i < devCount; ++i) {
+                iio_device *aux = iio_context_get_device(ctx, i);
+                std::string name = iio_device_get_name(aux);
+                if (name == "max14906") {
+                        dev = aux;
+                        break;
+                }
+        }
+
+        if (dev == nullptr) {
+                qCritical(CAT_NEWINSTRUMENT) << "Critical: No device was found";
+                return;
+        }
 
         iio_channel *chn = iio_device_find_channel(dev, FAULT_CHANNEL_NAME, false);
         if (chn == nullptr) {
@@ -143,7 +171,7 @@ void NewInstrument::getMax14906FaultsNumeric() {
         this->max14906_numeric = std::stoi(fau);
 }
 
-void NewInstrument::setAd74413rFaults() {
+void SwiotFaults::setAd74413rFaults() {
         this->faultsPage->setAdNumericText(QString("0x%1").arg(this->ad74413r_numeric, 8, 16, QLatin1Char('0')));
 
         uint32_t aux = this->ad74413r_numeric;
@@ -158,7 +186,7 @@ void NewInstrument::setAd74413rFaults() {
         }
 }
 
-void NewInstrument::setMax14906Faults() {
+void SwiotFaults::setMax14906Faults() {
         this->faultsPage->setMaxNumericText(QString("0x%1").arg(this->max14906_numeric, 8, 16, QLatin1Char('0')));
 
         uint32_t aux = this->max14906_numeric;
@@ -173,43 +201,49 @@ void NewInstrument::setMax14906Faults() {
         }
 }
 
-void NewInstrument::resetStoredAd74413r() {
+void SwiotFaults::resetStoredAd74413r() {
         qDebug(CAT_NEWINSTRUMENT) << "Resetting Ad74413r Stored";
         for (auto &ad74413r_fault: this->faultsPage->getAdFaultsGroup()->getFaults()) {
                 ad74413r_fault->setStored(false);
         }
 }
 
-void NewInstrument::resetStoredMax14906() {
+void SwiotFaults::resetStoredMax14906() {
         qDebug(CAT_NEWINSTRUMENT) << "Resetting Max14906 Stored";
         for (auto &max1490b_fault: this->faultsPage->getMaxFaultsGroup()->getFaults()) {
                 max1490b_fault->setStored(false);
         }
 }
 
-gui::ToolView *NewInstrument::getMToolView() const {
+gui::ToolView *SwiotFaults::getMToolView() const {
         return m_toolView;
 }
 
-void NewInstrument::populateAd74413rExplanations() {
+void SwiotFaults::populateAd74413rExplanations() {
         this->faultsPage->getAdExplanations()->clear();
+        QString explanations;
         for (auto &ad74413r_faultWidget: this->faultsPage->getAdFaultsGroup()->getFaults()) {
                 if (ad74413r_faultWidget->isStored()) {
-                        this->faultsPage->getAdExplanations()->append(ad74413r_faultWidget->getFaultExplanation());
+                        explanations.append(ad74413r_faultWidget->getFaultExplanation());
+                        explanations.append('\n');
                 }
         }
+        this->faultsPage->getAdExplanations()->setText(explanations);
 }
 
-void NewInstrument::populateMax14906Explanations() {
+void SwiotFaults::populateMax14906Explanations() {
         this->faultsPage->getMaxExplanations()->clear();
+        QString explanations;
         for (auto &ad74413r_faultWidget: this->faultsPage->getMaxFaultsGroup()->getFaults()) {
                 if (ad74413r_faultWidget->isStored()) {
-                        this->faultsPage->getMaxExplanations()->append(ad74413r_faultWidget->getFaultExplanation());
+                        explanations.append(ad74413r_faultWidget->getFaultExplanation());
+                        explanations.append('\n');
                 }
         }
+        this->faultsPage->getMaxExplanations()->setText(explanations);
 }
 
-void NewInstrument::runButtonClicked() {
+void SwiotFaults::runButtonClicked() {
         qDebug(CAT_NEWINSTRUMENT) << "Run button clicked";
         this->m_toolView->getSingleBtn()->setChecked(false);
         if (this->m_toolView->getRunBtn()->isChecked()) {
@@ -225,7 +259,7 @@ void NewInstrument::runButtonClicked() {
         }
 }
 
-void NewInstrument::singleButtonClicked() {
+void SwiotFaults::singleButtonClicked() {
         qDebug(CAT_NEWINSTRUMENT) << "Single button clicked";
         this->m_toolView->getRunBtn()->setChecked(false);
         this->timer->stop();
@@ -233,7 +267,7 @@ void NewInstrument::singleButtonClicked() {
         this->m_toolView->getSingleBtn()->setChecked(false);
 }
 
-void NewInstrument::pollFaults() {
+void SwiotFaults::pollFaults() {
         qDebug(CAT_NEWINSTRUMENT) << "Polling faults...";
         this->ad74413rSetup();
         this->max14906Setup();

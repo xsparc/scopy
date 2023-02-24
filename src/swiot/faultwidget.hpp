@@ -14,13 +14,17 @@ Q_OBJECT
 
 public:
     explicit FaultWidget(QWidget *parent = nullptr);
-    explicit FaultWidget(QString name, QString faultExplanation, QWidget *parent = nullptr);
+    explicit FaultWidget(unsigned int id, QString name, QString faultExplanation, QWidget *parent = nullptr);
 
     ~FaultWidget() override;
 
 private:
     Ui::FaultWidget *ui;
 public:
+    unsigned int getId() const;
+
+    void setId(unsigned int id);
+
     bool isStored() const;
 
     void setStored(bool stored);
@@ -40,6 +44,7 @@ public:
 private:
     bool stored;
     bool active;
+    unsigned int id;
     QString name;
     QString faultExplanation;
 };

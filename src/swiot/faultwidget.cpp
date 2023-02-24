@@ -9,12 +9,12 @@ FaultWidget::FaultWidget(QWidget *parent) :
         ui->setupUi(this);
 }
 
-FaultWidget::FaultWidget(QString name, QString faultExplanation, QWidget *parent) :
-        QWidget(parent), ui(new Ui::FaultWidget), stored(false), active(false), name(std::move(name)),
+FaultWidget::FaultWidget(unsigned int id, QString name, QString faultExplanation, QWidget *parent) :
+        QWidget(parent), ui(new Ui::FaultWidget), stored(false), active(false), id(id), name(std::move(name)),
         faultExplanation(std::move(faultExplanation)) {
         ui->setupUi(this);
 
-        this->ui->title->setText(this->name);
+        this->ui->title->setText("Bit" + QString::number(this->id));
 }
 
 FaultWidget::~FaultWidget() {
@@ -55,4 +55,12 @@ const QString &FaultWidget::getFaultExplanation() const {
 
 void FaultWidget::setFaultExplanation(const QString &faultExplanation_) {
         FaultWidget::faultExplanation = faultExplanation_;
+}
+
+unsigned int FaultWidget::getId() const {
+        return id;
+}
+
+void FaultWidget::setId(unsigned int id_) {
+        FaultWidget::id = id_;
 }

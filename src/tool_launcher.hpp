@@ -58,7 +58,8 @@
 #include <gui/info_widget.h>
 #include "device_widget.hpp"
 #include "gui/connectDialog.hpp"
-#include "src/swiot/newinstrument.hpp"
+#include "src/newinstrument.hpp"
+#include "src/swiot/swiotfaults.hpp"
 #include "toolmenu.h"
 #include "session_info.h"
 
@@ -76,6 +77,7 @@ namespace adiscope {
 class ToolLauncher_API;
 class SpectrumAnalyzer;
 class DataLogger;
+class SwiotFaults;
 class NewInstrument;
 class Debugger;
 class ManualCalibration;
@@ -256,7 +258,8 @@ private:
 	logic::PatternGenerator *pattern_generator;
 	NetworkAnalyzer *network_analyzer;
 	SpectrumAnalyzer *spectrum_analyzer;
-	NewInstrument *newInstrument;
+        NewInstrument *newInstrument;
+	SwiotFaults *swiotFaults;
 	Debugger *debugger;
 	ManualCalibration *manual_calibration;
 	QWidget *current;
