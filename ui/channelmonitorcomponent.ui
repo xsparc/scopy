@@ -348,6 +348,9 @@ QLabel[ac=true] { qproperty-text: &quot;VRMS&quot;; }</string>
              <property name="segmentStyle">
               <enum>QLCDNumber::Flat</enum>
              </property>
+             <property name="intValue" stdset="0">
+              <number>0</number>
+             </property>
             </widget>
            </item>
           </layout>

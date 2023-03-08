@@ -2,7 +2,7 @@
 
 namespace adiscope {
         DigitalChannelController::DigitalChannelController(struct iio_channel* channel, const QString &deviceName, const QString &deviceType, QWidget *parent) :
-                m_digitalChannel(new DigitalChannel(deviceName, deviceType, parent)),
+                m_digitalChannel(new DigitalChannel(deviceName, deviceType, this)),
                 m_channelName(deviceName),
                 m_channelType(deviceType),
                 m_channel(channel) {
@@ -30,6 +30,8 @@ namespace adiscope {
                         this->writeType();
                 });
         }
+
+        DigitalChannelController::~DigitalChannelController() = default;
 
         DigitalChannel *DigitalChannelController::getDigitalChannel() const {
                 return m_digitalChannel;

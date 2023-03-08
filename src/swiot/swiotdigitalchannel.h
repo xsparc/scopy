@@ -2,46 +2,43 @@
 #define SCOPY_SWIOTDIGITALCHANNEL_H
 
 #include <QWidget>
-#include "ui_channelcontrol.h"
+#include "ui_swiotdigitalchannel.h"
 #include "gui/generic_menu.hpp"
 #include "logging_categories.h"
 
 
 namespace adiscope {
-    class DigitalChannel : public gui::GenericMenu {
-    Q_OBJECT
+        class DigitalChannel : public gui::GenericMenu {
+                Q_OBJECT
+        public:
+                explicit DigitalChannel(const QString &deviceName, const QString &deviceType, QWidget *parent = nullptr);
+                ~DigitalChannel() override;
 
-    private:
-        Ui::DigitalChannel *ui;
-        QString m_deviceName;
-        QString m_deviceType;
+                Ui::DigitalChannel *getUi() const;
 
-        std::vector<std::string> m_configModes;
+                void updateTimeScale(double newMin, double newMax);
 
-        QString m_selectedConfigMode;
+                void addDataSample(double value);
 
-    public:
-	explicit DigitalChannel(const QString &deviceName, const QString &deviceType, QWidget *parent = nullptr);
+                const std::vector<std::string> &getConfigModes() const;
 
-        ~DigitalChannel() override;
+                void setConfigModes(const std::vector<std::string> &configModes);
 
-        Ui::DigitalChannel *getUi() const;
+                const QString &getSelectedConfigMode() const;
 
-        void updateTimeScale(double newMin, double newMax);
+                void setSelectedConfigMode(const QString &selectedConfigMode);
 
-	void addDataSample(double value);
+        private:
+                void connectSignalsAndSlots();
 
-        const std::vector<std::string> &getConfigModes() const;
+                Ui::DigitalChannel *ui;
+                QString m_deviceName;
+                QString m_deviceType;
 
-        void setConfigModes(const std::vector<std::string> &configModes);
+                std::vector<std::string> m_configModes;
 
-        const QString &getSelectedConfigMode() const;
-
-        void setSelectedConfigMode(const QString &selectedConfigMode);
-
-    private:
-        void connectSignalsAndSlots();
-    };
+                QString m_selectedConfigMode;
+        };
 }
 
 

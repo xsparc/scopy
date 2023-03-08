@@ -1,13 +1,11 @@
 #include "swiotdigitalchannel.h"
 
 adiscope::DigitalChannel::DigitalChannel(const QString& deviceName, const QString& deviceType, QWidget *parent) :
-        gui::GenericMenu(parent),
-        ui(new Ui::DigitalChannel),
+	ui(new Ui::DigitalChannel()),
         m_deviceName(deviceName),
         m_deviceType(deviceType) {
 
         this->ui->setupUi(this);
-        initInteractiveMenu();
 
         this->ui->m_channelName->setText(deviceName);
         this->ui->m_channelType->setText(deviceType);
@@ -39,6 +37,7 @@ adiscope::DigitalChannel::DigitalChannel(const QString& deviceName, const QStrin
         this->ui->sismograph->updateYScale(30, 0);
 
         this->connectSignalsAndSlots();
+	this->ui->lcdNumber->setPrecision(0);
 }
 
 adiscope::DigitalChannel::~DigitalChannel() {
@@ -58,9 +57,13 @@ void adiscope::DigitalChannel::updateTimeScale(double newMin, double newMax) {
 }
 
 void DigitalChannel::addDataSample(double value) {
-        this->ui->sismograph->plot(value); // FIXME: gets called 4 times for some reason
+	this->ui->sismograph->plot(value); // TODO: delete these, testing only
+	this->ui->sismograph->plot(value);
+	this->ui->sismograph->plot(value);
+	this->ui->sismograph->plot(value);
+	this->ui->sismograph->plot(value);
         this->ui->scaleChannel->setValue(value);
-        this->ui->LcdNumber->display((int)(value)); // FIXME: does not change the displayed value
+	this->ui->lcdNumber->display(value);
 }
 
 const std::vector<std::string> &DigitalChannel::getConfigModes() const {

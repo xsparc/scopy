@@ -152,14 +152,14 @@ QWidget *adiscope::gui::FaultsGroup::buildActiveStoredWidget() {
         storedLabel->setText("Stored");
         auto activeLabel = new QLabel(this);
         activeLabel->setText("Active");
-	auto spacer = new QSpacerItem(0, 36, QSizePolicy::Fixed, QSizePolicy::Fixed);
+	auto spacer = new QSpacerItem(0, 30, QSizePolicy::Fixed, QSizePolicy::Fixed);
 
         widget->setLayout(new QVBoxLayout(widget));
         widget->layout()->addWidget(storedLabel);
         widget->layout()->addWidget(activeLabel);
         widget->layout()->addItem(spacer);
 	widget->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-	widget->setStyleSheet("background-color: green;");
+//	widget->setStyleSheet("background-color: green;");
 
         return widget;
 }

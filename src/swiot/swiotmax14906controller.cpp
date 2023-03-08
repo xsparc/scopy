@@ -10,10 +10,6 @@ adiscope::Max14906ToolController::Max14906ToolController(struct iio_context* con
 
 adiscope::Max14906ToolController::~Max14906ToolController() = default;
 
-void adiscope::Max14906ToolController::connectSignalsAndSlots() {
-//        QObject::connect(this->m_qTimer, &QTimer::timeout, , ); // TODO: connect to reader thread
-}
-
 int adiscope::Max14906ToolController::getChannelCount() {
         unsigned int dev_count = iio_device_get_channels_count(this->m_device);
         return (int)(dev_count);
