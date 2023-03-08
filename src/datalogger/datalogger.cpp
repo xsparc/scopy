@@ -119,7 +119,7 @@ DataLogger::DataLogger(struct iio_context *ctx, Filter *filt,
 		}
 	});
 
-	m_customColGrid = new CustomColQGridLayout(100,this);
+	m_customColGrid = new CustomColQGridLayout(100, true, this);
 	m_toolView->addFixedCentralWidget(m_customColGrid,0,0,0,0);
 	setCentralWidget(getToolView());
 

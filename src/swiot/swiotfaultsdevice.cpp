@@ -1,11 +1,13 @@
 #include "swiotfaultsdevice.hpp"
-
+#include "logging_categories.h"
 #include <utility>
 
 namespace adiscope::gui {
         FaultsDevice::FaultsDevice(QString name, QString path, uint32_t max_faults_num, QWidget *parent)
                 : ui(new Ui::FaultsDevice),
                 m_parent(parent),
+		m_faults_explanation(new QTextEdit(this)),
+                m_subsectionSeparator(new SubsectionSeparator("Faults Explanation", true, this)),
                 m_faultsGroup(new FaultsGroup(name, path, this)),
                 m_name(std::move(name)),
                 m_path(std::move(path)),
@@ -13,31 +15,55 @@ namespace adiscope::gui {
 
                 ui->setupUi(this);
 
-                this->ui->label_name->setText(this->m_name);
+		this->ui->label_name->setText(m_name);
+		this->ui->faults_layout->addWidget(this->m_faultsGroup);
+		m_faults_explanation->setReadOnly(true);
+		m_faults_explanation->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+		m_faults_explanation->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+                m_subsectionSeparator->setContent(m_faults_explanation);
+		m_faults_explanation->setFixedHeight(m_faults_explanation->document()->size().toSize().height() + 3);
+                this->ui->faults_explanation->layout()->addWidget(m_subsectionSeparator);
 
-                this->ui->reset_button->setProperty("blue_button", QVariant(true));
-                this->ui->clear_selection_button->setProperty("blue_button", QVariant(true));
-
-                this->ui->faults_layout->addWidget(this->m_faultsGroup);
+                connect(this->ui->clear_selection_button, &QPushButton::clicked, this->m_faultsGroup, &FaultsGroup::clearSelection);
+                connect(this->ui->reset_button, &QPushButton::clicked, this, &adiscope::gui::FaultsDevice::resetStored);
+                connect(m_faultsGroup, &FaultsGroup::selectionUpdated, this, &FaultsDevice::updateExplanations);
+		connect(m_faultsGroup, &FaultsGroup::minimumSizeChanged, this, &FaultsDevice::updateMinimumHeight);
+		connect(m_faults_explanation, &QTextEdit::textChanged, this, [=](){ // TODO: make this a separate slot
+			m_faults_explanation->setFixedHeight(m_faults_explanation->document()->size().toSize().height() + 3);
+		});
         }
 
         FaultsDevice::~FaultsDevice() {
                 delete ui;
         }
 
-        QPushButton *FaultsDevice::getResetButton() {
-                return this->ui->reset_button;
+        void FaultsDevice::resetStored() {
+                for (auto fault : this->m_faultsGroup->getFaults()) {
+                        fault->setStored(false);
+                }
+                this->m_faults_explanation->clear();
         }
 
-        FaultsGroup *FaultsDevice::getFaultsGroup() const {
-                return m_faultsGroup;
+        void FaultsDevice::update(uint32_t faults_numeric) {
+                this->ui->lineEdit_numeric->setText(QString("0x%1").arg(faults_numeric, 8, 16, QLatin1Char('0')));
+
+                this->m_faultsGroup->update(faults_numeric);
+
+                this->updateExplanations();
         }
 
-        QLabel *FaultsDevice::getExplanations() {
-                return this->ui->faults_explanation;
+        void FaultsDevice::updateExplanations() {
+                m_faults_explanation->clear();
+                this->m_faults_explanation->setText(this->m_faultsGroup->getExplanations());
         }
 
-        void FaultsDevice::setNumericText(const QString &text) {
-                this->ui->lineEdit_numeric->setText(text);
-        }
-} // adiscope
+	void FaultsDevice::updateMinimumHeight() { // TODO: add page margins and spaceing into the calculation
+		this->setMinimumHeight(this->sizeHint().height());
+	}
+
+	void FaultsDevice::resizeEvent(QResizeEvent *event) {
+		m_faults_explanation->setFixedHeight(m_faults_explanation->document()->size().toSize().height() + 3);
+
+		QWidget::resizeEvent(event);
+	}
+} // adiscope::gui

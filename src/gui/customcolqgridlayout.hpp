@@ -16,8 +16,8 @@ class CustomColQGridLayout : public QWidget
 	Q_OBJECT
 
 public:
-	explicit CustomColQGridLayout(int maxCols, QWidget *parent = nullptr);
-	~CustomColQGridLayout();
+	explicit CustomColQGridLayout(int maxCols, bool hasScrollArea = true, QWidget *parent = nullptr);
+	~CustomColQGridLayout() override;
 
 	void toggleAll(bool toggled);
 	void addWidget(int index);
@@ -29,6 +29,11 @@ public:
 	void setMaxColumnNumber(int maxColumns);
 	int getMaxColumnNumber();
 
+        int fullRows() const;
+        int rows() const;
+        int columns() const;
+        int columnsOnLastRow() const;
+
 Q_SIGNALS:
 	void reqestLayoutUpdate();
 
@@ -37,6 +42,7 @@ public Q_SLOTS:
 	void itemSizeChanged();
 
 private:
+        bool hasScrollArea;
 	int m_maxCols;
 	int currentNumberOfCols;
 	int col;

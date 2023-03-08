@@ -1951,10 +1951,8 @@ bool adiscope::ToolLauncher::switchContext(const QString& uri)
                                                               menu->getToolMenuItemFor(TOOL_MAX14906),
                                                               &js_engine, this);
                         this->toolList.push_back(this->max14906Tool);
-                        connect(this->max14906Tool, &Max14906Tool::showTool, [=](){
-                                menu->getToolMenuItemFor(TOOL_MAX14906)->getToolBtn()->click();
-                        });
                 }
+
                 if (filter->compatible((TOOL_NEWINSTRUMENT))) {
                         this->newInstrument = new NewInstrument(ctx, filter, menu->getToolMenuItemFor(TOOL_NEWINSTRUMENT), &js_engine, this);
                         this->toolList.push_back(this->newInstrument);

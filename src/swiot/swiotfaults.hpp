@@ -16,69 +16,49 @@
 #include "src/swiot/faultwidget.hpp"
 
 namespace adiscope {
-    class SwiotFaults : public Tool {
-    Q_OBJECT
+        class SwiotFaults : public Tool {
+                Q_OBJECT
+        public:
+                SwiotFaults(struct iio_context *ctx, Filter *filt, ToolMenuItem *toolMenuItem, QJSEngine *engine, ToolLauncher *parent);
+                ~SwiotFaults() override;
 
-    private:
-        Ui::SwiotFaults *ui;
-        QTimer *timer;
-        QThread *thread;
+                gui::ToolView *getMToolView() const;
 
-        QVector<QPair<QPushButton *, QPushButton *> *> ad74413r_fault_buttons;
-        QVector<QPair<QPushButton *, QPushButton *> *> max14906_fault_buttons;
+                void getAd74413rFaultsNumeric();
+                void getMax14906FaultsNumeric();
 
-        uint16_t ad74413r_faults_count;
-        uint16_t max14906_faults_count;
+                void pollFaults();
 
-        uint32_t ad74413r_numeric = 0;
-        uint32_t max14906_numeric = 0;
+        Q_SIGNALS:
+                void showTool();
 
-        adiscope::gui::ToolView *m_toolView{};
-        CustomColQGridLayout *m_customColGrid{};
-        adiscope::gui::GenericMenu *m_generalSettingsMenu{};
-        adiscope::gui::ChannelManager *m_monitorChannelManager{};
-        adiscope::gui::FaultsPage *faultsPage{};
-    private:
+        protected Q_SLOTS:
+                void runButtonClicked();
+                void singleButtonClicked();
 
-        void connectSignalsAndSlots();
-        void setupDynamicUi(ToolLauncher *parent);
+        private:
+                Ui::SwiotFaults *ui;
+                QTimer *timer;
+                QThread *thread;
 
-        gui::GenericMenu *createGeneralSettings(const QString &title, QColor *color);
+                QVector<QPair<QPushButton *, QPushButton *> *> ad74413r_fault_buttons;
+                QVector<QPair<QPushButton *, QPushButton *> *> max14906_fault_buttons;
 
-    public:
+                uint16_t ad74413r_faults_count;
+                uint16_t max14906_faults_count;
 
-        SwiotFaults(struct iio_context *ctx, Filter *filt,
-                    ToolMenuItem *toolMenuItem,
-                    QJSEngine *engine, ToolLauncher *parent);
-        ~SwiotFaults() override;
+                uint32_t ad74413r_numeric = 0;
+                uint32_t max14906_numeric = 0;
 
-        gui::ToolView *getMToolView() const;
+                adiscope::gui::ToolView *m_toolView{};
+                CustomColQGridLayout *m_customColGrid{};
+                adiscope::gui::GenericMenu *m_generalSettingsMenu{};
+                adiscope::gui::ChannelManager *m_monitorChannelManager{};
+                adiscope::gui::FaultsPage *faultsPage{};
+                void connectSignalsAndSlots();
+                void setupDynamicUi(ToolLauncher *parent);
 
-        void ad74413rSetup();
-        void max14906Setup();
-
-        void getAd74413rFaultsNumeric();
-        void getMax14906FaultsNumeric();
-
-        void setAd74413rFaults();
-        void setMax14906Faults();
-
-        void populateAd74413rExplanations();
-        void populateMax14906Explanations();
-
-        void pollFaults();
-
-    Q_SIGNALS:
-
-        void showTool();
-
-    protected Q_SLOTS:
-
-        void resetStoredAd74413r();
-        void resetStoredMax14906();
-
-        void runButtonClicked();
-        void singleButtonClicked();
-    };
+                gui::GenericMenu *createGeneralSettings(const QString &title, QColor *color);
+        };
 }
 #endif // SWIOTFAULTS_HPP

@@ -2,19 +2,27 @@
 
 #include <utility>
 #include "ui_faultwidget.h"
+#include "logging_categories.h"
 
-
-FaultWidget::FaultWidget(QWidget *parent) :
-        QWidget(parent), ui(new Ui::FaultWidget), stored(false), active(false) {
-        ui->setupUi(this);
-}
 
 FaultWidget::FaultWidget(unsigned int id, QString name, QString faultExplanation, QWidget *parent) :
-        QWidget(parent), ui(new Ui::FaultWidget), stored(false), active(false), id(id), name(std::move(name)),
+        QWidget(parent),
+        ui(new Ui::FaultWidget),
+        stored(false),
+        active(false),
+        pressed(false),
+        id(id),
+        name(std::move(name)),
         faultExplanation(std::move(faultExplanation)) {
         ui->setupUi(this);
 
+        installEventFilter(this);
+
         this->ui->title->setText("Bit" + QString::number(this->id));
+
+        this->ui->mainFrame->setMinimumSize(70, 90);
+
+	qDebug() << this->ui->active->size().height();
 }
 
 FaultWidget::~FaultWidget() {
@@ -27,8 +35,8 @@ bool FaultWidget::isStored() const {
 
 void FaultWidget::setStored(bool stored_) {
         FaultWidget::stored = stored_;
-        this->ui->storedButton->setProperty("high", this->stored);
-        this->ui->storedButton->setStyle(this->ui->storedButton->style());
+        this->ui->stored->setProperty("high", this->stored);
+        this->ui->stored->setStyle(this->ui->stored->style());
 }
 
 bool FaultWidget::isActive() const {
@@ -37,8 +45,8 @@ bool FaultWidget::isActive() const {
 
 void FaultWidget::setActive(bool active_) {
         FaultWidget::active = active_;
-        this->ui->activeButton->setProperty("high", this->active);
-        this->ui->activeButton->setStyle(this->ui->activeButton->style());
+        this->ui->active->setProperty("high", this->active);
+        this->ui->active->setStyle(this->ui->active->style());
 }
 
 const QString &FaultWidget::getName() const {
@@ -63,4 +71,27 @@ unsigned int FaultWidget::getId() const {
 
 void FaultWidget::setId(unsigned int id_) {
         FaultWidget::id = id_;
+}
+
+bool FaultWidget::isPressed() const {
+        return pressed;
+}
+
+void FaultWidget::setPressed(bool pressed_) {
+        FaultWidget::pressed = pressed_;
+        adiscope::setDynamicProperty(this->ui->mainFrame, "pressed", pressed_);
+}
+
+bool FaultWidget::eventFilter(QObject *object, QEvent *event) {
+        if (event->type() == QEvent::MouseButtonPress) {
+                this->setPressed( !adiscope::getDynamicProperty(this->ui->mainFrame, "pressed") );
+
+		Q_EMIT faultSelected(this->id);
+        }
+
+        if (event->type() == QEvent::ToolTip) {
+                this->setToolTip(this->name);
+        }
+
+        return QWidget::eventFilter(object, event);
 }

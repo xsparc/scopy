@@ -9,42 +9,18 @@ adiscope::gui::FaultsPage::FaultsPage(QWidget *parent) :
 {
 	ui->setupUi(this);
 
-        this->ui->mainVerticalLayout->addWidget(this->m_ad74413rFaultsDevice);
-        this->ui->mainVerticalLayout->addWidget(this->m_max14906FaultsDevice);
+        this->m_ad74413rFaultsDevice->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+        this->m_max14906FaultsDevice->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+
+	this->ui->mainVerticalLayout->insertWidget(1, this->m_ad74413rFaultsDevice);
+	this->ui->mainVerticalLayout->insertWidget(2, this->m_max14906FaultsDevice);
 }
 
 adiscope::gui::FaultsPage::~FaultsPage() {
 	delete ui;
 }
 
-QPushButton *adiscope::gui::FaultsPage::getAdResetButton() {
-        return this->m_ad74413rFaultsDevice->getResetButton();
-}
-
-QPushButton *adiscope::gui::FaultsPage::getMaxResetButton() {
-        return this->m_max14906FaultsDevice->getResetButton();
-}
-
-adiscope::gui::FaultsGroup *adiscope::gui::FaultsPage::getAdFaultsGroup() const {
-        return this->m_ad74413rFaultsDevice->getFaultsGroup();
-}
-
-adiscope::gui::FaultsGroup *adiscope::gui::FaultsPage::getMaxFaultsGroup() const {
-        return this->m_max14906FaultsDevice->getFaultsGroup();
-}
-
-void adiscope::gui::FaultsPage::setAdNumericText(const QString& text) {
-        this->m_ad74413rFaultsDevice->setNumericText(text);
-}
-
-void adiscope::gui::FaultsPage::setMaxNumericText(const QString &text) {
-        this->m_max14906FaultsDevice->setNumericText(text);
-}
-
-QLabel *adiscope::gui::FaultsPage::getAdExplanations() {
-        return this->m_ad74413rFaultsDevice->getExplanations();
-}
-
-QLabel *adiscope::gui::FaultsPage::getMaxExplanations() {
-        return this->m_max14906FaultsDevice->getExplanations();
+void adiscope::gui::FaultsPage::update(uint32_t ad74413r_faults, uint32_t max14906_faults) {
+        this->m_ad74413rFaultsDevice->update(ad74413r_faults);
+        this->m_max14906FaultsDevice->update(max14906_faults);
 }

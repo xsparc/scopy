@@ -3,24 +3,34 @@
 #include "QScrollArea"
 #include <QSpacerItem>
 #include <QtDebug>
+#include <iostream>
 
 using namespace adiscope;
 
-CustomColQGridLayout::CustomColQGridLayout(int maxCols,QWidget *parent) :
+CustomColQGridLayout::CustomColQGridLayout(int maxCols, bool hasScrollArea, QWidget *parent) :
 	QWidget(parent),
+	hasScrollArea(hasScrollArea),
 	m_maxCols(maxCols-1),
 	currentNumberOfCols(m_maxCols),
-	col(0),
+        col(0),
 	row(0),
 	updatePending(false),
 	ui(new Ui::CustomColQGridLayout)
 {
 	ui->setupUi(this);
 
-	m_mainWidget = new QWidget(this);
-	ui->scrollArea->setWidgetResizable(true);
-	ui->scrollArea->setWidget(m_mainWidget);
-	m_gridLayout = new QGridLayout;
+        m_mainWidget = new QWidget(this);
+
+        this->ui->scrollArea->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContents);
+        if (hasScrollArea) { // default
+                ui->scrollArea->setWidgetResizable(true);
+                ui->scrollArea->setWidget(m_mainWidget);
+        } else {
+                ui->gridLayout_2->addWidget(m_mainWidget);
+                this->ui->scrollArea->hide();
+        }
+
+        m_gridLayout = new QGridLayout;
 	m_gridLayout->setHorizontalSpacing(0);
 	m_gridLayout->setVerticalSpacing(0);
 	m_gridLayout->setContentsMargins(0, 0, 0, 0);
@@ -150,6 +160,31 @@ int CustomColQGridLayout::getMaxColumnNumber()
 	return  m_maxCols;
 }
 
+//returns the number of rows that contain the maximum number of cols/elements that could fit on a row
+int CustomColQGridLayout::fullRows() const
+{
+        return row;
+}
+
+//returns the number of rows, including the last row that might not be full
+int CustomColQGridLayout::rows() const
+{
+        return row + (col != 0);
+}
+
+//returns the maximum number of cols/elements that are currently on a row
+int CustomColQGridLayout::columns() const
+{
+        if (row == 0) return 0;
+        return ((int) (m_widgetList.size() - col)) / row;
+}
+
+//return the number of cols/elements that are on the last row
+int CustomColQGridLayout::columnsOnLastRow() const
+{
+        return col;
+}
+
 void CustomColQGridLayout::resizeEvent(QResizeEvent *event)
 {
 	if (!updatePending) {
@@ -195,7 +230,7 @@ void CustomColQGridLayout::recomputeColCount()
 	}
 }
 
-void CustomColQGridLayout::computeCols(double width)
+void CustomColQGridLayout::computeCols(double width) // width of the first active widget
 {
 	int colCount = currentNumberOfCols;
 	availableWidth = this->width();
@@ -228,7 +263,7 @@ void CustomColQGridLayout::redrawWidgets()
 {
 	row = 0;
 	col = 0;
-	if (m_activeWidgetList.size() > 0) {
+	if (!m_activeWidgetList.empty()) {
 		for (int i = 0; i < m_activeWidgetList.size(); i++) {
 
 			m_gridLayout->removeWidget(m_widgetList.at(m_activeWidgetList.at(i)));
@@ -242,10 +277,16 @@ void CustomColQGridLayout::redrawWidgets()
 				col = 0;
 				row++;
 			} else {
-				col ++;
+				col++;
 			}
 		}
 	}
+
+        if (!hasScrollArea) {
+                m_gridLayout->setRowMinimumHeight(0, this->m_widgetList.at(0)->height());
+                this->setMinimumHeight(this->rows() * this->m_widgetList.at(0)->height());
+                Q_EMIT reqestLayoutUpdate();
+        }
 }
 
 CustomColQGridLayout::~CustomColQGridLayout()
