@@ -16,46 +16,46 @@
 #define POLLING_INTERVAL 1000
 
 namespace adiscope {
-        class DigitalChannel;
-        class Max14906ToolController;
+class DigitalChannel;
+class Max14906ToolController;
 
-        class Max14906Tool : public Tool {
-                Q_OBJECT
-        public:
-                Max14906Tool(struct iio_context *ctx, Filter *filt,
-                             ToolMenuItem *toolMenuItem,
-                             QJSEngine *engine, ToolLauncher *parent);
+class Max14906Tool : public Tool {
+	Q_OBJECT
+public:
+	Max14906Tool(struct iio_context *ctx, Filter *filt,
+		     ToolMenuItem *toolMenuItem,
+		     QJSEngine *engine, ToolLauncher *parent);
 
-                ~Max14906Tool() override;
+	~Max14906Tool() override;
 
-                gui::ToolView *getMToolView() const;
+	gui::ToolView *getMToolView() const;
 
-        private Q_SLOTS:
-                void runButtonToggled();
-                void singleButtonToggled();
+private Q_SLOTS:
+	void runButtonToggled();
+	void singleButtonToggled();
 
-                void timerChanged(double value);
+	void timerChanged(double value);
 
-        private:
-                void initChannels();
-                void setupDynamicUi(ToolLauncher *parent);
-                void initMonitorToolView();
-                adiscope::gui::GenericMenu* createGeneralSettings(const QString& title, QColor* color);
-                void connectSignalsAndSlots();
+private:
+	void initChannels();
+	void setupDynamicUi(ToolLauncher *parent);
+	void initMonitorToolView();
+	adiscope::gui::GenericMenu* createGeneralSettings(const QString& title, QColor* color);
+	void connectSignalsAndSlots();
 
-                Max14906ToolController *max14906ToolController;
-                Ui::Max14906Tool *ui;
-                Max14906SettingsTab *m_max14906SettingsTab;
-                adiscope::gui::ToolView* m_toolView;
-                CustomColQGridLayout* m_customColGrid;
-                adiscope::gui::GenericMenu* m_generalSettingsMenu;
-                adiscope::gui::ChannelManager* m_monitorChannelManager;
-                QTimer *m_qTimer;
+	Max14906ToolController *max14906ToolController;
+	Ui::Max14906Tool *ui;
+	Max14906SettingsTab *m_max14906SettingsTab;
+	adiscope::gui::ToolView* m_toolView;
+	CustomColQGridLayout* m_customColGrid;
+	adiscope::gui::GenericMenu* m_generalSettingsMenu;
+	adiscope::gui::ChannelManager* m_monitorChannelManager;
+	QTimer *m_qTimer;
 
-                MaxReaderThread *m_readerThread;
-                QMap<int, DigitalChannel*> m_channelControls;
+	MaxReaderThread *m_readerThread;
+	QMap<int, DigitalChannel*> m_channelControls;
 
-                adiscope::gui::SubsectionSeparator *settingsWidgetSeparator;
-        };
+	adiscope::gui::SubsectionSeparator *settingsWidgetSeparator;
+};
 }
 #endif // MAX14906TOOL_HPP

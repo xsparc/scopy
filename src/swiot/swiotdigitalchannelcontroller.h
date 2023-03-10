@@ -12,31 +12,31 @@
 #define ATTR_BUFFER_LEN 200
 
 namespace adiscope {
-	class DigitalChannelController : public QWidget {
-                Q_OBJECT
-        public:
+class DigitalChannelController : public QWidget {
+	Q_OBJECT
+public:
 
-                explicit DigitalChannelController(struct iio_channel* channel, const QString& deviceName, const QString& deviceType, QWidget *parent);
-                ~DigitalChannelController() override;
+	explicit DigitalChannelController(struct iio_channel* channel, const QString& deviceName, const QString& deviceType, QWidget *parent);
+	~DigitalChannelController() override;
 
-                DigitalChannel *getDigitalChannel() const;
+	DigitalChannel *getDigitalChannel() const;
 
-                void writeType();
+	void writeType();
 
-        private:
-                DigitalChannel *m_digitalChannel;
+private:
+	DigitalChannel *m_digitalChannel;
 
-                QString m_channelName;
-                QString m_channelType; // output or input
+	QString m_channelName;
+	QString m_channelType; // output or input
 
-                std::string m_iioAttrAvailableTypes; // iio attribute
-                std::vector<std::string> m_availableTypes;
+	std::string m_iioAttrAvailableTypes; // iio attribute
+	std::vector<std::string> m_availableTypes;
 
-                std::string m_iioAttrType; // iio attribute
-                std::string m_type;
+	std::string m_iioAttrType; // iio attribute
+	std::string m_type;
 
-                struct iio_channel* m_channel;
-        };
+	struct iio_channel* m_channel;
+};
 
 } // adiscope
 

@@ -8,37 +8,37 @@
 
 
 namespace adiscope {
-        class DigitalChannel : public gui::GenericMenu {
-                Q_OBJECT
-        public:
-                explicit DigitalChannel(const QString &deviceName, const QString &deviceType, QWidget *parent = nullptr);
-                ~DigitalChannel() override;
+class DigitalChannel : public gui::GenericMenu {
+	Q_OBJECT
+public:
+	explicit DigitalChannel(const QString &deviceName, const QString &deviceType, QWidget *parent = nullptr);
+	~DigitalChannel() override;
 
-                Ui::DigitalChannel *getUi() const;
+	Ui::DigitalChannel *getUi() const;
 
-                void updateTimeScale(double newMin, double newMax);
+	void updateTimeScale(double newMin, double newMax);
 
-                void addDataSample(double value);
+	void addDataSample(double value);
 
-                const std::vector<std::string> &getConfigModes() const;
+	const std::vector<std::string> &getConfigModes() const;
 
-                void setConfigModes(const std::vector<std::string> &configModes);
+	void setConfigModes(const std::vector<std::string> &configModes);
 
-                const QString &getSelectedConfigMode() const;
+	const QString &getSelectedConfigMode() const;
 
-                void setSelectedConfigMode(const QString &selectedConfigMode);
+	void setSelectedConfigMode(const QString &selectedConfigMode);
 
-        private:
-                void connectSignalsAndSlots();
+private:
+	void connectSignalsAndSlots();
 
-                Ui::DigitalChannel *ui;
-                QString m_deviceName;
-                QString m_deviceType;
+	Ui::DigitalChannel *ui;
+	QString m_deviceName;
+	QString m_deviceType;
 
-                std::vector<std::string> m_configModes;
+	std::vector<std::string> m_configModes;
 
-                QString m_selectedConfigMode;
-        };
+	QString m_selectedConfigMode;
+};
 }
 
 

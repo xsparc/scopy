@@ -9,15 +9,15 @@ Max14906SettingsTab::Max14906SettingsTab(QWidget *parent) :
 
 
 	this->m_max_spin_button = new PositionSpinButton({
-								{tr("s"), 1}
-//								{tr("m"), 60}
-						       }, tr("Time"), 0, 300, true, false, this);
+								 {tr("s"), 1}
+								 //								{tr("m"), 60}
+							 }, tr("Time"), 0, 300, true, false, this);
 	this->m_max_spin_button->setValue(10); // default value
 	this->ui->verticalLayout_maxTimer->addWidget(this->m_max_spin_button);
 
-        connect(m_max_spin_button, &PositionSpinButton::valueChanged, [&] () {
-                Q_EMIT timeValueChanged(this->m_max_spin_button->value());
-        });
+	connect(m_max_spin_button, &PositionSpinButton::valueChanged, [&] () {
+		Q_EMIT timeValueChanged(this->m_max_spin_button->value());
+	});
 }
 
 Max14906SettingsTab::~Max14906SettingsTab()
@@ -26,5 +26,5 @@ Max14906SettingsTab::~Max14906SettingsTab()
 }
 
 double Max14906SettingsTab::getTimeValue() const {
-        return m_max_spin_button->value();
+	return m_max_spin_button->value();
 }

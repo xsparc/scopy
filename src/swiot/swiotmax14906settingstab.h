@@ -17,10 +17,10 @@ public:
 	explicit Max14906SettingsTab(QWidget *parent = nullptr);
 	~Max14906SettingsTab() override;
 
-        double getTimeValue() const;
+	double getTimeValue() const;
 
 Q_SIGNALS:
-        void timeValueChanged(double value);
+	void timeValueChanged(double value);
 
 private:
 	Ui::Max14906SettingsTab *ui;

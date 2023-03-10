@@ -7,24 +7,24 @@
 
 namespace adiscope {
 
-        class MaxReaderThread : public QThread {
-                Q_OBJECT
-        public:
-                explicit MaxReaderThread();
+class MaxReaderThread : public QThread {
+	Q_OBJECT
+public:
+	explicit MaxReaderThread();
 
-                void addChannel(int index, struct iio_channel* channel);
-                void toggleChannel(int index, bool toggled = true);
-                bool isChannelToggled(int index);
-                void singleRun();
+	void addChannel(int index, struct iio_channel* channel);
+	void toggleChannel(int index, bool toggled = true);
+	bool isChannelToggled(int index);
+	void singleRun();
 
-        Q_SIGNALS:
-                void channelDataChanged(int channelId, double value);
+Q_SIGNALS:
+	void channelDataChanged(int channelId, double value);
 
-        private:
-                void run() override;
+private:
+	void run() override;
 
-                QMap<int, QPair<bool, struct iio_channel*>> m_channels;
-        };
+	QMap<int, QPair<bool, struct iio_channel*>> m_channels;
+};
 
 } // adiscope
 

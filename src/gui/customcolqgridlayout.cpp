@@ -179,10 +179,16 @@ int CustomColQGridLayout::columns() const
         return ((int) (m_widgetList.size() - col)) / row;
 }
 
-//return the number of cols/elements that are on the last row
+//returns the number of cols/elements that are on the last row
 int CustomColQGridLayout::columnsOnLastRow() const
 {
         return col;
+}
+
+// returns the number of widgets in the grid
+int CustomColQGridLayout::count() const
+{
+	return this->m_widgetList.size();
 }
 
 void CustomColQGridLayout::resizeEvent(QResizeEvent *event)

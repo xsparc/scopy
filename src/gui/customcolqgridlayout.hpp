@@ -34,6 +34,8 @@ public:
         int columns() const;
         int columnsOnLastRow() const;
 
+	int count() const;
+
 Q_SIGNALS:
 	void reqestLayoutUpdate();
 
