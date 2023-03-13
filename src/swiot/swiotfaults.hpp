@@ -41,9 +41,6 @@ private:
 	QTimer *timer;
 	QThread *thread;
 
-	QVector<QPair<QPushButton *, QPushButton *> *> ad74413r_fault_buttons;
-	QVector<QPair<QPushButton *, QPushButton *> *> max14906_fault_buttons;
-
 	uint16_t ad74413r_faults_count;
 	uint16_t max14906_faults_count;
 
@@ -51,7 +48,6 @@ private:
 	uint32_t max14906_numeric = 0;
 
 	adiscope::gui::ToolView *m_toolView{};
-	CustomColQGridLayout *m_customColGrid{};
 	adiscope::gui::GenericMenu *m_generalSettingsMenu{};
 	adiscope::gui::ChannelManager *m_monitorChannelManager{};
 	adiscope::gui::FaultsPage *faultsPage{};

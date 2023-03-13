@@ -12,6 +12,7 @@
 #include "gui/tool_view_builder.hpp"
 #include "gui/customcolqgridlayout.hpp"
 #include "src/swiot/swiotmax14906readerthread.h"
+#include "swiotdigitalchannelcontroller.h"
 
 #define POLLING_INTERVAL 1000
 
@@ -53,7 +54,7 @@ private:
 	QTimer *m_qTimer;
 
 	MaxReaderThread *m_readerThread;
-	QMap<int, DigitalChannel*> m_channelControls;
+	QMap<int, DigitalChannelController*> m_channelControls;
 
 	adiscope::gui::SubsectionSeparator *settingsWidgetSeparator;
 };

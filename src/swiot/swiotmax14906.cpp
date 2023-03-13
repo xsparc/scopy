@@ -115,7 +115,7 @@ void Max14906Tool::singleButtonToggled() {
 
 void Max14906Tool::timerChanged(double value) {
 	for (auto & channelControl : this->m_channelControls) {
-		channelControl->updateTimeScale(0, value);
+		channelControl->getDigitalChannel()->updateTimeScale(0, value);
 	}
 }
 
@@ -134,7 +134,7 @@ adiscope::gui::GenericMenu* Max14906Tool::createGeneralSettings(const QString& t
 }
 void Max14906Tool::initMonitorToolView() {
 	for (int i = 0; i < this->m_channelControls.size(); ++i) {
-		this->m_customColGrid->addQWidgetToList(this->m_channelControls[i]);
+		this->m_customColGrid->addQWidgetToList(this->m_channelControls[i]->getDigitalChannel());
 		this->m_customColGrid->addWidget(i);
 	}
 
@@ -154,13 +154,13 @@ void Max14906Tool::initChannels() {
 					);
 
 		channel_control->getDigitalChannel()->updateTimeScale(0, this->m_max14906SettingsTab->getTimeValue());
-		this->m_channelControls.insert(i, channel_control->getDigitalChannel());
+		this->m_channelControls.insert(i, channel_control);
 		this->m_readerThread->addChannel(i, channel);
 		this->m_readerThread->toggleChannel(i, true);
 		connect(this->m_readerThread, &MaxReaderThread::channelDataChanged, channel_control,
 			[=] (int index, double value){
 			if (i == index) {
-				this->m_channelControls.value(index)->addDataSample(value);
+				this->m_channelControls.value(index)->getDigitalChannel()->addDataSample(value);
 			}
 		});
 	}
