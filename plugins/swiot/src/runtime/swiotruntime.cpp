@@ -27,13 +27,13 @@
 
 using namespace scopy::swiot;
 
-SwiotRuntime::SwiotRuntime(struct iio_context *ctx, QObject *parent)
+SwiotRuntime::SwiotRuntime(struct iio_context *ctx, QString m_param, QObject *parent)
 	: QObject(parent)
 	, m_iioCtx(ctx)
 	, m_cmdQueue(nullptr)
 {
 	if (m_iioCtx) {
-		m_cmdQueue = CommandQueueProvider::GetInstance()->open(m_iioCtx);
+		m_cmdQueue = CommandQueueProvider::GetInstance()->open(m_iioCtx, m_param);
 	}
 	createDevicesMap();
 }

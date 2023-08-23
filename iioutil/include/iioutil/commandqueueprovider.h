@@ -9,7 +9,7 @@
 namespace scopy {
 class SCOPY_IIOUTIL_EXPORT CommandQueueRefCounter {
 public:
-	CommandQueueRefCounter(struct iio_context *ctx);
+	CommandQueueRefCounter(struct iio_context *ctx, QString m_param="");
 	~CommandQueueRefCounter();
 	struct iio_context *ctx;
 	CommandQueue *cmdQueue = nullptr;
@@ -29,7 +29,7 @@ public:
 	void operator=(const CommandQueueProvider &) = delete;
 
 	static CommandQueueProvider *GetInstance();
-	CommandQueue* open(struct iio_context *ctx);
+	CommandQueue* open(struct iio_context *ctx, QString m_param="");
 	void close(struct iio_context *ctx);
 
 private:

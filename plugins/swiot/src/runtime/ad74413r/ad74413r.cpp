@@ -87,6 +87,19 @@ Ad74413r::~Ad74413r()
 	}
 }
 
+void Ad74413r::forcedStop()
+{
+	if (m_readerThread) {
+		m_readerThread->forcedStop();
+	}
+	if (m_toolView->getRunBtn()->isChecked()) {
+		m_toolView->getRunBtn()->setChecked(false);
+	}
+	if (m_toolView->getSingleBtn()->isChecked()) {
+		m_toolView->getSingleBtn()->setChecked(false);
+	}
+}
+
 void Ad74413r::setupToolView(gui::GenericMenu *settingsMenu)
 {
 	scopy::gui::ToolViewRecipe recipe;

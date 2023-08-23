@@ -1,5 +1,5 @@
 #include "commandqueue.h"
-
+#include "contextprovider.h"
 #include <functional>
 #include <QtConcurrent/QtConcurrent>
 #include <QDebug>
@@ -9,14 +9,19 @@ using namespace scopy;
 
 Q_LOGGING_CATEGORY(CAT_COMMANDQUEUE, "CommandQueue");
 
-CommandQueue::CommandQueue(int numberOfThreads, QObject *parent)
+CommandQueue::CommandQueue(int numberOfThreads, QString param, QObject *parent)
 	: QObject(parent)
 	, m_running(false)
 	, m_nbThreads(numberOfThreads)
 	, m_async(m_nbThreads > 1)
 	, m_workNewThread(m_nbThreads != 0)
 	, m_currentCommand(nullptr)
+	, m_param(param)
 {
+	if (m_param != "") {
+		ContextProvider *cp = ContextProvider::GetInstance();
+		cp->open(m_param);
+	}
 	m_commandExecThreadPool.setMaxThreadCount(std::min(m_nbThreads, QThread::idealThreadCount()));
 }
 
@@ -29,7 +34,10 @@ CommandQueue::~CommandQueue()
 		delete c;
 	}
 	m_commandQueue.clear();
-
+	if (m_param != "") {
+		ContextProvider *cp = ContextProvider::GetInstance();
+		cp->close(m_param);
+	}
 }
 
 void CommandQueue::enqueue(Command *command)

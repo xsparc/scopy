@@ -38,7 +38,7 @@ class SwiotRuntime : public QObject
 {
 	Q_OBJECT
 public:
-	SwiotRuntime(struct iio_context *ctx, QObject *parent = nullptr);
+	SwiotRuntime(struct iio_context *ctx, QString m_param, QObject *parent = nullptr);
 	~SwiotRuntime();
 
 public Q_SLOTS:

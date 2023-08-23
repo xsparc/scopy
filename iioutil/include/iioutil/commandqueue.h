@@ -18,7 +18,7 @@ public:
 	 * @param numberOfThreads
 	 * @param parent
 	 */
-	explicit CommandQueue(int numberOfThreads = 1, QObject *parent = nullptr);
+	explicit CommandQueue(int numberOfThreads = 1, QString m_param = "", QObject *parent = nullptr);
 	~CommandQueue();
 	void enqueue(Command *newCmd);
 	void start();
@@ -40,6 +40,7 @@ private:
 	int m_nbThreads;
 	bool m_async;
 	bool m_workNewThread;
+	QString m_param;
 };
 }
 #endif // IIOCOMMANDQUEUE_H

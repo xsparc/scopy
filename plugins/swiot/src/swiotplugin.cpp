@@ -33,6 +33,7 @@
 #include "swiotinfopage.h"
 #include "utils.h"
 #include <iioutil/contextprovider.h>
+#include <iioutil/commandqueueprovider.h>
 
 
 using namespace scopy::swiot;
@@ -227,7 +228,7 @@ bool SWIOTPlugin::onConnect()
 	auto &&cp = ContextProvider::GetInstance();
 	iio_context* ctx = cp->open(m_param);
 
-	m_runtime = new SwiotRuntime(ctx, this);
+	m_runtime = new SwiotRuntime(ctx, "", this);
 	connect(m_runtime, &SwiotRuntime::writeModeAttribute, m_swiotController, &SwiotController::writeModeAttribute);
 	connect(m_swiotController, &SwiotController::modeAttributeChanged, m_runtime, &SwiotRuntime::modeAttributeChanged);
 	connect(m_runtime, &SwiotRuntime::backBtnPressed, this, &SWIOTPlugin::startCtxSwitch);
@@ -249,6 +250,9 @@ bool SWIOTPlugin::onDisconnect()
 	auto max14906Tme = ToolMenuEntry::findToolMenuEntryById(m_toolList, MAX14906_TME_ID);
 	auto faultsTme = ToolMenuEntry::findToolMenuEntryById(m_toolList, FAULTS_TME_ID);
 
+	if (m_isRuntime){
+		dynamic_cast<Ad74413r*> (ad74413rTme->tool())->forcedStop();
+	}
 	for(ToolMenuEntry *tme : qAsConst(m_toolList)) {
 		tme->setRunning(false);
 		tme->setEnabled(false);

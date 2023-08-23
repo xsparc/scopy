@@ -6,12 +6,12 @@ Q_LOGGING_CATEGORY(CAT_CMDQMGR, "CommandQueueProvider")
 
 using namespace scopy;
 
-CommandQueueRefCounter::CommandQueueRefCounter(struct iio_context *ctx)
+CommandQueueRefCounter::CommandQueueRefCounter(struct iio_context *ctx, QString m_param)
 {
 	this->ctx = ctx;
 	this->refcnt++;
 	// TBD: automatically check the iio_context to see if multiple threads are possible (iiod vs tinyiiod)
-	this->cmdQueue = new CommandQueue(1);
+	this->cmdQueue = new CommandQueue(1, m_param);
 }
 
 CommandQueueRefCounter::~CommandQueueRefCounter() {
@@ -46,7 +46,7 @@ CommandQueueProvider *scopy::CommandQueueProvider::GetInstance()
 	return pinstance_;
 }
 
-CommandQueue *scopy::CommandQueueProvider::open(iio_context *ctx)
+CommandQueue *scopy::CommandQueueProvider::open(iio_context *ctx, QString m_param)
 {
 	std::lock_guard<std::mutex> lock(mutex_);
 	CommandQueue *cmdQueue = nullptr;
@@ -54,7 +54,7 @@ CommandQueue *scopy::CommandQueueProvider::open(iio_context *ctx)
 		map.value(ctx)->refcnt++;
 		qDebug(CAT_CMDQMGR) << "opening command queue - found - refcnt++ = ";
 	} else {
-		CommandQueueRefCounter* cmdQRef = new CommandQueueRefCounter(ctx);
+		CommandQueueRefCounter* cmdQRef = new CommandQueueRefCounter(ctx, m_param);
 		if(cmdQRef->cmdQueue == nullptr) {
 			qWarning(CAT_CMDQMGR) << " not a valid Command Queue";
 			delete cmdQRef;

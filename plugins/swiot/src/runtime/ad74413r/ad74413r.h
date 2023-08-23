@@ -67,7 +67,7 @@ public:
 	void createDevicesMap(iio_context *ctx);
 
 	scopy::gui::GenericMenu *createSettingsMenu(QString title, QColor *color);
-
+	void forcedStop();
 public Q_SLOTS:
 	void onChannelWidgetEnabled(int chnWidgetId, bool en);
 	void onChannelWidgetSelected(int chnWidgetId, bool en);
