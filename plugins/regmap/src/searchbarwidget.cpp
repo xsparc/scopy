@@ -1,8 +1,11 @@
 #include "searchbarwidget.hpp"
+#include "utils.hpp"
+#include "utils.h"
 
 #include <qboxlayout.h>
 #include <qlineedit.h>
 #include <qpushbutton.h>
+#include <stylehelper.h>
 #include "regmapstylehelper.hpp"
 
 using namespace scopy;
@@ -12,19 +15,25 @@ SearchBarWidget::SearchBarWidget(QWidget *parent)
 	: QWidget{parent}
 {
     layout = new QHBoxLayout();
+    Utils::removeLayoutMargins(layout);
     setLayout(layout);
 
 	searchBar = new QLineEdit();
+    searchBar->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Preferred);
 	searchBar->setPlaceholderText("Search for regist by address");
-    searchButton = new QPushButton("Search");
+    searchButton = new QPushButton(this);
+    QIcon icon1;
+    icon1.addPixmap(Util::ChangeSVGColor(":/gui/icons/scopy-default/icons/search.svg","white",1));
+    StyleHelper::SquareToggleButtonWithIcon(searchButton,"search_btn",false);
+    searchButton->setIcon(icon1);
 
     QObject::connect(searchBar, &QLineEdit::returnPressed, searchButton, &QPushButton::pressed);
 
 	QObject::connect(searchButton, &QPushButton::pressed, this, [=](){
 	      Q_EMIT requestSearch(searchBar->text().toLower());
 	});
-	layout->addWidget(searchBar,4);
-	layout->addWidget(searchButton,1);
+    layout->addWidget(searchBar);
+    layout->addWidget(searchButton);
 
 
     applyStyle();
@@ -39,5 +48,5 @@ SearchBarWidget::~SearchBarWidget()
 
 void SearchBarWidget::applyStyle()
 {
-    RegmapStyleHelper::BlueButton(searchButton, "");
+    setStyleSheet(RegmapStyleHelper::simpleWidgetStyle(this));
 }
