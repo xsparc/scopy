@@ -17,6 +17,7 @@
 
 namespace scopy::regmap {
 
+class RegisterMapSettingsMenu;
 class RegmapStyleHelper
 {
 protected:
@@ -35,10 +36,11 @@ public:
     static void RegisterMapStyle(QWidget *widget);
     static void PartialFrameWidget(QWidget *widget);
     static void FrameWidget(QWidget *widget);
-    static void SettingsMenu(QWidget *widget);
     static void bigTextLabelStyle(QLabel *label, QString objectName);
     static void labelStyle(QLabel *label, QString objectName);
 
+
+    static QString regmapSettingsMenu(RegisterMapSettingsMenu *settings, QString objectName = "");
     static QString grayBackgroundHoverWidget(QWidget *widget, QString objectName = "");
     static QString BlueButton(QPushButton *btn, QString objectName = "");
     static QString checkboxStyle(QCheckBox *checkbox, QString objectName = "");
@@ -48,6 +50,9 @@ public:
     static QString grayLabel(QLabel *label, QString objectName = "");
     static QString whiteSmallTextLable(QLabel *label, QString objectName = "");
     static QString frameBorderHover(QFrame *frame, QString objectName = "");
+    static QString simpleWidgetWithButtonStyle(QWidget *widget, QString objectName = "");
+    static QString simpleWidgetStyle(QWidget *widget, QString objectName = "");
+    static QString comboboxStyle(QComboBox *combobox, QString objectName = "");
 
 private:
     QMap<QString,QString> colorMap;

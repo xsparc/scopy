@@ -29,7 +29,6 @@ public:
 
 	void registerChanged(uint32_t address);
     void registerValueChanged(QString value);
-    void addNameAndDescription(QString name, QString description);
 
 private:
 

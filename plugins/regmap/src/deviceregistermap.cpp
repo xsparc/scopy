@@ -49,7 +49,8 @@ DeviceRegisterMap::DeviceRegisterMap(RegisterMapTemplate *registerMapTemplate, R
         registerMapTable->setLayout(registerMapTableLayout);
         layout->addWidget(registerMapTable);
 
-        QWidget *tableHeadWidget = new QWidget();
+        QWidget *tableHeadWidget = new QWidget(this);
+
         scopy::regmap::RegmapStyleHelper::FrameWidget(tableHeadWidget);
         QHBoxLayout *tableHead = new QHBoxLayout();
         tableHeadWidget->setLayout(tableHead);
@@ -98,7 +99,6 @@ DeviceRegisterMap::DeviceRegisterMap(RegisterMapTemplate *registerMapTemplate, R
     });
 
     layout->addWidget(registerController);
-
     if (registerMapTemplate) {
         registerChanged(registerMapTemplate->getRegisterList()->first());
     } else {
@@ -119,13 +119,13 @@ void DeviceRegisterMap::registerChanged(RegisterModel *regModel)
 {
     registerController->registerChanged(regModel->getAddress());
     registerController->registerValueChanged("N/R");
-    registerController->addNameAndDescription(regModel->getName(), regModel->getDescription());
 
     if (registerDetailedWidget) {
         delete registerDetailedWidget;
     }
 
     registerDetailedWidget = new RegisterDetailedWidget(regModel);
+    registerDetailedWidget->setMaximumHeight(180);
     layout->addWidget(registerDetailedWidget);
 
     if (registerMapValues) {

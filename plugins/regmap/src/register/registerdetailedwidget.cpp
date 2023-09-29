@@ -5,6 +5,7 @@
 #include <qboxlayout.h>
 #include <qboxlayout.h>
 #include <qlabel.h>
+#include <regmapstylehelper.hpp>
 #include "registermodel.hpp"
 #include "qdebug.h"
 #include "utils.hpp"
@@ -18,6 +19,17 @@ RegisterDetailedWidget::RegisterDetailedWidget( RegisterModel *regModel, QWidget
 {
     QVBoxLayout *layout = new QVBoxLayout(this);
     setLayout(layout);
+
+
+    QWidget *nameDescriptionWidget = new QWidget(this);
+    nameDescriptionWidget->setStyleSheet(RegmapStyleHelper::simpleWidgetStyle(nullptr));
+    QHBoxLayout *nameDescriptionLayout = new QHBoxLayout(nameDescriptionWidget);
+    nameDescriptionWidget->setLayout(nameDescriptionLayout);
+    QLabel *nameLabel = new QLabel("Name: " + regModel->getName(), this);
+    QLabel *descriptionLabel = new QLabel("Description: " + regModel->getDescription(), this);
+    nameDescriptionLayout->addWidget(nameLabel);
+    nameDescriptionLayout->addWidget(descriptionLabel);
+    layout->addWidget(nameDescriptionWidget);
 
     setSizePolicy(QSizePolicy::Preferred,QSizePolicy::Maximum);
 

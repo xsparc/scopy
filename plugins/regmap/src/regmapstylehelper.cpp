@@ -203,6 +203,37 @@ void RegmapStyleHelper::labelStyle(QLabel *label, QString objectName)
     label->setStyleSheet(style);
 }
 
+QString RegmapStyleHelper::regmapSettingsMenu(RegisterMapSettingsMenu *settings, QString objectName)
+{
+    if (!objectName.isEmpty() && settings) settings->setObjectName(objectName);
+
+    QString style = QString(R"css(
+                        QWidget {
+                                 background-color: &&background&& ;
+                        }
+                        QWidget {
+                                 font: normal;
+                                 color: &&textColor&& ;
+                                 font-size: 16px;
+                        }
+                        )css");
+
+    style.replace("&&background&&", RegmapStyleHelper::getColor("Transparent"));
+    style.replace("&&textColor&&", RegmapStyleHelper::getColor("LabelText"));
+
+    RegmapStyleHelper::checkboxStyle(settings->autoread, "");
+    RegmapStyleHelper::bigTextLabelStyle(settings->hexaPrefix1, "");
+    RegmapStyleHelper::bigTextLabelStyle(settings->hexaPrefix2, "");
+    RegmapStyleHelper::BlueButton(settings->readInterval, "");
+    RegmapStyleHelper::BlueButton(settings->writeListOfValuesButton, "");
+    RegmapStyleHelper::BlueButton(settings->registerDump, "");
+    RegmapStyleHelper::BlueButton(settings->pathButton, "");
+
+    settings->setStyleSheet(style);
+
+    return style;
+}
+
 QString RegmapStyleHelper::grayBackgroundHoverWidget(QWidget *widget, QString objectName)
 {
     if (!objectName.isEmpty() && widget) widget->setObjectName(objectName);
@@ -368,6 +399,45 @@ QString RegmapStyleHelper::frameBorderHover(QFrame *frame, QString objectName)
                         }
                         )css");
     style.replace("&&hoverBackground&&", RegmapStyleHelper::getColor("LabelText"));
+
+    return style;
+}
+
+QString RegmapStyleHelper::simpleWidgetWithButtonStyle(QWidget *widget, QString objectName)
+{
+    if (!objectName.isEmpty() && widget) widget->setObjectName(objectName);
+
+    QString style = "";
+    style += RegmapStyleHelper::simpleWidgetStyle(nullptr);
+    style += RegmapStyleHelper::BlueButton(nullptr);
+
+    return style;
+}
+
+QString RegmapStyleHelper::simpleWidgetStyle(QWidget *widget, QString objectName)
+{
+    if (!objectName.isEmpty() && widget) widget->setObjectName(objectName);
+
+    QString style = QString(R"css(
+                        QWidget  {
+                            background-color: &&widgetBackground&& ;
+                        }
+                        )css");
+    style.replace("&&widgetBackground&&", RegmapStyleHelper::getColor("WidgetBackground"));
+
+    return style;
+}
+
+QString RegmapStyleHelper::comboboxStyle(QComboBox *combobox, QString objectName)
+{
+    if (!objectName.isEmpty() && combobox) combobox->setObjectName(objectName);
+
+    QString style = QString(R"css(
+                        QComboBox  {
+                            background-color: &&widgetBackground&& ;
+                        }
+                        )css");
+    style.replace("&&widgetBackground&&", RegmapStyleHelper::getColor("WidgetBackground"));
 
     return style;
 }
