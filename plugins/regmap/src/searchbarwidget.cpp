@@ -18,6 +18,7 @@ SearchBarWidget::SearchBarWidget(QWidget *parent)
 	searchBar->setPlaceholderText("Search for regist by address");
     searchButton = new QPushButton("Search");
 
+    QObject::connect(searchBar, &QLineEdit::returnPressed, searchButton, &QPushButton::pressed);
 
 	QObject::connect(searchButton, &QPushButton::pressed, this, [=](){
 	      Q_EMIT requestSearch(searchBar->text().toLower());
