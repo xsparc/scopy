@@ -1,6 +1,7 @@
 #ifndef REGMAPSTYLEHELPER_HPP
 #define REGMAPSTYLEHELPER_HPP
 
+#include "searchbarwidget.hpp"
 #include <QCheckBox>
 #include <QLabel>
 #include <QMap>
@@ -53,6 +54,7 @@ public:
     static QString simpleWidgetWithButtonStyle(QWidget *widget, QString objectName = "");
     static QString simpleWidgetStyle(QWidget *widget, QString objectName = "");
     static QString comboboxStyle(QComboBox *combobox, QString objectName = "");
+	static QString searchBarStyle(SearchBarWidget *searchBar, QString objectName = "");
 
 private:
     QMap<QString,QString> colorMap;

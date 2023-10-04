@@ -48,5 +48,5 @@ SearchBarWidget::~SearchBarWidget()
 
 void SearchBarWidget::applyStyle()
 {
-    setStyleSheet(RegmapStyleHelper::simpleWidgetStyle(this));
+	setStyleSheet(RegmapStyleHelper::searchBarStyle(this));
 }

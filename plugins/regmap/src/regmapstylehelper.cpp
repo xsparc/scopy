@@ -426,6 +426,28 @@ QString RegmapStyleHelper::simpleWidgetStyle(QWidget *widget, QString objectName
     style.replace("&&widgetBackground&&", RegmapStyleHelper::getColor("WidgetBackground"));
 
     return style;
+
+QString RegmapStyleHelper::searchBarStyle(SearchBarWidget *searchBar, QString objectName)
+{
+	if (!objectName.isEmpty() && searchBar) searchBar->setObjectName(objectName);
+
+	QString style = QString(R"css(
+						QLineEdit {
+						 color: &&textColor&& ;
+						 font-size: 12px;
+						 padding: 2px;
+						 border-bottom: 0px;
+						}
+						QLineEdit:hover {
+							border: 1px solid &&hoverBackground&& ;
+							border-radius: 4px;
+						}
+						)css");
+	style.replace("&&textColor&&", RegmapStyleHelper::getColor("LabelText"));
+	style.replace("&&hoverBackground&&", RegmapStyleHelper::getColor("ScopyBlue"));
+
+	style += simpleWidgetStyle(nullptr);
+	return style;
 }
 
 QString RegmapStyleHelper::comboboxStyle(QComboBox *combobox, QString objectName)
