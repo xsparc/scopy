@@ -10,6 +10,8 @@
 #include "qdebug.h"
 #include "utils.hpp"
 #include <QtMath>
+#include <menucollapsesection.h>
+
 
 using namespace scopy;
 using namespace regmap;
@@ -18,24 +20,24 @@ RegisterDetailedWidget::RegisterDetailedWidget( RegisterModel *regModel, QWidget
     : QWidget{parent}
 {
     QVBoxLayout *layout = new QVBoxLayout(this);
+	Utils::removeLayoutMargins(layout);
     setLayout(layout);
+	layout->setSpacing(5);
 
 
-    QWidget *nameDescriptionWidget = new QWidget(this);
-    nameDescriptionWidget->setStyleSheet(RegmapStyleHelper::simpleWidgetStyle(nullptr));
-    QHBoxLayout *nameDescriptionLayout = new QHBoxLayout(nameDescriptionWidget);
-    nameDescriptionWidget->setLayout(nameDescriptionLayout);
-    QLabel *nameLabel = new QLabel("Name: " + regModel->getName(), this);
-    QLabel *descriptionLabel = new QLabel("Description: " + regModel->getDescription(), this);
-    nameDescriptionLayout->addWidget(nameLabel);
-    nameDescriptionLayout->addWidget(descriptionLabel);
-    layout->addWidget(nameDescriptionWidget);
-
+	QWidget *nameDescriptionWidget = new QWidget(this);
+	nameDescriptionWidget->setStyleSheet(RegmapStyleHelper::simpleWidgetStyle(nullptr));
+	QHBoxLayout *nameDescriptionLayout = new QHBoxLayout(nameDescriptionWidget);
+	nameDescriptionWidget->setLayout(nameDescriptionLayout);
+	QLabel *nameLabel = new QLabel("Name: " + regModel->getName(), this);
+	QLabel *descriptionLabel = new QLabel("Description: " + regModel->getDescription(), this);
+	nameDescriptionLayout->addWidget(nameLabel);
+	nameDescriptionLayout->addWidget(descriptionLabel);
     setSizePolicy(QSizePolicy::Preferred,QSizePolicy::Maximum);
 
     QGridLayout *bitFieldsWidgetLayout = new QGridLayout();
     bitFieldsWidgetLayout->setMargin(0);
-    bitFieldsWidgetLayout->setSpacing(0);
+	bitFieldsWidgetLayout->setSpacing(4);
 
     bitFieldList = new QVector<BitFieldDetailedWidget*>();
     BitFieldDetailedWidgetFactory bitFieldDetailedWidgetFactory;
@@ -43,19 +45,18 @@ RegisterDetailedWidget::RegisterDetailedWidget( RegisterModel *regModel, QWidget
     bitFieldsWidget->setLayout(bitFieldsWidgetLayout);
     VerticalScrollArea *scrollArea = new VerticalScrollArea();
     scrollArea->setWidget(bitFieldsWidget);
-    layout->addWidget(scrollArea);
+	layout->addWidget(scrollArea);
+
+	bitFieldsWidgetLayout->addWidget(nameDescriptionWidget, 0, 0, 1, 8);
     int currentBitFieldCount = 0;
-    int row = 0;
+	int row = 1;
     int col = 0;
     for (int i = regModel->getBitFields()->size() - 1; i >= 0; --i) {
         BitFieldDetailedWidget *bitFieldDetailedWidget = bitFieldDetailedWidgetFactory.buildWidget(regModel->getBitFields()->at(i));
         bitFieldList->push_back(bitFieldDetailedWidget);
-
         bitFieldsWidgetLayout->addWidget(bitFieldDetailedWidget, row, col);
-
         bitFieldsWidgetLayout->setColumnStretch(col,1);
         col++;
-
         currentBitFieldCount += bitFieldDetailedWidget->getWidth();
 
         if (col > scopy::regmap::Utils::getBitsPerRowDetailed()) {
@@ -78,7 +79,7 @@ RegisterDetailedWidget::RegisterDetailedWidget( RegisterModel *regModel, QWidget
             col++;
         }
         bitFieldsWidgetLayout->addItem(new QSpacerItem(10,10,QSizePolicy::Preferred, QSizePolicy::Expanding), row + 1 , col);
-    }
+	}
 }
 
 void RegisterDetailedWidget::updateBitFieldsValue(uint32_t value)
