@@ -1,12 +1,15 @@
 #ifndef REGMAPSTYLEHELPER_HPP
 #define REGMAPSTYLEHELPER_HPP
 
+#include "qtitlespinbox.hpp"
 #include "searchbarwidget.hpp"
+
 #include <QCheckBox>
 #include <QLabel>
 #include <QMap>
 #include <QObject>
 #include <QPushButton>
+#include <QSpinBox>
 
 #include <register/bitfield/bitfielddetailedwidget.hpp>
 
@@ -19,6 +22,7 @@
 namespace scopy::regmap {
 
 class RegisterMapSettingsMenu;
+
 class RegmapStyleHelper
 {
 protected:
@@ -54,6 +58,9 @@ public:
     static QString simpleWidgetWithButtonStyle(QWidget *widget, QString objectName = "");
     static QString simpleWidgetStyle(QWidget *widget, QString objectName = "");
     static QString comboboxStyle(QComboBox *combobox, QString objectName = "");
+	static QString lineEditStyle(QLineEdit *lineEdit, QString objectName = "");
+	static QString spinboxStyle(QSpinBox *spinbox, QString objectName = "");
+	static QString titleSpinBoxStyle(QTitleSpinBox *spinbox, QString objectName = "");
 	static QString searchBarStyle(SearchBarWidget *searchBar, QString objectName = "");
 
 private:

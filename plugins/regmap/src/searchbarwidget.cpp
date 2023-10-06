@@ -20,7 +20,7 @@ SearchBarWidget::SearchBarWidget(QWidget *parent)
 
 	searchBar = new QLineEdit();
     searchBar->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Preferred);
-	searchBar->setPlaceholderText("Search for regist by address");
+	searchBar->setPlaceholderText("Search for register ");
     searchButton = new QPushButton(this);
     QIcon icon1;
     icon1.addPixmap(Util::ChangeSVGColor(":/gui/icons/scopy-default/icons/search.svg","white",1));

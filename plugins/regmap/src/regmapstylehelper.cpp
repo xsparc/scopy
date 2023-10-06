@@ -1,7 +1,11 @@
 #include "regmapstylehelper.hpp"
 #include <QApplication>
 #include "dynamicWidget.h"
+#include <QComboBox>
+#include <QLineEdit>
 #include <qboxlayout.h>
+#include <registermapsettingsmenu.hpp>
+#include <stylehelper.h>
 
 using namespace scopy::regmap;
 
@@ -69,27 +73,13 @@ void RegmapStyleHelper::FrameWidget(QWidget *widget)
                                  border-bottom: 2px solid black;
                                  background-color: &&background&& ;
                         }
+
+                        QWidget  {
+                            background-color: &&background&& ;
+                        }
+
                         )css");
     style.replace("&&background&&", RegmapStyleHelper::getColor("WidgetBackground"));
-    widget->setStyleSheet(style);
-}
-
-void RegmapStyleHelper::SettingsMenu(QWidget *widget)
-{
-    QString style = QString(R"css(
-                        .QWidget {
-                                 background-color: &&background&& ;
-                        }
-                        QWidget {
-                                 font: normal;
-                                 color: &&textColor&& ;
-                                 font-size: 16px;
-                        }
-                        )css");
-
-    style.replace("&&background&&", RegmapStyleHelper::getColor("ScopyBackground"));
-    style.replace("&&textColor&&", RegmapStyleHelper::getColor("LabelText"));
-
     widget->setStyleSheet(style);
 }
 
@@ -101,7 +91,6 @@ void RegmapStyleHelper::RegisterMapStyle(QWidget *widget)
                         }
                         )css");
     style.replace("&&widgetBackground&&", RegmapStyleHelper::getColor("ScopyBackground"));
-    style += RegmapStyleHelper::BlueButton(nullptr);
     widget->setStyleSheet(style);
 }
 
@@ -192,7 +181,7 @@ void RegmapStyleHelper::labelStyle(QLabel *label, QString objectName)
 
     QString style = QString(R"css(
                         QLabel {
-                         font-size: 13px;
+						 font-size: 12px;
                          font-style: normal;
                          font-weight: normal;
                          text-align: left;
@@ -277,7 +266,12 @@ QString RegmapStyleHelper::detailedBitFieldStyle(BitFieldDetailedWidget *widget,
     if (!objectName.isEmpty()) widget->setObjectName(objectName);
 
     QString style = QString(R"css(
-
+						.scopy--regmap--BitFieldDetailedWidget {
+							padding-right : 2px ;
+							padding-top : 2px ;
+							padding-bottom : 2px ;
+							margin-left : 0px ;
+						}
                         .QFrame {
                                 background-color: &&frameBackground&& ;
                                 border-radius: 4px;
@@ -409,7 +403,7 @@ QString RegmapStyleHelper::simpleWidgetWithButtonStyle(QWidget *widget, QString 
 
     QString style = "";
     style += RegmapStyleHelper::simpleWidgetStyle(nullptr);
-    style += RegmapStyleHelper::BlueButton(nullptr);
+	style += RegmapStyleHelper::BlueButton(nullptr);
 
     return style;
 }
@@ -426,6 +420,99 @@ QString RegmapStyleHelper::simpleWidgetStyle(QWidget *widget, QString objectName
     style.replace("&&widgetBackground&&", RegmapStyleHelper::getColor("WidgetBackground"));
 
     return style;
+}
+
+QString RegmapStyleHelper::comboboxStyle(QComboBox *combobox, QString objectName)
+{
+    if (!objectName.isEmpty() && combobox) combobox->setObjectName(objectName);
+
+	QString style = QString(R"css(
+						QComboBox  {
+						 color: &&textColor&& ;
+						 font-size: 12px;
+						 padding-left: 8px;
+						 border-bottom: 0px;
+						 background-color: &&widgetBackground&& ;
+						}
+						QComboBox::drop-down {
+						 subcontrol-position: center right;
+						 border-image: url(:/gui/icons/scopy-default/icons/sba_cmb_box_arrow.svg);
+						 width: 10px;
+						 height: 6px;
+						 font-size: 16px;
+						 text-align: left;
+						margin-right: 8px;
+						 color: transparent;
+						}
+							)css");
+	style.replace("&&textColor&&", RegmapStyleHelper::getColor("LabelText"));
+	style.replace("&&widgetBackground&&", RegmapStyleHelper::getColor("WidgetBackground"));
+
+	return style;
+}
+
+QString RegmapStyleHelper::lineEditStyle(QLineEdit *lineEdit, QString objectName)
+{
+	if (!objectName.isEmpty() && lineEdit) lineEdit->setObjectName(objectName);
+
+	QString style = QString(R"css(
+						QLineEdit  {
+						 font-size: 18px;
+						 font-style: normal;
+						 font-weight: normal;
+						 text-align: left;
+						 color: &&textColor&& ;
+						}
+						)css");
+
+	style.replace("&&textColor&&", RegmapStyleHelper::getColor("LabelText"));
+
+	return style;
+}
+
+QString RegmapStyleHelper::spinboxStyle(QSpinBox *spinbox, QString objectName)
+{
+	if (!objectName.isEmpty() && spinbox) spinbox->setObjectName(objectName);
+
+	QString style = QString(R"css(
+						QSpinBox  {
+						 font-size: 18px;
+						 font-style: normal;
+						 font-weight: normal;
+						 text-align: left;
+						 color: &&textColor&& ;
+						}
+						)css");
+
+	style.replace("&&textColor&&", RegmapStyleHelper::getColor("LabelText"));
+
+	return style;
+}
+
+QString RegmapStyleHelper::titleSpinBoxStyle(QTitleSpinBox *spinbox, QString objectName)
+{
+	if (!objectName.isEmpty() && spinbox) spinbox->setObjectName(objectName);
+
+	QString style = QString(R"css(
+						.QTitleSpinBox  {
+						 font-size: 18px;
+						 font-style: normal;
+						 font-weight: normal;
+						 text-align: left;
+						 color: &&textColor&& ;
+						}
+						QPushButton {
+							 color: &&textColor&& ;
+							 max-height: 16px;
+							 max-width: 16px;
+						}
+						)css");
+	style.replace("&&textColor&&", RegmapStyleHelper::getColor("LabelText"));
+
+	style += grayLabel(nullptr);
+
+	return style;
+}
 
 QString RegmapStyleHelper::searchBarStyle(SearchBarWidget *searchBar, QString objectName)
 {
@@ -435,7 +522,8 @@ QString RegmapStyleHelper::searchBarStyle(SearchBarWidget *searchBar, QString ob
 						QLineEdit {
 						 color: &&textColor&& ;
 						 font-size: 12px;
-						 padding: 2px;
+						 padding-left: 16px;
+						 padding-right: 16px;
 						 border-bottom: 0px;
 						}
 						QLineEdit:hover {
@@ -448,18 +536,4 @@ QString RegmapStyleHelper::searchBarStyle(SearchBarWidget *searchBar, QString ob
 
 	style += simpleWidgetStyle(nullptr);
 	return style;
-}
-
-QString RegmapStyleHelper::comboboxStyle(QComboBox *combobox, QString objectName)
-{
-    if (!objectName.isEmpty() && combobox) combobox->setObjectName(objectName);
-
-    QString style = QString(R"css(
-                        QComboBox  {
-                            background-color: &&widgetBackground&& ;
-                        }
-                        )css");
-    style.replace("&&widgetBackground&&", RegmapStyleHelper::getColor("WidgetBackground"));
-
-    return style;
 }
