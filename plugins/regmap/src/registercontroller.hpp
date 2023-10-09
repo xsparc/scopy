@@ -2,6 +2,7 @@
 #define REGISTERCONTROLLER_HPP
 
 #include <QWidget>
+#include "titlespinbox.hpp"
 #include "scopy-regmapplugin_export.h"
 
 class QHBoxLayout;
@@ -28,22 +29,26 @@ public:
 	~RegisterController();
 
 	void registerChanged(uint32_t address);
-    void registerValueChanged(QString value);
+	void registerValueChanged(QString value);
+	QString getAddress();
+	void setHasMap(bool hasMap);
 
 private:
+	QHBoxLayout *mainLayout;
 
-    QHBoxLayout *mainLayout;
+	TitleSpinBox *adrPck = nullptr;
 
-    QSpinBox *addressPicker;
-    QPushButton *readButton;
-    QPushButton *writeButton;
-    QLineEdit *regValue;
-    QLabel *addressLabel;
-    QLabel *valueLabel;
+	QSpinBox *addressPicker;
+	QPushButton *readButton;
+	QPushButton *writeButton;
+	QPushButton *detailedRegisterToggle;
+	QLineEdit *regValue;
+	QLabel *addressLabel;
+	QLabel *valueLabel;
+	QHBoxLayout *writeWidgetLayout;
 
 	bool addressChanged = false;
-    QLabel *nameLabel = nullptr;
-    QLabel *descriptionLabel = nullptr;
+	bool hasMap = false;
     void applyStyle();
 
 Q_SIGNALS:
@@ -51,6 +56,7 @@ Q_SIGNALS:
 	void requestWrite(uint32_t address, uint32_t value);
 	void registerAddressChanged(uint32_t address);
 	void valueChanged(QString value);
+	void toggleDetailedMenu(bool toggled);
 };
 }
 #endif // REGISTERCONTROLLER_HPP

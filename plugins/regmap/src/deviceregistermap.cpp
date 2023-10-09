@@ -12,6 +12,8 @@
 #include <iio.h>
 #include <qboxlayout.h>
 #include <qcheckbox.h>
+#include <stylehelper.h>
+#include <toolbuttons.h>
 #include <utils.h>
 #include "readwrite/iioregisterreadstrategy.hpp"
 #include "readwrite/iioregisterwritestrategy.hpp"
@@ -36,32 +38,67 @@ DeviceRegisterMap::DeviceRegisterMap(RegisterMapTemplate *registerMapTemplate, R
     Utils::removeLayoutMargins(layout);
     setLayout( layout);
 
+	tool = new ToolTemplate(this);
+	Utils::removeLayoutMargins(tool->layout());
+	tool->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+	tool->topContainerMenuControl()->hide();
+	tool->bottomCentral()->setVisible(true);
+	layout->addWidget(tool);
+
     RegmapStyleHelper::RegisterMapStyle(this);
 
     initSettings();
 
-    registerController = new RegisterController(this);
+	registerController = new RegisterController(this);
 
-    if (registerMapTemplate) {
-        QWidget *registerMapTable = new QWidget();
+	QWidget *controllerWidget = new QWidget(this);
+	QHBoxLayout *controllerLayout = new QHBoxLayout(controllerWidget);
+	Utils::removeLayoutMargins(controllerLayout);
+	controllerLayout->setSpacing(0);
+
+	if (registerMapTemplate) {
+		registerController->setHasMap(true);
+		QObject::connect(registerController, &RegisterController::toggleDetailedMenu, this, [=](bool toggled) {
+			tool->openBottomContainerHelper(toggled);
+		});
+
+		QWidget *registerMapTable = new QWidget();
         QVBoxLayout *registerMapTableLayout = new QVBoxLayout(registerMapTable);
         Utils::removeLayoutMargins(registerMapTableLayout);
         registerMapTable->setLayout(registerMapTableLayout);
-        layout->addWidget(registerMapTable);
+		tool->addWidgetToCentralContainerHelper(registerMapTable);
 
-        QWidget *tableHeadWidget = new QWidget(this);
+		QWidget *tableHeadWidget = new QWidget(this);
+		QHBoxLayout *tableHeadWidgetLayout = new QHBoxLayout(tableHeadWidget);
+		tableHeadWidgetLayout->setSpacing(4);
+		tableHeadWidgetLayout->setMargin(2);
+		tableHeadWidget->setLayout(tableHeadWidgetLayout);
 
-        scopy::regmap::RegmapStyleHelper::FrameWidget(tableHeadWidget);
-        QHBoxLayout *tableHead = new QHBoxLayout();
-        tableHeadWidget->setLayout(tableHead);
+		QWidget *registerTableHead = new QWidget(tableHeadWidget);
+		scopy::regmap::RegmapStyleHelper::widgetidthRoundCornersStyle(registerTableHead);
 
-        QLabel *empty = new QLabel("");
-        empty->setFixedWidth(130);
-        tableHead->addWidget(empty, 1);
+		QHBoxLayout *registerTableHeadLayout = new QHBoxLayout(registerTableHead);
+		registerTableHeadLayout->setSpacing(0);
+		registerTableHead->setLayout(registerTableHeadLayout);
+
+		QLabel *registerTableHeadName = new QLabel("Name", registerTableHead);
+		QLabel *registerTableHeadAdr = new QLabel("Adr.", registerTableHead);
+		registerTableHeadAdr->setAlignment(Qt::AlignRight);
+		registerTableHeadLayout->addWidget(registerTableHeadName);
+		registerTableHeadLayout->addWidget(registerTableHeadAdr);
+		registerTableHead->setFixedWidth(130);
+
+		QWidget *colBitCount = new QWidget(tableHeadWidget);
+		scopy::regmap::RegmapStyleHelper::widgetidthRoundCornersStyle(colBitCount);
+		QHBoxLayout *tableHead = new QHBoxLayout(colBitCount);
+		colBitCount->setLayout(tableHead);
 
         for (int i = Utils::getBitsPerRow(); i >= 0; i--) {
             tableHead->addWidget(new QLabel("Bit"+QString::number(i)),1);
         }
+
+		tableHeadWidgetLayout->addWidget(registerTableHead, 1);
+		tableHeadWidgetLayout->addWidget(colBitCount, 8);
         registerMapTableLayout->addWidget(tableHeadWidget);
         registerMapTableWidget = new RegisterMapTable(registerMapTemplate->getRegisterList(), this);
 
@@ -83,8 +120,7 @@ DeviceRegisterMap::DeviceRegisterMap(RegisterMapTemplate *registerMapTemplate, R
             if (autoread) {
                 Q_EMIT registerMapValues->requestRead(address);
             }
-        });
-        layout->addWidget(registerController);
+		});
     }
 
     QObject::connect(registerController, &RegisterController::requestRead, registerMapValues, &RegisterMapValues::requestRead);
@@ -98,11 +134,14 @@ DeviceRegisterMap::DeviceRegisterMap(RegisterMapTemplate *registerMapTemplate, R
         }
     });
 
-    layout->addWidget(registerController);
+	tool->addWidgetToCentralContainerHelper(controllerWidget);
+	controllerLayout->addWidget(registerController);
+
+
     if (registerMapTemplate) {
         registerChanged(registerMapTemplate->getRegisterList()->first());
-    } else {
-        layout->addItem(new QSpacerItem(10,10,QSizePolicy::Preferred, QSizePolicy::Expanding));
+	} else {
+		tool->centralContainer()->layout()->addItem(new QSpacerItem(10,10,QSizePolicy::Preferred, QSizePolicy::Expanding));
     }
 }
 
@@ -113,6 +152,7 @@ DeviceRegisterMap::~DeviceRegisterMap()
     if (registerMapTableWidget) delete registerMapTableWidget;
     if (docRegisterMapTable) delete docRegisterMapTable;
     if (registerDetailedWidget) delete registerDetailedWidget;
+	delete tool;
 }
 
 void DeviceRegisterMap::registerChanged(RegisterModel *regModel)
@@ -124,9 +164,9 @@ void DeviceRegisterMap::registerChanged(RegisterModel *regModel)
         delete registerDetailedWidget;
     }
 
-    registerDetailedWidget = new RegisterDetailedWidget(regModel);
-    registerDetailedWidget->setMaximumHeight(180);
-    layout->addWidget(registerDetailedWidget);
+	registerDetailedWidget = new RegisterDetailedWidget(regModel, tool->bottomContainer());
+	registerDetailedWidget->setMaximumHeight(200);
+	tool->bottomCentral()->layout()->addWidget(registerDetailedWidget);
 
     if (registerMapValues) {
         uint32_t address = regModel->getAddress();
