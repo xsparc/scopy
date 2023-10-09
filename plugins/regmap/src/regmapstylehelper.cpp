@@ -63,7 +63,7 @@ void RegmapStyleHelper::PartialFrameWidget(QWidget *widget)
     widget->setStyleSheet(style);
 }
 
-void RegmapStyleHelper::FrameWidget(QWidget *widget)
+QString RegmapStyleHelper::FrameWidget(QWidget *widget)
 {
     QString style = QString(R"css(
                         .QWidget {
@@ -80,7 +80,11 @@ void RegmapStyleHelper::FrameWidget(QWidget *widget)
 
                         )css");
     style.replace("&&background&&", RegmapStyleHelper::getColor("WidgetBackground"));
-    widget->setStyleSheet(style);
+
+	if (widget) {
+		widget->setStyleSheet(style);
+	}
+	return style;
 }
 
 void RegmapStyleHelper::RegisterMapStyle(QWidget *widget)
@@ -292,7 +296,7 @@ QString RegmapStyleHelper::detailedBitFieldStyle(BitFieldDetailedWidget *widget,
     if (widget->valueCheckBox) {
         widget->valueCheckBox->setStyleSheet(checkboxStyle(nullptr));
     }
-    widget->setFixedHeight(120);
+	widget->setFixedHeight(96);
 
     return style;
 }
@@ -489,7 +493,7 @@ QString RegmapStyleHelper::spinboxStyle(QSpinBox *spinbox, QString objectName)
 	return style;
 }
 
-QString RegmapStyleHelper::titleSpinBoxStyle(QTitleSpinBox *spinbox, QString objectName)
+QString RegmapStyleHelper::titleSpinBoxStyle(TitleSpinBox *spinbox, QString objectName)
 {
 	if (!objectName.isEmpty() && spinbox) spinbox->setObjectName(objectName);
 
@@ -501,10 +505,8 @@ QString RegmapStyleHelper::titleSpinBoxStyle(QTitleSpinBox *spinbox, QString obj
 						 text-align: left;
 						 color: &&textColor&& ;
 						}
-						QPushButton {
-							 color: &&textColor&& ;
-							 max-height: 16px;
-							 max-width: 16px;
+						QSpinBox {
+						 border-bottom: 0px;
 						}
 						)css");
 	style.replace("&&textColor&&", RegmapStyleHelper::getColor("LabelText"));
@@ -536,4 +538,75 @@ QString RegmapStyleHelper::searchBarStyle(SearchBarWidget *searchBar, QString ob
 
 	style += simpleWidgetStyle(nullptr);
 	return style;
+}
+
+QString RegmapStyleHelper::smallBlueButton(QPushButton *button, QString objectName)
+{
+	if(!objectName.isEmpty()) button->setObjectName(objectName);
+	QString style = QString(R"css(
+						QPushButton {
+							 background-color: &&buttonBackground&& ;
+							 border-radius: 4px;
+							 font-size: 12px;
+							 color: white;
+						}
+						QPushButton:pressed{ background-color: &&pressedColor&& ; }
+						QPushButton:checked{ background-color: &&pressedColor&& ; }
+						QPushButton:hover{ background-color: &&hoverColor&& ; }
+						QPushButton:disabled { background-color: &&diabledColor&& ; }
+						)css");
+
+	style.replace("&&buttonBackground&&", RegmapStyleHelper::getColor("ScopyBlue"));
+	style.replace("&&pressedColor&&", RegmapStyleHelper::getColor("ButtonPressed"));
+	style.replace("&&hoverColor&&", RegmapStyleHelper::getColor("ButtonHover"));
+	style.replace("&&diabledColor&&", RegmapStyleHelper::getColor("ButtonDisabled"));
+
+	if (button) {
+		button->setStyleSheet(style);
+		button->setFixedSize(15,15);
+		button->setIconSize(QSize(30,30));
+		button->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+	}
+	return style;
+}
+
+QString RegmapStyleHelper::regmapControllerStyle(QWidget *widget, QString objectName)
+{
+	if (!objectName.isEmpty() && widget) widget->setObjectName(objectName);
+
+	QString style = QString(R"css(
+						.QWidget  {
+							margin-top: 4px ;
+							margin-bottom: 4px ;
+						}
+						QLineEdit {
+						 font-size: 12px;
+						 border-bottom: 0px;
+						}
+
+						)css");
+
+	style += simpleWidgetStyle(widget);
+
+	return style;
+}
+
+QString RegmapStyleHelper::widgetidthRoundCornersStyle(QWidget *widget, QString objectName)
+{
+	if (!objectName.isEmpty() && widget) widget->setObjectName(objectName);
+
+	QString style = QString(R"css(
+						.QWidget  {
+							border-radius: 4px;
+						}
+						)css");
+
+	style += FrameWidget(widget);
+
+	if (widget) {
+		widget->setStyleSheet(style);
+	}
+
+	return style;
+
 }

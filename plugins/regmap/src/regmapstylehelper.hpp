@@ -1,7 +1,7 @@
 #ifndef REGMAPSTYLEHELPER_HPP
 #define REGMAPSTYLEHELPER_HPP
 
-#include "qtitlespinbox.hpp"
+#include "titlespinbox.hpp"
 #include "searchbarwidget.hpp"
 
 #include <QCheckBox>
@@ -40,7 +40,7 @@ public:
 
     static void RegisterMapStyle(QWidget *widget);
     static void PartialFrameWidget(QWidget *widget);
-    static void FrameWidget(QWidget *widget);
+	static QString FrameWidget(QWidget *widget);
     static void bigTextLabelStyle(QLabel *label, QString objectName);
     static void labelStyle(QLabel *label, QString objectName);
 
@@ -60,8 +60,12 @@ public:
     static QString comboboxStyle(QComboBox *combobox, QString objectName = "");
 	static QString lineEditStyle(QLineEdit *lineEdit, QString objectName = "");
 	static QString spinboxStyle(QSpinBox *spinbox, QString objectName = "");
-	static QString titleSpinBoxStyle(QTitleSpinBox *spinbox, QString objectName = "");
+	static QString titleSpinBoxStyle(TitleSpinBox *spinbox, QString objectName = "");
 	static QString searchBarStyle(SearchBarWidget *searchBar, QString objectName = "");
+	static QString smallBlueButton(QPushButton *button, QString objectName = "");
+	static QString regmapControllerStyle(QWidget *widget, QString objectName = "");
+	static QString widgetidthRoundCornersStyle(QWidget *widget, QString objectName = "");
+
 
 private:
     QMap<QString,QString> colorMap;
