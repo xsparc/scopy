@@ -1,5 +1,4 @@
 #include "deviceregistermap.hpp"
-#include "registermapinstrument.hpp"
 #include "registermaptemplate.hpp"
 #include "registermapvalues.hpp"
 #include "regmapplugin.h"
