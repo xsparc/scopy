@@ -35,8 +35,9 @@ RegisterMapTool::RegisterMapTool(QWidget *parent)
 
     tool = new ToolTemplate(this);
     tool->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-    tool->topContainer()->setVisible(true);
-    lay->addWidget(tool);
+	tool->topContainer()->setVisible(true);
+	tool->rightContainer()->setVisible(true);
+	lay->addWidget(tool);
 
 //	tool->topContainer()->setMaximumHeight(35);
 
@@ -48,11 +49,13 @@ RegisterMapTool::RegisterMapTool(QWidget *parent)
     tool->rightStack()->add("settings", settings);
 
     settingsMenu = new GearBtn(this);
+
     connect(settingsMenu,&QAbstractButton::toggled,this,[=](bool toggled){
-        tool->rightContainer()->setVisible(toggled);
-        tool->requestMenu("settings");});
-    tool->topContainerMenuControl()->hide();
-    tool->addWidgetToTopContainerHelper(settingsMenu,TTA_RIGHT);
+		tool->openRightContainerHelper(toggled);
+		tool->requestMenu("settings");});
+	settingsMenu->toggled(false);
+	tool->topContainerMenuControl()->hide();
+	tool->addWidgetToTopContainerHelper(settingsMenu,TTA_RIGHT);
 
     searchBarWidget =  new scopy::regmap::SearchBarWidget();
     searchBarWidget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);

@@ -23,7 +23,7 @@ private:
 	QPushButton *spinBoxUpButton;
 	QPushButton *spinBoxDownButton;
 	QLabel *titleLabel;
-	QSpinBox *spinBox;
+	QSpinBox *spinBox = nullptr;
 };
 
 #endif // TITLESPINBOX_H

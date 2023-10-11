@@ -24,6 +24,8 @@ RegisterDetailedWidget::RegisterDetailedWidget( RegisterModel *regModel, QWidget
     setLayout(layout);
 	layout->setSpacing(5);
 
+	regWidth = regModel->getWidth();
+
 	QWidget *nameDescriptionWidget = new QWidget(this);
 	nameDescriptionWidget->setStyleSheet(RegmapStyleHelper::simpleWidgetStyle(nullptr));
 	QHBoxLayout *nameDescriptionLayout = new QHBoxLayout(nameDescriptionWidget);
@@ -123,5 +125,5 @@ QString RegisterDetailedWidget::getBitFieldsValue()
         result += qPow(2, regOffset) * aux;
         qDebug() << "aux = " << aux << " result = " << result;
     }
-    return QString::number(result,16);;
+	return Utils::convertToHexa(result,regWidth);;
 }

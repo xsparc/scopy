@@ -282,8 +282,10 @@ QString RegmapStyleHelper::detailedBitFieldStyle(BitFieldDetailedWidget *widget,
                         }
                         QWidget {
                                 background-color: &&childWidgetBackground&& ;
-                        }
-
+						}
+						QComboBox  {
+						 border-bottom: 0px;
+						}
                         )css");
 
     style.replace("&&frameBackground&&", RegmapStyleHelper::getColor("WidgetBackground"));
@@ -293,8 +295,8 @@ QString RegmapStyleHelper::detailedBitFieldStyle(BitFieldDetailedWidget *widget,
     widget->setSizePolicy(QSizePolicy::Preferred,QSizePolicy::Preferred);
 
     widget->nameLabel->setStyleSheet(whiteSmallTextLable(nullptr));
-    if (widget->valueCheckBox) {
-        widget->valueCheckBox->setStyleSheet(checkboxStyle(nullptr));
+	if (widget->valueSwitch) {
+		StyleHelper::MenuOnOffSwitchButton(dynamic_cast<SmallOnOffSwitch*>(widget->valueSwitch), "onOffSwitch");
     }
 	widget->setFixedHeight(96);
 
@@ -419,6 +421,7 @@ QString RegmapStyleHelper::simpleWidgetStyle(QWidget *widget, QString objectName
     QString style = QString(R"css(
                         QWidget  {
                             background-color: &&widgetBackground&& ;
+							border-radius: 4px;
                         }
                         )css");
     style.replace("&&widgetBackground&&", RegmapStyleHelper::getColor("WidgetBackground"));
@@ -563,7 +566,7 @@ QString RegmapStyleHelper::smallBlueButton(QPushButton *button, QString objectNa
 
 	if (button) {
 		button->setStyleSheet(style);
-		button->setFixedSize(18,18);
+		button->setFixedSize(16,16);
 		button->setIconSize(QSize(30,30));
 		button->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 	}
@@ -572,15 +575,16 @@ QString RegmapStyleHelper::smallBlueButton(QPushButton *button, QString objectNa
 
 QString RegmapStyleHelper::regmapControllerStyle(QWidget *widget, QString objectName)
 {
-	if (!objectName.isEmpty() && widget) widget->setObjectName(objectName);
+//	if (!objectName.isEmpty() && widget) widget->setObjectName(objectName);
 
 	QString style = QString(R"css(
 						.QWidget  {
 							margin-top: 4px ;
 							margin-bottom: 4px ;
+							border-radius: 4px;
 						}
 						QLineEdit {
-						 font-size: 18px;
+						 font-size: 16px;
 						 font-style: normal;
 						 font-weight: normal;
 						 text-align: left;

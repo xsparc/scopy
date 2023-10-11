@@ -81,11 +81,8 @@ DeviceRegisterMap::DeviceRegisterMap(RegisterMapTemplate *registerMapTemplate, R
 		registerTableHeadLayout->setSpacing(0);
 		registerTableHead->setLayout(registerTableHeadLayout);
 
-		QLabel *registerTableHeadName = new QLabel("Name", registerTableHead);
-		QLabel *registerTableHeadAdr = new QLabel("Adr.", registerTableHead);
-		registerTableHeadAdr->setAlignment(Qt::AlignRight);
+		QLabel *registerTableHeadName = new QLabel("Reigster", registerTableHead);
 		registerTableHeadLayout->addWidget(registerTableHeadName);
-		registerTableHeadLayout->addWidget(registerTableHeadAdr);
 		registerTableHead->setFixedWidth(130);
 
 		QWidget *colBitCount = new QWidget(tableHeadWidget);
