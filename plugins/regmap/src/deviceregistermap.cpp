@@ -165,7 +165,7 @@ void DeviceRegisterMap::registerChanged(RegisterModel *regModel)
     }
 
 	registerDetailedWidget = new RegisterDetailedWidget(regModel, tool->bottomContainer());
-	registerDetailedWidget->setMaximumHeight(200);
+	registerDetailedWidget->setMaximumHeight(140);
 	tool->bottomCentral()->layout()->addWidget(registerDetailedWidget);
 
     if (registerMapValues) {

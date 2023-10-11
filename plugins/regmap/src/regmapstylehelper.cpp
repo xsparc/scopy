@@ -563,7 +563,7 @@ QString RegmapStyleHelper::smallBlueButton(QPushButton *button, QString objectNa
 
 	if (button) {
 		button->setStyleSheet(style);
-		button->setFixedSize(15,15);
+		button->setFixedSize(18,18);
 		button->setIconSize(QSize(30,30));
 		button->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 	}
@@ -580,11 +580,16 @@ QString RegmapStyleHelper::regmapControllerStyle(QWidget *widget, QString object
 							margin-bottom: 4px ;
 						}
 						QLineEdit {
-						 font-size: 12px;
+						 font-size: 18px;
+						 font-style: normal;
+						 font-weight: normal;
+						 text-align: left;
+						 color: &&textColor&& ;
 						 border-bottom: 0px;
 						}
-
 						)css");
+
+	style.replace("&&textColor&&", RegmapStyleHelper::getColor("LabelText"));
 
 	style += simpleWidgetStyle(widget);
 

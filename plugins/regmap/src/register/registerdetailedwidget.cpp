@@ -24,7 +24,6 @@ RegisterDetailedWidget::RegisterDetailedWidget( RegisterModel *regModel, QWidget
     setLayout(layout);
 	layout->setSpacing(5);
 
-
 	QWidget *nameDescriptionWidget = new QWidget(this);
 	nameDescriptionWidget->setStyleSheet(RegmapStyleHelper::simpleWidgetStyle(nullptr));
 	QHBoxLayout *nameDescriptionLayout = new QHBoxLayout(nameDescriptionWidget);
@@ -68,7 +67,7 @@ RegisterDetailedWidget::RegisterDetailedWidget( RegisterModel *regModel, QWidget
         });
     }
     // add spacers to keep the shape of the detailed bitfileds when the number of bitfields didn't fill a row
-    if (row == 0) {
+	if (row == 1) {
         while ( col <= scopy::regmap::Utils::getBitsPerRowDetailed()) {
             BitFieldDetailedWidget *aux = new BitFieldDetailedWidget("","",0,"",1,"",0,nullptr);
             aux->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);

@@ -36,7 +36,7 @@ RegisterController::RegisterController(QWidget *parent)
 	QVBoxLayout *readWidgetLeftLayout = new QVBoxLayout();
 	Utils::removeLayoutMargins(readWidgetLeftLayout);
 	adrPck = new TitleSpinBox("Address 1: ", readWidget);
-	adrPck->setMaximumHeight(30);
+	adrPck->setMaximumHeight(40);
 	readWidgetLeftLayout->addWidget(adrPck);
 
 	addressPicker =adrPck->getSpinBox();
@@ -133,7 +133,7 @@ void RegisterController::setHasMap(bool hasMap)
 		detailedRegisterToggle = new QPushButton(this);
 		detailedRegisterToggle->setCheckable(true);
 		QIcon detailedRegisterToggleIcon;
-		detailedRegisterToggleIcon.addPixmap(Util::ChangeSVGColor(":/gui/icons/scopy-default/icons/setup3_unchecked.svg","white",1));
+		detailedRegisterToggleIcon.addPixmap(Util::ChangeSVGColor(":/gui/icons/scopy-default/icons/tool_calibration.svg","white",1));
 		detailedRegisterToggle->setIcon(detailedRegisterToggleIcon);
 		detailedRegisterToggle->setChecked(true);
 		QObject::connect(detailedRegisterToggle,
@@ -142,7 +142,7 @@ void RegisterController::setHasMap(bool hasMap)
 						 &RegisterController::toggleDetailedMenu);
 		writeWidgetLayout->addWidget(detailedRegisterToggle, 0.5, Qt::AlignRight);
 		RegmapStyleHelper::smallBlueButton(detailedRegisterToggle);
-		detailedRegisterToggle->setFixedSize(30,30);
+		detailedRegisterToggle->setFixedSize(40,40);
 	}
 }
 
@@ -151,9 +151,10 @@ void RegisterController::applyStyle()
 	setFixedHeight(72);
 
 	readButton->setStyleSheet(RegmapStyleHelper::BlueButton(nullptr));
+	readButton->setFixedHeight(40);
 	writeButton->setStyleSheet(RegmapStyleHelper::BlueButton(nullptr));
+	writeButton->setFixedHeight(40);
 	valueLabel->setStyleSheet(RegmapStyleHelper::grayLabel(nullptr));
-	regValue->setStyleSheet(RegmapStyleHelper::lineEditStyle(nullptr));
 
 	setStyleSheet( RegmapStyleHelper::regmapControllerStyle(nullptr));
 }
