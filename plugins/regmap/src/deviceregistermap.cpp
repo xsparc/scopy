@@ -81,7 +81,7 @@ DeviceRegisterMap::DeviceRegisterMap(RegisterMapTemplate *registerMapTemplate, R
 		registerTableHeadLayout->setSpacing(0);
 		registerTableHead->setLayout(registerTableHeadLayout);
 
-		QLabel *registerTableHeadName = new QLabel("Reigster", registerTableHead);
+		QLabel *registerTableHeadName = new QLabel("Register", registerTableHead);
 		registerTableHeadLayout->addWidget(registerTableHeadName);
 		registerTableHead->setFixedWidth(130);
 
