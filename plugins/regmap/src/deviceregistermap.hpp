@@ -1,11 +1,11 @@
 #ifndef DEVICEREGISTERMAP_HPP
 #define DEVICEREGISTERMAP_HPP
 
-#include "scopy-regmapplugin_export.h"
-
 #include <QMap>
 #include <QObject>
 #include <QWidget>
+#include <tooltemplate.h>
+#include "scopy-regmapplugin_export.h"
 
 class QVBoxLayout;
 
@@ -34,6 +34,7 @@ public:
 	bool hasTemplate();
 
 private:
+	ToolTemplate *tool;
 	bool autoread = false;
 	QVBoxLayout *layout;
 	RegisterMapTemplate *registerMapTemplate;

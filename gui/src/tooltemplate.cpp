@@ -1,5 +1,4 @@
 #include "tooltemplate.h"
-
 #include "ui_tooltemplate.h"
 
 using namespace scopy;
@@ -97,6 +96,18 @@ void ToolTemplate::openRightContainerHelper(bool open) { m_ui->rightContainer->t
 void ToolTemplate::openTopContainerHelper(bool open) { m_ui->topCentral->toggleMenu(open); }
 
 void ToolTemplate::openBottomContainerHelper(bool open) { m_ui->bottomCentral->toggleMenu(open); }
+
+QSpacerItem *ToolTemplate::getContainerSpacer(QWidget *container)
+{
+	if(m_ui->topContainer == container)
+		return m_ui->topContainerSpacer;
+	else if(m_ui->topContainerMenuControl == container)
+		return m_ui->topContainerMenuControlSpacer;
+	else if(m_ui->bottomContainer == container)
+		return m_ui->bottomContainerSpacer;
+	else
+		return nullptr;
+}
 
 void ToolTemplate::addWidgetToTopContainerHelper(QWidget *w, ToolTemplateAlignment a)
 {

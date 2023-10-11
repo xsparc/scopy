@@ -1,10 +1,10 @@
 #ifndef TOOLBUILDER_H
 #define TOOLBUILDER_H
 
+#include <QWidget>
+#include <QSpacerItem>
 #include "mapstackedwidget.h"
 #include "scopy-gui_export.h"
-
-#include <QWidget>
 
 namespace Ui {
 class ToolTemplate;
@@ -57,6 +57,7 @@ public:
 	void openRightContainerHelper(bool open = true);
 	void openTopContainerHelper(bool open = true);
 	void openBottomContainerHelper(bool open = true);
+	QSpacerItem *getContainerSpacer(QWidget *);
 
 	void addWidgetToTopContainerHelper(QWidget *w, enum ToolTemplateAlignment);
 	void addWidgetToTopContainerMenuControlHelper(QWidget *w, ToolTemplateAlignment a);

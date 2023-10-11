@@ -3,8 +3,9 @@
 
 #include "bitfieldoption.hpp"
 
-#include <QFrame>
 #include <QWidget>
+#include <QFrame>
+#include <smallOnOffSwitch.h>
 
 class QLabel;
 class QLineEdit;
@@ -52,7 +53,7 @@ private:
 	QLabel *defaultValueLabel;
 	QLabel *value = nullptr;
 	QComboBox *valueComboBox = nullptr;
-	QCheckBox *valueCheckBox = nullptr;
+	SmallOnOffSwitch *valueSwitch = nullptr;
 	QLineEdit *valueLineEdit = nullptr;
 
 	bool isFirstRead = true;
