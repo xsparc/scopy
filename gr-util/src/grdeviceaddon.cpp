@@ -15,11 +15,20 @@ GRDeviceAddon::GRDeviceAddon(GRIIODeviceSource *src, QObject *parent)
 
 GRDeviceAddon::~GRDeviceAddon() {}
 
-QString GRDeviceAddon::getName() { return name; }
+QString GRDeviceAddon::getName()
+{
+	return name;
+}
 
-QWidget *GRDeviceAddon::getWidget() { return widget; }
+QWidget *GRDeviceAddon::getWidget()
+{
+	return widget;
+}
 
-GRIIODeviceSource *GRDeviceAddon::src() const { return m_src; }
+GRIIODeviceSource *GRDeviceAddon::src() const
+{
+	return m_src;
+}
 
 void GRDeviceAddon::enable() {}
 
@@ -43,8 +52,17 @@ void GRDeviceAddon::onChannelAdded(ToolAddon *) {}
 
 void GRDeviceAddon::onChannelRemoved(ToolAddon *) {}
 
-void GRDeviceAddon::setBufferSize(uint32_t bufferSize) { m_src->setBuffersize(bufferSize); }
+void GRDeviceAddon::setBufferSize(uint32_t bufferSize)
+{
+	m_src->setBuffersize(bufferSize);
+}
 
-void GRDeviceAddon::registerChannel(GRTimeChannelAddon *ch) { m_channels.append(ch); }
+void GRDeviceAddon::registerChannel(GRTimeChannelAddon *ch)
+{
+	m_channels.append(ch);
+}
 
-QList<GRTimeChannelAddon *> GRDeviceAddon::getRegisteredChannels() { return m_channels; }
+QList<GRTimeChannelAddon *> GRDeviceAddon::getRegisteredChannels()
+{
+	return m_channels;
+}

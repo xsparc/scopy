@@ -52,7 +52,10 @@ ExportSettings::ExportSettings(QWidget *parent)
 	ui->dropDownLayout->addWidget(exportChannels);
 }
 
-ExportSettings::~ExportSettings() { delete ui; }
+ExportSettings::~ExportSettings()
+{
+	delete ui;
+}
 
 void ExportSettings::addChannel(int id, QString name)
 {
@@ -102,9 +105,15 @@ void ExportSettings::checkIfAllActivated()
 	ui->btnExportAll->setChecked(ok);
 }
 
-QPushButton *ExportSettings::getExportButton() { return ui->btnExport; }
+QPushButton *ExportSettings::getExportButton()
+{
+	return ui->btnExport;
+}
 
-QPushButton *ExportSettings::getExportAllButton() { return ui->btnExportAll; }
+QPushButton *ExportSettings::getExportAllButton()
+{
+	return ui->btnExportAll;
+}
 
 QMap<int, bool> ExportSettings::getExportConfig()
 {
@@ -147,9 +156,15 @@ void ExportSettings::on_btnExportAll_clicked()
 	}
 }
 
-void ExportSettings::enableExportButton(bool on) { ui->btnExport->setEnabled(on); }
+void ExportSettings::enableExportButton(bool on)
+{
+	ui->btnExport->setEnabled(on);
+}
 
-void ExportSettings::disableUIMargins() { ui->verticalLayout_3->setMargin(0); }
+void ExportSettings::disableUIMargins()
+{
+	ui->verticalLayout_3->setMargin(0);
+}
 
 void ExportSettings::setTitleLabelVisible(bool enabled)
 {
@@ -157,6 +172,9 @@ void ExportSettings::setTitleLabelVisible(bool enabled)
 	ui->line->setVisible(enabled);
 }
 
-void ExportSettings::setExportAllButtonLabel(const QString &text) { ui->label_3->setText(text); }
+void ExportSettings::setExportAllButtonLabel(const QString &text)
+{
+	ui->label_3->setText(text);
+}
 
 #include "moc_osc_export_settings.cpp"

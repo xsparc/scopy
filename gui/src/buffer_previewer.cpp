@@ -52,9 +52,15 @@ BufferPreviewer::BufferPreviewer(int pixelsPerPeriod, double wavePhase, QWidget 
 	, m_cursorVisible(true)
 {}
 
-BufferPreviewer::~BufferPreviewer() { delete[] m_wavePoints; }
+BufferPreviewer::~BufferPreviewer()
+{
+	delete[] m_wavePoints;
+}
 
-double BufferPreviewer::waveformPos() const { return m_waveformPos; }
+double BufferPreviewer::waveformPos() const
+{
+	return m_waveformPos;
+}
 
 void BufferPreviewer::setWaveformPos(double pos)
 {
@@ -65,7 +71,10 @@ void BufferPreviewer::setWaveformPos(double pos)
 	update();
 }
 
-double BufferPreviewer::waveformWidth() const { return m_waveformWidth; }
+double BufferPreviewer::waveformWidth() const
+{
+	return m_waveformWidth;
+}
 
 void BufferPreviewer::setWaveformWidth(double width)
 {
@@ -76,7 +85,10 @@ void BufferPreviewer::setWaveformWidth(double width)
 	update();
 }
 
-double BufferPreviewer::highlightPos() const { return m_highlightPos; }
+double BufferPreviewer::highlightPos() const
+{
+	return m_highlightPos;
+}
 
 void BufferPreviewer::setHighlightPos(double pos)
 {
@@ -87,7 +99,10 @@ void BufferPreviewer::setHighlightPos(double pos)
 	update();
 }
 
-double BufferPreviewer::highlightWidth() const { return m_highlightPos; }
+double BufferPreviewer::highlightWidth() const
+{
+	return m_highlightPos;
+}
 
 void BufferPreviewer::setHighlightWidth(double width)
 {
@@ -98,7 +113,10 @@ void BufferPreviewer::setHighlightWidth(double width)
 	update();
 }
 
-double BufferPreviewer::cursorPos() const { return m_cursorPos; }
+double BufferPreviewer::cursorPos() const
+{
+	return m_cursorPos;
+}
 void BufferPreviewer::setCursorPos(double pos)
 {
 	if(pos < 0.0 || pos > 1.0 || pos == m_cursorPos)
@@ -108,7 +126,10 @@ void BufferPreviewer::setCursorPos(double pos)
 	update();
 }
 
-int BufferPreviewer::verticalSpacing() const { return m_verticalSpacing; }
+int BufferPreviewer::verticalSpacing() const
+{
+	return m_verticalSpacing;
+}
 
 void BufferPreviewer::setVerticalSpacing(int spacing)
 {
@@ -123,9 +144,15 @@ void BufferPreviewer::setVerticalSpacing(int spacing)
 	}
 }
 
-int BufferPreviewer::pixelsPerPeriod() const { return m_pixelsPerPeriod; }
+int BufferPreviewer::pixelsPerPeriod() const
+{
+	return m_pixelsPerPeriod;
+}
 
-double BufferPreviewer::wavePhase() const { return m_startingPhase; }
+double BufferPreviewer::wavePhase() const
+{
+	return m_startingPhase;
+}
 
 void BufferPreviewer::setGatingEnabled(bool enabled)
 {
@@ -286,7 +313,10 @@ void BufferPreviewer::resizeEvent(QResizeEvent *event)
 	}
 }
 
-void BufferPreviewer::mouseDoubleClickEvent(QMouseEvent *event) { Q_EMIT bufferResetPosition(); }
+void BufferPreviewer::mouseDoubleClickEvent(QMouseEvent *event)
+{
+	Q_EMIT bufferResetPosition();
+}
 
 void BufferPreviewer::mousePressEvent(QMouseEvent *event)
 {
@@ -318,9 +348,15 @@ void BufferPreviewer::mouseReleaseEvent(QMouseEvent *event)
 	}
 }
 
-void BufferPreviewer::enterEvent(QEvent *event) { setCursor(Qt::OpenHandCursor); }
+void BufferPreviewer::enterEvent(QEvent *event)
+{
+	setCursor(Qt::OpenHandCursor);
+}
 
-void BufferPreviewer::leaveEvent(QEvent *event) { setCursor(Qt::ArrowCursor); }
+void BufferPreviewer::leaveEvent(QEvent *event)
+{
+	setCursor(Qt::ArrowCursor);
+}
 
 /*
  * Class AnalogBufferPrevier implementation
@@ -360,9 +396,15 @@ DigitalBufferPreviewer::DigitalBufferPreviewer(int pixelsPerPeriod, QWidget *par
 	, m_noOfSteps(0)
 {}
 
-void DigitalBufferPreviewer::setNoOfSteps(double val) { m_noOfSteps = val; }
+void DigitalBufferPreviewer::setNoOfSteps(double val)
+{
+	m_noOfSteps = val;
+}
 
-double DigitalBufferPreviewer::noOfSteps() { return m_noOfSteps; }
+double DigitalBufferPreviewer::noOfSteps()
+{
+	return m_noOfSteps;
+}
 
 void DigitalBufferPreviewer::buildFullWaveform()
 {

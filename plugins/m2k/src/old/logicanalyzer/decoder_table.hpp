@@ -45,7 +45,10 @@ public:
 	void activate(bool logic);
 	void deactivate();
 	QVector<GenericLogicPlotCurve *> getDecoderCruves();
-	inline bool isActive() const { return m_active; }
+	inline bool isActive() const
+	{
+		return m_active;
+	}
 
 	// Shortcut to get a reference to the model.
 	DecoderTableModel *decoderModel() const;

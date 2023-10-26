@@ -29,17 +29,29 @@ MenuVAnim::MenuVAnim(QWidget *parent)
 	: MenuAnim("minimumHeight", "maximumHeight", parent)
 {}
 
-int MenuVAnim::getImplicitMin() { return 0; }
+int MenuVAnim::getImplicitMin()
+{
+	return 0;
+}
 
-int MenuVAnim::getImplicitMax() { return sizeHint().height(); }
+int MenuVAnim::getImplicitMax()
+{
+	return sizeHint().height();
+}
 
 MenuHAnim::MenuHAnim(QWidget *parent)
 	: MenuAnim("minimumWidth", "maximumWidth", parent)
 {}
 
-int MenuHAnim::getImplicitMin() { return 0; }
+int MenuHAnim::getImplicitMin()
+{
+	return 0;
+}
 
-int MenuHAnim::getImplicitMax() { return sizeHint().width(); }
+int MenuHAnim::getImplicitMax()
+{
+	return sizeHint().width();
+}
 
 MenuAnim::MenuAnim(QByteArray minAnimationProperty, QByteArray maxAnimationProperty, QWidget *parent)
 	: QWidget(parent)
@@ -109,7 +121,10 @@ void MenuAnim::toggleMenu(bool open)
 	}
 }
 
-bool MenuAnim::animInProgress() const { return animInProg; }
+bool MenuAnim::animInProgress() const
+{
+	return animInProg;
+}
 
 void MenuAnim::closeAnimFinished()
 {
@@ -123,7 +138,10 @@ void MenuAnim::openAnimFinished()
 	Q_EMIT finished(true);
 }
 
-int MenuAnim::getAnimationDuration() const { return animationDuration; }
+int MenuAnim::getAnimationDuration() const
+{
+	return animationDuration;
+}
 
 void MenuAnim::setAnimationDuration(int newAnimationDuration)
 {
@@ -134,7 +152,13 @@ void MenuAnim::setAnimationDuration(int newAnimationDuration)
 	close_anim_min.setDuration(animationDuration);
 }
 
-void MenuAnim::setAnimMin(int min) { min_val = min; }
-void MenuAnim::setAnimMax(int max) { max_val = max; }
+void MenuAnim::setAnimMin(int min)
+{
+	min_val = min;
+}
+void MenuAnim::setAnimMax(int max)
+{
+	max_val = max;
+}
 
 #include "moc_menu_anim.cpp"

@@ -120,7 +120,10 @@ scope_sink_f_impl::~scope_sink_f_impl()
 	}
 }
 
-bool scope_sink_f_impl::check_topology(int ninputs, int noutputs) { return ninputs == d_nconnections; }
+bool scope_sink_f_impl::check_topology(int ninputs, int noutputs)
+{
+	return ninputs == d_nconnections;
+}
 
 void scope_sink_f_impl::initialize()
 {
@@ -133,7 +136,10 @@ void scope_sink_f_impl::initialize()
 	set_update_time(1 / 60.0);
 }
 
-void scope_sink_f_impl::exec_() { d_qApplication->exec(); }
+void scope_sink_f_impl::exec_()
+{
+	d_qApplication->exec();
+}
 
 void scope_sink_f_impl::set_update_time(double t)
 {
@@ -189,9 +195,15 @@ void scope_sink_f_impl::set_samp_rate(const double samp_rate)
 		time_plot->setSampleRate(samp_rate, 1, "");
 }
 
-int scope_sink_f_impl::nsamps() const { return d_size; }
+int scope_sink_f_impl::nsamps() const
+{
+	return d_size;
+}
 
-std::string scope_sink_f_impl::name() const { return d_name; }
+std::string scope_sink_f_impl::name() const
+{
+	return d_name;
+}
 
 void scope_sink_f_impl::reset()
 {
@@ -199,7 +211,10 @@ void scope_sink_f_impl::reset()
 	_reset();
 }
 
-void scope_sink_f_impl::set_displayOneBuffer(bool val) { d_displayOneBuffer = val; }
+void scope_sink_f_impl::set_displayOneBuffer(bool val)
+{
+	d_displayOneBuffer = val;
+}
 
 void scope_sink_f_impl::_reset()
 {

@@ -147,5 +147,11 @@ void PatternGenerator_API::setEnabledPatterns(const QVector<QPair<QVector<int>, 
 	}
 }
 
-QString PatternGenerator_API::getNotes() { return m_pattern->m_ui->instrumentNotes->getNotes(); }
-void PatternGenerator_API::setNotes(QString str) { m_pattern->m_ui->instrumentNotes->setNotes(str); }
+QString PatternGenerator_API::getNotes()
+{
+	return m_pattern->m_ui->instrumentNotes->getNotes();
+}
+void PatternGenerator_API::setNotes(QString str)
+{
+	m_pattern->m_ui->instrumentNotes->setNotes(str);
+}

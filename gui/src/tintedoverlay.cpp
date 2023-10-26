@@ -16,11 +16,20 @@ TintedOverlay::TintedOverlay(QWidget *parent, QColor color)
 
 TintedOverlay::~TintedOverlay() {}
 
-const QList<QWidget *> &TintedOverlay::getHoles() const { return holes; }
+const QList<QWidget *> &TintedOverlay::getHoles() const
+{
+	return holes;
+}
 
-void TintedOverlay::setHoles(const QList<QWidget *> &newHoles) { holes = newHoles; }
+void TintedOverlay::setHoles(const QList<QWidget *> &newHoles)
+{
+	holes = newHoles;
+}
 
-void TintedOverlay::clearHoles() { holes.clear(); }
+void TintedOverlay::clearHoles()
+{
+	holes.clear();
+}
 
 void TintedOverlay::paintEvent(QPaintEvent *ev)
 {

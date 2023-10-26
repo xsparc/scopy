@@ -161,7 +161,10 @@ void DecoderTableItem::paint(QPainter *painter, const QRect &rect, const QPalett
 	painter->restore();
 }
 
-QSize DecoderTableItem::sizeHint() const { return itemSize; }
+QSize DecoderTableItem::sizeHint() const
+{
+	return itemSize;
+}
 
 } // namespace logic
 } // namespace scopy::m2k

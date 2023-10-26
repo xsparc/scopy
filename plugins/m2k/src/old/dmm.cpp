@@ -212,7 +212,10 @@ DMM::DMM(struct iio_context *ctx, Filter *filt, ToolMenuEntry *tme, m2k_iio_mana
 	}
 }
 
-QPushButton *DMM::getRunButton() { return ui->run_button; }
+QPushButton *DMM::getRunButton()
+{
+	return ui->run_button;
+}
 
 void DMM::readPreferences()
 {
@@ -334,7 +337,10 @@ void DMM::checkPeakValues(int ch, double peak)
 	}
 }
 
-bool DMM::isIioManagerStarted() const { return manager->started() && ui->run_button->isChecked(); }
+bool DMM::isIioManagerStarted() const
+{
+	return manager->started() && ui->run_button->isChecked();
+}
 
 libm2k::analog::M2K_RANGE DMM::suggestRange(double volt_max, double volt_min)
 {

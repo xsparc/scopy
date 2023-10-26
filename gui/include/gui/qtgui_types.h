@@ -61,13 +61,25 @@ public:
 
 	virtual ~FreqOffsetAndPrecisionClass() {}
 
-	virtual unsigned int getFrequencyPrecision() const { return _frequencyPrecision; }
+	virtual unsigned int getFrequencyPrecision() const
+	{
+		return _frequencyPrecision;
+	}
 
-	virtual void setFrequencyPrecision(const unsigned int newPrecision) { _frequencyPrecision = newPrecision; }
+	virtual void setFrequencyPrecision(const unsigned int newPrecision)
+	{
+		_frequencyPrecision = newPrecision;
+	}
 
-	virtual double getCenterFrequency() const { return _centerFrequency; }
+	virtual double getCenterFrequency() const
+	{
+		return _centerFrequency;
+	}
 
-	virtual void setCenterFrequency(const double newFreq) { _centerFrequency = newFreq; }
+	virtual void setCenterFrequency(const double newFreq)
+	{
+		_centerFrequency = newFreq;
+	}
 
 protected:
 private:
@@ -86,16 +98,25 @@ public:
 
 	virtual ~TimeScaleData() {}
 
-	virtual gr::high_res_timer_type getZeroTime() const { return _zeroTime; }
+	virtual gr::high_res_timer_type getZeroTime() const
+	{
+		return _zeroTime;
+	}
 
 	virtual void setZeroTime(const gr::high_res_timer_type newTime)
 	{
 		_zeroTime = newTime - gr::high_res_timer_epoch();
 	}
 
-	virtual void setSecondsPerLine(const double newTime) { _secondsPerLine = newTime; }
+	virtual void setSecondsPerLine(const double newTime)
+	{
+		_secondsPerLine = newTime;
+	}
 
-	virtual double getSecondsPerLine() const { return _secondsPerLine; }
+	virtual double getSecondsPerLine() const
+	{
+		return _secondsPerLine;
+	}
 
 protected:
 private:
@@ -114,9 +135,15 @@ public:
 		, FreqOffsetAndPrecisionClass(precision)
 	{}
 
-	virtual QwtText label(double value) const { return QString("%1").arg(value, 0, 'f', getFrequencyPrecision()); }
+	virtual QwtText label(double value) const
+	{
+		return QString("%1").arg(value, 0, 'f', getFrequencyPrecision());
+	}
 
-	virtual void initiateUpdate(void) { invalidateCache(); }
+	virtual void initiateUpdate(void)
+	{
+		invalidateCache();
+	}
 
 protected:
 private:

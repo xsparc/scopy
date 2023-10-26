@@ -71,7 +71,10 @@ BitfieldWidget::BitfieldWidget(QWidget *parent, int bitNumber)
 		SLOT(setValue(int))); // connect spinBox singnal to the value changed signal
 }
 
-BitfieldWidget::~BitfieldWidget() { delete ui; }
+BitfieldWidget::~BitfieldWidget()
+{
+	delete ui;
+}
 
 void BitfieldWidget::createWidget()
 {
@@ -125,9 +128,15 @@ void BitfieldWidget::updateValue(uint32_t &value)
 	value = (value >> width);
 }
 
-int BitfieldWidget::getRegOffset() const { return regOffset; }
+int BitfieldWidget::getRegOffset() const
+{
+	return regOffset;
+}
 
-int BitfieldWidget::getSliceWidth() const { return sliceWidth; }
+int BitfieldWidget::getSliceWidth() const
+{
+	return sliceWidth;
+}
 
 void BitfieldWidget::setValue(int value)
 {
@@ -137,4 +146,7 @@ void BitfieldWidget::setValue(int value)
 	Q_EMIT valueChanged(this->value, mask);
 }
 
-uint32_t BitfieldWidget::getDefaultValue(void) const { return defaultValue; }
+uint32_t BitfieldWidget::getDefaultValue(void) const
+{
+	return defaultValue;
+}

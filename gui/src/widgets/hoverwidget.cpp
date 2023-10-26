@@ -106,7 +106,10 @@ void HoverWidget::updateRelativeOffset()
 				       (height_diff - mapToParent(m_content->geometry().topLeft()).y()) / height_diff);
 }
 
-void HoverWidget::setRelative(bool relative) { m_relative = relative; }
+void HoverWidget::setRelative(bool relative)
+{
+	m_relative = relative;
+}
 
 void HoverWidget::setRelativeOffset(QPointF offset)
 {
@@ -178,7 +181,10 @@ bool HoverWidget::eventFilter(QObject *watched, QEvent *event)
 	return QObject::eventFilter(watched, event);
 }
 
-QPoint HoverWidget::getAnchorOffset() { return m_anchorOffset; }
+QPoint HoverWidget::getAnchorOffset()
+{
+	return m_anchorOffset;
+}
 
 void HoverWidget::setAnchorOffset(QPoint pt)
 {
@@ -187,7 +193,10 @@ void HoverWidget::setAnchorOffset(QPoint pt)
 	updatePos();
 }
 
-HoverPosition HoverWidget::getAnchorPos() { return m_anchorPos; }
+HoverPosition HoverWidget::getAnchorPos()
+{
+	return m_anchorPos;
+}
 
 void HoverWidget::setAnchorPos(HoverPosition pos)
 {
@@ -196,7 +205,10 @@ void HoverWidget::setAnchorPos(HoverPosition pos)
 	updatePos();
 }
 
-HoverPosition HoverWidget::getContentPos() { return m_contentPos; }
+HoverPosition HoverWidget::getContentPos()
+{
+	return m_contentPos;
+}
 
 void HoverWidget::setContentPos(HoverPosition pos)
 {

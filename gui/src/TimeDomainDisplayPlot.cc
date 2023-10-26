@@ -73,7 +73,10 @@ public:
 
 	virtual ~TimeDomainDisplayZoomer() {}
 
-	virtual void updateTrackerText() { updateDisplay(); }
+	virtual void updateTrackerText()
+	{
+		updateDisplay();
+	}
 
 protected:
 	using QwtPlotZoomer::trackerText;
@@ -120,7 +123,10 @@ bool SinkManager::removeSink(const std::string &name)
 	return found;
 }
 
-unsigned int SinkManager::sinkListLength() { return d_sinkList.size(); }
+unsigned int SinkManager::sinkListLength()
+{
+	return d_sinkList.size();
+}
 
 Sink *SinkManager::sink(unsigned int index)
 {
@@ -260,7 +266,10 @@ TimeDomainDisplayPlot::~TimeDomainDisplayPlot()
 	// d_zoomer and _panner deleted when parent deleted
 }
 
-void TimeDomainDisplayPlot::replot() { BasicPlot::replot(); }
+void TimeDomainDisplayPlot::replot()
+{
+	BasicPlot::replot();
+}
 
 /*void TimeDomainDisplayPlot::plotTags(const std::vector< std::vector<gr::tag_t> > &tags) {
 	// Detach and delete any tags that were plotted last time
@@ -572,9 +581,15 @@ void TimeDomainDisplayPlot::_autoScale(double bottom, double top)
 	replot();
 }
 
-bool TimeDomainDisplayPlot::getPlotGrTags() const { return d_plotGrTags; }
+bool TimeDomainDisplayPlot::getPlotGrTags() const
+{
+	return d_plotGrTags;
+}
 
-void TimeDomainDisplayPlot::setPlotGrTags(bool val) { d_plotGrTags = val; }
+void TimeDomainDisplayPlot::setPlotGrTags(bool val)
+{
+	d_plotGrTags = val;
+}
 
 void TimeDomainDisplayPlot::addZoomer(unsigned int zoomerIdx)
 {
@@ -624,7 +639,10 @@ void TimeDomainDisplayPlot::removeZoomer(unsigned int zoomerIdx)
 	}
 }
 
-void TimeDomainDisplayPlot::setXAxisNumPoints(unsigned int pts) { d_nbPtsXAxis = pts; }
+void TimeDomainDisplayPlot::setXAxisNumPoints(unsigned int pts)
+{
+	d_nbPtsXAxis = pts;
+}
 
 void TimeDomainDisplayPlot::setAutoScale(bool state)
 {
@@ -672,7 +690,10 @@ void TimeDomainDisplayPlot::setSampleRate(double sr, double units, const std::st
 	}
 }
 
-double TimeDomainDisplayPlot::sampleRate() const { return d_sample_rate; }
+double TimeDomainDisplayPlot::sampleRate() const
+{
+	return d_sample_rate;
+}
 
 void TimeDomainDisplayPlot::setYaxisUnit(QString unitType, int axisIdx)
 {
@@ -684,7 +705,10 @@ void TimeDomainDisplayPlot::setYaxisUnit(QString unitType, int axisIdx)
 		scaleDraw->setUnitType(d_yAxisUnit);
 }
 
-QString TimeDomainDisplayPlot::yAxisUnit(void) { return d_yAxisUnit; }
+QString TimeDomainDisplayPlot::yAxisUnit(void)
+{
+	return d_yAxisUnit;
+}
 
 QString TimeDomainDisplayPlot::yAxisUnit(int axisIdx)
 {
@@ -707,7 +731,10 @@ void TimeDomainDisplayPlot::setXaxisUnit(QString unitType)
 	}
 }
 
-QString TimeDomainDisplayPlot::xAxisUnit() { return d_xAxisUnit; }
+QString TimeDomainDisplayPlot::xAxisUnit()
+{
+	return d_xAxisUnit;
+}
 
 void TimeDomainDisplayPlot::stemPlot(bool en)
 {
@@ -838,17 +865,35 @@ void TimeDomainDisplayPlot::enableTagMarker(int which, bool en)
 		throw std::runtime_error("TimeDomainDisplayPlot: enabled tag marker does not exist.\n");
 }
 
-const QColor TimeDomainDisplayPlot::getTagTextColor() { return d_tag_text_color; }
+const QColor TimeDomainDisplayPlot::getTagTextColor()
+{
+	return d_tag_text_color;
+}
 
-const QColor TimeDomainDisplayPlot::getTagBackgroundColor() { return d_tag_background_color; }
+const QColor TimeDomainDisplayPlot::getTagBackgroundColor()
+{
+	return d_tag_background_color;
+}
 
-const Qt::BrushStyle TimeDomainDisplayPlot::getTagBackgroundStyle() { return d_tag_background_style; }
+const Qt::BrushStyle TimeDomainDisplayPlot::getTagBackgroundStyle()
+{
+	return d_tag_background_style;
+}
 
-void TimeDomainDisplayPlot::setTagTextColor(QColor c) { d_tag_text_color = c; }
+void TimeDomainDisplayPlot::setTagTextColor(QColor c)
+{
+	d_tag_text_color = c;
+}
 
-void TimeDomainDisplayPlot::setTagBackgroundColor(QColor c) { d_tag_background_color = c; }
+void TimeDomainDisplayPlot::setTagBackgroundColor(QColor c)
+{
+	d_tag_background_color = c;
+}
 
-void TimeDomainDisplayPlot::setTagBackgroundStyle(Qt::BrushStyle b) { d_tag_background_style = b; }
+void TimeDomainDisplayPlot::setTagBackgroundStyle(Qt::BrushStyle b)
+{
+	d_tag_background_style = b;
+}
 
 void TimeDomainDisplayPlot::setZoomerEnabled(bool en)
 {
@@ -941,9 +986,15 @@ QColor TimeDomainDisplayPlot::getChannelColor()
 	return Qt::black;
 }
 
-bool TimeDomainDisplayPlot::isReferenceWaveform(QwtPlotCurve *curve) { return d_ref_curves.values().contains(curve); }
+bool TimeDomainDisplayPlot::isReferenceWaveform(QwtPlotCurve *curve)
+{
+	return d_ref_curves.values().contains(curve);
+}
 
-bool TimeDomainDisplayPlot::isMathWaveform(QwtPlotCurve *curve) const { return d_math_curves.values().contains(curve); }
+bool TimeDomainDisplayPlot::isMathWaveform(QwtPlotCurve *curve) const
+{
+	return d_math_curves.values().contains(curve);
+}
 
 int TimeDomainDisplayPlot::getCurveNextTo(int pos)
 {
@@ -1063,7 +1114,10 @@ void TimeDomainDisplayPlot::enableDigitalPlotCurve(int curveId, bool enable)
 	}
 }
 
-int TimeDomainDisplayPlot::getNrDigitalPlotCurves() const { return d_logic_curves.size(); }
+int TimeDomainDisplayPlot::getNrDigitalPlotCurves() const
+{
+	return d_logic_curves.size();
+}
 
 QwtPlotCurve *TimeDomainDisplayPlot::getDigitalPlotCurve(int curveId)
 {
@@ -1337,7 +1391,10 @@ void TimeDomainDisplayPlot::cancelZoom()
 	}
 }
 
-long TimeDomainDisplayPlot::dataStartingPoint() const { return d_data_starting_point; }
+long TimeDomainDisplayPlot::dataStartingPoint() const
+{
+	return d_data_starting_point;
+}
 
 void TimeDomainDisplayPlot::resetXaxisOnNextReceivedData()
 {
@@ -1345,7 +1402,10 @@ void TimeDomainDisplayPlot::resetXaxisOnNextReceivedData()
 		d_sink_reset_x_axis_pts[i] = true;
 }
 
-void TimeDomainDisplayPlot::setDataStartingPoint(long pos) { d_data_starting_point = pos; }
+void TimeDomainDisplayPlot::setDataStartingPoint(long pos)
+{
+	d_data_starting_point = pos;
+}
 
 void TimeDomainDisplayPlot::setLineWidthF(int which, qreal widthF)
 {

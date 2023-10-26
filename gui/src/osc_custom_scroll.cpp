@@ -76,7 +76,10 @@ OscCustomScrollArea::OscCustomScrollArea(QWidget *parent)
 	});
 }
 
-OscCustomScrollArea::~OscCustomScrollArea() { QScroller::ungrabGesture(this->viewport()); }
+OscCustomScrollArea::~OscCustomScrollArea()
+{
+	QScroller::ungrabGesture(this->viewport());
+}
 
 void OscCustomScrollArea::enterEvent(QEvent *event)
 {

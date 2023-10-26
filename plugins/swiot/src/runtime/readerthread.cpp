@@ -47,9 +47,15 @@ ReaderThread::ReaderThread(bool isBuffered, CommandQueue *cmdQueue, QObject *par
 	, m_bufferInvalid(false)
 {}
 
-ReaderThread::~ReaderThread() { forcedStop(); }
+ReaderThread::~ReaderThread()
+{
+	forcedStop();
+}
 
-void ReaderThread::addDioChannel(int index, struct iio_channel *channel) { m_dioChannels.insert(index, channel); }
+void ReaderThread::addDioChannel(int index, struct iio_channel *channel)
+{
+	m_dioChannels.insert(index, channel);
+}
 
 void ReaderThread::createDioChannelCommand(int index)
 {
@@ -101,7 +107,10 @@ void ReaderThread::runDio()
 	}
 }
 
-void ReaderThread::addBufferedDevice(iio_device *device) { m_iioDev = device; }
+void ReaderThread::addBufferedDevice(iio_device *device)
+{
+	m_iioDev = device;
+}
 
 void ReaderThread::initIioChannels()
 {
@@ -294,9 +303,15 @@ void ReaderThread::destroyIioBuffer()
 	}
 }
 
-void ReaderThread::onChnlsChange(QMap<int, ChnlInfo *> chnlsInfo) { m_chnlsInfo = chnlsInfo; }
+void ReaderThread::onChnlsChange(QMap<int, ChnlInfo *> chnlsInfo)
+{
+	m_chnlsInfo = chnlsInfo;
+}
 
-void ReaderThread::onSamplingFreqWritten(int samplingFreq) { m_samplingFreq = samplingFreq; }
+void ReaderThread::onSamplingFreqWritten(int samplingFreq)
+{
+	m_samplingFreq = samplingFreq;
+}
 
 void ReaderThread::runBuffered(int requiredBuffersNumber)
 {
@@ -353,7 +368,10 @@ void ReaderThread::startCapture(int requiredBuffersNumber)
 	}
 }
 
-void ReaderThread::singleDio() { this->runDio(); }
+void ReaderThread::singleDio()
+{
+	this->runDio();
+}
 
 void ReaderThread::forcedStop()
 {

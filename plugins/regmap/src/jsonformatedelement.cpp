@@ -11,15 +11,30 @@ JsonFormatedElement::JsonFormatedElement(QString fileName, QList<QString> *compa
 	, useBifieldDescriptionAsName(useBifieldDescriptionAsName)
 {}
 
-QString JsonFormatedElement::getFileName() const { return fileName; }
+QString JsonFormatedElement::getFileName() const
+{
+	return fileName;
+}
 
-QList<QString> *JsonFormatedElement::getCompatibleDevices() const { return compatibleDevices; }
+QList<QString> *JsonFormatedElement::getCompatibleDevices() const
+{
+	return compatibleDevices;
+}
 
-void JsonFormatedElement::addCompatibleDevice(QString device) { compatibleDevices->push_back(device); }
+void JsonFormatedElement::addCompatibleDevice(QString device)
+{
+	compatibleDevices->push_back(device);
+}
 
-bool JsonFormatedElement::getIsAxiCompatible() const { return isAxiCompatible; }
+bool JsonFormatedElement::getIsAxiCompatible() const
+{
+	return isAxiCompatible;
+}
 
-bool JsonFormatedElement::getUseBifieldNameAsDescription() const { return useBifieldDescriptionAsName; }
+bool JsonFormatedElement::getUseBifieldNameAsDescription() const
+{
+	return useBifieldDescriptionAsName;
+}
 
 QString JsonFormatedElement::toString()
 {
@@ -28,4 +43,7 @@ QString JsonFormatedElement::toString()
 		       useRegisterDescriptionAsName + " useBifieldDescriptionAsName: " + useBifieldDescriptionAsName);
 }
 
-bool JsonFormatedElement::getUseRegisterNameAsDescription() const { return useRegisterDescriptionAsName; }
+bool JsonFormatedElement::getUseRegisterNameAsDescription() const
+{
+	return useRegisterDescriptionAsName;
+}

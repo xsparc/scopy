@@ -73,9 +73,15 @@ void ScopyStatusBar::initUi()
 	hide();
 }
 
-void ScopyStatusBar::addToRight(QWidget *widget) { m_rightWidget->layout()->addWidget(widget); }
+void ScopyStatusBar::addToRight(QWidget *widget)
+{
+	m_rightWidget->layout()->addWidget(widget);
+}
 
-void ScopyStatusBar::addToLeft(QWidget *widget) { m_leftWidget->layout()->addWidget(widget); }
+void ScopyStatusBar::addToLeft(QWidget *widget)
+{
+	m_leftWidget->layout()->addWidget(widget);
+}
 
 void ScopyStatusBar::displayStatusMessage(StatusMessage *statusMessage)
 {

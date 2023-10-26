@@ -10,10 +10,19 @@ InstrumentNotes::InstrumentNotes(QWidget *parent)
 	ui->setupUi(this);
 }
 
-InstrumentNotes::~InstrumentNotes() { delete ui; }
+InstrumentNotes::~InstrumentNotes()
+{
+	delete ui;
+}
 
-QString InstrumentNotes::getNotes() { return ui->textEdit->toPlainText(); }
-void InstrumentNotes::setNotes(QString str) { ui->textEdit->setPlainText(str); }
+QString InstrumentNotes::getNotes()
+{
+	return ui->textEdit->toPlainText();
+}
+void InstrumentNotes::setNotes(QString str)
+{
+	ui->textEdit->setPlainText(str);
+}
 
 } // namespace scopy
 

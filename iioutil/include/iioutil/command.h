@@ -25,14 +25,23 @@ public:
 		m_cmdResult = nullptr;
 	};
 	virtual void execute() = 0;
-	virtual ssize_t getReturnCode() { return m_cmdResult->errorCode; }
-	virtual bool isOverwrite() { return m_overwrite; }
+	virtual ssize_t getReturnCode()
+	{
+		return m_cmdResult->errorCode;
+	}
+	virtual bool isOverwrite()
+	{
+		return m_overwrite;
+	}
 Q_SIGNALS:
 	void started(scopy::Command *command = nullptr);
 	void finished(scopy::Command *command = nullptr);
 
 protected:
-	void setOverwrite(bool overwrite) { m_overwrite = overwrite; }
+	void setOverwrite(bool overwrite)
+	{
+		m_overwrite = overwrite;
+	}
 
 protected:
 	CommandResult *m_cmdResult = nullptr;

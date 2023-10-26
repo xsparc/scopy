@@ -99,7 +99,10 @@ xy_sink_c_impl::~xy_sink_c_impl()
 	}
 }
 
-bool xy_sink_c_impl::check_topology(int ninputs, int noutputs) { return ninputs == d_nconnections; }
+bool xy_sink_c_impl::check_topology(int ninputs, int noutputs)
+{
+	return ninputs == d_nconnections;
+}
 
 void xy_sink_c_impl::initialize()
 {
@@ -111,7 +114,10 @@ void xy_sink_c_impl::initialize()
 	set_update_time(1 / 60.0);
 }
 
-void xy_sink_c_impl::exec_() { d_qApplication->exec(); }
+void xy_sink_c_impl::exec_()
+{
+	d_qApplication->exec();
+}
 
 void xy_sink_c_impl::set_update_time(double t)
 {
@@ -149,7 +155,10 @@ void xy_sink_c_impl::set_nsamps(const int newsize)
 	}
 }
 
-int xy_sink_c_impl::nsamps() const { return d_size; }
+int xy_sink_c_impl::nsamps() const
+{
+	return d_size;
+}
 
 void xy_sink_c_impl::reset()
 {

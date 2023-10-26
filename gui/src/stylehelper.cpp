@@ -928,13 +928,25 @@ void StyleHelper::TabWidgetEastMenu(QTabWidget *w, QString objectName)
 	w->tabBar()->setStyleSheet(style);
 }
 
-void StyleHelper::MenuComboLabel(QLabel *w, QString objectName) { StyleHelper::MenuSmallLabel(w, objectName); }
+void StyleHelper::MenuComboLabel(QLabel *w, QString objectName)
+{
+	StyleHelper::MenuSmallLabel(w, objectName);
+}
 
-void StyleHelper::MenuHeaderLabel(QLabel *w, QString objectName) { StyleHelper::MenuLargeLabel(w, objectName); }
+void StyleHelper::MenuHeaderLabel(QLabel *w, QString objectName)
+{
+	StyleHelper::MenuLargeLabel(w, objectName);
+}
 
-void StyleHelper::MenuControlLabel(QLabel *w, QString objectName) { StyleHelper::MenuMediumLabel(w, objectName); }
+void StyleHelper::MenuControlLabel(QLabel *w, QString objectName)
+{
+	StyleHelper::MenuMediumLabel(w, objectName);
+}
 
-void StyleHelper::MenuOnOffSwitchLabel(QLabel *w, QString objectName) { StyleHelper::MenuSmallLabel(w, objectName); }
+void StyleHelper::MenuOnOffSwitchLabel(QLabel *w, QString objectName)
+{
+	StyleHelper::MenuSmallLabel(w, objectName);
+}
 
 void StyleHelper::MenuCollapseHeaderLabel(QLabel *w, QString objectName)
 {

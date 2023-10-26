@@ -22,9 +22,15 @@ public:
 		m_cmdResult = new CommandResult();
 	}
 
-	virtual ~TestCommandCounter() { qDebug() << "TestCommandCounter deleted"; }
+	virtual ~TestCommandCounter()
+	{
+		qDebug() << "TestCommandCounter deleted";
+	}
 
-	virtual void execute() override { m_commandCounter++; }
+	virtual void execute() override
+	{
+		m_commandCounter++;
+	}
 
 public:
 	static std::atomic<int> m_commandCounter;
@@ -43,7 +49,10 @@ public:
 		m_cmdResult = new CommandResult();
 	}
 
-	virtual ~TestCommandAdd() { qDebug() << "TestCommand deleted"; }
+	virtual ~TestCommandAdd()
+	{
+		qDebug() << "TestCommand deleted";
+	}
 
 	virtual void execute() override
 	{
@@ -68,7 +77,10 @@ public:
 		m_cmdResult = new CommandResult();
 	}
 
-	virtual ~TestCommandMultiply() { qDebug() << "TestCommandMultiply deleted"; }
+	virtual ~TestCommandMultiply()
+	{
+		qDebug() << "TestCommandMultiply deleted";
+	}
 
 	virtual void execute() override
 	{
@@ -79,7 +91,10 @@ public:
 		Q_EMIT finished(this);
 	}
 
-	std::string getResult() { return std::string((char *)m_cmdResult->results); }
+	std::string getResult()
+	{
+		return std::string((char *)m_cmdResult->results);
+	}
 
 private:
 	int m_a, m_b;
@@ -116,7 +131,10 @@ public:
 		Q_EMIT finished(this);
 	}
 
-	QPushButton *getResult() { return static_cast<QPushButton *>(m_cmdResult->results); }
+	QPushButton *getResult()
+	{
+		return static_cast<QPushButton *>(m_cmdResult->results);
+	}
 
 private:
 	int m_sleep;

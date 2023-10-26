@@ -37,7 +37,10 @@ RegisterMapTable::RegisterMapTable(QMap<uint32_t, RegisterModel *> *registerMode
 	Q_EMIT recyclerView->requestInit();
 }
 
-QWidget *RegisterMapTable::getWidget() { return recyclerView; }
+QWidget *RegisterMapTable::getWidget()
+{
+	return recyclerView;
+}
 
 void RegisterMapTable::setFilters(QList<uint32_t> filters)
 {

@@ -26,7 +26,10 @@ public:
 		Q_EMIT finished(this);
 	}
 
-	iio_device *getResult() { return static_cast<iio_device *>(m_cmdResult->results); }
+	iio_device *getResult()
+	{
+		return static_cast<iio_device *>(m_cmdResult->results);
+	}
 
 private:
 	struct iio_device *m_device;

@@ -833,7 +833,10 @@ SpectrumAnalyzer::~SpectrumAnalyzer()
 	delete ui;
 }
 
-QPushButton *SpectrumAnalyzer::getRunButton() { return ui->runSingleWidget->getRunButton(); }
+QPushButton *SpectrumAnalyzer::getRunButton()
+{
+	return ui->runSingleWidget->getRunButton();
+}
 
 void SpectrumAnalyzer::setNativeDialogs(bool nativeDialogs)
 {
@@ -1361,7 +1364,10 @@ int SpectrumAnalyzer::activeMeasurementsCount(int chnIdx)
 	return count;
 }
 
-bool SpectrumAnalyzer::measurementsEnabled() { return d_measurementsEnabled; }
+bool SpectrumAnalyzer::measurementsEnabled()
+{
+	return d_measurementsEnabled;
+}
 
 void SpectrumAnalyzer::setMeasuremensEnabled(bool en)
 {
@@ -1432,7 +1438,10 @@ void SpectrumAnalyzer::onNewDataReceived()
 	Q_EMIT measurementsAvailable();
 }
 
-void SpectrumAnalyzer::onMeasuremetsAvailable() { measureUpdateValues(); }
+void SpectrumAnalyzer::onMeasuremetsAvailable()
+{
+	measureUpdateValues();
+}
 
 void SpectrumAnalyzer::measureUpdateValues()
 {
@@ -1759,7 +1768,10 @@ void SpectrumAnalyzer::toggleCursorsMode(bool toggled)
 	fft_plot->trackModeEnabled(toggled);
 }
 
-void SpectrumAnalyzer::onCursorReadoutsChanged(struct cursorReadoutsText data) { fillCursorReadouts(data); }
+void SpectrumAnalyzer::onCursorReadoutsChanged(struct cursorReadoutsText data)
+{
+	fillCursorReadouts(data);
+}
 
 void SpectrumAnalyzer::fillCursorReadouts(const struct cursorReadoutsText &data)
 {
@@ -2834,7 +2846,10 @@ void SpectrumAnalyzer::refreshCurrentSampleLabel()
 	setCurrentSampleLabel(time_percentage);
 }
 
-void SpectrumAnalyzer::validateSpinboxAveraging() { on_spinBox_averaging_valueChanged(ui->spinBox_averaging->value()); }
+void SpectrumAnalyzer::validateSpinboxAveraging()
+{
+	on_spinBox_averaging_valueChanged(ui->spinBox_averaging->value());
+}
 
 void SpectrumAnalyzer::setCurrentSampleLabel(double percentage)
 {
@@ -3043,9 +3058,15 @@ void SpectrumAnalyzer::updateMrkFreqPosSpinBtnValue()
 	}
 }
 
-void SpectrumAnalyzer::onPlotSampleRateUpdated(double) { updateMrkFreqPosSpinBtnLimits(); }
+void SpectrumAnalyzer::onPlotSampleRateUpdated(double)
+{
+	updateMrkFreqPosSpinBtnLimits();
+}
 
-void SpectrumAnalyzer::onPlotSampleCountUpdated(uint) { updateMrkFreqPosSpinBtnLimits(); }
+void SpectrumAnalyzer::onPlotSampleCountUpdated(uint)
+{
+	updateMrkFreqPosSpinBtnLimits();
+}
 
 void SpectrumAnalyzer::singleCaptureDone()
 {
@@ -3371,15 +3392,30 @@ SpectrumChannel::SpectrumChannel(int id, const QString &name, FftDisplayPlot *pl
 	m_widget->nameButton()->setText(m_widget->shortName());
 }
 
-bool SpectrumChannel::isSettingsOn() const { return m_widget->menuButton()->isChecked(); }
+bool SpectrumChannel::isSettingsOn() const
+{
+	return m_widget->menuButton()->isChecked();
+}
 
-void SpectrumChannel::setSettingsOn(bool on) { m_widget->enableButton()->setChecked(on); }
+void SpectrumChannel::setSettingsOn(bool on)
+{
+	m_widget->enableButton()->setChecked(on);
+}
 
-float SpectrumChannel::lineWidth() const { return m_line_width; }
+float SpectrumChannel::lineWidth() const
+{
+	return m_line_width;
+}
 
-void SpectrumChannel::setLinewidth(float width) { m_line_width = width; }
+void SpectrumChannel::setLinewidth(float width)
+{
+	m_line_width = width;
+}
 
-QColor SpectrumChannel::color() const { return m_color; }
+QColor SpectrumChannel::color() const
+{
+	return m_color;
+}
 
 void SpectrumChannel::setColor(const QColor &color)
 {
@@ -3387,7 +3423,10 @@ void SpectrumChannel::setColor(const QColor &color)
 	m_color = color;
 }
 
-uint SpectrumChannel::averaging() const { return m_averaging; }
+uint SpectrumChannel::averaging() const
+{
+	return m_averaging;
+}
 
 void SpectrumChannel::setAveraging(uint averaging)
 {
@@ -3395,11 +3434,20 @@ void SpectrumChannel::setAveraging(uint averaging)
 	m_plot->setAverage(m_id, m_avg_type, averaging, m_average_history);
 }
 
-uint SpectrumChannel::averageIdx() const { return m_average_current_index; }
+uint SpectrumChannel::averageIdx() const
+{
+	return m_average_current_index;
+}
 
-void SpectrumChannel::setAverageIdx(uint avg) { m_average_current_index = avg; }
+void SpectrumChannel::setAverageIdx(uint avg)
+{
+	m_average_current_index = avg;
+}
 
-FftDisplayPlot::AverageType SpectrumChannel::averageType() const { return m_avg_type; }
+FftDisplayPlot::AverageType SpectrumChannel::averageType() const
+{
+	return m_avg_type;
+}
 
 bool SpectrumChannel::canStoreAverageHistory() const
 {
@@ -3419,9 +3467,15 @@ void SpectrumChannel::setGainMode(int index)
 	m_gain_mode = index == 0 ? libm2k::analog::PLUS_MINUS_25V : libm2k::analog::PLUS_MINUS_2_5V;
 }
 
-libm2k::analog::M2K_RANGE SpectrumChannel::getGainMode() { return m_gain_mode; }
+libm2k::analog::M2K_RANGE SpectrumChannel::getGainMode()
+{
+	return m_gain_mode;
+}
 
-bool SpectrumChannel::isAverageHistoryEnabled() const { return m_average_history; }
+bool SpectrumChannel::isAverageHistoryEnabled() const
+{
+	return m_average_history;
+}
 
 void SpectrumChannel::setAverageHistoryEnabled(bool enabled)
 {
@@ -3462,7 +3516,10 @@ void SpectrumChannel::setFftWindow(SpectrumAnalyzer::FftWinType win, int taps)
 	Q_EMIT FftWindowChanged(window, id());
 }
 
-SpectrumAnalyzer::FftWinType SpectrumChannel::fftWindow() const { return m_fft_win; }
+SpectrumAnalyzer::FftWinType SpectrumChannel::fftWindow() const
+{
+	return m_fft_win;
+}
 
 std::vector<float> SpectrumChannel::build_win(SpectrumAnalyzer::FftWinType type, int ntaps)
 {
@@ -3494,7 +3551,10 @@ std::vector<float> SpectrumChannel::build_win(SpectrumAnalyzer::FftWinType type,
 	}
 }
 
-std::vector<float> SpectrumChannel::getWindow() { return d_window; }
+std::vector<float> SpectrumChannel::getWindow()
+{
+	return d_window;
+}
 
 double SpectrumChannel::win_overlap_factor(SpectrumAnalyzer::FftWinType type)
 {

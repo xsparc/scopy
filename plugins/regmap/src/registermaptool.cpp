@@ -80,7 +80,10 @@ RegisterMapTool::RegisterMapTool(QWidget *parent)
 		->changeSize(0, 0, QSizePolicy::Fixed, QSizePolicy::Fixed);
 }
 
-RegisterMapTool::~RegisterMapTool() { delete tabs; }
+RegisterMapTool::~RegisterMapTool()
+{
+	delete tabs;
+}
 
 void RegisterMapTool::addTab(iio_device *dev, QString title, QString xmlPath)
 {
@@ -99,9 +102,15 @@ void RegisterMapTool::addTab(iio_device *dev, QString title, QString xmlPath)
 	}
 }
 
-void RegisterMapTool::addTab(iio_device *dev, QString title) { addTab(dev, title, ""); }
+void RegisterMapTool::addTab(iio_device *dev, QString title)
+{
+	addTab(dev, title, "");
+}
 
-void RegisterMapTool::addTab(QString filePath, QString title) { addTab(nullptr, title, filePath); }
+void RegisterMapTool::addTab(QString filePath, QString title)
+{
+	addTab(nullptr, title, filePath);
+}
 
 RegisterMapValues *RegisterMapTool::getRegisterMapValues(iio_device *dev)
 {
@@ -191,4 +200,7 @@ void RegisterMapTool::updateActiveRegisterMap(QString registerName)
 	}
 }
 
-void RegisterMapTool::toggleSearchBarVisible(bool visible) { searchBarWidget->setVisible(visible); }
+void RegisterMapTool::toggleSearchBarVisible(bool visible)
+{
+	searchBarWidget->setVisible(visible);
+}

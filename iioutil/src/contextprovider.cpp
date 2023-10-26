@@ -34,7 +34,10 @@ ContextProvider::ContextProvider(QObject *parent)
 	qDebug(CAT_CTXMGR) << "ctor";
 }
 
-ContextProvider::~ContextProvider() { qDebug(CAT_CTXMGR) << "dtor"; }
+ContextProvider::~ContextProvider()
+{
+	qDebug(CAT_CTXMGR) << "dtor";
+}
 
 ContextProvider *ContextProvider::GetInstance()
 {

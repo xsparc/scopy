@@ -76,7 +76,10 @@ public:
 
 	// Check if the point is on the curve. When invoked by the CapturePlot
 	// this point is already mapped to the plot's bounds.
-	virtual bool testHit(const QPointF &p) const { return false; }
+	virtual bool testHit(const QPointF &p) const
+	{
+		return false;
+	}
 
 	// Map screen point to curve point
 	QPointF screenPosToCurvePoint(const QPoint &pos) const;

@@ -947,7 +947,10 @@ void LogicAnalyzer::disableMixedSignalView()
 
 void LogicAnalyzer::addCurveToPlot(QwtPlotCurve *curve) {}
 
-QwtPlot *LogicAnalyzer::getCurrentPlot() { return nullptr; }
+QwtPlot *LogicAnalyzer::getCurrentPlot()
+{
+	return nullptr;
+}
 
 void LogicAnalyzer::connectSignalsAndSlotsForPlot(CapturePlot *plot) {}
 
@@ -1462,7 +1465,10 @@ void LogicAnalyzer::clearFilter()
 	filterCount = 0;
 }
 
-bool LogicAnalyzer::getTableInfo() { return m_tableInfo; }
+bool LogicAnalyzer::getTableInfo()
+{
+	return m_tableInfo;
+}
 
 bool LogicAnalyzer::setPrimaryAnntations(int column, int index)
 {
@@ -1493,11 +1499,20 @@ bool LogicAnalyzer::setPrimaryAnntations(int column, int index)
 	return changed;
 }
 
-QComboBox *LogicAnalyzer::getDecoderComboBox() { return ui->DecoderComboBox; }
+QComboBox *LogicAnalyzer::getDecoderComboBox()
+{
+	return ui->DecoderComboBox;
+}
 
-void LogicAnalyzer::enableRunButton(bool flag) { ui->runSingleWidget->getRunButton()->setEnabled(flag); }
+void LogicAnalyzer::enableRunButton(bool flag)
+{
+	ui->runSingleWidget->getRunButton()->setEnabled(flag);
+}
 
-void LogicAnalyzer::enableSingleButton(bool flag) { ui->runSingleWidget->getSingleButton()->setEnabled(flag); }
+void LogicAnalyzer::enableSingleButton(bool flag)
+{
+	ui->runSingleWidget->getSingleButton()->setEnabled(flag);
+}
 
 void LogicAnalyzer::emitSearchSignal(int index)
 {
@@ -1559,9 +1574,15 @@ void LogicAnalyzer::waitForDecoders()
 	setStatusLabel("");
 }
 
-int LogicAnalyzer::getGroupSize() { return (ui->groupSizeSpinBox->value() != 0) ? ui->groupSizeSpinBox->value() : 1; }
+int LogicAnalyzer::getGroupSize()
+{
+	return (ui->groupSizeSpinBox->value() != 0) ? ui->groupSizeSpinBox->value() : 1;
+}
 
-int LogicAnalyzer::getGroupOffset() { return ui->groupOffsetSpinBox->value(); }
+int LogicAnalyzer::getGroupOffset()
+{
+	return ui->groupOffsetSpinBox->value();
+}
 
 void LogicAnalyzer::setMaxGroupValues(int value)
 {
@@ -1572,7 +1593,10 @@ void LogicAnalyzer::setMaxGroupValues(int value)
 	ui->groupOffsetSpinBox->setMinimum(0);
 }
 
-void LogicAnalyzer::setStatusLabel(QString text) { ui->statusLabel->setText(text); }
+void LogicAnalyzer::setStatusLabel(QString text)
+{
+	ui->statusLabel->setText(text);
+}
 
 void LogicAnalyzer::activateRunButton(bool en)
 {

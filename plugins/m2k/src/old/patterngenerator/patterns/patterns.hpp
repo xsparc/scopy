@@ -187,10 +187,19 @@ public:
 	virtual void destroy_ui();
 
 public: // Decoder related
-	virtual GenericLogicPlotCurve *getAnnotationCurve() { return nullptr; }
-	virtual std::shared_ptr<scopy::logic::Decoder> getDecoder() { return nullptr; }
+	virtual GenericLogicPlotCurve *getAnnotationCurve()
+	{
+		return nullptr;
+	}
+	virtual std::shared_ptr<scopy::logic::Decoder> getDecoder()
+	{
+		return nullptr;
+	}
 	virtual void setAnnotationCurve(GenericLogicPlotCurve *curve) {}
-	virtual QVector<int> getChannelsToAssign() { return {}; }
+	virtual QVector<int> getChannelsToAssign()
+	{
+		return {};
+	}
 
 Q_SIGNALS:
 	void patternParamsChanged();

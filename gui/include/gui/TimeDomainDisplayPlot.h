@@ -61,11 +61,23 @@ public:
 		, d_channelsDataLength(channelsDataLength)
 	{}
 
-	std::string name() { return d_name; }
-	unsigned int numChannels() { return d_numChannels; }
-	unsigned int channelsDataLength() { return d_channelsDataLength; }
+	std::string name()
+	{
+		return d_name;
+	}
+	unsigned int numChannels()
+	{
+		return d_numChannels;
+	}
+	unsigned int channelsDataLength()
+	{
+		return d_channelsDataLength;
+	}
 
-	void setChannelsDataLength(unsigned long long num) { d_channelsDataLength = num; }
+	void setChannelsDataLength(unsigned long long num)
+	{
+		d_channelsDataLength = num;
+	}
 
 private:
 	std::string d_name;

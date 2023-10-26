@@ -67,11 +67,20 @@ BaseMenuItem::~BaseMenuItem()
 	delete d_ui;
 }
 
-void BaseMenuItem::setWidget(QWidget *widget) { d_ui->contentsLayout->addWidget(widget); }
+void BaseMenuItem::setWidget(QWidget *widget)
+{
+	d_ui->contentsLayout->addWidget(widget);
+}
 
-int BaseMenuItem::position() const { return d_position; }
+int BaseMenuItem::position() const
+{
+	return d_position;
+}
 
-void BaseMenuItem::setPosition(int position) { d_position = position; }
+void BaseMenuItem::setPosition(int position)
+{
+	d_position = position;
+}
 
 void BaseMenuItem::mousePressEvent(QMouseEvent *event)
 {
@@ -192,9 +201,15 @@ void BaseMenuItem::dropEvent(QDropEvent *event)
 	}
 }
 
-void BaseMenuItem::enterEvent(QEvent *event) { event->accept(); }
+void BaseMenuItem::enterEvent(QEvent *event)
+{
+	event->accept();
+}
 
-void BaseMenuItem::leaveEvent(QEvent *event) { event->accept(); }
+void BaseMenuItem::leaveEvent(QEvent *event)
+{
+	event->accept();
+}
 
 void BaseMenuItem::setDragWidget(QWidget *widget)
 {
@@ -217,16 +232,34 @@ bool BaseMenuItem::eventFilter(QObject *watched, QEvent *event)
 	return QWidget::eventFilter(watched, event);
 }
 
-BaseMenu *BaseMenuItem::getOwner() const { return d_menu; }
+BaseMenu *BaseMenuItem::getOwner() const
+{
+	return d_menu;
+}
 
-void BaseMenuItem::setOwner(BaseMenu *menu) { d_menu = menu; }
+void BaseMenuItem::setOwner(BaseMenu *menu)
+{
+	d_menu = menu;
+}
 
-void BaseMenuItem::_enableBotSeparator(bool enable) { d_ui->botSep->setVisible(enable); }
+void BaseMenuItem::_enableBotSeparator(bool enable)
+{
+	d_ui->botSep->setVisible(enable);
+}
 
-void BaseMenuItem::_enableTopSeparator(bool enable) { d_ui->topSep->setVisible(enable); }
+void BaseMenuItem::_enableTopSeparator(bool enable)
+{
+	d_ui->topSep->setVisible(enable);
+}
 
-bool BaseMenuItem::draggable() const { return d_draggable; }
+bool BaseMenuItem::draggable() const
+{
+	return d_draggable;
+}
 
-void BaseMenuItem::setDraggable(bool newDraggable) { d_draggable = newDraggable; }
+void BaseMenuItem::setDraggable(bool newDraggable)
+{
+	d_draggable = newDraggable;
+}
 
 #include "moc_basemenuitem.cpp"

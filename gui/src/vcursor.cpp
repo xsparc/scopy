@@ -49,7 +49,10 @@ void VCursor::setCanLeavePlot(bool leave)
 	m_cursorBar->setCanLeavePlot(m_canLeavePlot);
 }
 
-double VCursor::getPosition() { return static_cast<HorizBar *>(m_cursorBar)->getPosition(); }
+double VCursor::getPosition()
+{
+	return static_cast<HorizBar *>(m_cursorBar)->getPosition();
+}
 
 void VCursor::setPosition(double pos)
 {

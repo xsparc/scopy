@@ -117,9 +117,15 @@ void RegisterController::registerChanged(uint32_t address)
 	}
 }
 
-void RegisterController::registerValueChanged(QString value) { regValue->setText(value); }
+void RegisterController::registerValueChanged(QString value)
+{
+	regValue->setText(value);
+}
 
-QString RegisterController::getAddress() { return addressPicker->text(); }
+QString RegisterController::getAddress()
+{
+	return addressPicker->text();
+}
 
 void RegisterController::setHasMap(bool hasMap)
 {

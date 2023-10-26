@@ -37,9 +37,15 @@ public:
 		Q_EMIT finished(this);
 	}
 
-	uint32_t getResult() { return *(uint32_t *)m_cmdResult->results; }
+	uint32_t getResult()
+	{
+		return *(uint32_t *)m_cmdResult->results;
+	}
 
-	uint32_t getRegisterAddress() { return m_registerAddress; }
+	uint32_t getRegisterAddress()
+	{
+		return m_registerAddress;
+	}
 
 private:
 	struct iio_device *m_device;

@@ -13,9 +13,15 @@ DataLoggerModel::DataLoggerModel()
 			 [=]() { QtConcurrent::run(this, &DataLoggerModel::logData); });
 }
 
-void DataLoggerModel::setPath(QString path) { m_path = path; }
+void DataLoggerModel::setPath(QString path)
+{
+	m_path = path;
+}
 
-void DataLoggerModel::setTimerInterval(double interval) { m_timer->setInterval(interval); }
+void DataLoggerModel::setTimerInterval(double interval)
+{
+	m_timer->setInterval(interval);
+}
 
 void DataLoggerModel::startLogger(bool overwrite)
 {
@@ -56,11 +62,20 @@ void DataLoggerModel::createChannel(QString name, CHANNEL_DATA_TYPE type, CHANNE
 	m_channels[name].filter = filter;
 }
 
-void DataLoggerModel::destroyChannel(QString name) { m_channels.remove(name); }
+void DataLoggerModel::destroyChannel(QString name)
+{
+	m_channels.remove(name);
+}
 
-void DataLoggerModel::resetChannel(QString name) { m_channels[name].values.clear(); }
+void DataLoggerModel::resetChannel(QString name)
+{
+	m_channels[name].values.clear();
+}
 
-void DataLoggerModel::receiveValue(QString name, QString value) { m_channels[name].values.push_back(value); }
+void DataLoggerModel::receiveValue(QString name, QString value)
+{
+	m_channels[name].values.push_back(value);
+}
 
 void DataLoggerModel::logData()
 {
@@ -128,4 +143,7 @@ bool DataLoggerModel::isNumber(const QString &str)
 	return true;
 }
 
-DataLoggerModel::~DataLoggerModel() { delete m_timer; }
+DataLoggerModel::~DataLoggerModel()
+{
+	delete m_timer;
+}

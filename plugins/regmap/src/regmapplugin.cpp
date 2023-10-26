@@ -203,9 +203,15 @@ void RegmapPlugin::initMetadata()
 )plugin");
 }
 
-QString RegmapPlugin::description() { return "Register map tool"; }
+QString RegmapPlugin::description()
+{
+	return "Register map tool";
+}
 
-QWidget *RegmapPlugin::getTool() { return m_registerMapWidget; }
+QWidget *RegmapPlugin::getTool()
+{
+	return m_registerMapWidget;
+}
 
 struct iio_device *RegmapPlugin::getIioDevice(iio_context *ctx, const char *dev_name)
 {

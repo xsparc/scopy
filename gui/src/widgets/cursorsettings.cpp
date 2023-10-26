@@ -75,16 +75,34 @@ void CursorSettings::connectSignals()
 	});
 }
 
-QAbstractButton *CursorSettings::getHorizEn() { return horizEn->onOffswitch(); }
+QAbstractButton *CursorSettings::getHorizEn()
+{
+	return horizEn->onOffswitch();
+}
 
-QAbstractButton *CursorSettings::getHorizLock() { return horizLock->onOffswitch(); }
+QAbstractButton *CursorSettings::getHorizLock()
+{
+	return horizLock->onOffswitch();
+}
 
-QAbstractButton *CursorSettings::getHorizTrack() { return horizTrack->onOffswitch(); }
+QAbstractButton *CursorSettings::getHorizTrack()
+{
+	return horizTrack->onOffswitch();
+}
 
-QAbstractButton *CursorSettings::getVertEn() { return vertEn->onOffswitch(); }
+QAbstractButton *CursorSettings::getVertEn()
+{
+	return vertEn->onOffswitch();
+}
 
-QAbstractButton *CursorSettings::getVertLock() { return vertLock->onOffswitch(); }
+QAbstractButton *CursorSettings::getVertLock()
+{
+	return vertLock->onOffswitch();
+}
 
-QAbstractButton *CursorSettings::getReadoutsDrag() { return readoutsDrag->onOffswitch(); }
+QAbstractButton *CursorSettings::getReadoutsDrag()
+{
+	return readoutsDrag->onOffswitch();
+}
 
 #include "moc_cursorsettings.cpp"

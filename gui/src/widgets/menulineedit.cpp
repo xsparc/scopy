@@ -19,7 +19,10 @@ MenuLineEdit::MenuLineEdit(QWidget *parent)
 
 MenuLineEdit::~MenuLineEdit() {}
 
-QLineEdit *MenuLineEdit::edit() { return m_edit; }
+QLineEdit *MenuLineEdit::edit()
+{
+	return m_edit;
+}
 
 void MenuLineEdit::applyStylesheet()
 {

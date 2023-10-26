@@ -56,7 +56,10 @@ void TST_SWIOTPlugin::fileExists()
 	QVERIFY(ret);
 }
 
-void TST_SWIOTPlugin::isLibrary() { QVERIFY(QLibrary::isLibrary(FILENAME)); }
+void TST_SWIOTPlugin::isLibrary()
+{
+	QVERIFY(QLibrary::isLibrary(FILENAME));
+}
 
 void TST_SWIOTPlugin::className()
 {

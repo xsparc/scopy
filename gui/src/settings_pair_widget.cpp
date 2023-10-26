@@ -11,10 +11,19 @@ SettingsPairWidget::SettingsPairWidget(QWidget *parent)
 	m_ui->setupUi(this);
 }
 
-SettingsPairWidget::~SettingsPairWidget() { delete m_ui; }
+SettingsPairWidget::~SettingsPairWidget()
+{
+	delete m_ui;
+}
 
-CustomPushButton *SettingsPairWidget::getGeneralSettingsBtn() { return m_ui->btnGenSettings; }
+CustomPushButton *SettingsPairWidget::getGeneralSettingsBtn()
+{
+	return m_ui->btnGenSettings;
+}
 
-QPushButton *SettingsPairWidget::getSettingsBtn() { return m_ui->btnSettings; }
+QPushButton *SettingsPairWidget::getSettingsBtn()
+{
+	return m_ui->btnSettings;
+}
 
 #include "moc_settings_pair_widget.cpp"

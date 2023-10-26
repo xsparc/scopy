@@ -56,7 +56,10 @@ void DetachDragZone::dragEnterEvent(QDragEnterEvent *event)
 	event->accept();
 }
 
-void DetachDragZone::dragMoveEvent(QDragMoveEvent *event) { event->accept(); }
+void DetachDragZone::dragMoveEvent(QDragMoveEvent *event)
+{
+	event->accept();
+}
 
 void DetachDragZone::dragLeaveEvent(QDragLeaveEvent *event)
 {

@@ -78,11 +78,20 @@ public:
 
 	~WaterfallZoomer() override {}
 
-	virtual void updateTrackerText() { updateDisplay(); }
+	virtual void updateTrackerText()
+	{
+		updateDisplay();
+	}
 
-	void setUnitType(const std::string &type) { d_unitType = type; }
+	void setUnitType(const std::string &type)
+	{
+		d_unitType = type;
+	}
 
-	void setCenterTime(double value) { centerTime = value; }
+	void setCenterTime(double value)
+	{
+		centerTime = value;
+	}
 
 protected:
 	using QwtPlotZoomer::trackerText;
@@ -465,7 +474,10 @@ void WaterfallDisplayPlot::autoScale()
 	setIntensityRange(d_min_val, d_max_val);
 }
 
-void WaterfallDisplayPlot::setCenterFrequency(const double freq) { d_center_frequency = freq; }
+void WaterfallDisplayPlot::setCenterFrequency(const double freq)
+{
+	d_center_frequency = freq;
+}
 
 void WaterfallDisplayPlot::setFrequencyRange(const double centerfreq, const double bandwidth, const double units,
 					     const std::string &strunits)
@@ -513,7 +525,10 @@ WaterfallFlowDirection WaterfallDisplayPlot::getFlowDirection() const
 	return direction;
 }
 
-int WaterfallDisplayPlot::getEnabledChannelID() { return enabledChannelID; }
+int WaterfallDisplayPlot::getEnabledChannelID()
+{
+	return enabledChannelID;
+}
 
 void WaterfallDisplayPlot::setFlowDirection(WaterfallFlowDirection direction)
 {
@@ -523,13 +538,25 @@ void WaterfallDisplayPlot::setFlowDirection(WaterfallFlowDirection direction)
 	}
 }
 
-void WaterfallDisplayPlot::setResolutionBW(double value) { d_resolution_bw = value; }
+void WaterfallDisplayPlot::setResolutionBW(double value)
+{
+	d_resolution_bw = value;
+}
 
-double WaterfallDisplayPlot::getStartFrequency() const { return d_start_frequency; }
+double WaterfallDisplayPlot::getStartFrequency() const
+{
+	return d_start_frequency;
+}
 
-double WaterfallDisplayPlot::getResolutionBW() const { return d_resolution_bw; }
+double WaterfallDisplayPlot::getResolutionBW() const
+{
+	return d_resolution_bw;
+}
 
-double WaterfallDisplayPlot::getStopFrequency() const { return d_stop_frequency; }
+double WaterfallDisplayPlot::getStopFrequency() const
+{
+	return d_stop_frequency;
+}
 
 void WaterfallDisplayPlot::plotNewData(const std::vector<double *> &dataPoints, const int64_t numDataPoints,
 				       gr::high_res_timer_type acquisitionTime)
@@ -668,9 +695,15 @@ double WaterfallDisplayPlot::getMaxIntensity(unsigned int which) const
 	return r.maxValue();
 }
 
-int WaterfallDisplayPlot::getColorMapTitleFontSize() const { return d_color_bar_title_font_size; }
+int WaterfallDisplayPlot::getColorMapTitleFontSize() const
+{
+	return d_color_bar_title_font_size;
+}
 
-void WaterfallDisplayPlot::setColorMapTitleFontSize(int tfs) { d_color_bar_title_font_size = tfs; }
+void WaterfallDisplayPlot::setColorMapTitleFontSize(int tfs)
+{
+	d_color_bar_title_font_size = tfs;
+}
 
 void WaterfallDisplayPlot::replot()
 {
@@ -810,29 +843,50 @@ void WaterfallDisplayPlot::setIntensityColorMapType1(int newType)
 	setIntensityColorMapType(0, newType, d_user_defined_low_intensity_color, d_user_defined_high_intensity_color);
 }
 
-int WaterfallDisplayPlot::getIntensityColorMapType1() const { return getIntensityColorMapType(0); }
+int WaterfallDisplayPlot::getIntensityColorMapType1() const
+{
+	return getIntensityColorMapType(0);
+}
 
-void WaterfallDisplayPlot::setUserDefinedLowIntensityColor(QColor c) { d_user_defined_low_intensity_color = c; }
+void WaterfallDisplayPlot::setUserDefinedLowIntensityColor(QColor c)
+{
+	d_user_defined_low_intensity_color = c;
+}
 
 const QColor WaterfallDisplayPlot::getUserDefinedLowIntensityColor() const
 {
 	return d_user_defined_low_intensity_color;
 }
 
-void WaterfallDisplayPlot::setUserDefinedHighIntensityColor(QColor c) { d_user_defined_high_intensity_color = c; }
+void WaterfallDisplayPlot::setUserDefinedHighIntensityColor(QColor c)
+{
+	d_user_defined_high_intensity_color = c;
+}
 
 const QColor WaterfallDisplayPlot::getUserDefinedHighIntensityColor() const
 {
 	return d_user_defined_high_intensity_color;
 }
 
-int WaterfallDisplayPlot::getAlpha(unsigned int which) { return d_spectrogram[which]->alpha(); }
+int WaterfallDisplayPlot::getAlpha(unsigned int which)
+{
+	return d_spectrogram[which]->alpha();
+}
 
-void WaterfallDisplayPlot::setAlpha(unsigned int which, int alpha) { d_spectrogram[which]->setAlpha(alpha); }
+void WaterfallDisplayPlot::setAlpha(unsigned int which, int alpha)
+{
+	d_spectrogram[which]->setAlpha(alpha);
+}
 
-int WaterfallDisplayPlot::getNumRows() const { return d_nrows; }
+int WaterfallDisplayPlot::getNumRows() const
+{
+	return d_nrows;
+}
 
-void WaterfallDisplayPlot::enableChannel(int id) { enabledChannelID = id; }
+void WaterfallDisplayPlot::enableChannel(int id)
+{
+	enabledChannelID = id;
+}
 
 void WaterfallDisplayPlot::_updateIntensityRangeDisplay()
 {
@@ -912,7 +966,10 @@ void WaterfallDisplayPlot::enableLegend(bool en)
 	setAxisAutoScale(QwtAxis::YRight, en);
 }
 
-void WaterfallDisplayPlot::setNumRows(int nrows) { d_nrows = nrows; }
+void WaterfallDisplayPlot::setNumRows(int nrows)
+{
+	d_nrows = nrows;
+}
 
 void WaterfallDisplayPlot::resetAvgAcquisitionTime()
 {

@@ -78,11 +78,20 @@ void BitFieldSimpleWidget::updateValue(QString newValue)
 	checkPreferences();
 }
 
-int BitFieldSimpleWidget::getWidth() const { return width; }
+int BitFieldSimpleWidget::getWidth() const
+{
+	return width;
+}
 
-QString BitFieldSimpleWidget::getDescription() const { return description; }
+QString BitFieldSimpleWidget::getDescription() const
+{
+	return description;
+}
 
-int BitFieldSimpleWidget::getStreach() const { return streach; }
+int BitFieldSimpleWidget::getStreach() const
+{
+	return streach;
+}
 
 void BitFieldSimpleWidget::checkPreferences()
 {
@@ -101,4 +110,7 @@ void BitFieldSimpleWidget::checkPreferences()
 	}
 }
 
-void BitFieldSimpleWidget::setSelected(bool selected) { scopy::setDynamicProperty(mainFrame, "is_selected", selected); }
+void BitFieldSimpleWidget::setSelected(bool selected)
+{
+	scopy::setDynamicProperty(mainFrame, "is_selected", selected);
+}

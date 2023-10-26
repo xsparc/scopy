@@ -348,8 +348,14 @@ void DigitalIO::lockUi()
 	}
 }
 
-void DigitalIO::run() { startStop(true); }
-void DigitalIO::stop() { startStop(false); }
+void DigitalIO::run()
+{
+	startStop(true);
+}
+void DigitalIO::stop()
+{
+	startStop(false);
+}
 
 void DigitalIO::startStop(bool checked)
 {

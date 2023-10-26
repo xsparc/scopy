@@ -52,7 +52,10 @@ TutorialBuilder::TutorialBuilder(QWidget *parent)
 	qDebug(CAT_TUTORIALBUILDER) << "Tutorial Builder constructed";
 }
 
-QString TutorialBuilder::getJsonFileName() const { return m_jsonFile.fileName(); }
+QString TutorialBuilder::getJsonFileName() const
+{
+	return m_jsonFile.fileName();
+}
 
 void TutorialBuilder::setJsonFileName(const QString &jsonFile)
 {
@@ -62,13 +65,25 @@ void TutorialBuilder::setJsonFileName(const QString &jsonFile)
 	}
 }
 
-const QString &TutorialBuilder::getJsonEntry() const { return m_jsonEntry; }
+const QString &TutorialBuilder::getJsonEntry() const
+{
+	return m_jsonEntry;
+}
 
-void TutorialBuilder::setJsonEntry(const QString &jsonEntry) { m_jsonEntry = jsonEntry; }
+void TutorialBuilder::setJsonEntry(const QString &jsonEntry)
+{
+	m_jsonEntry = jsonEntry;
+}
 
-QWidget *TutorialBuilder::getTopWidget() const { return m_topWidget; }
+QWidget *TutorialBuilder::getTopWidget() const
+{
+	return m_topWidget;
+}
 
-void TutorialBuilder::setTopWidget(QWidget *topWidget) { m_topWidget = topWidget; }
+void TutorialBuilder::setTopWidget(QWidget *topWidget)
+{
+	m_topWidget = topWidget;
+}
 
 void TutorialBuilder::start()
 {

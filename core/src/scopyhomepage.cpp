@@ -34,7 +34,10 @@ ScopyHomePage::ScopyHomePage(QWidget *parent, PluginManager *pm)
 	connect(add, &ScopyHomeAddPage::newDeviceAvailable, this, [=](DeviceImpl *d) { Q_EMIT newDeviceAvailable(d); });
 }
 
-ScopyHomePage::~ScopyHomePage() { delete ui; }
+ScopyHomePage::~ScopyHomePage()
+{
+	delete ui;
+}
 
 void ScopyHomePage::addDevice(QString id, Device *d)
 {
@@ -70,6 +73,9 @@ void ScopyHomePage::disconnectDevice(QString id)
 	db->disconnectDevice(id);
 }
 
-QPushButton *ScopyHomePage::scanControlBtn() { return ui->btnScan; }
+QPushButton *ScopyHomePage::scanControlBtn()
+{
+	return ui->btnScan;
+}
 
 #include "moc_scopyhomepage.cpp"

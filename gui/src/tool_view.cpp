@@ -42,7 +42,10 @@ ToolView::ToolView(QWidget *parent)
 	connect(m_ui->widgetMenuHAnim, &MenuHAnim::finished, this, &ToolView::rightMenuFinished);
 }
 
-ToolView::~ToolView() { delete m_ui; }
+ToolView::~ToolView()
+{
+	delete m_ui;
+}
 
 void ToolView::configureLastOpenedMenu()
 {
@@ -312,7 +315,10 @@ ChannelWidget *ToolView::buildNewChannel(ChannelManager *channelManager, Generic
 	return ch;
 }
 
-scopy::MenuHAnim *ToolView::addMenuToStack() { return m_ui->widgetMenuHAnim; }
+scopy::MenuHAnim *ToolView::addMenuToStack()
+{
+	return m_ui->widgetMenuHAnim;
+}
 
 void ToolView::buildChannelGroup(ChannelManager *channelManager, ChannelWidget *mainChannel,
 				 std::vector<ChannelWidget *> channelGroup)
@@ -334,7 +340,10 @@ void ToolView::buildChannelGroup(ChannelManager *channelManager, ChannelWidget *
 	});
 }
 
-int ToolView::getNewID() { return m_nextMenuIndex++; }
+int ToolView::getNewID()
+{
+	return m_nextMenuIndex++;
+}
 
 CustomMenuButton *ToolView::buildNewInstrumentMenu(GenericMenu *menu, bool dockable, const QString &name,
 						   bool checkBoxVisible, bool checkBoxChecked)
@@ -416,7 +425,10 @@ int ToolView::addDockableCentralWidget(QWidget *widget, Qt::DockWidgetArea area,
 	return m_docksList.size() - 1;
 }
 
-void ToolView::addPlotInfoWidget(QWidget *widget) { m_ui->widgetPlotInfo->layout()->addWidget(widget); }
+void ToolView::addPlotInfoWidget(QWidget *widget)
+{
+	m_ui->widgetPlotInfo->layout()->addWidget(widget);
+}
 
 void ToolView::setWidgetVisibility(int widgetId, bool visible)
 {
@@ -427,9 +439,15 @@ void ToolView::setWidgetVisibility(int widgetId, bool visible)
 	}
 }
 
-bool ToolView::isWidgetHidden(int widgetId) { return m_docksList.at(widgetId)->isHidden(); }
+bool ToolView::isWidgetHidden(int widgetId)
+{
+	return m_docksList.at(widgetId)->isHidden();
+}
 
-void ToolView::setHeaderVisibility(bool visible) { m_ui->widgetHeader->setVisible(visible); }
+void ToolView::setHeaderVisibility(bool visible)
+{
+	m_ui->widgetHeader->setVisible(visible);
+}
 
 QDockWidget *ToolView::addDockableTabbedWidget(QWidget *plot, const QString &dockerName)
 {
@@ -513,48 +531,114 @@ void ToolView::setFixedMenu(QWidget *menu, bool dockable)
 	m_ui->widgetMenuHAnim->toggleMenu(true);
 }
 
-QWidget *ToolView::getTopExtraWidget() { return m_ui->widgetTopExtra; }
+QWidget *ToolView::getTopExtraWidget()
+{
+	return m_ui->widgetTopExtra;
+}
 
-void ToolView::setVisibleTopExtraWidget(bool visible) { m_ui->widgetTopExtra->setVisible(visible); }
+void ToolView::setVisibleTopExtraWidget(bool visible)
+{
+	m_ui->widgetTopExtra->setVisible(visible);
+}
 
-void ToolView::addTopExtraWidget(QWidget *widget) { m_ui->widgetTopExtra->layout()->addWidget(widget); }
+void ToolView::addTopExtraWidget(QWidget *widget)
+{
+	m_ui->widgetTopExtra->layout()->addWidget(widget);
+}
 
-QWidget *ToolView::getBottomExtraWidget() { return m_ui->widgetBottomExtra; }
+QWidget *ToolView::getBottomExtraWidget()
+{
+	return m_ui->widgetBottomExtra;
+}
 
-void ToolView::setVisibleBottomExtraWidget(bool visible) { m_ui->widgetBottomExtra->setVisible(visible); }
+void ToolView::setVisibleBottomExtraWidget(bool visible)
+{
+	m_ui->widgetBottomExtra->setVisible(visible);
+}
 
-void ToolView::addBottomExtraWidget(QWidget *widget) { m_ui->widgetBottomExtra->layout()->addWidget(widget); }
+void ToolView::addBottomExtraWidget(QWidget *widget)
+{
+	m_ui->widgetBottomExtra->layout()->addWidget(widget);
+}
 
-QWidget *ToolView::getCentralWidget() { return m_ui->widgetCentral; }
+QWidget *ToolView::getCentralWidget()
+{
+	return m_ui->widgetCentral;
+}
 
-QStackedWidget *ToolView::getStackedWidget() { return m_ui->stackedWidget; }
+QStackedWidget *ToolView::getStackedWidget()
+{
+	return m_ui->stackedWidget;
+}
 
-void ToolView::setStackedWidget(QStackedWidget *sw) { m_ui->stackedWidget = sw; }
+void ToolView::setStackedWidget(QStackedWidget *sw)
+{
+	m_ui->stackedWidget = sw;
+}
 
-void ToolView::setInstrumentNotesVisible(bool visible) { m_ui->widgetInstrumentNotes->setVisible(visible); }
+void ToolView::setInstrumentNotesVisible(bool visible)
+{
+	m_ui->widgetInstrumentNotes->setVisible(visible);
+}
 
-LinkedButton *ToolView::getHelpBtn() { return m_ui->btnHelp; }
+LinkedButton *ToolView::getHelpBtn()
+{
+	return m_ui->btnHelp;
+}
 
-void ToolView::setHelpBtnVisible(bool visible) { m_ui->btnHelp->setVisible(visible); }
+void ToolView::setHelpBtnVisible(bool visible)
+{
+	m_ui->btnHelp->setVisible(visible);
+}
 
-void ToolView::setUrlHelpBtn(const QString &url) { m_ui->btnHelp->setUrl(url); }
+void ToolView::setUrlHelpBtn(const QString &url)
+{
+	m_ui->btnHelp->setUrl(url);
+}
 
-QPushButton *ToolView::getRunBtn() { return m_ui->widgetRunSingleBtns->getRunButton(); }
+QPushButton *ToolView::getRunBtn()
+{
+	return m_ui->widgetRunSingleBtns->getRunButton();
+}
 
-void ToolView::setRunBtnVisible(bool visible) { m_ui->widgetRunSingleBtns->enableRunButton(visible); }
+void ToolView::setRunBtnVisible(bool visible)
+{
+	m_ui->widgetRunSingleBtns->enableRunButton(visible);
+}
 
-QPushButton *ToolView::getSingleBtn() { return m_ui->widgetRunSingleBtns->getSingleButton(); }
+QPushButton *ToolView::getSingleBtn()
+{
+	return m_ui->widgetRunSingleBtns->getSingleButton();
+}
 
-void ToolView::setSingleBtnVisible(bool visible) { m_ui->widgetRunSingleBtns->enableSingleButton(visible); }
+void ToolView::setSingleBtnVisible(bool visible)
+{
+	m_ui->widgetRunSingleBtns->enableSingleButton(visible);
+}
 
-QPushButton *ToolView::getPrintBtn() { return m_ui->btnPrint; }
+QPushButton *ToolView::getPrintBtn()
+{
+	return m_ui->btnPrint;
+}
 
-void ToolView::setPrintBtnVisible(bool visible) { m_ui->btnPrint->setVisible(visible); }
+void ToolView::setPrintBtnVisible(bool visible)
+{
+	m_ui->btnPrint->setVisible(visible);
+}
 
-void ToolView::setPairSettingsVisible(bool visible) { m_ui->widgetSettingsPairBtns->setVisible(visible); }
+void ToolView::setPairSettingsVisible(bool visible)
+{
+	m_ui->widgetSettingsPairBtns->setVisible(visible);
+}
 
-CustomPushButton *ToolView::getGeneralSettingsBtn() { return m_ui->widgetSettingsPairBtns->getGeneralSettingsBtn(); }
+CustomPushButton *ToolView::getGeneralSettingsBtn()
+{
+	return m_ui->widgetSettingsPairBtns->getGeneralSettingsBtn();
+}
 
-QPushButton *ToolView::getSettingsBtn() { return m_ui->widgetSettingsPairBtns->getSettingsBtn(); }
+QPushButton *ToolView::getSettingsBtn()
+{
+	return m_ui->widgetSettingsPairBtns->getSettingsBtn();
+}
 
 #include "moc_tool_view.cpp"

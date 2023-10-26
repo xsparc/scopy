@@ -56,7 +56,10 @@ DrawArea::DrawArea(QWidget *parent)
 	this->layout()->addWidget(m_drawLabel);
 }
 
-DrawArea::~DrawArea() { delete m_connectionsMap; }
+DrawArea::~DrawArea()
+{
+	delete m_connectionsMap;
+}
 
 void DrawArea::activateConnection(int channelIndex, DrawArea::ChannelName channelName)
 {

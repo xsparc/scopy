@@ -158,7 +158,10 @@ bool CompletionCircle::pointInsideCircle(const QPoint &p, int xc, int yc, int r)
 	return ((x - xc) * (x - xc) + (y - yc) * (y - yc) < r * r);
 }
 
-double CompletionCircle::valueDouble() { return m_double_value; }
+double CompletionCircle::valueDouble()
+{
+	return m_double_value;
+}
 
 void CompletionCircle::setValueDouble(double value)
 {
@@ -174,7 +177,10 @@ void CompletionCircle::setValueDouble(double value)
 	}
 }
 
-bool CompletionCircle::toggledState() { return m_pressed; }
+bool CompletionCircle::toggledState()
+{
+	return m_pressed;
+}
 
 void CompletionCircle::setToggled(bool on)
 {
@@ -184,9 +190,15 @@ void CompletionCircle::setToggled(bool on)
 	}
 }
 
-double CompletionCircle::minimumDouble() { return m_double_minimum; }
+double CompletionCircle::minimumDouble()
+{
+	return m_double_minimum;
+}
 
-void CompletionCircle::setOrigin(double value) { m_origin = value; }
+void CompletionCircle::setOrigin(double value)
+{
+	m_origin = value;
+}
 
 void CompletionCircle::setMinimumDouble(double value)
 {
@@ -199,7 +211,10 @@ void CompletionCircle::setMinimumDouble(double value)
 	repaint();
 }
 
-double CompletionCircle::maximumDouble() { return m_double_maximum; }
+double CompletionCircle::maximumDouble()
+{
+	return m_double_maximum;
+}
 
 void CompletionCircle::setMaximumDouble(double value)
 {
@@ -212,11 +227,23 @@ void CompletionCircle::setMaximumDouble(double value)
 	repaint();
 }
 
-void CompletionCircle::setToggleable(bool tog) { m_toggleable = tog; }
+void CompletionCircle::setToggleable(bool tog)
+{
+	m_toggleable = tog;
+}
 
-bool CompletionCircle::isLogScale() { return m_log_scale; }
+bool CompletionCircle::isLogScale()
+{
+	return m_log_scale;
+}
 
-bool CompletionCircle::toggleable() { return m_toggleable; }
-void CompletionCircle::setIsLogScale(bool state) { m_log_scale = state; }
+bool CompletionCircle::toggleable()
+{
+	return m_toggleable;
+}
+void CompletionCircle::setIsLogScale(bool state)
+{
+	m_log_scale = state;
+}
 
 #include "moc_completion_circle.cpp"

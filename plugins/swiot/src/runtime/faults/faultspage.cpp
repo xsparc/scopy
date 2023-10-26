@@ -47,7 +47,10 @@ FaultsPage::FaultsPage(struct iio_context *context, QWidget *parent)
 	this->ui->frame->setStyleSheet("QFrame#frame{background-color:#1C1C20;}");
 }
 
-FaultsPage::~FaultsPage() { delete ui; }
+FaultsPage::~FaultsPage()
+{
+	delete ui;
+}
 
 void FaultsPage::update()
 {

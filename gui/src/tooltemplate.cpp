@@ -30,31 +30,70 @@ ToolTemplate::ToolTemplate(QWidget *parent)
 	m_bottomStack->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 }
 
-ToolTemplate::~ToolTemplate() { delete m_ui; }
+ToolTemplate::~ToolTemplate()
+{
+	delete m_ui;
+}
 
-QWidget *ToolTemplate::bottomContainer() { return m_ui->bottomContainer; }
+QWidget *ToolTemplate::bottomContainer()
+{
+	return m_ui->bottomContainer;
+}
 
-QWidget *ToolTemplate::topContainer() { return m_ui->topContainer; }
+QWidget *ToolTemplate::topContainer()
+{
+	return m_ui->topContainer;
+}
 
-QWidget *ToolTemplate::topCentral() { return m_ui->topCentral; }
+QWidget *ToolTemplate::topCentral()
+{
+	return m_ui->topCentral;
+}
 
-QWidget *ToolTemplate::bottomCentral() { return m_ui->bottomCentral; }
+QWidget *ToolTemplate::bottomCentral()
+{
+	return m_ui->bottomCentral;
+}
 
-QWidget *ToolTemplate::rightContainer() { return m_ui->rightContainer; }
+QWidget *ToolTemplate::rightContainer()
+{
+	return m_ui->rightContainer;
+}
 
-QWidget *ToolTemplate::topContainerMenuControl() { return m_ui->topContainerMenuControl; }
+QWidget *ToolTemplate::topContainerMenuControl()
+{
+	return m_ui->topContainerMenuControl;
+}
 
-QWidget *ToolTemplate::centralContainer() { return m_ui->centralContainer; }
+QWidget *ToolTemplate::centralContainer()
+{
+	return m_ui->centralContainer;
+}
 
-MapStackedWidget *ToolTemplate::leftStack() { return m_leftStack; }
+MapStackedWidget *ToolTemplate::leftStack()
+{
+	return m_leftStack;
+}
 
-MapStackedWidget *ToolTemplate::rightStack() { return m_rightStack; }
+MapStackedWidget *ToolTemplate::rightStack()
+{
+	return m_rightStack;
+}
 
-MapStackedWidget *ToolTemplate::topStack() { return m_topStack; }
+MapStackedWidget *ToolTemplate::topStack()
+{
+	return m_topStack;
+}
 
-MapStackedWidget *ToolTemplate::bottomStack() { return m_bottomStack; }
+MapStackedWidget *ToolTemplate::bottomStack()
+{
+	return m_bottomStack;
+}
 
-QWidget *ToolTemplate::leftContainer() { return m_ui->leftContainer; }
+QWidget *ToolTemplate::leftContainer()
+{
+	return m_ui->leftContainer;
+}
 
 void ToolTemplate::setLeftContainerWidth(int w)
 {
@@ -90,13 +129,25 @@ void ToolTemplate::setBottomContainerHeight(int h)
 	m_ui->bottomCentral->setMinimumHeight(h);
 }
 
-void ToolTemplate::openLeftContainerHelper(bool open) { m_ui->leftContainer->toggleMenu(open); }
+void ToolTemplate::openLeftContainerHelper(bool open)
+{
+	m_ui->leftContainer->toggleMenu(open);
+}
 
-void ToolTemplate::openRightContainerHelper(bool open) { m_ui->rightContainer->toggleMenu(open); }
+void ToolTemplate::openRightContainerHelper(bool open)
+{
+	m_ui->rightContainer->toggleMenu(open);
+}
 
-void ToolTemplate::openTopContainerHelper(bool open) { m_ui->topCentral->toggleMenu(open); }
+void ToolTemplate::openTopContainerHelper(bool open)
+{
+	m_ui->topCentral->toggleMenu(open);
+}
 
-void ToolTemplate::openBottomContainerHelper(bool open) { m_ui->bottomCentral->toggleMenu(open); }
+void ToolTemplate::openBottomContainerHelper(bool open)
+{
+	m_ui->bottomCentral->toggleMenu(open);
+}
 
 QSpacerItem *ToolTemplate::getContainerSpacer(QWidget *container)
 {

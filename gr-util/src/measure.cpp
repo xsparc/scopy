@@ -69,7 +69,10 @@ public:
 		, m_is_between_trholds(false)
 	{}
 
-	bool isBetweenThresholds() { return m_is_between_trholds; }
+	bool isBetweenThresholds()
+	{
+		return m_is_between_trholds;
+	}
 
 	virtual inline bool updateState(enum crossEvents crsEvent) = 0;
 
@@ -199,7 +202,10 @@ public:
 		, m_externList(NULL)
 	{}
 
-	double level() { return m_level; }
+	double level()
+	{
+		return m_level;
+	}
 
 	void setLevel(double level)
 	{
@@ -210,7 +216,10 @@ public:
 		}
 	}
 
-	double hysteresisSpan() { return m_hysteresis_span; }
+	double hysteresisSpan()
+	{
+		return m_hysteresis_span;
+	}
 
 	void setHysteresisSpan(double span)
 	{
@@ -221,9 +230,15 @@ public:
 		}
 	}
 
-	void setExternalList(QList<CrossPoint> *externList) { m_externList = externList; }
+	void setExternalList(QList<CrossPoint> *externList)
+	{
+		m_externList = externList;
+	}
 
-	QList<CrossPoint> detectedCrossings() { return m_detectedCrossings; }
+	QList<CrossPoint> detectedCrossings()
+	{
+		return m_detectedCrossings;
+	}
 
 	inline void store_closest_val_to_cross_lvl(const float *data, size_t i, size_t &point)
 	{
@@ -457,7 +472,10 @@ private:
 		}
 	}
 
-	void clearMask(std::vector<int> &mask, int start, int end) { setMask(mask, start, end, 0); }
+	void clearMask(std::vector<int> &mask, int start, int end)
+	{
+		setMask(mask, start, end, 0);
+	}
 
 	void maskedSubset(std::vector<int> &indices, std::vector<int> &new_mask, std::vector<int> mask, int start,
 			  int end)
@@ -1143,29 +1161,65 @@ void SpectralMeasure::measureSpectral()
 	m_measurements[SFDR]->setValue(sfdr);
 }
 
-void SpectralMeasure::setMask(std::vector<int> mask) { std::vector<int> m_mask = mask; }
+void SpectralMeasure::setMask(std::vector<int> mask)
+{
+	std::vector<int> m_mask = mask;
+}
 
-double MeasureModel::sampleRate() { return m_sample_rate; }
+double MeasureModel::sampleRate()
+{
+	return m_sample_rate;
+}
 
-void MeasureModel::setSampleRate(double value) { m_sample_rate = value; }
+void MeasureModel::setSampleRate(double value)
+{
+	m_sample_rate = value;
+}
 
-unsigned int MeasureModel::adcBitCount() { return m_adc_bit_count; }
+unsigned int MeasureModel::adcBitCount()
+{
+	return m_adc_bit_count;
+}
 
-void MeasureModel::setAdcBitCount(unsigned int val) { m_adc_bit_count = val; }
+void MeasureModel::setAdcBitCount(unsigned int val)
+{
+	m_adc_bit_count = val;
+}
 
-double MeasureModel::crossLevel() { return m_cross_level; }
+double MeasureModel::crossLevel()
+{
+	return m_cross_level;
+}
 
-void MeasureModel::setCrossLevel(double value) { m_cross_level = value; }
+void MeasureModel::setCrossLevel(double value)
+{
+	m_cross_level = value;
+}
 
-double MeasureModel::hysteresisSpan() { return m_hysteresis_span; }
+double MeasureModel::hysteresisSpan()
+{
+	return m_hysteresis_span;
+}
 
-void MeasureModel::setHysteresisSpan(double value) { m_hysteresis_span = value; }
+void MeasureModel::setHysteresisSpan(double value)
+{
+	m_hysteresis_span = value;
+}
 
-void MeasureModel::setStartIndex(int index) { m_startIndex = index; }
+void MeasureModel::setStartIndex(int index)
+{
+	m_startIndex = index;
+}
 
-void MeasureModel::setEndIndex(int index) { m_endIndex = index; }
+void MeasureModel::setEndIndex(int index)
+{
+	m_endIndex = index;
+}
 
-void MeasureModel::setGatingEnabled(bool enable) { m_gatingEnabled = enable; }
+void MeasureModel::setGatingEnabled(bool enable)
+{
+	m_gatingEnabled = enable;
+}
 
 void MeasureModel::clearStats()
 {
@@ -1174,9 +1228,15 @@ void MeasureModel::clearStats()
 	}
 }
 
-QList<std::shared_ptr<MeasurementData>> MeasureModel::measurments() { return m_measurements; }
+QList<std::shared_ptr<MeasurementData>> MeasureModel::measurments()
+{
+	return m_measurements;
+}
 
-std::shared_ptr<MeasurementData> MeasureModel::measurement(int id) { return m_measurements[id]; }
+std::shared_ptr<MeasurementData> MeasureModel::measurement(int id)
+{
+	return m_measurements[id];
+}
 
 std::shared_ptr<MeasurementData> MeasureModel::measurement(QString str)
 {
@@ -1226,9 +1286,15 @@ MeasurementData::MeasurementData(const QString &name, axisType axis, const QStri
 		m_unitType = METRIC;
 }
 
-QString MeasurementData::name() const { return m_name; }
+QString MeasurementData::name() const
+{
+	return m_name;
+}
 
-double MeasurementData::value() const { return m_value; }
+double MeasurementData::value() const
+{
+	return m_value;
+}
 
 void MeasurementData::setValue(double value)
 {
@@ -1238,21 +1304,45 @@ void MeasurementData::setValue(double value)
 		m_stat.pushNewData(value);
 }
 
-bool MeasurementData::measured() const { return m_measured; }
+bool MeasurementData::measured() const
+{
+	return m_measured;
+}
 
-void MeasurementData::setMeasured(bool state) { m_measured = state; }
+void MeasurementData::setMeasured(bool state)
+{
+	m_measured = state;
+}
 
-bool MeasurementData::enabled() const { return m_enabled; }
+bool MeasurementData::enabled() const
+{
+	return m_enabled;
+}
 
-void MeasurementData::setEnabled(bool en) { m_enabled = en; }
+void MeasurementData::setEnabled(bool en)
+{
+	m_enabled = en;
+}
 
-QString MeasurementData::unit() const { return m_unit; }
+QString MeasurementData::unit() const
+{
+	return m_unit;
+}
 
-MeasurementData::unitTypes MeasurementData::unitType() const { return m_unitType; }
+MeasurementData::unitTypes MeasurementData::unitType() const
+{
+	return m_unitType;
+}
 
-MeasurementData::axisType MeasurementData::axis() const { return m_axis; }
+MeasurementData::axisType MeasurementData::axis() const
+{
+	return m_axis;
+}
 
-bool MeasurementData::statEnabled() const { return m_statEnabled; }
+bool MeasurementData::statEnabled() const
+{
+	return m_statEnabled;
+}
 
 void MeasurementData::setStatEnabled(bool newStatEnabled)
 {
@@ -1261,9 +1351,15 @@ void MeasurementData::setStatEnabled(bool newStatEnabled)
 		m_stat.clear();
 }
 
-void MeasurementData::clearStat() { m_stat.clear(); }
+void MeasurementData::clearStat()
+{
+	m_stat.clear();
+}
 
-Statistic MeasurementData::stat() const { return m_stat; }
+Statistic MeasurementData::stat() const
+{
+	return m_stat;
+}
 
 /*
  * Class Statistic implementation
@@ -1304,11 +1400,23 @@ void Statistic::clear()
 	m_average = 0;
 }
 
-double Statistic::average() const { return m_average; }
+double Statistic::average() const
+{
+	return m_average;
+}
 
-double Statistic::min() const { return m_min; }
+double Statistic::min() const
+{
+	return m_min;
+}
 
-double Statistic::max() const { return m_max; }
+double Statistic::max() const
+{
+	return m_max;
+}
 
-double Statistic::numPushedData() const { return m_dataCount; }
+double Statistic::numPushedData() const
+{
+	return m_dataCount;
+}
 } // namespace scopy::grutil

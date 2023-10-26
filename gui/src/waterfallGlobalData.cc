@@ -138,13 +138,25 @@ QwtRasterData *WaterfallData::copy() const
 }
 
 #if QWT_VERSION < 0x060000
-QwtDoubleInterval WaterfallData::range() const { return _intensityRange; }
+QwtDoubleInterval WaterfallData::range() const
+{
+	return _intensityRange;
+}
 
-void WaterfallData::setRange(const QwtDoubleInterval &newRange) { _intensityRange = newRange; }
+void WaterfallData::setRange(const QwtDoubleInterval &newRange)
+{
+	_intensityRange = newRange;
+}
 #elif QWT_VERSION >= 0x060200
-void WaterfallData::setInterval(Qt::Axis axis, const QwtInterval &interval) { d_intervals[axis] = interval; }
+void WaterfallData::setInterval(Qt::Axis axis, const QwtInterval &interval)
+{
+	d_intervals[axis] = interval;
+}
 
-QwtInterval WaterfallData::interval(Qt::Axis a) const { return d_intervals[a]; }
+QwtInterval WaterfallData::interval(Qt::Axis a) const
+{
+	return d_intervals[a];
+}
 #endif
 
 double WaterfallData::value(double x, double y) const
@@ -187,11 +199,20 @@ double WaterfallData::value(double x, double y) const
 	return returnValue;
 }
 
-uint64_t WaterfallData::getNumFFTPoints() const { return _fftPoints; }
+uint64_t WaterfallData::getNumFFTPoints() const
+{
+	return _fftPoints;
+}
 
-WaterfallFlowDirection WaterfallData::getFlowDirection() { return flow_direction; }
+WaterfallFlowDirection WaterfallData::getFlowDirection()
+{
+	return flow_direction;
+}
 
-void WaterfallData::setFlowDirection(WaterfallFlowDirection direction) { flow_direction = direction; }
+void WaterfallData::setFlowDirection(WaterfallFlowDirection direction)
+{
+	flow_direction = direction;
+}
 
 void WaterfallData::addFFTData(const double *fftData, const uint64_t fftDataSize)
 {
@@ -216,14 +237,29 @@ void WaterfallData::addFFTData(const double *fftData, const uint64_t fftDataSize
 	}
 }
 
-const std::deque<std::vector<double>> WaterfallData::getSpectrumDataBuffer() const { return _spectrumData; }
+const std::deque<std::vector<double>> WaterfallData::getSpectrumDataBuffer() const
+{
+	return _spectrumData;
+}
 
-void WaterfallData::setSpectrumDataBuffer(const std::deque<std::vector<double>> newData) { _spectrumData = newData; }
+void WaterfallData::setSpectrumDataBuffer(const std::deque<std::vector<double>> newData)
+{
+	_spectrumData = newData;
+}
 
-int WaterfallData::getNumLinesToUpdate() const { return _numLinesToUpdate; }
+int WaterfallData::getNumLinesToUpdate() const
+{
+	return _numLinesToUpdate;
+}
 
-void WaterfallData::setNumLinesToUpdate(const int newNum) { _numLinesToUpdate = newNum; }
+void WaterfallData::setNumLinesToUpdate(const int newNum)
+{
+	_numLinesToUpdate = newNum;
+}
 
-void WaterfallData::incrementNumLinesToUpdate() { _numLinesToUpdate++; }
+void WaterfallData::incrementNumLinesToUpdate()
+{
+	_numLinesToUpdate++;
+}
 
 #endif /* WATERFALL_GLOBAL_DATA_CPP */

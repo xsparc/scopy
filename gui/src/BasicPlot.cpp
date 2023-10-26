@@ -78,7 +78,10 @@ void BasicPlot::start()
 	started = true;
 }
 
-bool BasicPlot::isStarted() { return started; }
+bool BasicPlot::isStarted()
+{
+	return started;
+}
 void BasicPlot::stop()
 {
 	if(debug)
@@ -113,7 +116,10 @@ void BasicPlot::showFpsLabel()
 	debug = true;
 }
 
-double BasicPlot::getRefreshRate() { return replotFrameRate; }
+double BasicPlot::getRefreshRate()
+{
+	return replotFrameRate;
+}
 void BasicPlot::replotNow()
 {
 	auto instrumentCycle = fpsTimer.nsecsElapsed() / 1e+06;

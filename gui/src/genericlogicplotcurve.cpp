@@ -39,17 +39,35 @@ GenericLogicPlotCurve::GenericLogicPlotCurve(const QString &name, const QString 
 	, m_type(type)
 {}
 
-QString GenericLogicPlotCurve::getName() const { return m_name; }
+QString GenericLogicPlotCurve::getName() const
+{
+	return m_name;
+}
 
-QString GenericLogicPlotCurve::getId() const { return m_id; }
+QString GenericLogicPlotCurve::getId() const
+{
+	return m_id;
+}
 
-QColor GenericLogicPlotCurve::getTraceColor() const { return m_traceColor; }
+QColor GenericLogicPlotCurve::getTraceColor() const
+{
+	return m_traceColor;
+}
 
-double GenericLogicPlotCurve::getPixelOffset() const { return m_pixelOffset; }
+double GenericLogicPlotCurve::getPixelOffset() const
+{
+	return m_pixelOffset;
+}
 
-double GenericLogicPlotCurve::getTraceHeight() const { return m_traceHeight; }
+double GenericLogicPlotCurve::getTraceHeight() const
+{
+	return m_traceHeight;
+}
 
-double GenericLogicPlotCurve::getSampleRate() const { return m_sampleRate; }
+double GenericLogicPlotCurve::getSampleRate() const
+{
+	return m_sampleRate;
+}
 
 double GenericLogicPlotCurve::getTotalTime() const
 {
@@ -58,15 +76,30 @@ double GenericLogicPlotCurve::getTotalTime() const
 	return static_cast<double>(m_bufferSize) / m_sampleRate;
 }
 
-double GenericLogicPlotCurve::getTimeTriggerOffset() const { return m_timeTriggerOffset; }
+double GenericLogicPlotCurve::getTimeTriggerOffset() const
+{
+	return m_timeTriggerOffset;
+}
 
-uint64_t GenericLogicPlotCurve::getBufferSize() const { return m_bufferSize; }
+uint64_t GenericLogicPlotCurve::getBufferSize() const
+{
+	return m_bufferSize;
+}
 
-int GenericLogicPlotCurve::getVisibleRows() const { return 1; }
+int GenericLogicPlotCurve::getVisibleRows() const
+{
+	return 1;
+}
 
-double GenericLogicPlotCurve::getHeightOffset() const { return 0; }
+double GenericLogicPlotCurve::getHeightOffset() const
+{
+	return 0;
+}
 
-LogicPlotCurveType GenericLogicPlotCurve::getType() const { return m_type; }
+LogicPlotCurveType GenericLogicPlotCurve::getType() const
+{
+	return m_type;
+}
 
 void GenericLogicPlotCurve::setName(const QString &name)
 {
@@ -103,7 +136,10 @@ void GenericLogicPlotCurve::setTraceHeight(double traceHeight)
 	}
 }
 
-void GenericLogicPlotCurve::setTraceColor(const QColor traceColor) { m_traceColor = traceColor; }
+void GenericLogicPlotCurve::setTraceColor(const QColor traceColor)
+{
+	m_traceColor = traceColor;
+}
 
 void GenericLogicPlotCurve::setSampleRate(double sampleRate)
 {

@@ -65,13 +65,22 @@ using namespace scopy;
 class TimePrecisionClass
 {
 public:
-	TimePrecisionClass(const int timeprecision) { d_time_precision = timeprecision; }
+	TimePrecisionClass(const int timeprecision)
+	{
+		d_time_precision = timeprecision;
+	}
 
 	virtual ~TimePrecisionClass() {}
 
-	virtual unsigned int getTimePrecision() const { return d_time_precision; }
+	virtual unsigned int getTimePrecision() const
+	{
+		return d_time_precision;
+	}
 
-	virtual void setTimePrecision(const unsigned int newprecision) { d_time_precision = newprecision; }
+	virtual void setTimePrecision(const unsigned int newprecision)
+	{
+		d_time_precision = newprecision;
+	}
 
 protected:
 	unsigned int d_time_precision;
@@ -104,9 +113,15 @@ public:
 
 	virtual ~HistogramDisplayZoomer() {}
 
-	virtual void updateTrackerText() { updateDisplay(); }
+	virtual void updateTrackerText()
+	{
+		updateDisplay();
+	}
 
-	void setUnitType(const std::string &type) { d_unit_type = type; }
+	void setUnitType(const std::string &type)
+	{
+		d_unit_type = type;
+	}
 
 protected:
 	using QwtPlotZoomer::trackerText;
@@ -355,9 +370,15 @@ void HistogramDisplayPlot::setOrientation(Qt::Orientation orientation)
 	replot();
 }
 
-Qt::Orientation HistogramDisplayPlot::getOrientation() { return d_orientation; }
+Qt::Orientation HistogramDisplayPlot::getOrientation()
+{
+	return d_orientation;
+}
 
-bool HistogramDisplayPlot::isZoomed() { return d_zoomed; }
+bool HistogramDisplayPlot::isZoomed()
+{
+	return d_zoomed;
+}
 
 HistogramDisplayPlot::~HistogramDisplayPlot()
 {
@@ -418,7 +439,10 @@ void HistogramDisplayPlot::setDataInterval(int min, int max)
 	d_maxPos = max;
 }
 
-void HistogramDisplayPlot::replot() { BasicPlot::replot(); }
+void HistogramDisplayPlot::replot()
+{
+	BasicPlot::replot();
+}
 
 void HistogramDisplayPlot::plotNewData(const std::vector<double *> dataPoints, const int64_t numDataPoints,
 				       const double timeInterval)
@@ -540,7 +564,10 @@ void HistogramDisplayPlot::customEvent(QEvent *e)
 	}
 }
 
-void HistogramDisplayPlot::setXaxis(double min, double max) { _resetXAxisPoints(min, max); }
+void HistogramDisplayPlot::setXaxis(double min, double max)
+{
+	_resetXAxisPoints(min, max);
+}
 
 void HistogramDisplayPlot::_resetXAxisPoints(double left, double right)
 {
@@ -680,7 +707,10 @@ void HistogramDisplayPlot::setAutoScaleX()
 	}
 }
 
-void HistogramDisplayPlot::setAutoScale(bool state) { d_autoscale_state = state; }
+void HistogramDisplayPlot::setAutoScale(bool state)
+{
+	d_autoscale_state = state;
+}
 
 void HistogramDisplayPlot::setSemilogx(bool en)
 {
@@ -721,7 +751,10 @@ void HistogramDisplayPlot::setSemilogy(bool en)
 	}
 }
 
-void HistogramDisplayPlot::setAccumulate(bool state) { d_accum = state; }
+void HistogramDisplayPlot::setAccumulate(bool state)
+{
+	d_accum = state;
+}
 
 void HistogramDisplayPlot::setMarkerAlpha(int which, int alpha)
 {
@@ -849,6 +882,12 @@ QwtText HistogramScaleDraw::label(double value) const
 	return text;
 }
 
-void HistogramScaleDraw::setColor(const QColor &color) { m_color = color; }
+void HistogramScaleDraw::setColor(const QColor &color)
+{
+	m_color = color;
+}
 
-void HistogramScaleDraw::setTotalSamples(unsigned int totalSamples) { m_totalSamples = totalSamples; }
+void HistogramScaleDraw::setTotalSamples(unsigned int totalSamples)
+{
+	m_totalSamples = totalSamples;
+}

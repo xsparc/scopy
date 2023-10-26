@@ -43,9 +43,15 @@ PrefixFormatter::PrefixFormatter(const vector<pair<QString, double>> &prefixes, 
 
 PrefixFormatter::~PrefixFormatter() {}
 
-void PrefixFormatter::setTwoDecimalMode(bool enable) { m_twoDecimalMode = enable; }
+void PrefixFormatter::setTwoDecimalMode(bool enable)
+{
+	m_twoDecimalMode = enable;
+}
 
-bool PrefixFormatter::getTwoDecimalMode() { return m_twoDecimalMode; }
+bool PrefixFormatter::getTwoDecimalMode()
+{
+	return m_twoDecimalMode;
+}
 
 QString PrefixFormatter::buildString(double value, QString prefix, QString unitType, int precision) const
 {
@@ -81,9 +87,15 @@ int PrefixFormatter::findPrefixIndex(double value) const
 	return index;
 }
 
-bool PrefixFormatter::getTrimZeroes() const { return m_trimZeroes; }
+bool PrefixFormatter::getTrimZeroes() const
+{
+	return m_trimZeroes;
+}
 
-void PrefixFormatter::setTrimZeroes(bool trimZeroes) { m_trimZeroes = trimZeroes; }
+void PrefixFormatter::setTrimZeroes(bool trimZeroes)
+{
+	m_trimZeroes = trimZeroes;
+}
 
 QString PrefixFormatter::format(double value, QString unitType = "", int precision = 0) const
 {
@@ -167,7 +179,10 @@ NumberSeries::NumberSeries(double lower, double upper, unsigned int powerStep, c
 
 NumberSeries::~NumberSeries() {}
 
-const std::vector<double> &NumberSeries::getNumbers() { return m_numbers; }
+const std::vector<double> &NumberSeries::getNumbers()
+{
+	return m_numbers;
+}
 
 double NumberSeries::getNumberBefore(double value)
 {
@@ -196,7 +211,10 @@ void NumberSeries::setLower(double value)
 		buildNumberSeries();
 	}
 }
-double NumberSeries::lower() { return m_lowerLimit; }
+double NumberSeries::lower()
+{
+	return m_lowerLimit;
+}
 
 void NumberSeries::setUpper(double value)
 {
@@ -206,7 +224,10 @@ void NumberSeries::setUpper(double value)
 	}
 }
 
-double NumberSeries::upper() { return m_upperLimit; }
+double NumberSeries::upper()
+{
+	return m_upperLimit;
+}
 
 void NumberSeries::setPowerStep(unsigned int value)
 {
@@ -215,7 +236,10 @@ void NumberSeries::setPowerStep(unsigned int value)
 		buildNumberSeries();
 	}
 }
-unsigned int NumberSeries::stepPower() { return m_powerStep; }
+unsigned int NumberSeries::stepPower()
+{
+	return m_powerStep;
+}
 
 void NumberSeries::buildNumberSeries()
 {

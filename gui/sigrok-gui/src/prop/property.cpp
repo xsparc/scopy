@@ -49,15 +49,30 @@ Property::Property(QString name, QString desc, Getter getter, Setter setter)
 	, desc_(desc)
 {}
 
-const QString &Property::name() const { return name_; }
+const QString &Property::name() const
+{
+	return name_;
+}
 
-const QString &Property::desc() const { return desc_; }
+const QString &Property::desc() const
+{
+	return desc_;
+}
 
-QVariant Property::get() const { return getter_(); }
+QVariant Property::get() const
+{
+	return getter_();
+}
 
-void Property::set(QVariant val) { return setter_(val); }
+void Property::set(QVariant val)
+{
+	return setter_(val);
+}
 
-bool Property::labeled_widget() const { return false; }
+bool Property::labeled_widget() const
+{
+	return false;
+}
 
 } // namespace prop
 } // namespace scopy

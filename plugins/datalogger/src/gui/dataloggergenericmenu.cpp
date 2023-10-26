@@ -103,13 +103,25 @@ void DataLoggerGenericMenu::init(QString title, QColor *color)
 		&DataLoggerGenericMenu::lineStyleIndexChanged);
 }
 
-void DataLoggerGenericMenu::scaleToggle(bool toggled) { scaleSWitch->setChecked(toggled); }
+void DataLoggerGenericMenu::scaleToggle(bool toggled)
+{
+	scaleSWitch->setChecked(toggled);
+}
 
-void DataLoggerGenericMenu::peakHolderToggle(bool toggled) { peakHolderSwitch->setChecked(toggled); }
+void DataLoggerGenericMenu::peakHolderToggle(bool toggled)
+{
+	peakHolderSwitch->setChecked(toggled);
+}
 
-void DataLoggerGenericMenu::historyToggle(bool toggled) { historySwitch->setChecked(toggled); }
+void DataLoggerGenericMenu::historyToggle(bool toggled)
+{
+	historySwitch->setChecked(toggled);
+}
 
-void DataLoggerGenericMenu::peakHolderResetClicked() { peakHolderReset->click(); }
+void DataLoggerGenericMenu::peakHolderResetClicked()
+{
+	peakHolderReset->click();
+}
 
 void DataLoggerGenericMenu::historySizeChanged(int size)
 {
@@ -123,7 +135,10 @@ void DataLoggerGenericMenu::changeLineStyle(int index)
 	Q_EMIT lineStyleChanged(lineStyleFromIdx(index));
 }
 
-void DataLoggerGenericMenu::setHistorySize(int idx) { Q_EMIT changeHistorySize(numSamplesFromIdx(idx)); }
+void DataLoggerGenericMenu::setHistorySize(int idx)
+{
+	Q_EMIT changeHistorySize(numSamplesFromIdx(idx));
+}
 
 double DataLoggerGenericMenu::numSamplesFromIdx(int idx)
 {

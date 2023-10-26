@@ -21,11 +21,20 @@ RegisterMapValues::RegisterMapValues(QObject *parent)
 	writeConnection = QObject::connect(this, &RegisterMapValues::requestWrite, this, &RegisterMapValues::readDone);
 }
 
-RegisterMapValues::~RegisterMapValues() { delete registerReadValues; }
+RegisterMapValues::~RegisterMapValues()
+{
+	delete registerReadValues;
+}
 
-QMap<uint32_t, uint32_t> *RegisterMapValues::getRegisterReadValues() const { return registerReadValues; }
+QMap<uint32_t, uint32_t> *RegisterMapValues::getRegisterReadValues() const
+{
+	return registerReadValues;
+}
 
-bool RegisterMapValues::hasValue(uint32_t address) { return registerReadValues->contains(address); }
+bool RegisterMapValues::hasValue(uint32_t address)
+{
+	return registerReadValues->contains(address);
+}
 
 void RegisterMapValues::readDone(uint32_t address, uint32_t value)
 {
@@ -33,7 +42,10 @@ void RegisterMapValues::readDone(uint32_t address, uint32_t value)
 	Q_EMIT registerValueChanged(address, value);
 }
 
-uint32_t RegisterMapValues::getValueOfRegister(uint32_t address) { return registerReadValues->value(address); }
+uint32_t RegisterMapValues::getValueOfRegister(uint32_t address)
+{
+	return registerReadValues->value(address);
+}
 
 void RegisterMapValues::setReadStrategy(IRegisterReadStrategy *readStrategy)
 {
@@ -68,6 +80,12 @@ void RegisterMapValues::registerDump(QString path)
 	setWriteStrategy(currentStrategy);
 }
 
-IRegisterReadStrategy *RegisterMapValues::getReadStrategy() const { return readStrategy; }
+IRegisterReadStrategy *RegisterMapValues::getReadStrategy() const
+{
+	return readStrategy;
+}
 
-IRegisterWriteStrategy *RegisterMapValues::getWriteStrategy() const { return writeStrategy; }
+IRegisterWriteStrategy *RegisterMapValues::getWriteStrategy() const
+{
+	return writeStrategy;
+}

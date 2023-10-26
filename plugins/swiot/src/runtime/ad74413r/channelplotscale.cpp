@@ -59,7 +59,10 @@ ChannelPlotScale::ChannelPlotScale(int channel, QString unit, QColor color, QWid
 	setUnitPerDivision(0);
 }
 
-ChannelPlotScale::~ChannelPlotScale() { delete m_formatter; }
+ChannelPlotScale::~ChannelPlotScale()
+{
+	delete m_formatter;
+}
 
 void ChannelPlotScale::setInstantValue(double value)
 {
@@ -83,8 +86,17 @@ void ChannelPlotScale::update()
 	m_instantValueLbl->setText(m_formatter->format(m_instantValue, m_unit, 2));
 }
 
-int ChannelPlotScale::getChannelId() { return m_channel; }
+int ChannelPlotScale::getChannelId()
+{
+	return m_channel;
+}
 
-bool ChannelPlotScale::getEnabled() { return m_enabled; }
+bool ChannelPlotScale::getEnabled()
+{
+	return m_enabled;
+}
 
-void ChannelPlotScale::setEnabled(bool en) { m_enabled = en; }
+void ChannelPlotScale::setEnabled(bool en)
+{
+	m_enabled = en;
+}

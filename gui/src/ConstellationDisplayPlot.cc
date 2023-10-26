@@ -70,7 +70,10 @@ public:
 
 	virtual ~ConstellationDisplayZoomer() {}
 
-	virtual void updateTrackerText() { updateDisplay(); }
+	virtual void updateTrackerText()
+	{
+		updateDisplay();
+	}
 
 protected:
 	using QwtPlotZoomer::trackerText;
@@ -151,9 +154,15 @@ ConstellationDisplayPlot::~ConstellationDisplayPlot()
 	// d_zoomer and d_panner deleted when parent deleted
 }
 
-void ConstellationDisplayPlot::set_xaxis(double min, double max) { setXaxis(min, max); }
+void ConstellationDisplayPlot::set_xaxis(double min, double max)
+{
+	setXaxis(min, max);
+}
 
-void ConstellationDisplayPlot::set_yaxis(double min, double max) { setYaxis(min, max); }
+void ConstellationDisplayPlot::set_yaxis(double min, double max)
+{
+	setYaxis(min, max);
+}
 
 void ConstellationDisplayPlot::set_axis(double xmin, double xmax, double ymin, double ymax)
 {
@@ -171,7 +180,10 @@ void ConstellationDisplayPlot::set_pen_size(int size)
 	}
 }
 
-void ConstellationDisplayPlot::replot() { BasicPlot::replot(); }
+void ConstellationDisplayPlot::replot()
+{
+	BasicPlot::replot();
+}
 
 void ConstellationDisplayPlot::plotNewData(const std::vector<double *> &realDataPoints,
 					   const std::vector<double *> &imagDataPoints, const int64_t numDataPoints,
@@ -258,6 +270,9 @@ void ConstellationDisplayPlot::_autoScale(double bottom, double top)
 	set_axis(b, t, b, t);
 }
 
-void ConstellationDisplayPlot::setAutoScale(bool state) { d_autoscale_state = state; }
+void ConstellationDisplayPlot::setAutoScale(bool state)
+{
+	d_autoscale_state = state;
+}
 
 #endif /* CONSTELLATION_DISPLAY_PLOT_C */

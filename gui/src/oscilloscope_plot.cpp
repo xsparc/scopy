@@ -384,7 +384,10 @@ QString CapturePlot::formatYValue(double value, int precision) const
 	return d_cursorMetricFormatter.format(value, "", precision);
 }
 
-CursorReadouts *CapturePlot::getCursorReadouts() const { return d_cursorReadouts; }
+CursorReadouts *CapturePlot::getCursorReadouts() const
+{
+	return d_cursorReadouts;
+}
 
 void CapturePlot::replot()
 {
@@ -405,11 +408,20 @@ void CapturePlot::replot()
 	}
 }
 
-QList<M2kMeasure *> *CapturePlot::getMeasurements() { return &d_measureObjs; }
+QList<M2kMeasure *> *CapturePlot::getMeasurements()
+{
+	return &d_measureObjs;
+}
 
-HorizBar *CapturePlot::levelTriggerA() { return d_levelTriggerABar; }
+HorizBar *CapturePlot::levelTriggerA()
+{
+	return d_levelTriggerABar;
+}
 
-HorizBar *CapturePlot::levelTriggerB() { return d_levelTriggerBBar; }
+HorizBar *CapturePlot::levelTriggerB()
+{
+	return d_levelTriggerBBar;
+}
 
 void CapturePlot::enableTimeTrigger(bool enable)
 {
@@ -425,9 +437,15 @@ void CapturePlot::setAllAxes(int ch_id)
 	DisplayPlot::setCursorAxes(fixed_axis, mobile_axis);
 }
 
-VertBar *CapturePlot::getMeasurementGateBar1() { return d_gateBar1; }
+VertBar *CapturePlot::getMeasurementGateBar1()
+{
+	return d_gateBar1;
+}
 
-VertBar *CapturePlot::getMeasurementGateBar2() { return d_gateBar2; }
+VertBar *CapturePlot::getMeasurementGateBar2()
+{
+	return d_gateBar2;
+}
 
 void CapturePlot::onVCursor1Moved(double value)
 {
@@ -493,7 +511,10 @@ void CapturePlot::setStatusWidget(QWidget *newStatusWidget)
 	}
 }
 
-QList<RoundedHandleV *> CapturePlot::getOffsetHandles() const { return d_offsetHandles; }
+QList<RoundedHandleV *> CapturePlot::getOffsetHandles() const
+{
+	return d_offsetHandles;
+}
 
 void CapturePlot::onHCursor1Moved(double value)
 {
@@ -667,7 +688,10 @@ void CapturePlot::onGateBar2Moved(double value)
 	replot();
 }
 
-QWidget *CapturePlot::topArea() { return d_topWidget; }
+QWidget *CapturePlot::topArea()
+{
+	return d_topWidget;
+}
 
 QWidget *CapturePlot::topHandlesArea()
 {
@@ -675,7 +699,10 @@ QWidget *CapturePlot::topHandlesArea()
 	return d_topGateHandlesArea;
 }
 
-void CapturePlot::setBonusWidthForHistogram(int width) { d_bonusWidth = width; }
+void CapturePlot::setBonusWidthForHistogram(int width)
+{
+	d_bonusWidth = width;
+}
 
 void CapturePlot::setTriggerAEnabled(bool en)
 {
@@ -686,7 +713,10 @@ void CapturePlot::setTriggerAEnabled(bool en)
 	}
 }
 
-bool CapturePlot::triggerAEnabled() { return d_triggerAEnabled; }
+bool CapturePlot::triggerAEnabled()
+{
+	return d_triggerAEnabled;
+}
 
 void CapturePlot::setTriggerBEnabled(bool en)
 {
@@ -697,7 +727,10 @@ void CapturePlot::setTriggerBEnabled(bool en)
 	}
 }
 
-bool CapturePlot::triggerBEnabled() { return d_triggerBEnabled; }
+bool CapturePlot::triggerBEnabled()
+{
+	return d_triggerBEnabled;
+}
 
 void CapturePlot::setSelectedChannel(int id)
 {
@@ -706,11 +739,20 @@ void CapturePlot::setSelectedChannel(int id)
 	}
 }
 
-int CapturePlot::selectedChannel() { return d_selected_channel; }
+int CapturePlot::selectedChannel()
+{
+	return d_selected_channel;
+}
 
-void CapturePlot::setMeasuremensEnabled(bool en) { d_measurementsEnabled = en; }
+void CapturePlot::setMeasuremensEnabled(bool en)
+{
+	d_measurementsEnabled = en;
+}
 
-bool CapturePlot::measurementsEnabled() { return d_measurementsEnabled; }
+bool CapturePlot::measurementsEnabled()
+{
+	return d_measurementsEnabled;
+}
 
 void CapturePlot::onTimeTriggerHandlePosChanged(int pos)
 {
@@ -800,7 +842,10 @@ void CapturePlot::printWithNoBackground(const QString &toolName, bool editScaleD
 	}
 }
 
-int CapturePlot::getAnalogChannels() const { return d_ydata.size() + d_ref_ydata.size(); }
+int CapturePlot::getAnalogChannels() const
+{
+	return d_ydata.size() + d_ref_ydata.size();
+}
 
 M2kMeasure *CapturePlot::measureOfChannel(int chnIdx) const
 {
@@ -859,7 +904,10 @@ void CapturePlot::setTimeTriggerInterval(double min, double max)
 	d_timeTriggerMaxValue = max;
 }
 
-bool CapturePlot::labelsEnabled() { return d_labelsEnabled; }
+bool CapturePlot::labelsEnabled()
+{
+	return d_labelsEnabled;
+}
 
 void CapturePlot::setGraticuleEnabled(bool enabled)
 {
@@ -1087,7 +1135,10 @@ void CapturePlot::removeDigitalPlotCurve(QwtPlotCurve *curve)
 	replot();
 }
 
-void CapturePlot::setOffsetHandleVisible(int chIdx, bool visible) { d_offsetHandles.at(chIdx)->setVisible(visible); }
+void CapturePlot::setOffsetHandleVisible(int chIdx, bool visible)
+{
+	d_offsetHandles.at(chIdx)->setVisible(visible);
+}
 
 void CapturePlot::addToGroup(int currentGroup, int toAdd)
 {
@@ -1901,9 +1952,15 @@ void CapturePlot::setOffsetInterval(double minValue, double maxValue)
 	d_maxOffsetValue = maxValue;
 }
 
-double CapturePlot::getMaxOffsetValue() { return d_maxOffsetValue; }
+double CapturePlot::getMaxOffsetValue()
+{
+	return d_maxOffsetValue;
+}
 
-double CapturePlot::getMinOffsetValue() { return d_minOffsetValue; }
+double CapturePlot::getMinOffsetValue()
+{
+	return d_minOffsetValue;
+}
 
 void CapturePlot::setPeriodDetectLevel(int chnIdx, double lvl)
 {

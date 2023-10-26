@@ -86,7 +86,10 @@ SwiotReadTemperatureTask::SwiotReadTemperatureTask(QString uri, QObject *parent)
 	m_commandQueue->enqueue(attrReadOffset);
 }
 
-SwiotReadTemperatureTask::~SwiotReadTemperatureTask() { m_commandQueue = nullptr; }
+SwiotReadTemperatureTask::~SwiotReadTemperatureTask()
+{
+	m_commandQueue = nullptr;
+}
 
 void SwiotReadTemperatureTask::run()
 {

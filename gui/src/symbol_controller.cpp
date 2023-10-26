@@ -37,9 +37,15 @@ public:
 	{}
 
 protected:
-	virtual void drawOverlay(QPainter *painter) const { d_symbolCtrl->drawOverlay(painter); }
+	virtual void drawOverlay(QPainter *painter) const
+	{
+		d_symbolCtrl->drawOverlay(painter);
+	}
 
-	virtual QRegion maskHint() const { return d_symbolCtrl->maskHint(); }
+	virtual QRegion maskHint() const
+	{
+		return d_symbolCtrl->maskHint();
+	}
 
 private:
 	SymbolController *d_symbolCtrl;
@@ -61,9 +67,15 @@ SymbolController::~SymbolController()
 	// d_overlay gets destroyed with parent
 }
 
-QwtPlot *SymbolController::plot() { return static_cast<QwtPlot *>(parent()); }
+QwtPlot *SymbolController::plot()
+{
+	return static_cast<QwtPlot *>(parent());
+}
 
-const QwtPlot *SymbolController::plot() const { return static_cast<const QwtPlot *>(parent()); }
+const QwtPlot *SymbolController::plot() const
+{
+	return static_cast<const QwtPlot *>(parent());
+}
 
 void SymbolController::attachSymbol(Symbol *symbol)
 {
@@ -101,9 +113,15 @@ void SymbolController::setEnabled(bool on)
 	}
 }
 
-bool SymbolController::isEnabled() const { return d_isEnabled; }
+bool SymbolController::isEnabled() const
+{
+	return d_isEnabled;
+}
 
-void SymbolController::updateOverlay() { d_overlay->updateOverlay(); }
+void SymbolController::updateOverlay()
+{
+	d_overlay->updateOverlay();
+}
 
 bool SymbolController::eventFilter(QObject *object, QEvent *event)
 {
@@ -206,8 +224,14 @@ void SymbolController::drawCursor(QPainter *painter) const
 			d_symbols[i]->draw(painter);
 }
 
-void SymbolController::drawOverlay(QPainter *painter) const { drawCursor(painter); }
+void SymbolController::drawOverlay(QPainter *painter) const
+{
+	drawCursor(painter);
+}
 
-QRegion SymbolController::maskHint() const { return QRegion(); }
+QRegion SymbolController::maskHint() const
+{
+	return QRegion();
+}
 
 #include "moc_symbol_controller.cpp"

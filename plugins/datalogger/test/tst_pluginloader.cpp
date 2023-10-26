@@ -37,7 +37,10 @@ void TST_DataLoggerPlugin::fileExists()
 	QVERIFY(ret);
 }
 
-void TST_DataLoggerPlugin::isLibrary() { QVERIFY(QLibrary::isLibrary(FILENAME)); }
+void TST_DataLoggerPlugin::isLibrary()
+{
+	QVERIFY(QLibrary::isLibrary(FILENAME));
+}
 
 void TST_DataLoggerPlugin::className()
 {

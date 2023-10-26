@@ -8,7 +8,10 @@
 #include <QSysInfo>
 #include <QUuid>
 
-QString scopy::config::tempLogFilePath() { return QDir::cleanPath(settingsFolderPath() + "/" + SCOPY_TEMP_LOG_FILE); }
+QString scopy::config::tempLogFilePath()
+{
+	return QDir::cleanPath(settingsFolderPath() + "/" + SCOPY_TEMP_LOG_FILE);
+}
 
 QString scopy::config::defaultPluginFolderPath()
 {
@@ -30,7 +33,10 @@ QString scopy::config::localPluginFolderPath()
 	return SCOPY_PLUGIN_BUILD_PATH;
 }
 
-QString scopy::config::defaultTranslationFolderPath() { return SCOPY_TRANSLATION_INSTALL_PATH; }
+QString scopy::config::defaultTranslationFolderPath()
+{
+	return SCOPY_TRANSLATION_INSTALL_PATH;
+}
 
 QString scopy::config::localTranslationFolderPath()
 {
@@ -51,11 +57,20 @@ QString scopy::config::settingsFolderPath()
 	return QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation);
 }
 
-QString scopy::config::executableFolderPath() { return QCoreApplication::applicationDirPath(); }
+QString scopy::config::executableFolderPath()
+{
+	return QCoreApplication::applicationDirPath();
+}
 
-QString scopy::config::version() { return SCOPY_VERSION; }
+QString scopy::config::version()
+{
+	return SCOPY_VERSION;
+}
 
-QString scopy::config::gitCommit() { return SCOPY_VERSION_GIT; }
+QString scopy::config::gitCommit()
+{
+	return SCOPY_VERSION_GIT;
+}
 
 QString scopy::config::fullversion()
 {
@@ -66,7 +81,10 @@ QString scopy::config::fullversion()
 	return ver;
 }
 
-QString scopy::config::os() { return QSysInfo::prettyProductName(); }
+QString scopy::config::os()
+{
+	return QSysInfo::prettyProductName();
+}
 
 QString scopy::config::pcSpecs()
 {

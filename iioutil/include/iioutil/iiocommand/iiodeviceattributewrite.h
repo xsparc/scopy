@@ -29,7 +29,10 @@ public:
 		Q_EMIT finished(this);
 	}
 
-	std::string getAttributeValue() { return m_value; }
+	std::string getAttributeValue()
+	{
+		return m_value;
+	}
 
 private:
 	struct iio_device *m_device;

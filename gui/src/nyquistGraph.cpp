@@ -41,12 +41,24 @@ public:
 		: QwtArraySeriesData<QwtPointPolar>()
 	{}
 
-	void addSample(const QwtPointPolar &point) { m_samples.push_back(point); }
-	void clear() { m_samples.clear(); }
-	void reserve(unsigned int nb) { m_samples.reserve(nb); }
+	void addSample(const QwtPointPolar &point)
+	{
+		m_samples.push_back(point);
+	}
+	void clear()
+	{
+		m_samples.clear();
+	}
+	void reserve(unsigned int nb)
+	{
+		m_samples.reserve(nb);
+	}
 	QRectF boundingRect() const;
 
-	QwtPointPolar sample(size_t index) const { return m_samples.at(index); }
+	QwtPointPolar sample(size_t index) const
+	{
+		return m_samples.at(index);
+	}
 };
 } // namespace scopy
 
@@ -140,9 +152,15 @@ void NyquistGraph::enableZooming(QPushButton *btnZoomIn, QPushButton *btnZoomOut
 	zoomer->setWheelFactor(1);
 }
 
-const QColor NyquistGraph::getColor() const { return curve.pen().color(); }
+const QColor NyquistGraph::getColor() const
+{
+	return curve.pen().color();
+}
 
-const QColor &NyquistGraph::getBgColor() const { return plotBackground().color(); }
+const QColor &NyquistGraph::getBgColor() const
+{
+	return plotBackground().color();
+}
 
 void NyquistGraph::setColor(const QColor &color)
 {
@@ -151,7 +169,10 @@ void NyquistGraph::setColor(const QColor &color)
 	curve.setPen(pen);
 }
 
-void NyquistGraph::setBgColor(const QColor &color) { setPlotBackground(QBrush(color)); }
+void NyquistGraph::setBgColor(const QColor &color)
+{
+	setPlotBackground(QBrush(color));
+}
 
 void NyquistGraph::plot(double azimuth, double radius)
 {
@@ -162,7 +183,10 @@ void NyquistGraph::plot(double azimuth, double radius)
 	replot();
 }
 
-int NyquistGraph::getNumSamples() const { return numSamples; }
+int NyquistGraph::getNumSamples() const
+{
+	return numSamples;
+}
 
 void NyquistGraph::setNumSamples(int num)
 {
@@ -176,7 +200,10 @@ void NyquistGraph::setNumSamples(int num)
 	replot();
 }
 
-void NyquistGraph::reset() { samples->clear(); }
+void NyquistGraph::reset()
+{
+	samples->clear();
+}
 
 void NyquistGraph::setThickness(int index)
 {
@@ -189,7 +216,10 @@ void NyquistGraph::setThickness(int index)
 
 	replot();
 }
-double NyquistGraph::getThickness() const { return m_thickness; }
+double NyquistGraph::getThickness() const
+{
+	return m_thickness;
+}
 
 void NyquistGraph::setMin(double min)
 {
@@ -205,11 +235,20 @@ void NyquistGraph::setMax(double max)
 	replot();
 }
 
-QFont NyquistGraph::getFontAzimuth() const { return grid->axisFont(QwtPolar::AxisAzimuth); }
+QFont NyquistGraph::getFontAzimuth() const
+{
+	return grid->axisFont(QwtPolar::AxisAzimuth);
+}
 
-QFont NyquistGraph::getFontRadius() const { return grid->axisFont(QwtPolar::AxisRight); }
+QFont NyquistGraph::getFontRadius() const
+{
+	return grid->axisFont(QwtPolar::AxisRight);
+}
 
-void NyquistGraph::setFontAzimuth(const QFont &font) { grid->setAxisFont(QwtPolar::AxisAzimuth, font); }
+void NyquistGraph::setFontAzimuth(const QFont &font)
+{
+	grid->setAxisFont(QwtPolar::AxisAzimuth, font);
+}
 
 void NyquistGraph::setFontRadius(const QFont &font)
 {

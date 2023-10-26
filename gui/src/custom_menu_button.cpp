@@ -26,21 +26,45 @@ CustomMenuButton::CustomMenuButton(QWidget *parent)
 	connect(m_ui->checkBoxCustomMenuButton, &QCheckBox::toggled, this, &CustomMenuButton::checkBoxToggled);
 }
 
-CustomMenuButton::~CustomMenuButton() { delete m_ui; }
+CustomMenuButton::~CustomMenuButton()
+{
+	delete m_ui;
+}
 
-void CustomMenuButton::setLabel(const QString &text) { m_ui->lblCustomMenuButton->setText(text); }
+void CustomMenuButton::setLabel(const QString &text)
+{
+	m_ui->lblCustomMenuButton->setText(text);
+}
 
-void CustomMenuButton::setCheckboxVisible(bool visible) { m_ui->checkBoxCustomMenuButton->setVisible(visible); }
+void CustomMenuButton::setCheckboxVisible(bool visible)
+{
+	m_ui->checkBoxCustomMenuButton->setVisible(visible);
+}
 
-CustomPushButton *CustomMenuButton::getBtn() { return m_ui->btnCustomMenuButton; }
+CustomPushButton *CustomMenuButton::getBtn()
+{
+	return m_ui->btnCustomMenuButton;
+}
 
-QCheckBox *CustomMenuButton::getCheckBox() { return m_ui->checkBoxCustomMenuButton; }
+QCheckBox *CustomMenuButton::getCheckBox()
+{
+	return m_ui->checkBoxCustomMenuButton;
+}
 
-bool CustomMenuButton::getCheckBoxState() { return getCheckBox()->isChecked(); }
+bool CustomMenuButton::getCheckBoxState()
+{
+	return getCheckBox()->isChecked();
+}
 
-void CustomMenuButton::setCheckBoxState(bool checked) { m_ui->checkBoxCustomMenuButton->setChecked(checked); }
+void CustomMenuButton::setCheckBoxState(bool checked)
+{
+	m_ui->checkBoxCustomMenuButton->setChecked(checked);
+}
 
-void CustomMenuButton::setMenuFloating(bool floating) { m_floatingMenu = floating; }
+void CustomMenuButton::setMenuFloating(bool floating)
+{
+	m_floatingMenu = floating;
+}
 
 void CustomMenuButton::checkBoxToggled(bool toggled)
 {

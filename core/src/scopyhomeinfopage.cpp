@@ -16,7 +16,10 @@ ScopyHomeInfoPage::ScopyHomeInfoPage(QWidget *parent)
 	//	initReportButton();
 }
 
-ScopyHomeInfoPage::~ScopyHomeInfoPage() { delete ui; }
+ScopyHomeInfoPage::~ScopyHomeInfoPage()
+{
+	delete ui;
+}
 
 void ScopyHomeInfoPage::initReportButton()
 {

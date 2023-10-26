@@ -47,7 +47,10 @@ IioTabWidget::IioTabWidget(QWidget *parent)
 		[=](QString uri) { m_ui->btnVerify->setEnabled(!uri.isEmpty()); });
 }
 
-IioTabWidget::~IioTabWidget() { delete m_ui; }
+IioTabWidget::~IioTabWidget()
+{
+	delete m_ui;
+}
 
 void IioTabWidget::init()
 {

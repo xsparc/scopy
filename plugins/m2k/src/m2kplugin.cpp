@@ -164,9 +164,15 @@ bool M2kPlugin::loadIcon()
 	return true;
 }
 
-void M2kPlugin::showPageCallback() { m_m2kController->startTemperatureTask(); }
+void M2kPlugin::showPageCallback()
+{
+	m_m2kController->startTemperatureTask();
+}
 
-void M2kPlugin::hidePageCallback() { m_m2kController->stopTemperatureTask(); }
+void M2kPlugin::hidePageCallback()
+{
+	m_m2kController->stopTemperatureTask();
+}
 
 void M2kPlugin::calibrationStarted()
 {
@@ -180,11 +186,20 @@ void M2kPlugin::calibrationStarted()
 	}
 }
 
-void M2kPlugin::calibrationSuccess() { restoreToolState(calibrationToolNames); }
+void M2kPlugin::calibrationSuccess()
+{
+	restoreToolState(calibrationToolNames);
+}
 
-void M2kPlugin::calibrationFinished() { restoreToolState(calibrationToolNames); }
+void M2kPlugin::calibrationFinished()
+{
+	restoreToolState(calibrationToolNames);
+}
 
-void M2kPlugin::updateTemperature(double val) { m_m2kInfoPage->update("Temperature", QString::number(val)); }
+void M2kPlugin::updateTemperature(double val)
+{
+	m_m2kInfoPage->update("Temperature", QString::number(val));
+}
 
 void M2kPlugin::storeToolState(QStringList tools)
 {

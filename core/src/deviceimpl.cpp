@@ -99,7 +99,10 @@ void DeviceImpl::unloadPlugins()
 	qInfo(CAT_BENCHMARK) << this->displayName() << " plugins unload took: " << timer.elapsed() << "ms";
 }
 
-bool DeviceImpl::verify() { return true; }
+bool DeviceImpl::verify()
+{
+	return true;
+}
 
 QMap<QString, QString> DeviceImpl::readDeviceInfo()
 {
@@ -223,9 +226,15 @@ void DeviceImpl::loadBadges()
 	connect(this, &DeviceImpl::connected, warningHover, &HoverWidget::hide);
 }
 
-void DeviceImpl::onConnectionFailed() { disconnectDev(); }
+void DeviceImpl::onConnectionFailed()
+{
+	disconnectDev();
+}
 
-QList<Plugin *> DeviceImpl::plugins() const { return m_plugins; }
+QList<Plugin *> DeviceImpl::plugins() const
+{
+	return m_plugins;
+}
 
 void DeviceImpl::showPage()
 {
@@ -322,21 +331,45 @@ void DeviceImpl::disconnectDev()
 	qInfo(CAT_BENCHMARK) << this->displayName() << " device disconnection took: " << timer.elapsed() << "ms";
 }
 
-DeviceImpl::~DeviceImpl() { qDebug(CAT_DEVICEIMPL) << m_id << "dtor"; }
+DeviceImpl::~DeviceImpl()
+{
+	qDebug(CAT_DEVICEIMPL) << m_id << "dtor";
+}
 
-QString DeviceImpl::id() { return m_id; }
+QString DeviceImpl::id()
+{
+	return m_id;
+}
 
-QString DeviceImpl::displayName() { return m_displayName; }
+QString DeviceImpl::displayName()
+{
+	return m_displayName;
+}
 
-QString DeviceImpl::category() { return m_category; }
+QString DeviceImpl::category()
+{
+	return m_category;
+}
 
-QString DeviceImpl::displayParam() { return m_displayParam; }
+QString DeviceImpl::displayParam()
+{
+	return m_displayParam;
+}
 
-QString DeviceImpl::param() { return m_param; }
+QString DeviceImpl::param()
+{
+	return m_param;
+}
 
-QWidget *DeviceImpl::icon() { return m_icon; }
+QWidget *DeviceImpl::icon()
+{
+	return m_icon;
+}
 
-QWidget *DeviceImpl::page() { return m_page; }
+QWidget *DeviceImpl::page()
+{
+	return m_page;
+}
 
 QList<ToolMenuEntry *> DeviceImpl::toolList()
 {

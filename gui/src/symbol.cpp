@@ -57,17 +57,35 @@ Symbol::Symbol(QObject *parent, const QSize &size, QwtAxisId fixedAxis, QwtAxisI
 
 Symbol::~Symbol() {}
 
-QwtPlot *Symbol::plot() { return static_cast<QwtPlot *>(parent()); }
+QwtPlot *Symbol::plot()
+{
+	return static_cast<QwtPlot *>(parent());
+}
 
-const QwtPlot *Symbol::plot() const { return static_cast<const QwtPlot *>(parent()); }
+const QwtPlot *Symbol::plot() const
+{
+	return static_cast<const QwtPlot *>(parent());
+}
 
-void Symbol::setSurface(const QRect &rect) { d_surface = rect; }
+void Symbol::setSurface(const QRect &rect)
+{
+	d_surface = rect;
+}
 
-QRect Symbol::surface() { return d_surface; }
+QRect Symbol::surface()
+{
+	return d_surface;
+}
 
-void Symbol::setAnchor(const QPoint &anchor) { d_anchor = anchor; }
+void Symbol::setAnchor(const QPoint &anchor)
+{
+	d_anchor = anchor;
+}
 
-QPoint Symbol::anchor() { return d_anchor; }
+QPoint Symbol::anchor()
+{
+	return d_anchor;
+}
 
 void Symbol::setPlotCoord(const QPointF &pos)
 {
@@ -79,7 +97,10 @@ void Symbol::setPlotCoord(const QPointF &pos)
 	}
 }
 
-QPointF Symbol::plotCoord() { return d_plotCoord; }
+QPointF Symbol::plotCoord()
+{
+	return d_plotCoord;
+}
 
 void Symbol::setSelected(bool sel)
 {
@@ -87,11 +108,20 @@ void Symbol::setSelected(bool sel)
 	Q_EMIT selected(sel);
 }
 
-bool Symbol::isSelected() { return d_selected; }
+bool Symbol::isSelected()
+{
+	return d_selected;
+}
 
-QwtAxisId Symbol::fixedAxis() const { return d_fixedAxis; }
+QwtAxisId Symbol::fixedAxis() const
+{
+	return d_fixedAxis;
+}
 
-QwtAxisId Symbol::mobileAxis() const { return d_mobileAxis; }
+QwtAxisId Symbol::mobileAxis() const
+{
+	return d_mobileAxis;
+}
 
 void Symbol::setMobileAxis(QwtAxisId newAxis)
 {
@@ -119,17 +149,35 @@ void Symbol::setFixedAxis(QwtAxisId newAxis)
 	}
 }
 
-void Symbol::setStepSize(double step) { d_stepSize = step; }
+void Symbol::setStepSize(double step)
+{
+	d_stepSize = step;
+}
 
-double Symbol::stepSize() { return d_stepSize; }
+double Symbol::stepSize()
+{
+	return d_stepSize;
+}
 
-bool Symbol::opposedToFixed() { return d_oppToFixed; }
+bool Symbol::opposedToFixed()
+{
+	return d_oppToFixed;
+}
 
-bool Symbol::floats() { return d_floats; }
+bool Symbol::floats()
+{
+	return d_floats;
+}
 
-void Symbol::setCanLeavePlot(bool on) { d_within_plot = !on; }
+void Symbol::setCanLeavePlot(bool on)
+{
+	d_within_plot = !on;
+}
 
-bool Symbol::canLeavePlot() { return (!d_within_plot); }
+bool Symbol::canLeavePlot()
+{
+	return (!d_within_plot);
+}
 
 void Symbol::setVisible(bool en)
 {
@@ -139,11 +187,20 @@ void Symbol::setVisible(bool en)
 	}
 }
 
-bool Symbol::isVisible() { return d_visible; }
+bool Symbol::isVisible()
+{
+	return d_visible;
+}
 
-void Symbol::setPen(const QPen &pen) { d_pen = pen; }
+void Symbol::setPen(const QPen &pen)
+{
+	d_pen = pen;
+}
 
-const QPen &Symbol::pen() { return d_pen; }
+const QPen &Symbol::pen()
+{
+	return d_pen;
+}
 
 QPointF Symbol::invTransform(const QPointF &point) const
 {

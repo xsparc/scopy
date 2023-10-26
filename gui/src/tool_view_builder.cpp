@@ -47,4 +47,7 @@ ToolViewBuilder::ToolViewBuilder(const ToolViewRecipe &recipe, ChannelManager *c
 	m_toolView->getSettingsBtn()->setVisible(recipe.hasHamburgerMenuBtn);
 }
 
-ToolView *ToolViewBuilder::build() { return m_toolView; }
+ToolView *ToolViewBuilder::build()
+{
+	return m_toolView;
+}

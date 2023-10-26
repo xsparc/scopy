@@ -129,7 +129,10 @@ public:
 
 	const std::vector<std::vector<gr::tag_t>> getTags() const;
 
-	static QEvent::Type Type() { return QEvent::Type(SpectrumUpdateEventType); }
+	static QEvent::Type Type()
+	{
+		return QEvent::Type(SpectrumUpdateEventType);
+	}
 
 protected:
 private:
@@ -171,7 +174,10 @@ public:
 	uint64_t getNumDataPoints() const;
 	bool getRepeatDataFlag() const;
 
-	static QEvent::Type Type() { return QEvent::Type(SpectrumUpdateEventType); }
+	static QEvent::Type Type()
+	{
+		return QEvent::Type(SpectrumUpdateEventType);
+	}
 
 protected:
 private:
@@ -209,7 +215,10 @@ public:
 	uint64_t getNumDataPoints() const;
 	bool getRepeatDataFlag() const;
 
-	static QEvent::Type Type() { return QEvent::Type(SpectrumUpdateEventType); }
+	static QEvent::Type Type()
+	{
+		return QEvent::Type(SpectrumUpdateEventType);
+	}
 
 protected:
 private:
@@ -234,7 +243,10 @@ public:
 
 	gr::high_res_timer_type getDataTimestamp() const;
 
-	static QEvent::Type Type() { return QEvent::Type(SpectrumUpdateEventType); }
+	static QEvent::Type Type()
+	{
+		return QEvent::Type(SpectrumUpdateEventType);
+	}
 
 protected:
 private:
@@ -258,7 +270,10 @@ public:
 	uint64_t getNumDataPoints() const;
 	bool getRepeatDataFlag() const;
 
-	static QEvent::Type Type() { return QEvent::Type(SpectrumUpdateEventType); }
+	static QEvent::Type Type()
+	{
+		return QEvent::Type(SpectrumUpdateEventType);
+	}
 
 protected:
 private:
@@ -281,7 +296,10 @@ public:
 	uint64_t getNumDataPoints() const;
 	bool getRepeatDataFlag() const;
 
-	static QEvent::Type Type() { return QEvent::Type(SpectrumUpdateEventType); }
+	static QEvent::Type Type()
+	{
+		return QEvent::Type(SpectrumUpdateEventType);
+	}
 
 protected:
 private:
@@ -301,7 +319,10 @@ public:
 	int which() const;
 	const std::vector<float> getSamples() const;
 
-	static QEvent::Type Type() { return QEvent::Type(SpectrumUpdateEventType); }
+	static QEvent::Type Type()
+	{
+		return QEvent::Type(SpectrumUpdateEventType);
+	}
 
 protected:
 private:

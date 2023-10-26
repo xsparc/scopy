@@ -36,7 +36,10 @@ LogicGroupItem::LogicGroupItem(const QString &name, QWidget *parent)
 	buildUi();
 }
 
-QString LogicGroupItem::getName() const { return m_nameLabel->text(); }
+QString LogicGroupItem::getName() const
+{
+	return m_nameLabel->text();
+}
 
 void LogicGroupItem::setName(const QString &name)
 {

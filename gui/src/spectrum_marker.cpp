@@ -44,11 +44,20 @@ SpectrumMarker::SpectrumMarker(const QString &title, QwtAxisId xAxis, QwtAxisId 
 
 SpectrumMarker::~SpectrumMarker() {}
 
-QColor SpectrumMarker::defaultColor() const { return m_default_color; }
+QColor SpectrumMarker::defaultColor() const
+{
+	return m_default_color;
+}
 
-void SpectrumMarker::setDefaultColor(const QColor &color) { m_default_color = color; }
+void SpectrumMarker::setDefaultColor(const QColor &color)
+{
+	m_default_color = color;
+}
 
-bool SpectrumMarker::selected() const { return m_selected; }
+bool SpectrumMarker::selected() const
+{
+	return m_selected;
+}
 
 void SpectrumMarker::setSelected(bool on)
 {
@@ -67,9 +76,15 @@ void SpectrumMarker::setSelected(bool on)
 	}
 }
 
-bool SpectrumMarker::movable() const { return m_movable; }
+bool SpectrumMarker::movable() const
+{
+	return m_movable;
+}
 
-void SpectrumMarker::setMovable(bool on) { m_movable = on; }
+void SpectrumMarker::setMovable(bool on)
+{
+	m_movable = on;
+}
 
 QPoint SpectrumMarker::plotValueToPixels(const QPointF &point) const
 {

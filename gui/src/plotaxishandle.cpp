@@ -59,8 +59,14 @@ PlotAxisHandle::PlotAxisHandle(QPen pen, PlotAxis *ax, PlotWidget *p, int positi
 
 PlotAxisHandle::~PlotAxisHandle() {}
 
-RoundedHandleV *PlotAxisHandle::handle() const { return m_handle; }
+RoundedHandleV *PlotAxisHandle::handle() const
+{
+	return m_handle;
+}
 
-PlotAxis *PlotAxisHandle::axis() const { return m_axis; }
+PlotAxis *PlotAxisHandle::axis() const
+{
+	return m_axis;
+}
 
 #include "moc_plotaxishandle.cpp"

@@ -56,11 +56,20 @@ void RowData::get_annotation_subset(vector<Annotation> &dest, uint64_t start_sam
 			dest.push_back(annotation);
 }
 
-vector<Annotation> RowData::get_annotations() const { return annotations_; }
+vector<Annotation> RowData::get_annotations() const
+{
+	return annotations_;
+}
 
-Annotation RowData::getAnnAt(uint64_t index) const { return annotations_[index]; }
+Annotation RowData::getAnnAt(uint64_t index) const
+{
+	return annotations_[index];
+}
 
-const Annotation *RowData::annAt(uint64_t index) const { return &annotations_[index]; }
+const Annotation *RowData::annAt(uint64_t index) const
+{
+	return &annotations_[index];
+}
 
 void RowData::sort_annotations()
 {
@@ -103,4 +112,7 @@ std::pair<uint64_t, uint64_t> RowData::get_annotation_subset(uint64_t start_samp
 	return std::make_pair(first, last);
 }
 
-void RowData::emplace_annotation(srd_proto_data *pdata, const Row *row) { annotations_.emplace_back(pdata, row); }
+void RowData::emplace_annotation(srd_proto_data *pdata, const Row *row)
+{
+	annotations_.emplace_back(pdata, row);
+}

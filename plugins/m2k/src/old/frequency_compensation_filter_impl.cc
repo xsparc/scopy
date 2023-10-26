@@ -134,8 +134,17 @@ float frequency_compensation_filter_impl::get_filter_gain(int gain_mode)
 	return this->config[gain_mode].gain;
 }
 
-void frequency_compensation_filter_impl::set_sample_rate(float sample_rate) { this->sample_rate = sample_rate; }
+void frequency_compensation_filter_impl::set_sample_rate(float sample_rate)
+{
+	this->sample_rate = sample_rate;
+}
 
-bool frequency_compensation_filter_impl::get_high_gain() { return this->high_gain; }
-void frequency_compensation_filter_impl::set_high_gain(bool en) { this->high_gain = en; }
+bool frequency_compensation_filter_impl::get_high_gain()
+{
+	return this->high_gain;
+}
+void frequency_compensation_filter_impl::set_high_gain(bool en)
+{
+	this->high_gain = en;
+}
 } // namespace scopy

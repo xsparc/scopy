@@ -40,7 +40,10 @@ public:
 		Q_EMIT finished(this);
 	}
 
-	char *getResult() { return static_cast<char *>(m_cmdResult->results); }
+	char *getResult()
+	{
+		return static_cast<char *>(m_cmdResult->results);
+	}
 
 private:
 	struct iio_device *m_device;

@@ -22,7 +22,10 @@ ToolManager::ToolManager(ToolMenu *tm, ToolStack *ts, DetachedToolWindowManager 
 	qDebug(CAT_TOOLMANAGER) << "ctor";
 }
 
-ToolManager::~ToolManager() { qDebug(CAT_TOOLMANAGER) << "dtor"; }
+ToolManager::~ToolManager()
+{
+	qDebug(CAT_TOOLMANAGER) << "dtor";
+}
 
 void ToolManager::addToolList(QString s, QList<ToolMenuEntry *> sl)
 {

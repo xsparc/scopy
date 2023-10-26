@@ -37,7 +37,10 @@ void TST_BareMinimum::fileExists()
 	QVERIFY(ret);
 }
 
-void TST_BareMinimum::isLibrary() { QVERIFY(QLibrary::isLibrary(FILENAME)); }
+void TST_BareMinimum::isLibrary()
+{
+	QVERIFY(QLibrary::isLibrary(FILENAME));
+}
 
 void TST_BareMinimum::className()
 {

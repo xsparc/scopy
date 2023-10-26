@@ -121,19 +121,40 @@ GenericAdc::GenericAdc(struct iio_context *ctx, struct iio_device *adc_dev)
 
 GenericAdc::~GenericAdc() {}
 
-struct iio_context *GenericAdc::iio_context() const { return m_ctx; }
+struct iio_context *GenericAdc::iio_context() const
+{
+	return m_ctx;
+}
 
-struct iio_device *GenericAdc::iio_adc_dev() const { return m_adc; }
+struct iio_device *GenericAdc::iio_adc_dev() const
+{
+	return m_adc;
+}
 
-std::shared_ptr<HardwareTrigger> GenericAdc::getTrigger() const { return m_trigger; }
+std::shared_ptr<HardwareTrigger> GenericAdc::getTrigger() const
+{
+	return m_trigger;
+}
 
-QList<struct iio_channel *> GenericAdc::adcChannelList() const { return m_adc_channels; }
+QList<struct iio_channel *> GenericAdc::adcChannelList() const
+{
+	return m_adc_channels;
+}
 
-uint GenericAdc::numAdcChannels() const { return m_adc_channels.size(); }
+uint GenericAdc::numAdcChannels() const
+{
+	return m_adc_channels.size();
+}
 
-uint GenericAdc::numAdcBits() const { return m_adc_bits; }
+uint GenericAdc::numAdcBits() const
+{
+	return m_adc_bits;
+}
 
-double GenericAdc::sampleRate() const { return m_sample_rate; }
+double GenericAdc::sampleRate() const
+{
+	return m_sample_rate;
+}
 
 double GenericAdc::readSampleRate()
 {
@@ -148,13 +169,25 @@ void GenericAdc::setSampleRate(double sr)
 	m_sample_rate = sr;
 }
 
-double GenericAdc::convSampleToVolts(uint chnIdx, double sample) const { return sample; }
+double GenericAdc::convSampleToVolts(uint chnIdx, double sample) const
+{
+	return sample;
+}
 
-double GenericAdc::convVoltsToSample(uint chnIdx, double volts) const { return volts; }
+double GenericAdc::convVoltsToSample(uint chnIdx, double volts) const
+{
+	return volts;
+}
 
-double GenericAdc::convSampleDiffToVoltsDiff(uint chnIdx, double smpl) const { return smpl; }
+double GenericAdc::convSampleDiffToVoltsDiff(uint chnIdx, double smpl) const
+{
+	return smpl;
+}
 
-double GenericAdc::convVoltsDiffToSampleDiff(uint chnIdx, double v) const { return v; }
+double GenericAdc::convVoltsDiffToSampleDiff(uint chnIdx, double v) const
+{
+	return v;
+}
 
 GenericAdc::settings_uptr GenericAdc::getCurrentHwSettings()
 {
@@ -165,7 +198,10 @@ GenericAdc::settings_uptr GenericAdc::getCurrentHwSettings()
 	return settings_uptr;
 }
 
-void GenericAdc::setHwSettings(GenericAdc::Settings *settings) { setSampleRate(settings->sample_rate); }
+void GenericAdc::setHwSettings(GenericAdc::Settings *settings)
+{
+	setSampleRate(settings->sample_rate);
+}
 
 /*
  * Class M2kAdc
@@ -249,15 +285,30 @@ void M2kAdc::apply_m2k_fixes()
 	iio_device_reg_write(dev, 0x6D, 0x20);
 }
 
-double M2kAdc::chnCorrectionOffset(uint chnIdx) const { return m_chn_corr_offsets[chnIdx]; }
+double M2kAdc::chnCorrectionOffset(uint chnIdx) const
+{
+	return m_chn_corr_offsets[chnIdx];
+}
 
-void M2kAdc::setChnCorrectionOffset(uint chnIdx, double offset) { m_chn_corr_offsets[chnIdx] = offset; }
+void M2kAdc::setChnCorrectionOffset(uint chnIdx, double offset)
+{
+	m_chn_corr_offsets[chnIdx] = offset;
+}
 
-double M2kAdc::chnCorrectionGain(uint chnIdx) const { return m_chn_corr_gains[chnIdx]; }
+double M2kAdc::chnCorrectionGain(uint chnIdx) const
+{
+	return m_chn_corr_gains[chnIdx];
+}
 
-void M2kAdc::setChnCorrectionGain(uint chnIdx, double gain) { m_chn_corr_gains[chnIdx] = gain; }
+void M2kAdc::setChnCorrectionGain(uint chnIdx, double gain)
+{
+	m_chn_corr_gains[chnIdx] = gain;
+}
 
-double M2kAdc::chnHwOffset(uint chnIdx) const { return m_chn_hw_offsets[chnIdx]; }
+double M2kAdc::chnHwOffset(uint chnIdx) const
+{
+	return m_chn_hw_offsets[chnIdx];
+}
 
 void M2kAdc::setChnHwOffset(uint chnIdx, double offset)
 {
@@ -272,7 +323,10 @@ void M2kAdc::setChnHwOffset(uint chnIdx, double offset)
 	m_chn_hw_offsets[chnIdx] = offset;
 }
 
-M2kAdc::GainMode M2kAdc::chnHwGainMode(uint chnIdx) const { return m_chn_hw_gain_modes[chnIdx]; }
+M2kAdc::GainMode M2kAdc::chnHwGainMode(uint chnIdx) const
+{
+	return m_chn_hw_gain_modes[chnIdx];
+}
 
 void M2kAdc::setChnHwGainMode(uint chnIdx, GainMode gain_mode)
 {
@@ -303,11 +357,20 @@ QPair<double, double> M2kAdc::inputRange(GainMode gain_mode) const
 		return QPair<double, double>(0, 0);
 }
 
-QList<double> M2kAdc::availSamplRates() const { return m_availSampRates; }
+QList<double> M2kAdc::availSamplRates() const
+{
+	return m_availSampRates;
+}
 
-double M2kAdc::maxSampleRate() const { return max_sample_rate; }
+double M2kAdc::maxSampleRate() const
+{
+	return max_sample_rate;
+}
 
-double M2kAdc::compTable(double samplRate) const { return m_filt_comp_table.at(samplRate); }
+double M2kAdc::compTable(double samplRate) const
+{
+	return m_filt_comp_table.at(samplRate);
+}
 
 void M2kAdc::setSampleRate(double sr)
 {
@@ -321,7 +384,10 @@ void M2kAdc::setSampleRate(double sr)
 	}
 }
 
-double M2kAdc::readSampleRate() const { return m2k_sample_rate; }
+double M2kAdc::readSampleRate() const
+{
+	return m2k_sample_rate;
+}
 
 double M2kAdc::convSampleToVolts(uint chnIdx, double sample) const
 {
@@ -396,7 +462,10 @@ void M2kAdc::setFilteringEnabled(bool set)
 	}
 }
 
-bool M2kAdc::filteringEnabled() const { return filtering_enabled; }
+bool M2kAdc::filteringEnabled() const
+{
+	return filtering_enabled;
+}
 
 uint32_t M2kAdc::oversamplingRatio() const
 {

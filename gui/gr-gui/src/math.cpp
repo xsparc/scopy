@@ -151,9 +151,15 @@ void Math::handleButton()
 	ui->function->insert(token);
 }
 
-void Math::handleMenuButton(QAction *action) { ui->function->insert(action->text() + "("); }
+void Math::handleMenuButton(QAction *action)
+{
+	ui->function->insert(action->text() + "(");
+}
 
-void Math::handleMenuButtonT(QAction *action) { ui->function->insert(action->text()); }
+void Math::handleMenuButtonT(QAction *action)
+{
+	ui->function->insert(action->text());
+}
 
 void Math::validateFunction()
 {
@@ -182,8 +188,14 @@ void Math::resetState()
 	Q_EMIT stateReseted();
 }
 
-void Math::setFunction(const QString &function) { ui->function->setText(function); }
+void Math::setFunction(const QString &function)
+{
+	ui->function->setText(function);
+}
 
-void Math::delLastChar() { ui->function->backspace(); }
+void Math::delLastChar()
+{
+	ui->function->backspace();
+}
 
 #include "moc_math.cpp"

@@ -119,9 +119,15 @@ void DecoderTableModel::populateDecoderComboBox() const
 	}
 }
 
-int DecoderTableModel::getCurrentColumn() const { return m_current_column; }
+int DecoderTableModel::getCurrentColumn() const
+{
+	return m_current_column;
+}
 
-QMap<int, QVector<QString>> &DecoderTableModel::getFiltered() { return m_filteredMessages; }
+QMap<int, QVector<QString>> &DecoderTableModel::getFiltered()
+{
+	return m_filteredMessages;
+}
 
 void DecoderTableModel::setCurrentRow(int index)
 {
@@ -165,11 +171,20 @@ void DecoderTableModel::refreshSettings(int column)
 	endResetModel();
 }
 
-void DecoderTableModel::setSearchString(QString str) const { searchString = str; }
+void DecoderTableModel::setSearchString(QString str) const
+{
+	searchString = str;
+}
 
-QVector<int> DecoderTableModel::getSearchMask() { return searchMask; }
+QVector<int> DecoderTableModel::getSearchMask()
+{
+	return searchMask;
+}
 
-QString DecoderTableModel::getsearchString() { return searchString; }
+QString DecoderTableModel::getsearchString()
+{
+	return searchString;
+}
 
 void DecoderTableModel::reloadDecoders(bool logic)
 {
@@ -289,7 +304,10 @@ void DecoderTableModel::populateFilter(int index) const
 	}
 }
 
-int DecoderTableModel::getPrimaryAnnotationIndex() const { return m_primary_annoations->value(getCurrentColumn()); }
+int DecoderTableModel::getPrimaryAnnotationIndex() const
+{
+	return m_primary_annoations->value(getCurrentColumn());
+}
 
 QVariant DecoderTableModel::data(const QModelIndex &index, int role) const
 {

@@ -37,7 +37,10 @@ void TST_ADCPlugin::fileExists()
 	QVERIFY(ret);
 }
 
-void TST_ADCPlugin::isLibrary() { QVERIFY(QLibrary::isLibrary(FILENAME)); }
+void TST_ADCPlugin::isLibrary()
+{
+	QVERIFY(QLibrary::isLibrary(FILENAME));
+}
 
 void TST_ADCPlugin::className()
 {

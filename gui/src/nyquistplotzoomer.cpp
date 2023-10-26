@@ -39,7 +39,10 @@ void NyquistPlotZoomer::zoomOut()
 		--zoom_count;
 }
 
-bool NyquistPlotZoomer::isZoomed() { return (zoom_count != 0); }
+bool NyquistPlotZoomer::isZoomed()
+{
+	return (zoom_count != 0);
+}
 
 void NyquistPlotZoomer::cancelZoom()
 {

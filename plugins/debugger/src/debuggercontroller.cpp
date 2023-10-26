@@ -82,15 +82,30 @@ void DebuggerController::setIioContext(struct iio_context *ctx)
 	}
 }
 
-QStringList DebuggerController::getDeviceList() const { return deviceList; }
+QStringList DebuggerController::getDeviceList() const
+{
+	return deviceList;
+}
 
-QStringList DebuggerController::getChannelList() const { return channelList; }
+QStringList DebuggerController::getChannelList() const
+{
+	return channelList;
+}
 
-QStringList DebuggerController::getAttributeList() const { return attributeList; }
+QStringList DebuggerController::getAttributeList() const
+{
+	return attributeList;
+}
 
-QStringList DebuggerController::getFileName() const { return filename; }
+QStringList DebuggerController::getFileName() const
+{
+	return filename;
+}
 
-QVector<QString> DebuggerController::getAttributeVector() const { return attributeAvailable; }
+QVector<QString> DebuggerController::getAttributeVector() const
+{
+	return attributeAvailable;
+}
 
 void DebuggerController::scanChannels(const QString &devName)
 {
@@ -283,4 +298,7 @@ QString DebuggerController::writeAttribute(const QString &devName, QString &chan
 	return QString(feedbackValue);
 }
 
-struct iio_context *DebuggerController::getIioContext(void) { return ctx; }
+struct iio_context *DebuggerController::getIioContext(void)
+{
+	return ctx;
+}

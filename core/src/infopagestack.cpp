@@ -159,6 +159,9 @@ void InfoPageStack::slideInWidget(QWidget *newWidget, int direction)
 	animGroup->start();
 }
 
-HomepageControls *InfoPageStack::getHomepageControls() const { return hc; }
+HomepageControls *InfoPageStack::getHomepageControls() const
+{
+	return hc;
+}
 
 #include "moc_infopagestack.cpp"

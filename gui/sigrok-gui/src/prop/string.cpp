@@ -113,7 +113,10 @@ void String::commit()
 	setter_(QVariant(ba));
 }
 
-void String::onTextEdited(const QString &) { commit(); }
+void String::onTextEdited(const QString &)
+{
+	commit();
+}
 
 } // namespace prop
 } // namespace scopy

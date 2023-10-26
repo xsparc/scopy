@@ -305,7 +305,10 @@ bool dBgraph::eventFilter(QObject *object, QEvent *event)
 	return QObject::eventFilter(object, event);
 }
 
-int dBgraph::getNumSamples() const { return numSamples; }
+int dBgraph::getNumSamples() const
+{
+	return numSamples;
+}
 
 QString dBgraph::getScaleValueFormat(double value, QwtAxisId scale) const
 {
@@ -332,7 +335,10 @@ void dBgraph::setShowZero(bool en)
 	replot();
 }
 
-const QwtScaleWidget *dBgraph::getAxisWidget(QwtAxisId id) { return axisWidget(id); }
+const QwtScaleWidget *dBgraph::getAxisWidget(QwtAxisId id)
+{
+	return axisWidget(id);
+}
 
 void dBgraph::setNumSamples(int num)
 {
@@ -360,7 +366,10 @@ void dBgraph::setColor(const QColor &color)
 	curve.setPen(QPen(color, thickness));
 }
 
-const QColor &dBgraph::getColor() const { return this->color; }
+const QColor &dBgraph::getColor() const
+{
+	return this->color;
+}
 
 void dBgraph::setThickness(int index)
 {
@@ -370,11 +379,20 @@ void dBgraph::setThickness(int index)
 	replot();
 }
 
-double dBgraph::getThickness() { return this->thickness; }
+double dBgraph::getThickness()
+{
+	return this->thickness;
+}
 
-QString dBgraph::xTitle() const { return axisTitle(QwtAxis::XTop).text(); }
+QString dBgraph::xTitle() const
+{
+	return axisTitle(QwtAxis::XTop).text();
+}
 
-QString dBgraph::yTitle() const { return axisTitle(QwtAxis::YLeft).text(); }
+QString dBgraph::yTitle() const
+{
+	return axisTitle(QwtAxis::YLeft).text();
+}
 
 void dBgraph::setXTitle(const QString &title)
 {
@@ -463,9 +481,15 @@ QString dBgraph::yUnit() const
 	;
 }
 
-void dBgraph::setXUnit(const QString &unit) { draw_x->setUnitType(unit); }
+void dBgraph::setXUnit(const QString &unit)
+{
+	draw_x->setUnitType(unit);
+}
 
-void dBgraph::setYUnit(const QString &unit) { draw_y->setUnitType(unit); }
+void dBgraph::setYUnit(const QString &unit)
+{
+	draw_y->setUnitType(unit);
+}
 
 void dBgraph::useLogFreq(bool use_log_freq)
 {
@@ -559,7 +583,10 @@ bool dBgraph::addReferenceWaveformFromPlot()
 	return true;
 }
 
-QString dBgraph::formatXValue(double value, int precision) const { return d_formatter->format(value, "Hz", precision); }
+QString dBgraph::formatXValue(double value, int precision) const
+{
+	return d_formatter->format(value, "Hz", precision);
+}
 
 QString dBgraph::formatYValue(double value, int precision) const
 {
@@ -726,10 +753,16 @@ void dBgraph::mousePressEvent(QMouseEvent *event)
 	}
 }
 
-void dBgraph::onResetZoom() { zoomer->resetZoom(); }
+void dBgraph::onResetZoom()
+{
+	zoomer->resetZoom();
+}
 
 #ifdef __ANDROID__
-void dBgraph::onZoomOut() { zoomer->popZoom(); }
+void dBgraph::onZoomOut()
+{
+	zoomer->popZoom();
+}
 #endif
 
 void dBgraph::showEvent(QShowEvent *event)
@@ -741,6 +774,9 @@ void dBgraph::showEvent(QShowEvent *event)
 	sw->repaint();
 }
 
-void dBgraph::setPlotBarEnabled(bool enabled) { d_plotBarEnabled = enabled; }
+void dBgraph::setPlotBarEnabled(bool enabled)
+{
+	d_plotBarEnabled = enabled;
+}
 
 #include "moc_dbgraph.cpp"

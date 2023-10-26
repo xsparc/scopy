@@ -8,7 +8,10 @@
 Q_LOGGING_CATEGORY(CAT_GUITESTPLUGIN, "GUITestPlugin");
 using namespace scopy;
 
-bool TestPlugin::compatible(QString m_param, QString category) { return (m_param == "gui"); }
+bool TestPlugin::compatible(QString m_param, QString category)
+{
+	return (m_param == "gui");
+}
 
 bool TestPlugin::loadIcon()
 {

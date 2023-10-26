@@ -126,10 +126,19 @@ void DataLoggerPlugin::initMetadata()
 )plugin");
 }
 
-void DataLoggerPlugin::saveSettings(QSettings &s) { api->save(s); }
+void DataLoggerPlugin::saveSettings(QSettings &s)
+{
+	api->save(s);
+}
 
-void DataLoggerPlugin::loadSettings(QSettings &s) { api->load(s); }
+void DataLoggerPlugin::loadSettings(QSettings &s)
+{
+	api->load(s);
+}
 
-QString DataLoggerPlugin::description() { return "Use IIO raw and scale attributes to plot and save data"; }
+QString DataLoggerPlugin::description()
+{
+	return "Use IIO raw and scale attributes to plot and save data";
+}
 
 #include "moc_dataloggerplugin.cpp"

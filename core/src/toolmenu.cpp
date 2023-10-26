@@ -115,9 +115,15 @@ bool ToolMenu::removeTool(ToolMenuItem *tmi)
 	return false;
 }
 
-const QVector<ToolMenuItem *> &ToolMenu::getTools() const { return tools; }
+const QVector<ToolMenuItem *> &ToolMenu::getTools() const
+{
+	return tools;
+}
 
-QButtonGroup *ToolMenu::getButtonGroup() const { return buttonGroup; }
+QButtonGroup *ToolMenu::getButtonGroup() const
+{
+	return buttonGroup;
+}
 
 void ToolMenu::_updateToolList(short from, short to)
 {
@@ -128,7 +134,10 @@ void ToolMenu::_updateToolList(short from, short to)
 	}
 }
 
-ToolMenu::~ToolMenu() { _saveState(); }
+ToolMenu::~ToolMenu()
+{
+	_saveState();
+}
 
 void ToolMenu::hideMenuText(bool val)
 {

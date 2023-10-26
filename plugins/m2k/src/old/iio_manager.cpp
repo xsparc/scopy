@@ -335,7 +335,10 @@ void iio_manager::set_buffer_size(iio_manager::port_id copy, unsigned long size)
 	update_buffer_size_unlocked();
 }
 
-void iio_manager::got_timeout() { Q_EMIT timeout(); }
+void iio_manager::got_timeout()
+{
+	Q_EMIT timeout();
+}
 
 void iio_manager::set_device_timeout(unsigned int mseconds)
 {
@@ -345,7 +348,10 @@ void iio_manager::set_device_timeout(unsigned int mseconds)
 	}
 }
 
-void iio_manager::set_data_rate(double rate) { iio_block->set_data_rate(rate); }
+void iio_manager::set_data_rate(double rate)
+{
+	iio_block->set_data_rate(rate);
+}
 
 void iio_manager::set_kernel_buffer_count(int kb)
 {

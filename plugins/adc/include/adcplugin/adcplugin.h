@@ -67,21 +67,45 @@ public:
 		this->plotSettingsAddon = s;
 	}
 
-	void addDeviceAddon(ToolAddon *d) { deviceAddons.append(d); }
+	void addDeviceAddon(ToolAddon *d)
+	{
+		deviceAddons.append(d);
+	}
 
-	void removeDeviceAddon(ToolAddon *d) { deviceAddons.removeAll(d); }
+	void removeDeviceAddon(ToolAddon *d)
+	{
+		deviceAddons.removeAll(d);
+	}
 
-	void addChannelAddon(ToolAddon *c) { channelAddons.append(c); }
+	void addChannelAddon(ToolAddon *c)
+	{
+		channelAddons.append(c);
+	}
 
-	void removeChannelAddon(ToolAddon *c) { channelAddons.removeAll(c); }
+	void removeChannelAddon(ToolAddon *c)
+	{
+		channelAddons.removeAll(c);
+	}
 
-	ToolAddon *getPlotAddon() override { return plotAddon; }
+	ToolAddon *getPlotAddon() override
+	{
+		return plotAddon;
+	}
 
-	ToolAddon *getPlotSettings() override { return plotSettingsAddon; }
+	ToolAddon *getPlotSettings() override
+	{
+		return plotSettingsAddon;
+	}
 
-	QList<ToolAddon *> getDeviceAddons() override { return deviceAddons; }
+	QList<ToolAddon *> getDeviceAddons() override
+	{
+		return deviceAddons;
+	}
 
-	QList<ToolAddon *> getChannelAddons() override { return channelAddons; }
+	QList<ToolAddon *> getChannelAddons() override
+	{
+		return channelAddons;
+	}
 
 	QList<ToolAddon *> getAddons() override
 	{
@@ -113,10 +137,22 @@ public:
 		}
 	}
 
-	QString getPrefix() { return prefix; }
-	void setPrefix(QString p) { prefix = p; }
-	GRTopBlock *getTopBlock() const { return topBlock; }
-	void setTopBlock(GRTopBlock *newTopBlock) { topBlock = newTopBlock; }
+	QString getPrefix()
+	{
+		return prefix;
+	}
+	void setPrefix(QString p)
+	{
+		prefix = p;
+	}
+	GRTopBlock *getTopBlock() const
+	{
+		return topBlock;
+	}
+	void setTopBlock(GRTopBlock *newTopBlock)
+	{
+		topBlock = newTopBlock;
+	}
 
 private:
 	GRTimePlotAddon *plotAddon;

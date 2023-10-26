@@ -231,7 +231,10 @@ QWidget *GRTimePlotAddonSettings::createXAxisMenu(QWidget *parent)
 	return xaxiscontainer;
 }
 
-double GRTimePlotAddonSettings::sampleRate() const { return m_sampleRate; }
+double GRTimePlotAddonSettings::sampleRate() const
+{
+	return m_sampleRate;
+}
 
 void GRTimePlotAddonSettings::setSampleRate(double newSampleRate)
 {
@@ -241,7 +244,10 @@ void GRTimePlotAddonSettings::setSampleRate(double newSampleRate)
 	Q_EMIT sampleRateChanged(m_sampleRate);
 }
 
-bool GRTimePlotAddonSettings::showPlotTags() const { return m_showPlotTags; }
+bool GRTimePlotAddonSettings::showPlotTags() const
+{
+	return m_showPlotTags;
+}
 
 void GRTimePlotAddonSettings::setShowPlotTags(bool newShowPlotTags)
 {
@@ -251,7 +257,10 @@ void GRTimePlotAddonSettings::setShowPlotTags(bool newShowPlotTags)
 	Q_EMIT showPlotTagsChanged(m_showPlotTags);
 }
 
-bool GRTimePlotAddonSettings::rollingMode() const { return m_rollingMode; }
+bool GRTimePlotAddonSettings::rollingMode() const
+{
+	return m_rollingMode;
+}
 
 void GRTimePlotAddonSettings::setRollingMode(bool newRollingMode)
 {
@@ -261,7 +270,10 @@ void GRTimePlotAddonSettings::setRollingMode(bool newRollingMode)
 	Q_EMIT rollingModeChanged(newRollingMode);
 }
 
-uint32_t GRTimePlotAddonSettings::plotSize() const { return m_plotSize; }
+uint32_t GRTimePlotAddonSettings::plotSize() const
+{
+	return m_plotSize;
+}
 
 void GRTimePlotAddonSettings::setPlotSize(uint32_t newPlotSize)
 {
@@ -322,7 +334,10 @@ void GRTimePlotAddonSettings::preFlowBuild()
 	setSampleRate(sr);
 }
 
-uint32_t GRTimePlotAddonSettings::bufferSize() const { return m_bufferSize; }
+uint32_t GRTimePlotAddonSettings::bufferSize() const
+{
+	return m_bufferSize;
+}
 
 void GRTimePlotAddonSettings::setBufferSize(uint32_t newBufferSize)
 {
@@ -353,6 +368,12 @@ void GRTimePlotAddonSettings::showPlotLabels(bool b)
 	plotWidget->showAxisLabels();
 }
 
-QString GRTimePlotAddonSettings::getName() { return name; }
+QString GRTimePlotAddonSettings::getName()
+{
+	return name;
+}
 
-QWidget *GRTimePlotAddonSettings::getWidget() { return widget; }
+QWidget *GRTimePlotAddonSettings::getWidget()
+{
+	return widget;
+}

@@ -60,7 +60,10 @@ void cancel_dc_offset_block::set_buffer_size(size_t buffer_size)
 	}
 }
 
-float cancel_dc_offset_block::get_dc_offset() const { return d_dc_offset; }
+float cancel_dc_offset_block::get_dc_offset() const
+{
+	return d_dc_offset;
+}
 
 void cancel_dc_offset_block::_build_and_connect_blocks()
 {

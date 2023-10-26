@@ -103,7 +103,10 @@ void FaultsDevice::resetStored()
 	this->updateExplanations();
 }
 
-void FaultsDevice::update() { readRegister(); }
+void FaultsDevice::update()
+{
+	readRegister();
+}
 
 void FaultsDevice::updateExplanation(int index)
 {

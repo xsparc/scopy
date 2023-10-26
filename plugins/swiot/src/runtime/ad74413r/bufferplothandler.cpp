@@ -141,7 +141,10 @@ void BufferPlotHandler::initStatusWidget()
 	m_plot->setStatusWidget(statusWidget);
 }
 
-void BufferPlotHandler::setYAxisVisible(bool visible) { m_plot->setAxisVisible(QwtAxis::YRight, visible); }
+void BufferPlotHandler::setYAxisVisible(bool visible)
+{
+	m_plot->setAxisVisible(QwtAxis::YRight, visible);
+}
 
 void BufferPlotHandler::setHandlesName(QMap<int, QString> chnlsId)
 {
@@ -217,7 +220,10 @@ void BufferPlotHandler::onBufferRefilled(QVector<QVector<double>> bufferData, in
 	m_lock->unlock();
 }
 
-int BufferPlotHandler::getRequiredBuffersNumber() { return m_buffersNumber; }
+int BufferPlotHandler::getRequiredBuffersNumber()
+{
+	return m_buffersNumber;
+}
 
 void BufferPlotHandler::drawPlot()
 {
@@ -271,7 +277,10 @@ void BufferPlotHandler::addChannelScale(int index, QColor color, QString unit, b
 	m_plotScalesController->addChannel(index, color, unit, enabled);
 }
 
-void BufferPlotHandler::mapChannelCurveId(int curveId, int channelId) { m_channelCurveId.insert(curveId, channelId); }
+void BufferPlotHandler::mapChannelCurveId(int curveId, int channelId)
+{
+	m_channelCurveId.insert(curveId, channelId);
+}
 
 void BufferPlotHandler::updateScale(int channel)
 {
@@ -353,11 +362,20 @@ void BufferPlotHandler::onSamplingFreqWritten(int samplingFreq)
 	resetPlotParameters();
 }
 
-void BufferPlotHandler::setSingleCapture(bool en) { m_singleCapture = en; }
+void BufferPlotHandler::setSingleCapture(bool en)
+{
+	m_singleCapture = en;
+}
 
-QColor BufferPlotHandler::getCurveColor(int id) const { return m_plot->getLineColor(id); }
+QColor BufferPlotHandler::getCurveColor(int id) const
+{
+	return m_plot->getLineColor(id);
+}
 
-QWidget *BufferPlotHandler::getPlotWidget() const { return m_plotWidget; }
+QWidget *BufferPlotHandler::getPlotWidget() const
+{
+	return m_plotWidget;
+}
 
 void BufferPlotHandler::onChannelWidgetEnabled(int curveId, bool en)
 {
@@ -378,7 +396,10 @@ void BufferPlotHandler::onChannelWidgetSelected(int curveId)
 	m_plot->setAllAxes(curveId);
 }
 
-void BufferPlotHandler::onPrintBtnClicked() { m_plot->printWithNoBackground(AD_NAME); }
+void BufferPlotHandler::onPrintBtnClicked()
+{
+	m_plot->printWithNoBackground(AD_NAME);
+}
 
 void BufferPlotHandler::resetPlotParameters()
 {
@@ -463,4 +484,7 @@ bool BufferPlotHandler::eventFilter(QObject *obj, QEvent *event)
 	}
 }
 
-bool BufferPlotHandler::singleCapture() const { return m_singleCapture; }
+bool BufferPlotHandler::singleCapture() const
+{
+	return m_singleCapture;
+}

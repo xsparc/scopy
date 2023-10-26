@@ -54,4 +54,7 @@ QwtDblClickPlotPicker::QwtDblClickPlotPicker(QWidget *canvas)
 
 QwtDblClickPlotPicker::~QwtDblClickPlotPicker() {}
 
-QwtPickerMachine *QwtDblClickPlotPicker::stateMachine(int n) const { return new QwtPickerDblClickPointMachine; }
+QwtPickerMachine *QwtDblClickPlotPicker::stateMachine(int n) const
+{
+	return new QwtPickerDblClickPointMachine;
+}

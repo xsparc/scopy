@@ -96,17 +96,35 @@ void ChannelWidget::init()
 	//		QSizePolicy::Fixed);
 }
 
-QAbstractButton *ChannelWidget::enableButton() const { return m_ui->box; }
+QAbstractButton *ChannelWidget::enableButton() const
+{
+	return m_ui->box;
+}
 
-QAbstractButton *ChannelWidget::nameButton() const { return m_ui->name; }
+QAbstractButton *ChannelWidget::nameButton() const
+{
+	return m_ui->name;
+}
 
-QAbstractButton *ChannelWidget::menuButton() const { return m_ui->btn; }
+QAbstractButton *ChannelWidget::menuButton() const
+{
+	return m_ui->btn;
+}
 
-QAbstractButton *ChannelWidget::deleteButton() const { return m_ui->delBtn; }
+QAbstractButton *ChannelWidget::deleteButton() const
+{
+	return m_ui->delBtn;
+}
 
-QAbstractButton *ChannelWidget::toggleChannelsButton() const { return m_ui->toggleChannels; }
+QAbstractButton *ChannelWidget::toggleChannelsButton() const
+{
+	return m_ui->toggleChannels;
+}
 
-int ChannelWidget::id() const { return m_id; }
+int ChannelWidget::id() const
+{
+	return m_id;
+}
 
 void ChannelWidget::setId(int id)
 {
@@ -118,7 +136,10 @@ void ChannelWidget::setId(int id)
 	m_id = id;
 }
 
-QColor ChannelWidget::color() const { return m_color; }
+QColor ChannelWidget::color() const
+{
+	return m_color;
+}
 
 void ChannelWidget::setColor(QColor color)
 {
@@ -140,15 +161,30 @@ void ChannelWidget::setColor(QColor color)
 	m_color = color;
 }
 
-QString ChannelWidget::fullName() const { return m_fullName; }
+QString ChannelWidget::fullName() const
+{
+	return m_fullName;
+}
 
-void ChannelWidget::setFullName(const QString &name) { m_fullName = name; }
+void ChannelWidget::setFullName(const QString &name)
+{
+	m_fullName = name;
+}
 
-QString ChannelWidget::shortName() const { return m_shortName; }
+QString ChannelWidget::shortName() const
+{
+	return m_shortName;
+}
 
-void ChannelWidget::setShortName(const QString &name) { m_shortName = name; }
+void ChannelWidget::setShortName(const QString &name)
+{
+	m_shortName = name;
+}
 
-QString ChannelWidget::function() const { return m_function; }
+QString ChannelWidget::function() const
+{
+	return m_function;
+}
 
 void ChannelWidget::setFunction(const QString &function)
 {
@@ -156,15 +192,30 @@ void ChannelWidget::setFunction(const QString &function)
 	setProperty("function", QVariant(function));
 }
 
-bool ChannelWidget::isMathChannel() const { return m_math; }
+bool ChannelWidget::isMathChannel() const
+{
+	return m_math;
+}
 
-void ChannelWidget::setMathChannel(const bool &math) { m_math = math; }
+void ChannelWidget::setMathChannel(const bool &math)
+{
+	m_math = math;
+}
 
-bool ChannelWidget::isReferenceChannel() const { return m_ref; }
+bool ChannelWidget::isReferenceChannel() const
+{
+	return m_ref;
+}
 
-void ChannelWidget::setReferenceChannel(const bool &ref) { m_ref = ref; }
+void ChannelWidget::setReferenceChannel(const bool &ref)
+{
+	m_ref = ref;
+}
 
-void ChannelWidget::setMenuFloating(bool floating) { m_floatingMenu = floating; }
+void ChannelWidget::setMenuFloating(bool floating)
+{
+	m_floatingMenu = floating;
+}
 
 bool ChannelWidget::eventFilter(QObject *object, QEvent *event)
 {
@@ -234,9 +285,15 @@ void ChannelWidget::on_box_toggled(bool checked)
 	Q_EMIT enabled(checked);
 }
 
-void ChannelWidget::on_name_toggled(bool checked) { Q_EMIT selected(checked); }
+void ChannelWidget::on_name_toggled(bool checked)
+{
+	Q_EMIT selected(checked);
+}
 
-void ChannelWidget::on_btn_toggled(bool checked) { Q_EMIT menuToggled(checked); }
+void ChannelWidget::on_btn_toggled(bool checked)
+{
+	Q_EMIT menuToggled(checked);
+}
 
 void ChannelWidget::on_delBtn_clicked()
 {
@@ -247,9 +304,15 @@ void ChannelWidget::on_delBtn_clicked()
 	Q_EMIT deleteClicked();
 }
 
-bool ChannelWidget::isMainChannel() const { return m_isMainChannel; }
+bool ChannelWidget::isMainChannel() const
+{
+	return m_isMainChannel;
+}
 
-bool ChannelWidget::isPhysicalChannel() const { return m_isPhysicalChannel; }
+bool ChannelWidget::isPhysicalChannel() const
+{
+	return m_isPhysicalChannel;
+}
 
 void ChannelWidget::setButtonNoGroup(QAbstractButton *btn)
 {
@@ -259,9 +322,15 @@ void ChannelWidget::setButtonNoGroup(QAbstractButton *btn)
 	}
 }
 
-void ChannelWidget::setMenuButtonVisibility(bool visible) { m_ui->btn->setVisible(visible); }
+void ChannelWidget::setMenuButtonVisibility(bool visible)
+{
+	m_ui->btn->setVisible(visible);
+}
 
-void ChannelWidget::setBottomLineVIsibility(bool visible) { m_ui->line->setVisible(visible); }
+void ChannelWidget::setBottomLineVIsibility(bool visible)
+{
+	m_ui->line->setVisible(visible);
+}
 
 void ChannelWidget::toggleChannel(bool toggled)
 {
@@ -280,6 +349,9 @@ void ChannelWidget::setIsMainChannel(bool mainChannel)
 	}
 }
 
-void ChannelWidget::setIsPhysicalChannel(bool physChannel) { m_isPhysicalChannel = physChannel; }
+void ChannelWidget::setIsPhysicalChannel(bool physChannel)
+{
+	m_isPhysicalChannel = physChannel;
+}
 
 #include "moc_channel_widget.cpp"

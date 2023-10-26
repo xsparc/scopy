@@ -44,7 +44,10 @@ void StateUpdater::onTimerTimeout()
 	Q_EMIT outputChanged(m_output_state);
 }
 
-bool StateUpdater::enabled() const { return m_enabled; }
+bool StateUpdater::enabled() const
+{
+	return m_enabled;
+}
 
 void StateUpdater::setEnabled(bool en)
 {
@@ -62,19 +65,40 @@ void StateUpdater::setEnabled(bool en)
 	}
 }
 
-int StateUpdater::timeout() const { return m_timeout; }
+int StateUpdater::timeout() const
+{
+	return m_timeout;
+}
 
-void StateUpdater::setTimeout(int msec) { m_timeout = msec; }
+void StateUpdater::setTimeout(int msec)
+{
+	m_timeout = msec;
+}
 
-int StateUpdater::idleState() const { return m_idle_state; }
+int StateUpdater::idleState() const
+{
+	return m_idle_state;
+}
 
-void StateUpdater::setIdleState(int state) { m_idle_state = state; }
+void StateUpdater::setIdleState(int state)
+{
+	m_idle_state = state;
+}
 
-int StateUpdater::offState() const { return m_off_state; }
+int StateUpdater::offState() const
+{
+	return m_off_state;
+}
 
-void StateUpdater::setOffState(int state) { m_off_state = state; }
+void StateUpdater::setOffState(int state)
+{
+	m_off_state = state;
+}
 
-int StateUpdater::inputState() const { return m_last_input; }
+int StateUpdater::inputState() const
+{
+	return m_last_input;
+}
 
 void StateUpdater::setInput(int input)
 {
@@ -92,4 +116,7 @@ void StateUpdater::setInput(int input)
 		Q_EMIT outputChanged(input);
 }
 
-int StateUpdater::outputState() const { return m_output_state; }
+int StateUpdater::outputState() const
+{
+	return m_output_state;
+}

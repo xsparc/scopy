@@ -76,7 +76,10 @@ DioDigitalChannel::DioDigitalChannel(const QString &deviceName, const QString &d
 	this->ui->modeLabel->setText(modeLabel + " mode");
 }
 
-DioDigitalChannel::~DioDigitalChannel() { delete ui; }
+DioDigitalChannel::~DioDigitalChannel()
+{
+	delete ui;
+}
 
 void DioDigitalChannel::connectSignalsAndSlots()
 {
@@ -102,7 +105,10 @@ void DioDigitalChannel::addDataSample(double value)
 	this->ui->lcdNumber->display(value);
 }
 
-const std::vector<std::string> DioDigitalChannel::getConfigModes() const { return m_configModes; }
+const std::vector<std::string> DioDigitalChannel::getConfigModes() const
+{
+	return m_configModes;
+}
 
 void DioDigitalChannel::setConfigModes(std::vector<std::string> &configModes)
 {
@@ -114,7 +120,10 @@ void DioDigitalChannel::setConfigModes(std::vector<std::string> &configModes)
 	}
 }
 
-const QString &DioDigitalChannel::getSelectedConfigMode() const { return m_selectedConfigMode; }
+const QString &DioDigitalChannel::getSelectedConfigMode() const
+{
+	return m_selectedConfigMode;
+}
 
 void DioDigitalChannel::setSelectedConfigMode(const QString &selectedConfigMode)
 {
@@ -125,6 +134,9 @@ void DioDigitalChannel::setSelectedConfigMode(const QString &selectedConfigMode)
 	qDebug() << "The channel " << this->m_deviceName << " read selected config mode " << selectedConfigMode;
 }
 
-void DioDigitalChannel::resetSismograph() { this->ui->sismograph->reset(); }
+void DioDigitalChannel::resetSismograph()
+{
+	this->ui->sismograph->reset();
+}
 
 #include "moc_diodigitalchannel.cpp"

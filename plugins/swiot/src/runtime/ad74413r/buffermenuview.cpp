@@ -97,4 +97,7 @@ bool swiot::BufferMenuView::eventFilter(QObject *obj, QEvent *event)
 	}
 }
 
-swiot::BufferMenu *swiot::BufferMenuView::getAdvMenu() { return m_swiotAdvMenu; }
+swiot::BufferMenu *swiot::BufferMenuView::getAdvMenu()
+{
+	return m_swiotAdvMenu;
+}

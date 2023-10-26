@@ -24,7 +24,10 @@
 #include "ui_digitalio.h"
 
 namespace scopy::m2k {
-void DigitalIO_API::show() { Q_EMIT dio->showTool(); }
+void DigitalIO_API::show()
+{
+	Q_EMIT dio->showTool();
+}
 
 QList<bool> DigitalIO_API::direction() const
 {
@@ -74,9 +77,15 @@ QList<bool> DigitalIO_API::gpi() const
 	return list;
 }
 
-bool DigitalIO_API::running() const { return dio->ui->btnRunStop->isChecked(); }
+bool DigitalIO_API::running() const
+{
+	return dio->ui->btnRunStop->isChecked();
+}
 
-void DigitalIO_API::run(bool en) { dio->ui->btnRunStop->setChecked(en); }
+void DigitalIO_API::run(bool en)
+{
+	dio->ui->btnRunStop->setChecked(en);
+}
 
 void DigitalIO_API::setOutput(const QList<bool> &list)
 {
@@ -121,6 +130,12 @@ QList<bool> DigitalIO_API::locked() const
 	return list;
 }
 
-QString DigitalIO_API::getNotes() { return dio->ui->instrumentNotes->getNotes(); }
-void DigitalIO_API::setNotes(QString str) { dio->ui->instrumentNotes->setNotes(str); }
+QString DigitalIO_API::getNotes()
+{
+	return dio->ui->instrumentNotes->getNotes();
+}
+void DigitalIO_API::setNotes(QString str)
+{
+	dio->ui->instrumentNotes->setNotes(str);
+}
 } // namespace scopy::m2k

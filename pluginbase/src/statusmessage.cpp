@@ -41,13 +41,25 @@ StatusMessageText::StatusMessageText(QString text, int ms, QWidget *parent)
 	m_widget = label;
 }
 
-StatusMessageText::~StatusMessageText() { delete m_widget; }
+StatusMessageText::~StatusMessageText()
+{
+	delete m_widget;
+}
 
-QString StatusMessageText::getText() { return m_text; }
+QString StatusMessageText::getText()
+{
+	return m_text;
+}
 
-QWidget *StatusMessageText::getWidget() { return m_widget; }
+QWidget *StatusMessageText::getWidget()
+{
+	return m_widget;
+}
 
-int StatusMessageText::getDisplayTime() { return m_ms; }
+int StatusMessageText::getDisplayTime()
+{
+	return m_ms;
+}
 
 void StatusMessageText::prependDateTime()
 {
@@ -75,10 +87,19 @@ StatusMessageWidget::~StatusMessageWidget()
 	}
 }
 
-QString StatusMessageWidget::getText() { return m_text; }
+QString StatusMessageWidget::getText()
+{
+	return m_text;
+}
 
-QWidget *StatusMessageWidget::getWidget() { return m_widget; }
+QWidget *StatusMessageWidget::getWidget()
+{
+	return m_widget;
+}
 
-int StatusMessageWidget::getDisplayTime() { return m_ms; }
+int StatusMessageWidget::getDisplayTime()
+{
+	return m_ms;
+}
 
 #include "moc_statusmessage.cpp"

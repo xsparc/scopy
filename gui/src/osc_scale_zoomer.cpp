@@ -59,9 +59,15 @@ QwtText OscScaleZoomer::trackerText(const QPoint &pos) const
 	return QwtText(text);
 }
 
-void OscScaleZoomer::cancel() { reset(); }
+void OscScaleZoomer::cancel()
+{
+	reset();
+}
 
-QColor OscScaleZoomer::getColor() const { return trackerPen().color(); }
+QColor OscScaleZoomer::getColor() const
+{
+	return trackerPen().color();
+}
 
 void OscScaleZoomer::setColor(const QColor &color)
 {

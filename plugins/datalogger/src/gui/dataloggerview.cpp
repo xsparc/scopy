@@ -101,7 +101,10 @@ void DataLoggerView::init()
 	});
 }
 
-void DataLoggerView::setUseNativeDialog(bool nativeDialog) { useNativeDialog = nativeDialog; }
+void DataLoggerView::setUseNativeDialog(bool nativeDialog)
+{
+	useNativeDialog = nativeDialog;
+}
 
 void DataLoggerView::chooseFile()
 {
@@ -117,15 +120,30 @@ void DataLoggerView::chooseFile()
 	dataLoggingFilePath->setText(filename);
 }
 
-QWidget *DataLoggerView::getDataLoggerViewWidget() { return dataLoggingWidget; }
+QWidget *DataLoggerView::getDataLoggerViewWidget()
+{
+	return dataLoggingWidget;
+}
 
-bool DataLoggerView::isDataLoggingOn() { return dataLoggingSwitch->isChecked(); }
+bool DataLoggerView::isDataLoggingOn()
+{
+	return dataLoggingSwitch->isChecked();
+}
 
-bool DataLoggerView::isOverwrite() { return overwriteRadio->isChecked(); }
+bool DataLoggerView::isOverwrite()
+{
+	return overwriteRadio->isChecked();
+}
 
-QString DataLoggerView::getFilter() { return dataLoggerFilter->currentText(); }
+QString DataLoggerView::getFilter()
+{
+	return dataLoggerFilter->currentText();
+}
 
-void DataLoggerView::setWarningMessage(QString message) { warningMessage->setText(message); }
+void DataLoggerView::setWarningMessage(QString message)
+{
+	warningMessage->setText(message);
+}
 
 void DataLoggerView::enableDataLoggerFields(bool en)
 {
@@ -143,9 +161,15 @@ void DataLoggerView::enableDataLoggerFields(bool en)
 	}
 }
 
-void DataLoggerView::disableDataLogging(bool en) { dataLoggingSwitch->setEnabled(!en); }
+void DataLoggerView::disableDataLogging(bool en)
+{
+	dataLoggingSwitch->setEnabled(!en);
+}
 
-void DataLoggerView::toggleDataLoggerSwitch(bool toggle) { dataLoggingSwitch->setChecked(toggle); }
+void DataLoggerView::toggleDataLoggerSwitch(bool toggle)
+{
+	dataLoggingSwitch->setChecked(toggle);
+}
 
 void DataLoggerView::setDataLoggerPath(QString path)
 {
@@ -153,7 +177,10 @@ void DataLoggerView::setDataLoggerPath(QString path)
 	dataLoggingFilePath->setText(path);
 }
 
-QString DataLoggerView::getDataLoggerPath() { return filename; }
+QString DataLoggerView::getDataLoggerPath()
+{
+	return filename;
+}
 
 void DataLoggerView::setOverwrite(bool en)
 {
@@ -164,9 +191,15 @@ void DataLoggerView::setOverwrite(bool en)
 	}
 }
 
-int DataLoggerView::getTimerInterval() { return data_logging_timer->value(); }
+int DataLoggerView::getTimerInterval()
+{
+	return data_logging_timer->value();
+}
 
-void DataLoggerView::setTimerInterval(int interval) { data_logging_timer->setValue(interval); }
+void DataLoggerView::setTimerInterval(int interval)
+{
+	data_logging_timer->setValue(interval);
+}
 
 void DataLoggerView::isDataLoggerRunning(bool en)
 {

@@ -66,7 +66,10 @@ void BufferMenuModel::init()
 	}
 }
 
-QMap<QString, QMap<QString, QStringList>> BufferMenuModel::getChnlAttrValues() { return m_chnlAttributes; }
+QMap<QString, QMap<QString, QStringList>> BufferMenuModel::getChnlAttrValues()
+{
+	return m_chnlAttributes;
+}
 
 void BufferMenuModel::onChannelAttributeRead(QString iioChannelKey, QString attrName, QStringList attrValues,
 					     bool readback)

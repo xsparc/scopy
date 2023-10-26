@@ -44,7 +44,10 @@ SpectrumAverage::SpectrumAverage(unsigned int data_width, unsigned int history, 
 	m_average = new double[m_data_width];
 }
 
-SpectrumAverage::~SpectrumAverage() { delete[] m_average; }
+SpectrumAverage::~SpectrumAverage()
+{
+	delete[] m_average;
+}
 
 void SpectrumAverage::getAverage(double *out_data, unsigned int num_samples) const
 {
@@ -53,13 +56,25 @@ void SpectrumAverage::getAverage(double *out_data, unsigned int num_samples) con
 	std::memcpy(out_data, m_average, size * sizeof(double));
 }
 
-unsigned int SpectrumAverage::dataWidth() const { return m_data_width; }
+unsigned int SpectrumAverage::dataWidth() const
+{
+	return m_data_width;
+}
 
-unsigned int SpectrumAverage::history() const { return m_history_size; }
+unsigned int SpectrumAverage::history() const
+{
+	return m_history_size;
+}
 
-void SpectrumAverage::setHistory(unsigned int history) { m_history_size = history; }
+void SpectrumAverage::setHistory(unsigned int history)
+{
+	m_history_size = history;
+}
 
-bool SpectrumAverage::historyEnabled() const { return m_history_enabled; }
+bool SpectrumAverage::historyEnabled() const
+{
+	return m_history_enabled;
+}
 
 /*
  * class AverageHistoryOne
@@ -69,7 +84,10 @@ AverageHistoryOne::AverageHistoryOne(unsigned int data_width, unsigned history)
 	, m_anyDataPushed(false)
 {}
 
-void AverageHistoryOne::reset() { m_anyDataPushed = false; }
+void AverageHistoryOne::reset()
+{
+	m_anyDataPushed = false;
+}
 
 /*
  * class AverageHistoryN
@@ -82,7 +100,10 @@ AverageHistoryN::AverageHistoryN(unsigned int data_width, unsigned int history)
 	alloc_history(m_data_width, m_history_size);
 }
 
-AverageHistoryN::~AverageHistoryN() { free_history(); }
+AverageHistoryN::~AverageHistoryN()
+{
+	free_history();
+}
 
 void AverageHistoryN::reset()
 {
@@ -335,7 +356,10 @@ LinearRMSOne::LinearRMSOne(unsigned int data_width, unsigned int history)
 	m_inserted_count = 0;
 }
 
-LinearRMSOne::~LinearRMSOne() { delete[] m_sqr_sums; }
+LinearRMSOne::~LinearRMSOne()
+{
+	delete[] m_sqr_sums;
+}
 
 void LinearRMSOne::pushNewData(double *data)
 {
@@ -368,7 +392,10 @@ LinearAverageOne::LinearAverageOne(unsigned int data_width, unsigned int history
 	m_inserted_count = 0;
 }
 
-LinearAverageOne::~LinearAverageOne() { delete[] m_sums; }
+LinearAverageOne::~LinearAverageOne()
+{
+	delete[] m_sums;
+}
 
 void LinearAverageOne::pushNewData(double *data)
 {
@@ -400,7 +427,10 @@ LinearRMS::LinearRMS(unsigned int data_width, unsigned int history)
 	m_sqr_sums = new double[data_width]();
 }
 
-LinearRMS::~LinearRMS() { delete[] m_sqr_sums; }
+LinearRMS::~LinearRMS()
+{
+	delete[] m_sqr_sums;
+}
 
 void LinearRMS::pushNewData(double *data)
 {
@@ -442,7 +472,10 @@ LinearAverage::LinearAverage(unsigned int data_width, unsigned int history)
 	m_sums = new double[data_width]();
 }
 
-LinearAverage::~LinearAverage() { delete[] m_sums; }
+LinearAverage::~LinearAverage()
+{
+	delete[] m_sums;
+}
 
 void LinearAverage::pushNewData(double *data)
 {

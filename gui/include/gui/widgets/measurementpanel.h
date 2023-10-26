@@ -39,7 +39,10 @@ public:
 		m_widgets.append(w);
 	}
 
-	void setStackSize(int val) { stackSize = val; }
+	void setStackSize(int val)
+	{
+		stackSize = val;
+	}
 
 	void reparentWidgets(QWidget *parent = nullptr)
 	{
@@ -50,7 +53,10 @@ public:
 		m_widgets.clear();
 	}
 
-	bool full() { return (lay->count() > stackSize); }
+	bool full()
+	{
+		return (lay->count() > stackSize);
+	}
 
 private:
 	QVBoxLayout *lay;

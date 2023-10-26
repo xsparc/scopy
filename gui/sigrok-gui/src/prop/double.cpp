@@ -123,7 +123,10 @@ void Double::commit()
 	setter_(QVariant(spin_box_->value()));
 }
 
-void Double::on_value_changed(double) { commit(); }
+void Double::on_value_changed(double)
+{
+	commit();
+}
 
 } // namespace prop
 } // namespace scopy

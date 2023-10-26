@@ -177,7 +177,10 @@ DioDigitalChannelController::DioDigitalChannelController(struct iio_channel *cha
 
 DioDigitalChannelController::~DioDigitalChannelController() {}
 
-DioDigitalChannel *DioDigitalChannelController::getDigitalChannel() const { return m_digitalChannel; }
+DioDigitalChannel *DioDigitalChannelController::getDigitalChannel() const
+{
+	return m_digitalChannel;
+}
 
 void DioDigitalChannelController::createWriteRawCommand(bool value)
 {

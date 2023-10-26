@@ -56,7 +56,10 @@ using std::vector;
 namespace scopy {
 namespace bind {
 
-const vector<shared_ptr<prop::Property>> &Binding::properties() { return properties_; }
+const vector<shared_ptr<prop::Property>> &Binding::properties()
+{
+	return properties_;
+}
 
 void Binding::commit()
 {

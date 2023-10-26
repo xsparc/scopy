@@ -33,7 +33,10 @@ QVariant Preferences::_get(QString k)
 	return v;
 }
 
-void Preferences::set(QString k, QVariant v) { return Preferences::GetInstance()->_set(k, v); }
+void Preferences::set(QString k, QVariant v)
+{
+	return Preferences::GetInstance()->_set(k, v);
+}
 
 void Preferences::_set(QString k, QVariant v)
 {
@@ -43,13 +46,25 @@ void Preferences::_set(QString k, QVariant v)
 		Q_EMIT preferenceChanged(k, v);
 }
 
-void Preferences::clear() { p.clear(); }
+void Preferences::clear()
+{
+	p.clear();
+}
 
-QVariant Preferences::get(QString val) { return Preferences::GetInstance()->_get(val); }
+QVariant Preferences::get(QString val)
+{
+	return Preferences::GetInstance()->_get(val);
+}
 
-QMap<QString, QVariant> Preferences::getPreferences() const { return p; }
+QMap<QString, QVariant> Preferences::getPreferences() const
+{
+	return p;
+}
 
-void Preferences::setPreferences(QMap<QString, QVariant> s) { p = s; }
+void Preferences::setPreferences(QMap<QString, QVariant> s)
+{
+	p = s;
+}
 
 void Preferences::setPreferencesFilename(QString f)
 {
@@ -89,6 +104,9 @@ Preferences *Preferences::GetInstance()
 	return pinstance_;
 }
 
-void Preferences::init(QString k, QVariant v) { return Preferences::GetInstance()->_init(k, v); }
+void Preferences::init(QString k, QVariant v)
+{
+	return Preferences::GetInstance()->_init(k, v);
+}
 
 #include "moc_preferences.cpp"

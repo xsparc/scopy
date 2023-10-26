@@ -1,12 +1,24 @@
 #include "movingaverage.h"
 
-MovingAverage::MovingAverage() { sum = 0; }
+MovingAverage::MovingAverage()
+{
+	sum = 0;
+}
 
-int MovingAverage::getCapacity() const { return capacity; }
+int MovingAverage::getCapacity() const
+{
+	return capacity;
+}
 
-void MovingAverage::setCapacity(int newCapacity) { capacity = newCapacity; }
+void MovingAverage::setCapacity(int newCapacity)
+{
+	capacity = newCapacity;
+}
 
-const QVector<double> &MovingAverage::getHistory() const { return history; }
+const QVector<double> &MovingAverage::getHistory() const
+{
+	return history;
+}
 
 double MovingAverage::pushValueReturnAverage(double newVal)
 {

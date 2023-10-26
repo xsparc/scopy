@@ -38,6 +38,12 @@ DioSettingsTab::DioSettingsTab(QWidget *parent)
 			 [this]() { Q_EMIT timeValueChanged(this->m_max_spin_button->value()); });
 }
 
-DioSettingsTab::~DioSettingsTab() { delete ui; }
+DioSettingsTab::~DioSettingsTab()
+{
+	delete ui;
+}
 
-double DioSettingsTab::getTimeValue() const { return m_max_spin_button->value(); }
+double DioSettingsTab::getTimeValue() const
+{
+	return m_max_spin_button->value();
+}

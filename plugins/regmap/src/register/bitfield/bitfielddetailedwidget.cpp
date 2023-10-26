@@ -96,7 +96,10 @@ BitFieldDetailedWidget::~BitFieldDetailedWidget()
 	delete mainFrame;
 }
 
-QString BitFieldDetailedWidget::getToolTip() const { return toolTip; }
+QString BitFieldDetailedWidget::getToolTip() const
+{
+	return toolTip;
+}
 
 void BitFieldDetailedWidget::firstRead()
 {
@@ -219,6 +222,12 @@ QString BitFieldDetailedWidget::getValue()
 	return value->text();
 }
 
-int BitFieldDetailedWidget::getWidth() const { return width; }
+int BitFieldDetailedWidget::getWidth() const
+{
+	return width;
+}
 
-int BitFieldDetailedWidget::getRegOffset() const { return regOffset; }
+int BitFieldDetailedWidget::getRegOffset() const
+{
+	return regOffset;
+}

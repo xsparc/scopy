@@ -415,7 +415,10 @@ void SWIOTPlugin::abortTutorial()
 	disconnect(m_max14906Tutorial, &gui::TutorialBuilder::finished, this, &SWIOTPlugin::startFaultsTutorial);
 }
 
-QString SWIOTPlugin::description() { return "Adds functionality specific to SWIOT1L board"; }
+QString SWIOTPlugin::description()
+{
+	return "Adds functionality specific to SWIOT1L board";
+}
 
 void SWIOTPlugin::initMetadata()
 {

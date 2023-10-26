@@ -37,7 +37,10 @@ void TST_TestPluginIp::fileExists()
 	QVERIFY(ret);
 }
 
-void TST_TestPluginIp::isLibrary() { QVERIFY(QLibrary::isLibrary(FILENAME)); }
+void TST_TestPluginIp::isLibrary()
+{
+	QVERIFY(QLibrary::isLibrary(FILENAME));
+}
 
 void TST_TestPluginIp::className()
 {

@@ -51,6 +51,9 @@ VersionCheckMessage::VersionCheckMessage(QWidget *parent)
 
 VersionCheckMessage::~VersionCheckMessage() {}
 
-void VersionCheckMessage::saveCheckVersion(bool allowed) { Preferences::set("general_check_online_version", allowed); }
+void VersionCheckMessage::saveCheckVersion(bool allowed)
+{
+	Preferences::set("general_check_online_version", allowed);
+}
 
 #include "moc_versioncheckmessage.cpp"

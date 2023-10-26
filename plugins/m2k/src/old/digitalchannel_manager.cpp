@@ -80,7 +80,10 @@ void DIOManager::setDeviceDirection(int chid, bool force)
 	}
 }
 
-int DIOManager::getGpo() { return gpo; }
+int DIOManager::getGpo()
+{
+	return gpo;
+}
 
 void DIOManager::setOutRaw(int ch, bool val)
 {
@@ -93,7 +96,10 @@ void DIOManager::setOutRaw(int ch, bool val)
 	setDeviceOutRaw(ch);
 }
 
-bool DIOManager::getOutRaw(int ch) { return gpo & (1 << ch); }
+bool DIOManager::getOutRaw(int ch)
+{
+	return gpo & (1 << ch);
+}
 
 void DIOManager::setDeviceOutRaw(int ch)
 {
@@ -113,7 +119,10 @@ int DIOManager::getGpi()
 	return gpi;
 }
 
-bool DIOManager::getInRaw(int ch) { return static_cast<bool>(digital->getValueRaw(ch)); }
+bool DIOManager::getInRaw(int ch)
+{
+	return static_cast<bool>(digital->getValueRaw(ch));
+}
 
 void DIOManager::setDirection(int ch, bool output)
 {
@@ -126,7 +135,10 @@ void DIOManager::setDirection(int ch, bool output)
 	setDeviceDirection(ch, false);
 }
 
-bool DIOManager::getDirection(int ch) { return direction & (1 << ch); }
+bool DIOManager::getDirection(int ch)
+{
+	return direction & (1 << ch);
+}
 
 void DIOManager::setMode(int mask)
 {
@@ -153,9 +165,15 @@ void DIOManager::lock(int mask)
 	Q_EMIT locked();
 }
 
-bool DIOManager::isLocked(int ch) { return lockMask & (1 << ch); }
+bool DIOManager::isLocked(int ch)
+{
+	return lockMask & (1 << ch);
+}
 
-int DIOManager::getLockMask() { return lockMask; }
+int DIOManager::getLockMask()
+{
+	return lockMask;
+}
 
 void DIOManager::unlock()
 {
@@ -168,7 +186,10 @@ void DIOManager::unlock()
 	Q_EMIT unlocked();
 }
 
-bool DIOManager::getOutputEnabled() { return outputEnabled; }
+bool DIOManager::getOutputEnabled()
+{
+	return outputEnabled;
+}
 
 void DIOManager::enableOutput(bool output)
 {

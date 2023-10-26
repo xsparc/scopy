@@ -83,6 +83,9 @@ void InfoPage::getKeyMap()
 	}
 }
 
-void InfoPage::setAdvancedMode(bool newAdvancedMode) { m_advancedMode = newAdvancedMode; }
+void InfoPage::setAdvancedMode(bool newAdvancedMode)
+{
+	m_advancedMode = newAdvancedMode;
+}
 
 #include "moc_infopage.cpp"

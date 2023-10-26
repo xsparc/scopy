@@ -52,6 +52,9 @@ void AnimationPushButton::stopAnimation()
 	}
 }
 
-void AnimationPushButton::setBtnIcon() { this->setIcon(m_animation->currentPixmap()); }
+void AnimationPushButton::setBtnIcon()
+{
+	this->setIcon(m_animation->currentPixmap());
+}
 
 #include "moc_animationpushbutton.cpp"

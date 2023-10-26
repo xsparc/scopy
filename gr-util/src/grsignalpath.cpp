@@ -69,6 +69,12 @@ void GRSignalPath::disconnect_blk(GRTopBlock *top)
 	}
 }
 
-QString GRSignalPath::name() const { return m_name; }
+QString GRSignalPath::name() const
+{
+	return m_name;
+}
 
-QList<GRProxyBlock *> GRSignalPath::path() { return list; }
+QList<GRProxyBlock *> GRSignalPath::path()
+{
+	return list;
+}

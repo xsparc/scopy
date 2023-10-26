@@ -59,9 +59,15 @@ void MeasurementLabel::setName(QString str)
 	m_nameLabel->setText(str + " : ");
 }
 
-void MeasurementLabel::setUnit(QString str) { m_unit = str; }
+void MeasurementLabel::setUnit(QString str)
+{
+	m_unit = str;
+}
 
-void MeasurementLabel::setPrecision(int val) { m_precision = val; }
+void MeasurementLabel::setPrecision(int val)
+{
+	m_precision = val;
+}
 
 void MeasurementLabel::setColor(QColor color)
 {
@@ -78,15 +84,30 @@ void MeasurementLabel::setValue(double val)
 	}
 }
 
-void MeasurementLabel::setMeasurementValueFormatter(PrefixFormatter *f) { m_formatter = f; }
+void MeasurementLabel::setMeasurementValueFormatter(PrefixFormatter *f)
+{
+	m_formatter = f;
+}
 
-QString MeasurementLabel::name() const { return m_name; }
+QString MeasurementLabel::name() const
+{
+	return m_name;
+}
 
-QColor MeasurementLabel::color() const { return m_color; }
+QColor MeasurementLabel::color() const
+{
+	return m_color;
+}
 
-int MeasurementLabel::idx() const { return m_idx; }
+int MeasurementLabel::idx() const
+{
+	return m_idx;
+}
 
-void MeasurementLabel::setIdx(int newIdx) { m_idx = newIdx; }
+void MeasurementLabel::setIdx(int newIdx)
+{
+	m_idx = newIdx;
+}
 
 StatsLabel::StatsLabel(QWidget *parent)
 	: QWidget(parent)
@@ -123,9 +144,15 @@ void StatsLabel::setName(QString str)
 	m_nameLabel->setText(str);
 }
 
-void StatsLabel::setUnit(QString str) { m_unit = str; }
+void StatsLabel::setUnit(QString str)
+{
+	m_unit = str;
+}
 
-void StatsLabel::setPrecision(int val) { m_precision = val; }
+void StatsLabel::setPrecision(int val)
+{
+	m_precision = val;
+}
 
 void StatsLabel::setColor(QColor color)
 {
@@ -146,14 +173,29 @@ void StatsLabel::setValue(double avg, double min, double max)
 	}
 }
 
-void StatsLabel::setMeasurementValueFormatter(PrefixFormatter *f) { m_formatter = f; }
+void StatsLabel::setMeasurementValueFormatter(PrefixFormatter *f)
+{
+	m_formatter = f;
+}
 
-QString StatsLabel::name() const { return m_name; }
+QString StatsLabel::name() const
+{
+	return m_name;
+}
 
-QColor StatsLabel::color() const { return m_color; }
+QColor StatsLabel::color() const
+{
+	return m_color;
+}
 
-int StatsLabel::idx() const { return m_idx; }
+int StatsLabel::idx() const
+{
+	return m_idx;
+}
 
-void StatsLabel::setIdx(int newIdx) { m_idx = newIdx; }
+void StatsLabel::setIdx(int newIdx)
+{
+	m_idx = newIdx;
+}
 
 #include "moc_measurementlabel.cpp"

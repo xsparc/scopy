@@ -62,7 +62,10 @@ void ChannelMonitorComponent::updateValue(double value, QString nameOfUnitOfMeas
 	checkPeakValues(value, symbolOfUnitOfMeasure);
 }
 
-void ChannelMonitorComponent::resizeEvent(QResizeEvent *event) { Q_EMIT contentChanged(); }
+void ChannelMonitorComponent::resizeEvent(QResizeEvent *event)
+{
+	Q_EMIT contentChanged();
+}
 
 void ChannelMonitorComponent::checkPeakValues(double value, QString unitOfMeasure)
 {
@@ -126,18 +129,30 @@ void ChannelMonitorComponent::displayScale(bool checked)
 		ui->scaleCh1->hide();
 	}
 }
-std::string ChannelMonitorComponent::getChannelId() { return m_channelId; }
+std::string ChannelMonitorComponent::getChannelId()
+{
+	return m_channelId;
+}
 
-void ChannelMonitorComponent::setChannelId(std::string channelId) { m_channelId = channelId; }
+void ChannelMonitorComponent::setChannelId(std::string channelId)
+{
+	m_channelId = channelId;
+}
 
-QString ChannelMonitorComponent::getTitle() { return ui->monitorTitle->text(); }
+QString ChannelMonitorComponent::getTitle()
+{
+	return ui->monitorTitle->text();
+}
 
 void ChannelMonitorComponent::updateUnitOfMeasure(QString unitOfMeasure)
 {
 	m_unitOfMeasure = unitOfMeasure;
 	ui->labelCh1->setText(unitOfMeasure);
 }
-QString ChannelMonitorComponent::getUnitOfMeasure() { return m_unitOfMeasure; }
+QString ChannelMonitorComponent::getUnitOfMeasure()
+{
+	return m_unitOfMeasure;
+}
 
 void ChannelMonitorComponent::updateLcdNumberPrecision(int precision)
 {
@@ -167,7 +182,10 @@ void ChannelMonitorComponent::setMonitorColor(QString color)
 	ui->maxCh1->setStyleSheet("QLCDNumber{color: " + color + " ;}");
 }
 
-void ChannelMonitorComponent::setHistoryDuration(int duration) { ui->sismograph_ch1_2->setHistoryDuration(duration); }
+void ChannelMonitorComponent::setHistoryDuration(int duration)
+{
+	ui->sismograph_ch1_2->setHistoryDuration(duration);
+}
 
 void ChannelMonitorComponent::setRecordingInterval(double interval)
 {
@@ -183,12 +201,27 @@ void ChannelMonitorComponent::setColor(QColor color)
 	ui->maxCh1->setStyleSheet("QLCDNumber{color: " + color.name() + " ;}");
 }
 
-QColor ChannelMonitorComponent::getColor() { return m_color; }
+QColor ChannelMonitorComponent::getColor()
+{
+	return m_color;
+}
 
-void ChannelMonitorComponent::setID(int id) { m_id = id; }
+void ChannelMonitorComponent::setID(int id)
+{
+	m_id = id;
+}
 
-int ChannelMonitorComponent::getID() { return m_id; }
+int ChannelMonitorComponent::getID()
+{
+	return m_id;
+}
 
-void ChannelMonitorComponent::setLineStyle(Qt::PenStyle lineStyle) { ui->sismograph_ch1_2->setLineStyle(lineStyle); }
+void ChannelMonitorComponent::setLineStyle(Qt::PenStyle lineStyle)
+{
+	ui->sismograph_ch1_2->setLineStyle(lineStyle);
+}
 
-ChannelMonitorComponent::~ChannelMonitorComponent() { delete ui; }
+ChannelMonitorComponent::~ChannelMonitorComponent()
+{
+	delete ui;
+}

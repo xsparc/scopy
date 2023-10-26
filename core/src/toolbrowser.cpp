@@ -39,7 +39,10 @@ ToolBrowser::ToolBrowser(QWidget *parent)
 	connect(tm, SIGNAL(requestToolSelect(QString)), this, SIGNAL(requestTool(QString)));
 }
 
-ToolMenu *ToolBrowser::getToolMenu() { return ui->wToolMenu; }
+ToolMenu *ToolBrowser::getToolMenu()
+{
+	return ui->wToolMenu;
+}
 
 void ToolBrowser::hideMenuText(bool collapsed)
 {
@@ -71,7 +74,10 @@ void ToolBrowser::toggleCollapse()
 	Q_EMIT collapsed(m_collapsed);
 }
 
-ToolBrowser::~ToolBrowser() { delete ui; }
+ToolBrowser::~ToolBrowser()
+{
+	delete ui;
+}
 
 // TEST
 /*

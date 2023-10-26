@@ -36,7 +36,10 @@ PopupWidget::PopupWidget(QWidget *parent)
 	m_continueButton->setFocus();
 }
 
-PopupWidget::~PopupWidget() { delete m_tintedOverlay; }
+PopupWidget::~PopupWidget()
+{
+	delete m_tintedOverlay;
+}
 
 void PopupWidget::initUI()
 {
@@ -94,13 +97,25 @@ void PopupWidget::setFocusOnExitButton()
 	m_exitButton->setFocus();
 }
 
-QString PopupWidget::getDescription() { return m_descriptionTextBrowser->toMarkdown(); }
+QString PopupWidget::getDescription()
+{
+	return m_descriptionTextBrowser->toMarkdown();
+}
 
-void PopupWidget::setDescription(const QString &description) { m_descriptionTextBrowser->setMarkdown(description); }
+void PopupWidget::setDescription(const QString &description)
+{
+	m_descriptionTextBrowser->setMarkdown(description);
+}
 
-QString PopupWidget::getTitle() { return m_titleLabel->text(); }
+QString PopupWidget::getTitle()
+{
+	return m_titleLabel->text();
+}
 
-void PopupWidget::setTitle(const QString &title) { m_titleLabel->setText(title); }
+void PopupWidget::setTitle(const QString &title)
+{
+	m_titleLabel->setText(title);
+}
 
 void PopupWidget::enableTitleBar(bool enable)
 {
@@ -111,9 +126,15 @@ void PopupWidget::enableTitleBar(bool enable)
 	}
 }
 
-QPushButton *PopupWidget::getExitBtn() { return m_exitButton; }
+QPushButton *PopupWidget::getExitBtn()
+{
+	return m_exitButton;
+}
 
-QPushButton *PopupWidget::getContinueBtn() { return m_continueButton; }
+QPushButton *PopupWidget::getContinueBtn()
+{
+	return m_continueButton;
+}
 
 void PopupWidget::enableTintedOverlay(bool enable)
 {

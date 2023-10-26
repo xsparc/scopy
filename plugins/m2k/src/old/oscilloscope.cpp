@@ -1249,7 +1249,10 @@ Oscilloscope::~Oscilloscope()
 	delete ui;
 }
 
-QPushButton *Oscilloscope::getRunButton() { return ui->runSingleWidget->getRunButton(); }
+QPushButton *Oscilloscope::getRunButton()
+{
+	return ui->runSingleWidget->getRunButton();
+}
 
 void Oscilloscope::settingsLoaded()
 {
@@ -1810,9 +1813,15 @@ void Oscilloscope::enableLabels(bool enable)
 		plot.enableAxisLabels(enable);
 }
 
-void Oscilloscope::setTrigger_input(bool value) { trigger_input = value; }
+void Oscilloscope::setTrigger_input(bool value)
+{
+	trigger_input = value;
+}
 
-bool Oscilloscope::getTrigger_input() const { return trigger_input; }
+bool Oscilloscope::getTrigger_input() const
+{
+	return trigger_input;
+}
 
 void Oscilloscope::cursor_panel_init()
 {
@@ -2620,7 +2629,10 @@ void Oscilloscope::clearMathChannels()
 	}
 }
 
-void Oscilloscope::on_actionClose_triggered() { this->close(); }
+void Oscilloscope::on_actionClose_triggered()
+{
+	this->close();
+}
 
 void Oscilloscope::toggle_blockchain_flow(bool en)
 {
@@ -4276,7 +4288,10 @@ void Oscilloscope::onMeasurementSelectionListChanged()
 	measureLabelsRearrange();
 }
 
-void Oscilloscope::onCursorReadoutsChanged(struct cursorReadoutsText data) { fillCursorReadouts(data); }
+void Oscilloscope::onCursorReadoutsChanged(struct cursorReadoutsText data)
+{
+	fillCursorReadouts(data);
+}
 
 void Oscilloscope::fillCursorReadouts(const struct cursorReadoutsText &data)
 {
@@ -4511,9 +4526,15 @@ void Oscilloscope::onGatingEnabled(bool on)
 	plot.setGatingEnabled(on && ui->boxMeasure->isChecked());
 }
 
-void Oscilloscope::onLeftGateChanged(double width) { buffer_previewer->setLeftGateWidth(width); }
+void Oscilloscope::onLeftGateChanged(double width)
+{
+	buffer_previewer->setLeftGateWidth(width);
+}
 
-void Oscilloscope::onRightGateChanged(double width) { buffer_previewer->setRightGateWidth(width); }
+void Oscilloscope::onRightGateChanged(double width)
+{
+	buffer_previewer->setRightGateWidth(width);
+}
 
 void Oscilloscope::setupAutosetFreqSweep()
 {
@@ -5033,7 +5054,10 @@ void Oscilloscope::xyPlotLineType_toggled(bool checked)
 	xy_plot.replot();
 }
 
-void Oscilloscope::xyLineThickness_currentIndexChanged(int idx) { xy_plot.setLineWidth(0, idx); }
+void Oscilloscope::xyLineThickness_currentIndexChanged(int idx)
+{
+	xy_plot.setLineWidth(0, idx);
+}
 
 void Oscilloscope::setup_xy_channels()
 {

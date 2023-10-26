@@ -20,4 +20,7 @@ InfoPageKeyValueWidget::InfoPageKeyValueWidget(QString key, QString value, QWidg
 	lay->setStretch(1, 3);
 }
 
-void InfoPageKeyValueWidget::updateValue(QString value) { valueWidget->setText(value); }
+void InfoPageKeyValueWidget::updateValue(QString value)
+{
+	valueWidget->setText(value);
+}

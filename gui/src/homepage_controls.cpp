@@ -47,8 +47,14 @@ void HomepageControls::connectSignals()
 	connect(controls->getOpenBtn(), &QPushButton::clicked, this, [=]() { Q_EMIT openFile(); });
 }
 
-void HomepageControls::enableLeft(bool en) { controls->getBackwardBtn()->setEnabled(en); }
+void HomepageControls::enableLeft(bool en)
+{
+	controls->getBackwardBtn()->setEnabled(en);
+}
 
-void HomepageControls::enableRight(bool en) { controls->getForwardBtn()->setEnabled(en); }
+void HomepageControls::enableRight(bool en)
+{
+	controls->getForwardBtn()->setEnabled(en);
+}
 
 #include "moc_homepage_controls.cpp"

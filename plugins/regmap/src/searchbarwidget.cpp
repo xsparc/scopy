@@ -46,4 +46,7 @@ SearchBarWidget::~SearchBarWidget()
 	delete searchButton;
 }
 
-void SearchBarWidget::applyStyle() { setStyleSheet(RegmapStyleHelper::searchBarStyle(this)); }
+void SearchBarWidget::applyStyle()
+{
+	setStyleSheet(RegmapStyleHelper::searchBarStyle(this));
+}

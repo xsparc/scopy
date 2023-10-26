@@ -188,9 +188,15 @@ void ScopyMainWindow::load(QString file)
 	dm->load(s);
 }
 
-void ScopyMainWindow::closeEvent(QCloseEvent *event) { dm->disconnectAll(); }
+void ScopyMainWindow::closeEvent(QCloseEvent *event)
+{
+	dm->disconnectAll();
+}
 
-void ScopyMainWindow::requestTools(QString id) { toolman->showToolList(id); }
+void ScopyMainWindow::requestTools(QString id)
+{
+	toolman->showToolList(id);
+}
 
 ScopyMainWindow::~ScopyMainWindow()
 {

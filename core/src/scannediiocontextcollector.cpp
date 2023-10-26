@@ -12,7 +12,10 @@ ScannedIIOContextCollector::ScannedIIOContextCollector(QObject *parent)
 	qDebug(CAT_SCANCTXCOLLECTOR) << "ctor";
 }
 
-ScannedIIOContextCollector::~ScannedIIOContextCollector() { qDebug(CAT_SCANCTXCOLLECTOR) << "dtor"; }
+ScannedIIOContextCollector::~ScannedIIOContextCollector()
+{
+	qDebug(CAT_SCANCTXCOLLECTOR) << "dtor";
+}
 
 void ScannedIIOContextCollector::update(QStringList list)
 {
@@ -39,7 +42,10 @@ void ScannedIIOContextCollector::update(QStringList list)
 	uris = updatedUris;
 }
 
-void ScannedIIOContextCollector::removeDevice(QString id, Device *d) { uris.remove(d->param()); }
+void ScannedIIOContextCollector::removeDevice(QString id, Device *d)
+{
+	uris.remove(d->param());
+}
 
 void ScannedIIOContextCollector::lock(QString uri, Device *d)
 {
@@ -54,6 +60,9 @@ void ScannedIIOContextCollector::unlock(QString uri, Device *d)
 		lockedUris.remove(d->param());
 }
 
-void ScannedIIOContextCollector::clearCache() { uris.clear(); }
+void ScannedIIOContextCollector::clearCache()
+{
+	uris.clear();
+}
 
 #include "moc_scannediiocontextcollector.cpp"

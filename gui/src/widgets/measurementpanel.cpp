@@ -127,7 +127,10 @@ void MeasurementsPanel::updateOrder()
 	}
 }
 
-QWidget *MeasurementsPanel::cursorArea() { return m_cursor; }
+QWidget *MeasurementsPanel::cursorArea()
+{
+	return m_cursor;
+}
 
 StatsPanel::StatsPanel(QWidget *parent)
 {

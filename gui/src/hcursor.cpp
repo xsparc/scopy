@@ -49,7 +49,10 @@ void HCursor::setCanLeavePlot(bool leave)
 	m_cursorBar->setCanLeavePlot(m_canLeavePlot);
 }
 
-double HCursor::getPosition() { return static_cast<VertBar *>(m_cursorBar)->getPosition(); }
+double HCursor::getPosition()
+{
+	return static_cast<VertBar *>(m_cursorBar)->getPosition();
+}
 
 void HCursor::setPosition(double pos)
 {

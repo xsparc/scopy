@@ -175,19 +175,40 @@ TriggerSettings::~TriggerSettings()
 	delete ui;
 }
 
-int TriggerSettings::currentChannel() const { return current_channel; }
+int TriggerSettings::currentChannel() const
+{
+	return current_channel;
+}
 
-bool TriggerSettings::analogEnabled() const { return ui->intern_en->isChecked(); }
+bool TriggerSettings::analogEnabled() const
+{
+	return ui->intern_en->isChecked();
+}
 
-bool TriggerSettings::digitalEnabled() const { return ui->extern_en->isChecked(); }
+bool TriggerSettings::digitalEnabled() const
+{
+	return ui->extern_en->isChecked();
+}
 
-bool TriggerSettings::externalOutEnabled() const { return ui->extern_to_en->isChecked(); }
+bool TriggerSettings::externalOutEnabled() const
+{
+	return ui->extern_to_en->isChecked();
+}
 
-double TriggerSettings::level() const { return trigger_level->value(); }
+double TriggerSettings::level() const
+{
+	return trigger_level->value();
+}
 
-long long TriggerSettings::triggerDelay() const { return trigger_raw_delay; }
+long long TriggerSettings::triggerDelay() const
+{
+	return trigger_raw_delay;
+}
 
-double TriggerSettings::dcLevel() const { return trigg_configs[current_channel].dc_level; }
+double TriggerSettings::dcLevel() const
+{
+	return trigg_configs[current_channel].dc_level;
+}
 
 void TriggerSettings::setDaisyChainCompensation()
 {
@@ -306,9 +327,15 @@ void TriggerSettings::onSpinboxTriggerHystChanged(double value)
 	trigg_configs[currentChannel()].hyst_val = value;
 }
 
-void TriggerSettings::on_cmb_condition_currentIndexChanged(int index) { writeHwAnalogCondition(index); }
+void TriggerSettings::on_cmb_condition_currentIndexChanged(int index)
+{
+	writeHwAnalogCondition(index);
+}
 
-void TriggerSettings::on_cmb_extern_condition_currentIndexChanged(int index) { writeHwDigitalCondition(index); }
+void TriggerSettings::on_cmb_extern_condition_currentIndexChanged(int index)
+{
+	writeHwDigitalCondition(index);
+}
 
 void TriggerSettings::on_cmb_extern_to_src_currentIndexChanged(int index)
 {
@@ -435,7 +462,10 @@ void TriggerSettings::autoTriggerEnable()
 	}
 }
 
-bool TriggerSettings::triggerIsArmed() const { return ui->intern_en->isChecked() || ui->extern_en->isChecked(); }
+bool TriggerSettings::triggerIsArmed() const
+{
+	return ui->intern_en->isChecked() || ui->extern_en->isChecked();
+}
 
 void TriggerSettings::on_btnTrigger_toggled(bool checked)
 {
@@ -639,7 +669,10 @@ void TriggerSettings::on_cmb_extern_src_currentIndexChanged(int idx)
 	}
 }
 
-void TriggerSettings::setTriggerIn(bool enable) { m_trigger_in = enable; }
+void TriggerSettings::setTriggerIn(bool enable)
+{
+	m_trigger_in = enable;
+}
 
 void TriggerSettings::writeHwSource(int source_chn)
 {
@@ -673,4 +706,7 @@ void TriggerSettings::writeHwSource(int source_chn)
 	}
 }
 
-void TriggerSettings::on_spin_daisyChain_valueChanged(int arg1) { setTriggerDelay(trigger_raw_delay); }
+void TriggerSettings::on_spin_daisyChain_valueChanged(int arg1)
+{
+	setTriggerDelay(trigger_raw_delay);
+}

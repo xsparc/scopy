@@ -68,7 +68,10 @@ CustomPlotPositionButton::CustomPlotPositionButton(QWidget *parent)
 	btns->addButton(ui->rightTop);
 }
 
-CustomPlotPositionButton::~CustomPlotPositionButton() { delete ui; }
+CustomPlotPositionButton::~CustomPlotPositionButton()
+{
+	delete ui;
+}
 
 void CustomPlotPositionButton::setPosition(ReadoutsPosition position)
 {

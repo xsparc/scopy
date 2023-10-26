@@ -50,17 +50,29 @@ M2kTool::~M2kTool()
 	tme->setEnabled(false);
 }
 
-const QString &M2kTool::getName() { return name; }
+const QString &M2kTool::getName()
+{
+	return name;
+}
 
-void M2kTool::setName(const QString &name) { this->name = name; }
+void M2kTool::setName(const QString &name)
+{
+	this->name = name;
+}
 
 void M2kTool::settingsLoaded() {}
 
 /* Tools that use file dialogs should overload this method
 to ensure their file dialogs are configured correspondingly */
-void M2kTool::setNativeDialogs(bool nativeDialogs) { m_useNativeDialogs = nativeDialogs; }
+void M2kTool::setNativeDialogs(bool nativeDialogs)
+{
+	m_useNativeDialogs = nativeDialogs;
+}
 
-ApiObject *M2kTool::getApi() { return api; }
+ApiObject *M2kTool::getApi()
+{
+	return api;
+}
 
 void M2kTool::readPreferences()
 {
@@ -69,9 +81,15 @@ void M2kTool::readPreferences()
 	;
 }
 
-ToolMenuEntry *M2kTool::getTme() const { return tme; }
+ToolMenuEntry *M2kTool::getTme() const
+{
+	return tme;
+}
 
 void M2kTool::run() {}
 void M2kTool::stop() {}
 void M2kTool::single() {}
-bool M2kTool::isRunning() { return m_running; }
+bool M2kTool::isRunning()
+{
+	return m_running;
+}

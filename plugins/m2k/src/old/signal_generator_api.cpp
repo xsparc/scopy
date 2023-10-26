@@ -25,11 +25,20 @@
 #include "ui_signal_generator.h"
 
 namespace scopy::m2k {
-void SignalGenerator_API::show() { Q_EMIT gen->showTool(); }
+void SignalGenerator_API::show()
+{
+	Q_EMIT gen->showTool();
+}
 
-bool SignalGenerator_API::running() const { return gen->ui->run_button->runButtonChecked(); }
+bool SignalGenerator_API::running() const
+{
+	return gen->ui->run_button->runButtonChecked();
+}
 
-void SignalGenerator_API::run(bool en) { gen->ui->run_button->toggle(en); }
+void SignalGenerator_API::run(bool en)
+{
+	gen->ui->run_button->toggle(en);
+}
 
 QList<int> SignalGenerator_API::getMode() const
 {
@@ -776,8 +785,14 @@ void SignalGenerator_API::setBufferPhase(const QList<double> &list)
 	gen->filePhase->setValue(gen->getCurrentData()->file_phase);
 }
 
-QString SignalGenerator_API::getNotes() { return gen->ui->instrumentNotes->getNotes(); }
-void SignalGenerator_API::setNotes(QString str) { gen->ui->instrumentNotes->setNotes(str); }
+QString SignalGenerator_API::getNotes()
+{
+	return gen->ui->instrumentNotes->getNotes();
+}
+void SignalGenerator_API::setNotes(QString str)
+{
+	gen->ui->instrumentNotes->setNotes(str);
+}
 
 QList<int> SignalGenerator_API::getLineThickness() const
 {
@@ -843,8 +858,14 @@ void SignalGenerator_API::setLoad(const QList<double> &list)
 	}
 }
 
-bool SignalGenerator_API::getAutoscale() const { return gen->ui->btnSigGenAutoscale->isChecked(); }
+bool SignalGenerator_API::getAutoscale() const
+{
+	return gen->ui->btnSigGenAutoscale->isChecked();
+}
 
-void SignalGenerator_API::setAutoscale(bool checked) { gen->ui->btnSigGenAutoscale->setChecked(checked); }
+void SignalGenerator_API::setAutoscale(bool checked)
+{
+	gen->ui->btnSigGenAutoscale->setChecked(checked);
+}
 
 } // namespace scopy::m2k

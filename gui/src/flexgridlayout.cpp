@@ -106,7 +106,10 @@ void FlexGridLayout::repositionWidgets(int index, int row, int col)
 }
 
 // returns widget at index
-QWidget *FlexGridLayout::getWidget(int index) { return m_widgetList.at(index); }
+QWidget *FlexGridLayout::getWidget(int index)
+{
+	return m_widgetList.at(index);
+}
 
 // check if widget is active on layout
 bool FlexGridLayout::isWidgetActive(int index)
@@ -132,16 +135,28 @@ void FlexGridLayout::toggleAll(bool toggled)
 }
 
 // set the maximum number of columns
-void FlexGridLayout::setMaxColumnNumber(int maxColumns) { m_maxCols = maxColumns - 1; }
+void FlexGridLayout::setMaxColumnNumber(int maxColumns)
+{
+	m_maxCols = maxColumns - 1;
+}
 
 // returns the maximum number of columns
-int FlexGridLayout::getMaxColumnNumber() { return m_maxCols; }
+int FlexGridLayout::getMaxColumnNumber()
+{
+	return m_maxCols;
+}
 
 // returns the number of rows that contain the maximum number of cols/elements that could fit on a row
-int FlexGridLayout::fullRows() const { return row; }
+int FlexGridLayout::fullRows() const
+{
+	return row;
+}
 
 // returns the number of rows, including the last row that might not be full
-int FlexGridLayout::rows() const { return row + (col != 0); }
+int FlexGridLayout::rows() const
+{
+	return row + (col != 0);
+}
 
 // returns the maximum number of cols/elements that are currently on a row
 int FlexGridLayout::columns() const
@@ -152,10 +167,16 @@ int FlexGridLayout::columns() const
 }
 
 // returns the number of cols/elements that are on the last row
-int FlexGridLayout::columnsOnLastRow() const { return col; }
+int FlexGridLayout::columnsOnLastRow() const
+{
+	return col;
+}
 
 // returns the number of widgets in the grid
-int FlexGridLayout::count() const { return this->m_widgetList.size(); }
+int FlexGridLayout::count() const
+{
+	return this->m_widgetList.size();
+}
 
 void FlexGridLayout::resizeEvent(QResizeEvent *event)
 {

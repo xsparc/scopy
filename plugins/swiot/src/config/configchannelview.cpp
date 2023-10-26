@@ -42,7 +42,10 @@ ConfigChannelView::ConfigChannelView(int channelIndex, QWidget *parent)
 	this->initTutorialProperties();
 }
 
-ConfigChannelView::~ConfigChannelView() { delete ui; }
+ConfigChannelView::~ConfigChannelView()
+{
+	delete ui;
+}
 
 void ConfigChannelView::connectSignalsAndSlots()
 {
@@ -67,7 +70,10 @@ void ConfigChannelView::connectSignalsAndSlots()
 	});
 }
 
-bool ConfigChannelView::isChannelEnabled() const { return m_channelEnabled; }
+bool ConfigChannelView::isChannelEnabled() const
+{
+	return m_channelEnabled;
+}
 
 void ConfigChannelView::setChannelEnabled(bool mChannelEnabled)
 {
@@ -84,7 +90,10 @@ void ConfigChannelView::setChannelEnabled(bool mChannelEnabled)
 	}
 }
 
-const QString &ConfigChannelView::getSelectedDevice() const { return m_selectedDevice; }
+const QString &ConfigChannelView::getSelectedDevice() const
+{
+	return m_selectedDevice;
+}
 
 void ConfigChannelView::setSelectedDevice(const QString &mSelectedDevice)
 {
@@ -93,7 +102,10 @@ void ConfigChannelView::setSelectedDevice(const QString &mSelectedDevice)
 	this->ui->deviceOptions->setCurrentIndex(index);
 }
 
-const QStringList &ConfigChannelView::getDeviceAvailable() const { return m_deviceAvailable; }
+const QStringList &ConfigChannelView::getDeviceAvailable() const
+{
+	return m_deviceAvailable;
+}
 
 void ConfigChannelView::setDeviceAvailable(const QStringList &mDeviceAvailable)
 {
@@ -104,7 +116,10 @@ void ConfigChannelView::setDeviceAvailable(const QStringList &mDeviceAvailable)
 	}
 }
 
-const QString &ConfigChannelView::getSelectedFunction() const { return m_selectedFunction; }
+const QString &ConfigChannelView::getSelectedFunction() const
+{
+	return m_selectedFunction;
+}
 
 void ConfigChannelView::setSelectedFunction(const QString &mSelectedFunction)
 {
@@ -119,7 +134,10 @@ void ConfigChannelView::setSelectedFunction(const QString &mSelectedFunction)
 	}
 }
 
-const QStringList &ConfigChannelView::getFunctionAvailable() const { return m_functionAvailable; }
+const QStringList &ConfigChannelView::getFunctionAvailable() const
+{
+	return m_functionAvailable;
+}
 
 void ConfigChannelView::setFunctionAvailable(const QStringList &mFunctionAvailable)
 {

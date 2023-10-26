@@ -38,7 +38,10 @@ void TST_Debugger::fileExists()
 	QVERIFY(ret);
 }
 
-void TST_Debugger::isLibrary() { QVERIFY(QLibrary::isLibrary(FILENAME)); }
+void TST_Debugger::isLibrary()
+{
+	QVERIFY(QLibrary::isLibrary(FILENAME));
+}
 
 void TST_Debugger::className()
 {

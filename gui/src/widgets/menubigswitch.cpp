@@ -21,7 +21,10 @@ MenuBigSwitch::MenuBigSwitch(QString on, QString off, QWidget *parent)
 
 MenuBigSwitch::~MenuBigSwitch() {}
 
-CustomSwitch *MenuBigSwitch::onOffswitch() { return m_switch; }
+CustomSwitch *MenuBigSwitch::onOffswitch()
+{
+	return m_switch;
+}
 
 void MenuBigSwitch::applyStylesheet()
 {

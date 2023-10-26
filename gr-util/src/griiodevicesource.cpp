@@ -19,7 +19,10 @@ QString GRIIODeviceSource::findAttribute(QStringList possibleNames, iio_device *
 	return attributeName;
 }
 
-iio_device *GRIIODeviceSource::iioDev() const { return m_iioDev; }
+iio_device *GRIIODeviceSource::iioDev() const
+{
+	return m_iioDev;
+}
 
 QString GRIIOChannel::findAttribute(QStringList possibleNames, iio_channel *ch)
 {
@@ -163,15 +166,30 @@ void GRIIODeviceSource::destroy_blks(GRTopBlock *top)
 	end_blk = nullptr;
 }
 
-void GRIIODeviceSource::connect_blk(GRTopBlock *top, GRProxyBlock *) { matchChannelToBlockOutputs(top); }
+void GRIIODeviceSource::connect_blk(GRTopBlock *top, GRProxyBlock *)
+{
+	matchChannelToBlockOutputs(top);
+}
 
-void GRIIODeviceSource::disconnect_blk(GRTopBlock *top) { top->getGrBlock()->disconnect(src); }
+void GRIIODeviceSource::disconnect_blk(GRTopBlock *top)
+{
+	top->getGrBlock()->disconnect(src);
+}
 
-void GRIIODeviceSource::addChannel(GRIIOChannel *ch) { m_list.append(ch); }
+void GRIIODeviceSource::addChannel(GRIIOChannel *ch)
+{
+	m_list.append(ch);
+}
 
-void GRIIODeviceSource::removeChannel(GRIIOChannel *ch) { m_list.removeAll(ch); }
+void GRIIODeviceSource::removeChannel(GRIIOChannel *ch)
+{
+	m_list.removeAll(ch);
+}
 
-unsigned int GRIIODeviceSource::getBuffersize() const { return m_buffersize; }
+unsigned int GRIIODeviceSource::getBuffersize() const
+{
+	return m_buffersize;
+}
 
 void GRIIODeviceSource::setBuffersize(unsigned int newBuffersize)
 {
@@ -179,6 +197,12 @@ void GRIIODeviceSource::setBuffersize(unsigned int newBuffersize)
 	Q_EMIT requestRebuild();
 }
 
-std::vector<std::string> GRIIODeviceSource::channelNames() const { return m_channelNames; }
+std::vector<std::string> GRIIODeviceSource::channelNames() const
+{
+	return m_channelNames;
+}
 
-QString GRIIODeviceSource::deviceName() const { return m_deviceName; }
+QString GRIIODeviceSource::deviceName() const
+{
+	return m_deviceName;
+}

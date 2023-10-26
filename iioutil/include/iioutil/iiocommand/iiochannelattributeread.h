@@ -40,9 +40,15 @@ public:
 		Q_EMIT finished(this);
 	}
 
-	char *getResult() { return static_cast<char *>(m_cmdResult->results); }
+	char *getResult()
+	{
+		return static_cast<char *>(m_cmdResult->results);
+	}
 
-	struct iio_channel *getChannel() { return m_channel; }
+	struct iio_channel *getChannel()
+	{
+		return m_channel;
+	}
 
 private:
 	struct iio_channel *m_channel;

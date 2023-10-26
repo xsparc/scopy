@@ -30,7 +30,10 @@ RegmapParser::RegmapParser(QObject *parent, struct iio_context *context)
 	, ctx(context)
 {}
 
-void RegmapParser::setIioContext(struct iio_context *ctx) { this->ctx = ctx; }
+void RegmapParser::setIioContext(struct iio_context *ctx)
+{
+	this->ctx = ctx;
+}
 
 void RegmapParser::deviceXmlFileSelection(const QString *device, QString *filename, const QString source)
 {
@@ -173,9 +176,15 @@ uint32_t RegmapParser::getLastAddress(void) const
 	return lastAddress;
 }
 
-bool RegmapParser::isInputDevice(const struct iio_device *dev) { return deviceTypeGet(dev, 1); }
+bool RegmapParser::isInputDevice(const struct iio_device *dev)
+{
+	return deviceTypeGet(dev, 1);
+}
 
-bool RegmapParser::isOutputDevice(const iio_device *dev) { return deviceTypeGet(dev, 0); }
+bool RegmapParser::isOutputDevice(const iio_device *dev)
+{
+	return deviceTypeGet(dev, 0);
+}
 
 bool RegmapParser::deviceTypeGet(const iio_device *dev, int type)
 {

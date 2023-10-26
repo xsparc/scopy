@@ -313,11 +313,20 @@ void TestPlugin::cloneExtra(Plugin *p)
 	i++;
 }
 
-void TestPlugin::messageCallback(QString topic, QString message) { qInfo(CAT_TESTPLUGIN) << topic << ": " << message; }
+void TestPlugin::messageCallback(QString topic, QString message)
+{
+	qInfo(CAT_TESTPLUGIN) << topic << ": " << message;
+}
 
-void TestPlugin::saveSettings(QSettings &s) { m_pluginApi->save(s); }
+void TestPlugin::saveSettings(QSettings &s)
+{
+	m_pluginApi->save(s);
+}
 
-void TestPlugin::loadSettings(QSettings &s) { m_pluginApi->load(s); }
+void TestPlugin::loadSettings(QSettings &s)
+{
+	m_pluginApi->load(s);
+}
 
 QString TestPlugin::about()
 {
@@ -338,14 +347,26 @@ void TestPlugin::initMetadata()
 )plugin");
 }
 
-void TestPlugin::init() { m_initText = "This text was initialized"; }
+void TestPlugin::init()
+{
+	m_initText = "This text was initialized";
+}
 
-QString TestPlugin::version() { return "0.1"; }
+QString TestPlugin::version()
+{
+	return "0.1";
+}
 
 // --------------------
 
-QString TestPlugin_API::testText() const { return p->edit->text(); }
+QString TestPlugin_API::testText() const
+{
+	return p->edit->text();
+}
 
-void TestPlugin_API::setTestText(const QString &newTestText) { p->edit->setText(newTestText); }
+void TestPlugin_API::setTestText(const QString &newTestText)
+{
+	p->edit->setText(newTestText);
+}
 
 #include "moc_testplugin.cpp"

@@ -134,7 +134,10 @@ HardwareTrigger::HardwareTrigger(struct iio_device *trigg_dev)
 	setStreamingFlag(false);
 }
 
-uint HardwareTrigger::numChannels() const { return m_num_channels; }
+uint HardwareTrigger::numChannels() const
+{
+	return m_num_channels;
+}
 
 HardwareTrigger::condition HardwareTrigger::analogCondition(uint chnIdx) const
 {
@@ -197,7 +200,10 @@ bool HardwareTrigger::hasExternalTriggerOut() const
 	return (ret == NULL) ? false : true;
 }
 
-bool HardwareTrigger::hasExternalTriggerIn() const { return true; }
+bool HardwareTrigger::hasExternalTriggerIn() const
+{
+	return true;
+}
 
 bool HardwareTrigger::hasCrossInstrumentTrigger() const
 {
@@ -335,9 +341,15 @@ void HardwareTrigger::setSource(const QString &source)
  * channel at a time.
  */
 
-bool HardwareTrigger::triggerIn() const { return m_trigger_in; }
+bool HardwareTrigger::triggerIn() const
+{
+	return m_trigger_in;
+}
 
-void HardwareTrigger::setTriggerIn(bool bo) { m_trigger_in = bo; }
+void HardwareTrigger::setTriggerIn(bool bo)
+{
+	m_trigger_in = bo;
+}
 
 int HardwareTrigger::sourceChannel() const
 {
@@ -387,7 +399,10 @@ int HardwareTrigger::delay() const
 	return static_cast<int>(delay);
 }
 
-void HardwareTrigger::setDelay(int delay) { iio_channel_attr_write_longlong(m_delay_trigger, "delay", delay); }
+void HardwareTrigger::setDelay(int delay)
+{
+	iio_channel_attr_write_longlong(m_delay_trigger, "delay", delay);
+}
 
 void HardwareTrigger::setStreamingFlag(bool val)
 {
@@ -395,7 +410,10 @@ void HardwareTrigger::setStreamingFlag(bool val)
 	iio_device_attr_write_bool(m_trigger_device, "streaming", val);
 }
 
-bool HardwareTrigger::getStreamingFlag() { return m_streaming_flag; }
+bool HardwareTrigger::getStreamingFlag()
+{
+	return m_streaming_flag;
+}
 
 HardwareTrigger::settings_uptr HardwareTrigger::getCurrentHwSettings()
 {

@@ -38,17 +38,35 @@ StartStopRangeWidget::StartStopRangeWidget(double min, double max, double minSpa
 	_setupSignalsAndSlots();
 }
 
-StartStopRangeWidget::~StartStopRangeWidget() { delete ui; }
+StartStopRangeWidget::~StartStopRangeWidget()
+{
+	delete ui;
+}
 
-double StartStopRangeWidget::getStartValue() const { return start_freq->value(); }
+double StartStopRangeWidget::getStartValue() const
+{
+	return start_freq->value();
+}
 
-void StartStopRangeWidget::setStartValue(double value) { start_freq->setValue(value); }
+void StartStopRangeWidget::setStartValue(double value)
+{
+	start_freq->setValue(value);
+}
 
-double StartStopRangeWidget::getStopValue() const { return stop_freq->value(); }
+double StartStopRangeWidget::getStopValue() const
+{
+	return stop_freq->value();
+}
 
-void StartStopRangeWidget::setStopValue(double value) { stop_freq->setValue(value); }
+void StartStopRangeWidget::setStopValue(double value)
+{
+	stop_freq->setValue(value);
+}
 
-double StartStopRangeWidget::getCenterValue() const { return center_freq->value(); }
+double StartStopRangeWidget::getCenterValue() const
+{
+	return center_freq->value();
+}
 
 void StartStopRangeWidget::insertWidgetIntoLayout(QWidget *widget, int row, int column)
 {

@@ -77,7 +77,10 @@ DebuggerInstrument::DebuggerInstrument(struct iio_context *ctx, QJSEngine *engin
 	on_detailedRegMapCheckBox_stateChanged(0);
 }
 
-DebuggerInstrument::~DebuggerInstrument() { delete ui; }
+DebuggerInstrument::~DebuggerInstrument()
+{
+	delete ui;
+}
 
 void DebuggerInstrument::updateChannelComboBox(QString devName)
 {

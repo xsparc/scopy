@@ -18,7 +18,10 @@ public:
 	~GRTopBlock();
 	void registerSignalPath(GRSignalPath *path);
 	void unregisterSignalPath(GRSignalPath *path);
-	QList<GRSignalPath *> signalPaths() { return m_signalPaths; }
+	QList<GRSignalPath *> signalPaths()
+	{
+		return m_signalPaths;
+	}
 
 	void registerIIODeviceSource(GRIIODeviceSource *);
 	void unregisterIIODeviceSource(GRIIODeviceSource *);

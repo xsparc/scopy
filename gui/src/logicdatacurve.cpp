@@ -50,7 +50,10 @@ LogicDataCurve::LogicDataCurve(uint16_t *data, uint8_t bit)
 	setBrush(QBrush(Qt::black));
 }
 
-void LogicDataCurve::setData(uint16_t *data) { m_data = data; }
+void LogicDataCurve::setData(uint16_t *data)
+{
+	m_data = data;
+}
 
 void LogicDataCurve::dataAvailable(uint64_t from, uint64_t to, uint16_t *data)
 {
@@ -92,9 +95,15 @@ void LogicDataCurve::reset()
 	m_endSample = 0;
 }
 
-uint8_t LogicDataCurve::getBitId() const { return m_bit; }
+uint8_t LogicDataCurve::getBitId() const
+{
+	return m_bit;
+}
 
-void LogicDataCurve::setDisplaySampling(bool display) { m_displaySampling = display; }
+void LogicDataCurve::setDisplaySampling(bool display)
+{
+	m_displaySampling = display;
+}
 
 void LogicDataCurve::drawLines(QPainter *painter, const QwtScaleMap &xMap, const QwtScaleMap &yMap,
 			       const QRectF &canvasRect, int from, int to) const

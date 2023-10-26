@@ -107,12 +107,24 @@ void PlotCursorReadouts::initContent()
 	}
 }
 
-void PlotCursorReadouts::horizSetVisible(bool visible) { horiz_contents->setVisible(visible); }
+void PlotCursorReadouts::horizSetVisible(bool visible)
+{
+	horiz_contents->setVisible(visible);
+}
 
-void PlotCursorReadouts::vertSetVisible(bool visible) { vert_contents->setVisible(visible); }
+void PlotCursorReadouts::vertSetVisible(bool visible)
+{
+	vert_contents->setVisible(visible);
+}
 
-bool PlotCursorReadouts::horizIsVisible() { return horiz_contents->isVisible(); }
+bool PlotCursorReadouts::horizIsVisible()
+{
+	return horiz_contents->isVisible();
+}
 
-bool PlotCursorReadouts::vertIsVisible() { return vert_contents->isVisible(); }
+bool PlotCursorReadouts::vertIsVisible()
+{
+	return vert_contents->isVisible();
+}
 
 #include "moc_plotcursorreadouts.cpp"

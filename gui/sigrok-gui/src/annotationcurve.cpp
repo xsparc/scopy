@@ -66,7 +66,10 @@ AnnotationCurve::AnnotationCurve(std::shared_ptr<logic::Decoder> initialDecoder)
 	});
 }
 
-AnnotationCurve::~AnnotationCurve() { delete m_annotationDecoder; }
+AnnotationCurve::~AnnotationCurve()
+{
+	delete m_annotationDecoder;
+}
 
 void AnnotationCurve::annotationCallback(srd_proto_data *pdata, void *annotationCurve)
 {
@@ -153,7 +156,10 @@ void AnnotationCurve::setAnnotationRows(const std::map<Row, RowData> &annotation
 	m_annotationRows = annotationRows;
 }
 
-const std::map<Row, RowData> &AnnotationCurve::getAnnotationRows() const { return m_annotationRows; }
+const std::map<Row, RowData> &AnnotationCurve::getAnnotationRows() const
+{
+	return m_annotationRows;
+}
 
 void AnnotationCurve::sort_rows()
 {
@@ -299,13 +305,25 @@ std::vector<std::shared_ptr<scopy::logic::Decoder>> AnnotationCurve::getDecoderS
 	return m_annotationDecoder->getDecoderStack();
 }
 
-int AnnotationCurve::getVisibleRows() const { return m_visibleRows; }
+int AnnotationCurve::getVisibleRows() const
+{
+	return m_visibleRows;
+}
 
-double AnnotationCurve::getHeightOffset() const { return getTraceHeight() * getVisibleRows(); }
+double AnnotationCurve::getHeightOffset() const
+{
+	return getTraceHeight() * getVisibleRows();
+}
 
-AnnotationDecoder *AnnotationCurve::getAnnotationDecoder() { return m_annotationDecoder; }
+AnnotationDecoder *AnnotationCurve::getAnnotationDecoder()
+{
+	return m_annotationDecoder;
+}
 
-std::vector<std::shared_ptr<bind::Decoder>> AnnotationCurve::getDecoderBindings() { return m_bindings; }
+std::vector<std::shared_ptr<bind::Decoder>> AnnotationCurve::getDecoderBindings()
+{
+	return m_bindings;
+}
 
 void AnnotationCurve::drawLines(QPainter *painter, const QwtScaleMap &xMap, const QwtScaleMap &yMap,
 				const QRectF &canvasRect, int from, int to) const
@@ -559,7 +577,10 @@ void AnnotationCurve::drawAnnotationInfo(int row, uint64_t start, uint64_t end, 
 	painter->restore();
 }
 
-void AnnotationCurve::setState(int st) { state = st; }
+void AnnotationCurve::setState(int st)
+{
+	state = st;
+}
 
 int AnnotationCurve::getState()
 {
@@ -873,6 +894,9 @@ AnnotationQueryResult AnnotationCurve::annotationAt(const QPointF &p) const
 	return {0, nullptr};
 }
 
-bool AnnotationCurve::testHit(const QPointF &p) const { return annotationAt(p).isValid(); }
+bool AnnotationCurve::testHit(const QPointF &p) const
+{
+	return annotationAt(p).isValid();
+}
 
 #include "moc_annotationcurve.cpp"

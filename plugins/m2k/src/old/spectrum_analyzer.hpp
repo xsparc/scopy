@@ -386,9 +386,18 @@ public:
 
 	SpectrumChannel(int id, const QString &name, FftDisplayPlot *plot);
 
-	int id() const { return m_id; }
-	QString name() const { return m_name; }
-	ChannelWidget *widget() const { return m_widget; }
+	int id() const
+	{
+		return m_id;
+	}
+	QString name() const
+	{
+		return m_name;
+	}
+	ChannelWidget *widget() const
+	{
+		return m_widget;
+	}
 
 	bool isSettingsOn() const;
 	void setSettingsOn(bool on);

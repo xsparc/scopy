@@ -40,7 +40,10 @@ BaseMenu::BaseMenu(QWidget *parent)
 	d_ui->bottomSeparator->setVisible(false);
 }
 
-BaseMenu::~BaseMenu() { delete d_ui; }
+BaseMenu::~BaseMenu()
+{
+	delete d_ui;
+}
 
 void BaseMenu::insertMenuItem(BaseMenuItem *menuItem, int position)
 {
@@ -112,9 +115,15 @@ void BaseMenu::setMargins(int left, int top, int right, int bottom)
 	d_ui->mainLayout->setContentsMargins(left, top, right, bottom);
 }
 
-int BaseMenu::spacing() const { return d_ui->mainLayout->spacing(); }
+int BaseMenu::spacing() const
+{
+	return d_ui->mainLayout->spacing();
+}
 
-void BaseMenu::setSpacing(int spacing) { d_ui->mainLayout->setSpacing(spacing); }
+void BaseMenu::setSpacing(int spacing)
+{
+	d_ui->mainLayout->setSpacing(spacing);
+}
 
 void BaseMenu::dragEnterEvent(QDragEnterEvent *event)
 {
@@ -132,7 +141,10 @@ void BaseMenu::dragEnterEvent(QDragEnterEvent *event)
 	event->accept();
 }
 
-void BaseMenu::dragLeaveEvent(QDragLeaveEvent *event) { d_ui->bottomSeparator->setVisible(false); }
+void BaseMenu::dragLeaveEvent(QDragLeaveEvent *event)
+{
+	d_ui->bottomSeparator->setVisible(false);
+}
 
 void BaseMenu::dropEvent(QDropEvent *event)
 {

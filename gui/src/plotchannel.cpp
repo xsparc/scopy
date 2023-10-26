@@ -32,7 +32,10 @@ PlotChannel::PlotChannel(QString name, QPen pen, PlotWidget *plot, PlotAxis *xAx
 
 PlotChannel::~PlotChannel() {}
 
-QwtPlotCurve *PlotChannel::curve() const { return m_curve; }
+QwtPlotCurve *PlotChannel::curve() const
+{
+	return m_curve;
+}
 
 void PlotChannel::setEnabled(bool b)
 {
@@ -42,9 +45,15 @@ void PlotChannel::setEnabled(bool b)
 		m_curve->detach();
 }
 
-void PlotChannel::enable() { setEnabled(true); }
+void PlotChannel::enable()
+{
+	setEnabled(true);
+}
 
-void PlotChannel::disable() { setEnabled(false); }
+void PlotChannel::disable()
+{
+	setEnabled(false);
+}
 
 void PlotChannel::setThickness(int thickness)
 {
@@ -85,7 +94,10 @@ void PlotChannel::setStyle(int style)
 	m_plot->replot();
 }
 
-QList<QwtPlotMarker *> PlotChannel::markers() { return m_markers; }
+QList<QwtPlotMarker *> PlotChannel::markers()
+{
+	return m_markers;
+}
 
 QwtPlotMarker *PlotChannel::buildMarker(QString str, QwtSymbol::Style shape, double x, double y)
 {
@@ -109,7 +121,10 @@ QwtPlotMarker *PlotChannel::buildMarker(QString str, QwtSymbol::Style shape, dou
 	return m;
 }
 
-void PlotChannel::addMarker(QwtPlotMarker *m) { m_markers.append(m); }
+void PlotChannel::addMarker(QwtPlotMarker *m)
+{
+	m_markers.append(m);
+}
 
 void PlotChannel::clearMarkers()
 {
@@ -127,9 +142,15 @@ void PlotChannel::removeMarker(QwtPlotMarker *m)
 	delete(m);
 }
 
-PlotAxisHandle *PlotChannel::handle() const { return m_handle; }
+PlotAxisHandle *PlotChannel::handle() const
+{
+	return m_handle;
+}
 
-void PlotChannel::setHandle(PlotAxisHandle *newHandle) { m_handle = newHandle; }
+void PlotChannel::setHandle(PlotAxisHandle *newHandle)
+{
+	m_handle = newHandle;
+}
 
 void PlotChannel::raise()
 {
@@ -140,12 +161,24 @@ void PlotChannel::raise()
 	}
 }
 
-void PlotChannel::attach() { m_curve->attach(m_plot); }
+void PlotChannel::attach()
+{
+	m_curve->attach(m_plot);
+}
 
-void PlotChannel::detach() { m_curve->detach(); }
+void PlotChannel::detach()
+{
+	m_curve->detach();
+}
 
-PlotAxis *PlotChannel::yAxis() const { return m_yAxis; }
+PlotAxis *PlotChannel::yAxis() const
+{
+	return m_yAxis;
+}
 
-PlotAxis *PlotChannel::xAxis() const { return m_xAxis; }
+PlotAxis *PlotChannel::xAxis() const
+{
+	return m_xAxis;
+}
 
 #include "moc_plotchannel.cpp"

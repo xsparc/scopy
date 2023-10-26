@@ -94,7 +94,10 @@ bool TestPluginIp::loadPage()
 	return true;
 }
 
-void TestPluginIp::loadToolList() { m_toolList.append(SCOPY_NEW_TOOLMENUENTRY("test2", "SecondPlugin", "")); }
+void TestPluginIp::loadToolList()
+{
+	m_toolList.append(SCOPY_NEW_TOOLMENUENTRY("test2", "SecondPlugin", ""));
+}
 
 void TestPluginIp::initMetadata()
 {
@@ -109,8 +112,14 @@ void TestPluginIp::initMetadata()
 		)plugin");
 }
 
-void TestPluginIp::saveSettings(QSettings &s) { s.setValue("ip", m_param); }
+void TestPluginIp::saveSettings(QSettings &s)
+{
+	s.setValue("ip", m_param);
+}
 
-void TestPluginIp::loadSettings(QSettings &s) { qInfo(CAT_TESTPLUGINIP) << s.value("ip"); }
+void TestPluginIp::loadSettings(QSettings &s)
+{
+	qInfo(CAT_TESTPLUGINIP) << s.value("ip");
+}
 
 #include "moc_testpluginip.cpp"

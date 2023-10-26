@@ -16,7 +16,10 @@ MenuSectionWidget::MenuSectionWidget(QWidget *parent)
 
 MenuSectionWidget::~MenuSectionWidget() {}
 
-QVBoxLayout *MenuSectionWidget::contentLayout() const { return m_layout; }
+QVBoxLayout *MenuSectionWidget::contentLayout() const
+{
+	return m_layout;
+}
 
 MenuVScrollArea::MenuVScrollArea(QWidget *parent)
 {
@@ -32,6 +35,9 @@ MenuVScrollArea::MenuVScrollArea(QWidget *parent)
 
 MenuVScrollArea::~MenuVScrollArea() {}
 
-QVBoxLayout *MenuVScrollArea::contentLayout() const { return m_layout; }
+QVBoxLayout *MenuVScrollArea::contentLayout() const
+{
+	return m_layout;
+}
 
 #include "moc_menusectionwidget.cpp"

@@ -86,9 +86,15 @@ Filter::Filter(const struct iio_context *ctx)
 
 Filter::~Filter() {}
 
-QString &Filter::hw_name() { return hwname; }
+QString &Filter::hw_name()
+{
+	return hwname;
+}
 
-const QString Filter::tool_name(enum tool tool) { return tool_names[tool]; }
+const QString Filter::tool_name(enum tool tool)
+{
+	return tool_names[tool];
+}
 
 bool Filter::compatible(enum tool tool) const
 {

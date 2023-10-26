@@ -49,18 +49,54 @@ public:
 	}
 
 	~ToolMenuEntry() {}
-	inline QString id() const { return m_id; }
-	inline QString uuid() const { return m_uuid; }
-	inline QString name() const { return m_name; }
-	inline QString icon() const { return m_icon; }
-	inline QString pluginName() const { return m_pluginName; }
-	inline bool visible() const { return m_visible; }
-	inline bool enabled() const { return m_enabled; }
-	inline bool running() const { return m_running; }
-	inline bool attached() const { return m_attached; }
-	inline bool runEnabled() const { return m_runEnabled; }
-	inline bool runBtnVisible() const { return m_runBtnVisible; }
-	inline QWidget *tool() const { return m_tool; }
+	inline QString id() const
+	{
+		return m_id;
+	}
+	inline QString uuid() const
+	{
+		return m_uuid;
+	}
+	inline QString name() const
+	{
+		return m_name;
+	}
+	inline QString icon() const
+	{
+		return m_icon;
+	}
+	inline QString pluginName() const
+	{
+		return m_pluginName;
+	}
+	inline bool visible() const
+	{
+		return m_visible;
+	}
+	inline bool enabled() const
+	{
+		return m_enabled;
+	}
+	inline bool running() const
+	{
+		return m_running;
+	}
+	inline bool attached() const
+	{
+		return m_attached;
+	}
+	inline bool runEnabled() const
+	{
+		return m_runEnabled;
+	}
+	inline bool runBtnVisible() const
+	{
+		return m_runBtnVisible;
+	}
+	inline QWidget *tool() const
+	{
+		return m_tool;
+	}
 
 	static ToolMenuEntry *findToolMenuEntryByName(QList<ToolMenuEntry *> list, QString id);
 	static ToolMenuEntry *findToolMenuEntryById(QList<ToolMenuEntry *> list, QString id);

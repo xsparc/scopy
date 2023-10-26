@@ -38,9 +38,15 @@ RegisterWidget::RegisterWidget(QWidget *parent, DebuggerController *debug)
 	QObject::connect(this, &RegisterWidget::valueChanged, this, &RegisterWidget::updateBitfields);
 }
 
-RegisterWidget::~RegisterWidget() { delete ui; }
+RegisterWidget::~RegisterWidget()
+{
+	delete ui;
+}
 
-uint32_t RegisterWidget::getLastAddress(void) const { return regMap.getLastAddress(); }
+uint32_t RegisterWidget::getLastAddress(void) const
+{
+	return regMap.getLastAddress();
+}
 
 void RegisterWidget::createRegMap(const QString *device, int *address, const QString *source)
 {
@@ -227,9 +233,15 @@ void RegisterWidget::verifyAvailableSources(const QString device)
 	}
 }
 
-QStringList RegisterWidget::getSources() const { return fileSources; }
+QStringList RegisterWidget::getSources() const
+{
+	return fileSources;
+}
 
-uint32_t RegisterWidget::getValue() const { return value; }
+uint32_t RegisterWidget::getValue() const
+{
+	return value;
+}
 
 void RegisterWidget::setValue(int var)
 {
@@ -273,6 +285,12 @@ void RegisterWidget::updateBitfields()
 	}
 }
 
-QString RegisterWidget::getDescription() const { return description; }
+QString RegisterWidget::getDescription() const
+{
+	return description;
+}
 
-uint32_t RegisterWidget::getDefaultValue() const { return defaultValue; }
+uint32_t RegisterWidget::getDefaultValue() const
+{
+	return defaultValue;
+}

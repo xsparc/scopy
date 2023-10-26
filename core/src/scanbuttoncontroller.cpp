@@ -9,7 +9,10 @@ ScanButtonController::ScanButtonController(CyclicalTask *cs, QPushButton *btn, Q
 	this->btn = btn;
 	conn = connect(this->btn, SIGNAL(toggled(bool)), this, SLOT(enableScan(bool)));
 }
-ScanButtonController::~ScanButtonController() { disconnect(conn); }
+ScanButtonController::~ScanButtonController()
+{
+	disconnect(conn);
+}
 
 void ScanButtonController::enableScan(bool b)
 {

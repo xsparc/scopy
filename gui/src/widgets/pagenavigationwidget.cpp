@@ -60,12 +60,24 @@ void PageNavigationWidget::setOpenBtnVisible(bool en)
 	setMinimumSize(sizeHint());
 }
 
-QPushButton *PageNavigationWidget::getHomeBtn() { return homeButton; }
+QPushButton *PageNavigationWidget::getHomeBtn()
+{
+	return homeButton;
+}
 
-QPushButton *PageNavigationWidget::getBackwardBtn() { return backwardButton; }
+QPushButton *PageNavigationWidget::getBackwardBtn()
+{
+	return backwardButton;
+}
 
-QPushButton *PageNavigationWidget::getForwardBtn() { return forwardButton; }
+QPushButton *PageNavigationWidget::getForwardBtn()
+{
+	return forwardButton;
+}
 
-QPushButton *PageNavigationWidget::getOpenBtn() { return openButton; }
+QPushButton *PageNavigationWidget::getOpenBtn()
+{
+	return openButton;
+}
 
 #include "moc_pagenavigationwidget.cpp"

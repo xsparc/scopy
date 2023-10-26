@@ -75,7 +75,10 @@ Sismograph::Sismograph(QWidget *parent)
 	curve.setXAxis(QwtAxis::YLeft);
 }
 
-Sismograph::~Sismograph() { delete scaler; }
+Sismograph::~Sismograph()
+{
+	delete scaler;
+}
 
 void Sismograph::plot(double sample)
 {
@@ -120,9 +123,15 @@ double Sismograph::findMaxInFifo()
 	return max;
 }
 
-bool Sismograph::getAutoscale() const { return autoscale; }
+bool Sismograph::getAutoscale() const
+{
+	return autoscale;
+}
 
-void Sismograph::setAutoscale(bool newAutoscale) { autoscale = newAutoscale; }
+void Sismograph::setAutoscale(bool newAutoscale)
+{
+	autoscale = newAutoscale;
+}
 
 void Sismograph::addScale(double x1, double x2, int maxMajorSteps, int maxMinorSteps, double stepSize)
 {
@@ -164,7 +173,10 @@ void Sismograph::updateScale()
 	m_currentScale = scale;
 }
 
-int Sismograph::getNumSamples() const { return numSamples; }
+int Sismograph::getNumSamples() const
+{
+	return numSamples;
+}
 
 void Sismograph::setNumSamples(int num)
 {
@@ -197,7 +209,10 @@ void Sismograph::setHistoryDuration(double time)
 	setNumSamples(interval * sampleRate);
 }
 
-double Sismograph::getSampleRate() const { return sampleRate; }
+double Sismograph::getSampleRate() const
+{
+	return sampleRate;
+}
 
 void Sismograph::setSampleRate(double rate)
 {
@@ -249,10 +264,19 @@ void Sismograph::setUnitOfMeasure(QString unitOfMeasureName, QString unitOfMeasu
 	m_unitOfMeasureSymbol = unitOfMeasureSymbol;
 }
 
-void Sismograph::setPlotAxisXTitle(const QString &title) { setAxisTitle(QwtAxis::YLeft, title); }
+void Sismograph::setPlotAxisXTitle(const QString &title)
+{
+	setAxisTitle(QwtAxis::YLeft, title);
+}
 
-Sismograph::PlotDirection Sismograph::getPlotDirection() const { return plotDirection; }
+Sismograph::PlotDirection Sismograph::getPlotDirection() const
+{
+	return plotDirection;
+}
 
-void Sismograph::setPlotDirection(Sismograph::PlotDirection direction) { this->plotDirection = direction; }
+void Sismograph::setPlotDirection(Sismograph::PlotDirection direction)
+{
+	this->plotDirection = direction;
+}
 
 #include "moc_sismograph.cpp"

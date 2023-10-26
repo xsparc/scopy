@@ -56,7 +56,10 @@ ScopyJS *ScopyJS::GetInstance()
 	return pinstance_;
 }
 
-void ScopyJS::exit() { QApplication::closeAllWindows(); }
+void ScopyJS::exit()
+{
+	QApplication::closeAllWindows();
+}
 
 void ScopyJS::init()
 {
@@ -103,11 +106,20 @@ void ScopyJS::suppressScopyMessages(bool b)
 	}
 }
 
-QJSEngine *ScopyJS::engine() { return &m_engine; }
+QJSEngine *ScopyJS::engine()
+{
+	return &m_engine;
+}
 
-void ScopyJS::registerApi(ApiObject *obj) { registerApi(obj, m_engine.globalObject()); }
+void ScopyJS::registerApi(ApiObject *obj)
+{
+	registerApi(obj, m_engine.globalObject());
+}
 
-void ScopyJS::unregisterApi(ApiObject *obj) { unregisterApi(obj, m_engine.globalObject()); }
+void ScopyJS::unregisterApi(ApiObject *obj)
+{
+	unregisterApi(obj, m_engine.globalObject());
+}
 
 void ScopyJS::registerApi(ApiObject *obj, QJSValue parentObj)
 {
@@ -132,9 +144,15 @@ void ScopyJS::registerApi(ApiObject *obj, QJSValue parentObj)
 	//	}
 }
 
-void ScopyJS::unregisterApi(ApiObject *obj, QJSValue parentObj) { parentObj.deleteProperty(obj->objectName()); }
+void ScopyJS::unregisterApi(ApiObject *obj, QJSValue parentObj)
+{
+	parentObj.deleteProperty(obj->objectName());
+}
 
-void ScopyJS::sleep(unsigned long s) { msleep(s * 1000); }
+void ScopyJS::sleep(unsigned long s)
+{
+	msleep(s * 1000);
+}
 
 void ScopyJS::msleep(unsigned long ms)
 {
@@ -147,7 +165,10 @@ void ScopyJS::msleep(unsigned long ms)
 	}
 }
 
-void ScopyJS::printToConsole(const QString &text) { cout << text.toStdString() << std::endl; }
+void ScopyJS::printToConsole(const QString &text)
+{
+	cout << text.toStdString() << std::endl;
+}
 
 QString ScopyJS::readFromConsole(const QString &request)
 {

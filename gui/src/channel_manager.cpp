@@ -106,7 +106,10 @@ void ChannelManager::updatePosition(ChannelsPositionEnum position)
 	Q_EMIT m_switchBtn->toggled(true);
 }
 
-int ChannelManager::getChannelID(ChannelWidget *ch) { return m_channelsList.indexOf(ch); }
+int ChannelManager::getChannelID(ChannelWidget *ch)
+{
+	return m_channelsList.indexOf(ch);
+}
 
 ChannelWidget *ChannelManager::buildNewChannel(int chId, bool deletable, bool simplefied, QColor color,
 					       const QString &fullName, const QString &shortName)
@@ -183,9 +186,15 @@ CustomPushButton *ChannelManager::getAddChannelBtn()
 	}
 }
 
-QList<ChannelWidget *> ChannelManager::getChannelsList() { return m_channelsList; }
+QList<ChannelWidget *> ChannelManager::getChannelsList()
+{
+	return m_channelsList;
+}
 
-int ChannelManager::getChannelsCount() { return m_channelsList.size(); }
+int ChannelManager::getChannelsCount()
+{
+	return m_channelsList.size();
+}
 
 void ChannelManager::changeParent(QWidget *newParent)
 {
@@ -279,7 +288,10 @@ QList<ChannelWidget *> ChannelManager::getEnabledChannels()
 	return lst;
 }
 
-void ChannelManager::enableSwitchButton(bool en) { m_switchBtn->setVisible(en); }
+void ChannelManager::enableSwitchButton(bool en)
+{
+	m_switchBtn->setVisible(en);
+}
 
 void ChannelManager::insertAddBtn(QWidget *menu, bool dockable)
 {
@@ -304,7 +316,10 @@ void ChannelManager::setChannelAlignment(ChannelWidget *ch, Qt::Alignment alignm
 	m_channelsWidget->layout()->setAlignment(ch, alignment);
 }
 
-void ChannelManager::setChannelIdVisible(bool visible) { m_channelIdVisible = visible; }
+void ChannelManager::setChannelIdVisible(bool visible)
+{
+	m_channelIdVisible = visible;
+}
 
 void ChannelManager::toggleChannelManager(bool toggled)
 {
@@ -334,7 +349,10 @@ void ChannelManager::toggleChannelManager(bool toggled)
 	}
 }
 
-int ChannelManager::getSelectedChannel() { return m_selectedChannel; }
+int ChannelManager::getSelectedChannel()
+{
+	return m_selectedChannel;
+}
 
 void ChannelManager::onChannelSelected(bool toggled)
 {
@@ -365,7 +383,10 @@ void ChannelManager::onChannelDeleted()
 	}
 }
 
-const ChannelWidget *ChannelManager::getChannelAt(int id) { return m_channelsList.at(id); }
+const ChannelWidget *ChannelManager::getChannelAt(int id)
+{
+	return m_channelsList.at(id);
+}
 
 const QString &ChannelManager::getToolStatus() const
 {
@@ -373,6 +394,9 @@ const QString &ChannelManager::getToolStatus() const
 	return text;
 }
 
-void ChannelManager::setToolStatus(const QString &newToolStatus) { toolStatus->setText(newToolStatus); }
+void ChannelManager::setToolStatus(const QString &newToolStatus)
+{
+	toolStatus->setText(newToolStatus);
+}
 
 #include "moc_channel_manager.cpp"

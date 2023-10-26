@@ -33,7 +33,10 @@ void MeasurementSelector::removeMeasurement(QString name)
 	m_map.remove(name);
 }
 
-MeasurementSelectorItem *MeasurementSelector::measurement(QString name) { return m_map.value(name); }
+MeasurementSelectorItem *MeasurementSelector::measurement(QString name)
+{
+	return m_map.value(name);
+}
 
 void MeasurementSelector::toggleAllMeasurement(bool b)
 {
@@ -81,8 +84,14 @@ MeasurementSelectorItem::MeasurementSelectorItem(QString name, QString iconPath,
 
 MeasurementSelectorItem::~MeasurementSelectorItem() {}
 
-QCheckBox *MeasurementSelectorItem::measureCheckbox() const { return m_measureCheckbox; }
+QCheckBox *MeasurementSelectorItem::measureCheckbox() const
+{
+	return m_measureCheckbox;
+}
 
-QCheckBox *MeasurementSelectorItem::statsCheckbox() const { return m_statsCheckbox; }
+QCheckBox *MeasurementSelectorItem::statsCheckbox() const
+{
+	return m_statsCheckbox;
+}
 
 #include "moc_measurementselector.cpp"

@@ -91,9 +91,15 @@ void RecyclerView::init()
 	Q_EMIT initDone();
 }
 
-QMap<int, QWidget *> *RecyclerView::getWidgetsMap() const { return widgetMap; }
+QMap<int, QWidget *> *RecyclerView::getWidgetsMap() const
+{
+	return widgetMap;
+}
 
-void RecyclerView::setWidgetMap(QMap<int, QWidget *> *newWidgets) { widgetMap = newWidgets; }
+void RecyclerView::setWidgetMap(QMap<int, QWidget *> *newWidgets)
+{
+	widgetMap = newWidgets;
+}
 
 void RecyclerView::addWidget(int index, QWidget *widget)
 {
@@ -101,7 +107,10 @@ void RecyclerView::addWidget(int index, QWidget *widget)
 	bitFieldsWidgetLayout->addWidget(widget, index, 0);
 }
 
-QWidget *RecyclerView::getWidgetAtIndex(int index) { return widgetMap->value(index); }
+QWidget *RecyclerView::getWidgetAtIndex(int index)
+{
+	return widgetMap->value(index);
+}
 
 void RecyclerView::hideAll()
 {
@@ -119,7 +128,10 @@ void RecyclerView::showAll()
 	}
 }
 
-void RecyclerView::setActiveWidgets(QList<int> *widgets) { this->widgets = widgets; }
+void RecyclerView::setActiveWidgets(QList<int> *widgets)
+{
+	this->widgets = widgets;
+}
 
 void RecyclerView::scrollTo(int index)
 {
@@ -127,7 +139,10 @@ void RecyclerView::scrollTo(int index)
 	slider->setValue(index);
 }
 
-void RecyclerView::setMaxrowCount(int maxRowCount) { this->maxRowCount = maxRowCount; }
+void RecyclerView::setMaxrowCount(int maxRowCount)
+{
+	this->maxRowCount = maxRowCount;
+}
 
 void RecyclerView::scrollDown()
 {

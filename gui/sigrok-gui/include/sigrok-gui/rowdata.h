@@ -57,7 +57,10 @@ public:
 public:
 	uint64_t get_max_sample() const;
 
-	uint64_t size() const { return annotations_.size(); }
+	uint64_t size() const
+	{
+		return annotations_.size();
+	}
 
 	/**
 	 * Extracts annotations between the given sample range into a vector.

@@ -25,7 +25,10 @@ MenuHeaderWidget::MenuHeaderWidget(QString title, QPen pen, QWidget *parent)
 
 MenuHeaderWidget::~MenuHeaderWidget() {}
 
-QLabel *MenuHeaderWidget::label() { return m_label; }
+QLabel *MenuHeaderWidget::label()
+{
+	return m_label;
+}
 
 void MenuHeaderWidget::applyStylesheet()
 {

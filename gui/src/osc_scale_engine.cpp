@@ -44,14 +44,29 @@ OscScaleEngine::OscScaleEngine()
 
 OscScaleEngine::~OscScaleEngine() {}
 
-void OscScaleEngine::setMajorTicksCount(uint majorTicks) { m_majorTicks = majorTicks; }
+void OscScaleEngine::setMajorTicksCount(uint majorTicks)
+{
+	m_majorTicks = majorTicks;
+}
 
-uint OscScaleEngine::majorTicksCount() { return m_majorTicks; }
+uint OscScaleEngine::majorTicksCount()
+{
+	return m_majorTicks;
+}
 
-void OscScaleEngine::setMinorTicksCount(uint minorTicks) { m_minorTicks = minorTicks; }
+void OscScaleEngine::setMinorTicksCount(uint minorTicks)
+{
+	m_minorTicks = minorTicks;
+}
 
-uint OscScaleEngine::minorTicksCount() { return m_minorTicks; }
-void OscScaleEngine::showZero(bool en) { m_showZero = en; }
+uint OscScaleEngine::minorTicksCount()
+{
+	return m_minorTicks;
+}
+void OscScaleEngine::showZero(bool en)
+{
+	m_showZero = en;
+}
 void OscScaleEngine::autoScale(int maxSteps, double &x1, double &x2, double &stepSize) const
 {
 	// No implementation is needed for now

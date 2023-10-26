@@ -62,17 +62,35 @@ Decoder::~Decoder()
 		g_variant_unref(option.second);
 }
 
-const srd_decoder *Decoder::decoder() const { return decoder_; }
+const srd_decoder *Decoder::decoder() const
+{
+	return decoder_;
+}
 
-bool Decoder::shown() const { return shown_; }
+bool Decoder::shown() const
+{
+	return shown_;
+}
 
-void Decoder::show(bool show) { shown_ = show; }
+void Decoder::show(bool show)
+{
+	shown_ = show;
+}
 
-const vector<DecodeChannel *> &Decoder::channels() const { return channels_; }
+const vector<DecodeChannel *> &Decoder::channels() const
+{
+	return channels_;
+}
 
-void Decoder::set_channels(vector<DecodeChannel *> channels) { channels_ = channels; }
+void Decoder::set_channels(vector<DecodeChannel *> channels)
+{
+	channels_ = channels;
+}
 
-const map<string, GVariant *> &Decoder::options() const { return options_; }
+const map<string, GVariant *> &Decoder::options() const
+{
+	return options_;
+}
 
 void Decoder::set_option(const char *id, GVariant *value)
 {
@@ -161,4 +179,7 @@ srd_decoder_inst *Decoder::create_decoder_inst(srd_session *session)
 	return decoder_inst_;
 }
 
-void Decoder::invalidate_decoder_inst() { decoder_inst_ = nullptr; }
+void Decoder::invalidate_decoder_inst()
+{
+	decoder_inst_ = nullptr;
+}

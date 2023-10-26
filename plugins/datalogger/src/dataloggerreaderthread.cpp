@@ -9,9 +9,15 @@ using namespace datalogger;
 
 DataLoggerReaderThread::DataLoggerReaderThread() {}
 
-void DataLoggerReaderThread::setDataLoggerStatus(bool status) { dataLoggerStatus = status; }
+void DataLoggerReaderThread::setDataLoggerStatus(bool status)
+{
+	dataLoggerStatus = status;
+}
 
-void DataLoggerReaderThread::channelToggled(int id, bool toggled) { m_activeChannels[id].first = toggled; }
+void DataLoggerReaderThread::channelToggled(int id, bool toggled)
+{
+	m_activeChannels[id].first = toggled;
+}
 
 void DataLoggerReaderThread::addChannel(int id, std::string dmmId, libm2k::analog::DMM *dmm)
 {

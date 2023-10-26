@@ -40,7 +40,10 @@ RunSingleWidget::RunSingleWidget(QWidget *parent)
 	connect(d_ui->singleButton, &QPushButton::toggled, this, &RunSingleWidget::_toggle);
 }
 
-RunSingleWidget::~RunSingleWidget() { delete d_ui; }
+RunSingleWidget::~RunSingleWidget()
+{
+	delete d_ui;
+}
 
 void RunSingleWidget::enableSingleButton(bool enable)
 {
@@ -52,7 +55,10 @@ void RunSingleWidget::enableSingleButton(bool enable)
 	}
 }
 
-bool RunSingleWidget::singleButtonEnabled() const { return d_singleButtonEnabled; }
+bool RunSingleWidget::singleButtonEnabled() const
+{
+	return d_singleButtonEnabled;
+}
 
 void RunSingleWidget::enableRunButton(bool enable)
 {
@@ -61,15 +67,30 @@ void RunSingleWidget::enableRunButton(bool enable)
 	d_runButtonEnabled = enable;
 }
 
-bool RunSingleWidget::runButtonEnabled() const { return d_runButtonEnabled; }
+bool RunSingleWidget::runButtonEnabled() const
+{
+	return d_runButtonEnabled;
+}
 
-bool RunSingleWidget::singleButtonChecked() const { return d_ui->singleButton->isChecked(); }
+bool RunSingleWidget::singleButtonChecked() const
+{
+	return d_ui->singleButton->isChecked();
+}
 
-bool RunSingleWidget::runButtonChecked() const { return d_ui->runButton->isChecked(); }
+bool RunSingleWidget::runButtonChecked() const
+{
+	return d_ui->runButton->isChecked();
+}
 
-QPushButton *RunSingleWidget::getRunButton() { return d_ui->runButton; }
+QPushButton *RunSingleWidget::getRunButton()
+{
+	return d_ui->runButton;
+}
 
-QPushButton *RunSingleWidget::getSingleButton() { return d_ui->singleButton; }
+QPushButton *RunSingleWidget::getSingleButton()
+{
+	return d_ui->singleButton;
+}
 
 void RunSingleWidget::toggle(bool checked)
 {
@@ -99,7 +120,10 @@ void RunSingleWidget::toggle(bool checked)
 	Q_EMIT toggled(checked);
 }
 
-void RunSingleWidget::single() { d_ui->singleButton->setChecked(true); }
+void RunSingleWidget::single()
+{
+	d_ui->singleButton->setChecked(true);
+}
 
 void RunSingleWidget::_toggle(bool checked)
 {

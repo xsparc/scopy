@@ -436,9 +436,15 @@ void ManualCalibration::setNegativeValue(double value)
 	}
 }
 
-void ManualCalibration::nextButton_clicked() { startCalibration(); }
+void ManualCalibration::nextButton_clicked()
+{
+	startCalibration();
+}
 
-void ManualCalibration::setCalibration(Calibration *cal) { calib = cal; }
+void ManualCalibration::setCalibration(Calibration *cal)
+{
+	calib = cal;
+}
 
 void ManualCalibration::allowManualCalibScript(bool calib_en, bool calib_pref_en)
 {
@@ -519,7 +525,10 @@ void ManualCalibration::initParameters(void)
 
 void ManualCalibration::updateParameters(void) {}
 
-void ManualCalibration::on_loadButton_clicked() { initParameters(); }
+void ManualCalibration::on_loadButton_clicked()
+{
+	initParameters();
+}
 
 void ManualCalibration::on_saveButton_clicked()
 {
@@ -603,4 +612,7 @@ void ManualCalibration::on_autoButton_clicked()
 	displayStartUpCalibrationValues();
 }
 
-void ManualCalibration::setCalibrationFilePath(QString path) { calibrationFilePath = path; }
+void ManualCalibration::setCalibrationFilePath(QString path)
+{
+	calibrationFilePath = path;
+}

@@ -13,7 +13,10 @@ GRProxyBlock::~GRProxyBlock() {}
 
 void GRProxyBlock::build_blks(GRTopBlock *top) {}
 
-void GRProxyBlock::destroy_blks(GRTopBlock *top) { start_blk.clear(); }
+void GRProxyBlock::destroy_blks(GRTopBlock *top)
+{
+	start_blk.clear();
+}
 
 void GRProxyBlock::connect_blk(GRTopBlock *top, GRProxyBlock *src)
 {
@@ -52,9 +55,21 @@ void GRProxyBlock::setEnabled(bool v)
 	blockSignals(!v); // to prevent rebuilding from non-enabled blocks - maybe
 }
 
-bool GRProxyBlock::enabled() { return m_enabled; }
+bool GRProxyBlock::enabled()
+{
+	return m_enabled;
+}
 
-bool GRProxyBlock::built() { return (!start_blk.isEmpty()) || (end_blk != nullptr); }
+bool GRProxyBlock::built()
+{
+	return (!start_blk.isEmpty()) || (end_blk != nullptr);
+}
 
-QList<gr::basic_block_sptr> GRProxyBlock::getGrStartPoint() { return start_blk; }
-gr::basic_block_sptr GRProxyBlock::getGrEndPoint() { return end_blk; }
+QList<gr::basic_block_sptr> GRProxyBlock::getGrStartPoint()
+{
+	return start_blk;
+}
+gr::basic_block_sptr GRProxyBlock::getGrEndPoint()
+{
+	return end_blk;
+}

@@ -76,4 +76,7 @@ double GRIIOFloatChannelSrc::readSampleRate()
 	}
 }
 
-const iio_data_format *GRIIOFloatChannelSrc::getFmt() const { return fmt; }
+const iio_data_format *GRIIOFloatChannelSrc::getFmt() const
+{
+	return fmt;
+}

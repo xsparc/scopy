@@ -91,7 +91,10 @@ DropdownSwitchList::DropdownSwitchList(int switchColCount, QWidget *parent)
 	m_treeView->header()->setDefaultAlignment(Qt::AlignCenter);
 }
 
-QString DropdownSwitchList::title() const { return m_title; }
+QString DropdownSwitchList::title() const
+{
+	return m_title;
+}
 
 void DropdownSwitchList::setTitle(const QString &title)
 {
@@ -114,7 +117,10 @@ void DropdownSwitchList::setColumnTitle(int col, const QString &title)
 	}
 }
 
-int DropdownSwitchList::switchColumnCount() const { return m_columns - 1; }
+int DropdownSwitchList::switchColumnCount() const
+{
+	return m_columns - 1;
+}
 
 void DropdownSwitchList::addDropdownElement(const QIcon &icon, const QString &name)
 {
@@ -183,10 +189,19 @@ void DropdownSwitchList::mouseReleaseEvent(QMouseEvent *event)
 	}
 }
 
-void DropdownSwitchList::enterEvent(QEvent *event) { m_mouseInside = true; }
+void DropdownSwitchList::enterEvent(QEvent *event)
+{
+	m_mouseInside = true;
+}
 
-void DropdownSwitchList::leaveEvent(QEvent *event) { m_mouseInside = false; }
+void DropdownSwitchList::leaveEvent(QEvent *event)
+{
+	m_mouseInside = false;
+}
 
-void DropdownSwitchList::resetIndex(int) { setCurrentIndex(-1); }
+void DropdownSwitchList::resetIndex(int)
+{
+	setCurrentIndex(-1);
+}
 
 #include "moc_dropdown_switch_list.cpp"

@@ -26,7 +26,10 @@ void IIOScanTask::run()
 		Q_EMIT scanFinished(ctxs);
 }
 
-void IIOScanTask::setScanParams(QString s) { scanParams = s; }
+void IIOScanTask::setScanParams(QString s)
+{
+	scanParams = s;
+}
 
 int IIOScanTask::scan(QStringList *ctxs, QString scanParams)
 {

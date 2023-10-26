@@ -41,7 +41,10 @@ bool MapStackedWidget::remove(QString key)
 	return true;
 }
 
-bool MapStackedWidget::contains(QString key) { return map.contains(key); }
+bool MapStackedWidget::contains(QString key)
+{
+	return map.contains(key);
+}
 
 QWidget *MapStackedWidget::get(QString key)
 {

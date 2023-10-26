@@ -54,7 +54,10 @@ struct AnnotationQueryResult
 {
 	uint64_t index;
 	const Annotation *ann;
-	inline bool isValid() const { return ann != nullptr; }
+	inline bool isValid() const
+	{
+		return ann != nullptr;
+	}
 };
 
 class SCOPY_SIGROK_GUI_EXPORT AnnotationCurve : public GenericLogicPlotCurve

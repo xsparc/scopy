@@ -35,66 +35,159 @@ namespace scopy::m2k {
  * class Oscilloscope_API
  */
 
-bool Oscilloscope_API::hasCursors() const { return osc->ui->boxCursors->isChecked(); }
+bool Oscilloscope_API::hasCursors() const
+{
+	return osc->ui->boxCursors->isChecked();
+}
 
-void Oscilloscope_API::setCursors(bool en) { osc->ui->boxCursors->setChecked(en); }
+void Oscilloscope_API::setCursors(bool en)
+{
+	osc->ui->boxCursors->setChecked(en);
+}
 
-bool Oscilloscope_API::autosetEnabled() const { return osc->autosetEnabled; }
-void Oscilloscope_API::enableAutoset(bool en) { osc->autosetEnabled = en; }
+bool Oscilloscope_API::autosetEnabled() const
+{
+	return osc->autosetEnabled;
+}
+void Oscilloscope_API::enableAutoset(bool en)
+{
+	osc->autosetEnabled = en;
+}
 
-bool Oscilloscope_API::hasMeasure() const { return osc->ui->boxMeasure->isChecked(); }
+bool Oscilloscope_API::hasMeasure() const
+{
+	return osc->ui->boxMeasure->isChecked();
+}
 
-void Oscilloscope_API::setMeasure(bool en) { osc->ui->boxMeasure->setChecked(en); }
+void Oscilloscope_API::setMeasure(bool en)
+{
+	osc->ui->boxMeasure->setChecked(en);
+}
 
-bool Oscilloscope_API::measureAll() const { return osc->measure_settings->m_ui->button_measDisplayAll->isChecked(); }
+bool Oscilloscope_API::measureAll() const
+{
+	return osc->measure_settings->m_ui->button_measDisplayAll->isChecked();
+}
 
-void Oscilloscope_API::setMeasureAll(bool en) { osc->measure_settings->m_ui->button_measDisplayAll->setChecked(en); }
+void Oscilloscope_API::setMeasureAll(bool en)
+{
+	osc->measure_settings->m_ui->button_measDisplayAll->setChecked(en);
+}
 
-bool Oscilloscope_API::hasCounter() const { return osc->measure_settings->m_ui->button_Counter->isChecked(); }
+bool Oscilloscope_API::hasCounter() const
+{
+	return osc->measure_settings->m_ui->button_Counter->isChecked();
+}
 
-void Oscilloscope_API::setCounter(bool en) { osc->measure_settings->m_ui->button_Counter->setChecked(en); }
+void Oscilloscope_API::setCounter(bool en)
+{
+	osc->measure_settings->m_ui->button_Counter->setChecked(en);
+}
 
-bool Oscilloscope_API::hasStatistics() const { return osc->measure_settings->m_ui->button_StatisticsEn->isChecked(); }
+bool Oscilloscope_API::hasStatistics() const
+{
+	return osc->measure_settings->m_ui->button_StatisticsEn->isChecked();
+}
 
-void Oscilloscope_API::setStatistics(bool en) { osc->measure_settings->m_ui->button_StatisticsEn->setChecked(en); }
+void Oscilloscope_API::setStatistics(bool en)
+{
+	osc->measure_settings->m_ui->button_StatisticsEn->setChecked(en);
+}
 
-bool Oscilloscope_API::horizontalCursors() const { return osc->cr_ui->hCursorsEnable->isChecked(); }
+bool Oscilloscope_API::horizontalCursors() const
+{
+	return osc->cr_ui->hCursorsEnable->isChecked();
+}
 
-void Oscilloscope_API::setHorizontalCursors(bool en) { osc->cr_ui->hCursorsEnable->setChecked(en); }
+void Oscilloscope_API::setHorizontalCursors(bool en)
+{
+	osc->cr_ui->hCursorsEnable->setChecked(en);
+}
 
-bool Oscilloscope_API::verticalCursors() const { return osc->cr_ui->vCursorsEnable->isChecked(); }
+bool Oscilloscope_API::verticalCursors() const
+{
+	return osc->cr_ui->vCursorsEnable->isChecked();
+}
 
-void Oscilloscope_API::setVerticalCursors(bool en) { osc->cr_ui->vCursorsEnable->setChecked(en); }
+void Oscilloscope_API::setVerticalCursors(bool en)
+{
+	osc->cr_ui->vCursorsEnable->setChecked(en);
+}
 
-double Oscilloscope_API::cursorV1() const { return osc->plot.getVBar1()->getPosition(); }
+double Oscilloscope_API::cursorV1() const
+{
+	return osc->plot.getVBar1()->getPosition();
+}
 
-double Oscilloscope_API::cursorV2() const { return osc->plot.getVBar2()->getPosition(); }
+double Oscilloscope_API::cursorV2() const
+{
+	return osc->plot.getVBar2()->getPosition();
+}
 
-double Oscilloscope_API::cursorH1() const { return osc->plot.getHBar1()->getPosition(); }
+double Oscilloscope_API::cursorH1() const
+{
+	return osc->plot.getHBar1()->getPosition();
+}
 
-double Oscilloscope_API::cursorH2() const { return osc->plot.getHBar2()->getPosition(); }
+double Oscilloscope_API::cursorH2() const
+{
+	return osc->plot.getHBar2()->getPosition();
+}
 
-void Oscilloscope_API::setCursorV1(double val) { osc->plot.getVBar1()->setPosition(val); }
+void Oscilloscope_API::setCursorV1(double val)
+{
+	osc->plot.getVBar1()->setPosition(val);
+}
 
-void Oscilloscope_API::setCursorV2(double val) { osc->plot.getVBar2()->setPosition(val); }
+void Oscilloscope_API::setCursorV2(double val)
+{
+	osc->plot.getVBar2()->setPosition(val);
+}
 
-void Oscilloscope_API::setCursorH1(double val) { osc->plot.getHBar1()->setPosition(val); }
+void Oscilloscope_API::setCursorH1(double val)
+{
+	osc->plot.getHBar1()->setPosition(val);
+}
 
-void Oscilloscope_API::setCursorH2(double val) { osc->plot.getHBar1()->setPosition(val); }
+void Oscilloscope_API::setCursorH2(double val)
+{
+	osc->plot.getHBar1()->setPosition(val);
+}
 
-bool Oscilloscope_API::autoTrigger() const { return osc->trigger_settings.ui->btnTrigger->isChecked(); }
+bool Oscilloscope_API::autoTrigger() const
+{
+	return osc->trigger_settings.ui->btnTrigger->isChecked();
+}
 
-void Oscilloscope_API::setAutoTrigger(bool en) { osc->trigger_settings.ui->btnTrigger->setChecked(en); }
+void Oscilloscope_API::setAutoTrigger(bool en)
+{
+	osc->trigger_settings.ui->btnTrigger->setChecked(en);
+}
 
-bool Oscilloscope_API::internalTrigger() const { return osc->trigger_settings.ui->intern_en->isChecked(); }
+bool Oscilloscope_API::internalTrigger() const
+{
+	return osc->trigger_settings.ui->intern_en->isChecked();
+}
 
-void Oscilloscope_API::setInternalTrigger(bool en) { osc->trigger_settings.ui->intern_en->setChecked(en); }
+void Oscilloscope_API::setInternalTrigger(bool en)
+{
+	osc->trigger_settings.ui->intern_en->setChecked(en);
+}
 
-bool Oscilloscope_API::externalTrigger() const { return osc->trigger_settings.ui->extern_en->isChecked(); }
+bool Oscilloscope_API::externalTrigger() const
+{
+	return osc->trigger_settings.ui->extern_en->isChecked();
+}
 
-void Oscilloscope_API::setExternalTrigger(bool en) { osc->trigger_settings.ui->extern_en->setChecked(en); }
+void Oscilloscope_API::setExternalTrigger(bool en)
+{
+	osc->trigger_settings.ui->extern_en->setChecked(en);
+}
 
-int Oscilloscope_API::externalTriggerSource() const { return osc->trigger_settings.ui->cmb_extern_src->currentIndex(); }
+int Oscilloscope_API::externalTriggerSource() const
+{
+	return osc->trigger_settings.ui->cmb_extern_src->currentIndex();
+}
 void Oscilloscope_API::setExternalTriggerSource(int src)
 {
 	if(src >= 0 && src < osc->trigger_settings.ui->cmb_extern_src->count()) {
@@ -104,15 +197,24 @@ void Oscilloscope_API::setExternalTriggerSource(int src)
 	}
 }
 
-int Oscilloscope_API::externalTriggerDaisyOrder() const { return osc->trigger_settings.ui->spin_daisyChain->value(); }
+int Oscilloscope_API::externalTriggerDaisyOrder() const
+{
+	return osc->trigger_settings.ui->spin_daisyChain->value();
+}
 
 void Oscilloscope_API::setExternalTriggerDaisyOrder(int src)
 {
 	osc->trigger_settings.ui->spin_daisyChain->setValue(src);
 }
 
-bool Oscilloscope_API::externalTriggerOut() const { return osc->trigger_settings.ui->extern_to_en->isChecked(); }
-void Oscilloscope_API::setExternalTriggerOut(bool en) { osc->trigger_settings.ui->extern_to_en->setChecked(en); }
+bool Oscilloscope_API::externalTriggerOut() const
+{
+	return osc->trigger_settings.ui->extern_to_en->isChecked();
+}
+void Oscilloscope_API::setExternalTriggerOut(bool en)
+{
+	osc->trigger_settings.ui->extern_to_en->setChecked(en);
+}
 
 int Oscilloscope_API::externalTriggerOutSource() const
 {
@@ -127,7 +229,10 @@ void Oscilloscope_API::setExternalTriggerOutSource(int src)
 	}
 }
 
-int Oscilloscope_API::triggerSource() const { return osc->trigger_settings.ui->cmb_source->currentIndex(); }
+int Oscilloscope_API::triggerSource() const
+{
+	return osc->trigger_settings.ui->cmb_source->currentIndex();
+}
 
 void Oscilloscope_API::setTriggerSource(int idx)
 {
@@ -135,15 +240,30 @@ void Oscilloscope_API::setTriggerSource(int idx)
 		osc->trigger_settings.ui->cmb_source->setCurrentIndex(idx);
 }
 
-double Oscilloscope_API::getTriggerLevel() const { return osc->trigger_settings.trigger_level->value(); }
+double Oscilloscope_API::getTriggerLevel() const
+{
+	return osc->trigger_settings.trigger_level->value();
+}
 
-void Oscilloscope_API::setTriggerLevel(double level) { osc->trigger_settings.trigger_level->setValue(level); }
+void Oscilloscope_API::setTriggerLevel(double level)
+{
+	osc->trigger_settings.trigger_level->setValue(level);
+}
 
-double Oscilloscope_API::getTriggerHysteresis() const { return osc->trigger_settings.trigger_hysteresis->value(); }
+double Oscilloscope_API::getTriggerHysteresis() const
+{
+	return osc->trigger_settings.trigger_hysteresis->value();
+}
 
-void Oscilloscope_API::setTriggerHysteresis(double hyst) { osc->trigger_settings.trigger_hysteresis->setValue(hyst); }
+void Oscilloscope_API::setTriggerHysteresis(double hyst)
+{
+	osc->trigger_settings.trigger_hysteresis->setValue(hyst);
+}
 
-int Oscilloscope_API::internalCondition() const { return osc->trigger_settings.ui->cmb_condition->currentIndex(); }
+int Oscilloscope_API::internalCondition() const
+{
+	return osc->trigger_settings.ui->cmb_condition->currentIndex();
+}
 
 void Oscilloscope_API::setInternalCondition(int cond)
 {
@@ -158,9 +278,15 @@ int Oscilloscope_API::externalCondition() const
 	return osc->trigger_settings.ui->cmb_extern_condition->currentIndex();
 }
 
-bool Oscilloscope_API::getTriggerInput() const { return osc->getTrigger_input(); }
+bool Oscilloscope_API::getTriggerInput() const
+{
+	return osc->getTrigger_input();
+}
 
-void Oscilloscope_API::setTriggerInput(bool en) { osc->setTrigger_input(en); }
+void Oscilloscope_API::setTriggerInput(bool en)
+{
+	osc->setTrigger_input(en);
+}
 
 void Oscilloscope_API::setExternalCondition(int cond)
 {
@@ -170,7 +296,10 @@ void Oscilloscope_API::setExternalCondition(int cond)
 	osc->trigger_settings.ui->cmb_extern_condition->setCurrentIndex(cond);
 }
 
-int Oscilloscope_API::internExtern() const { return osc->trigger_settings.ui->cmb_analog_extern->currentIndex(); }
+int Oscilloscope_API::internExtern() const
+{
+	return osc->trigger_settings.ui->cmb_analog_extern->currentIndex();
+}
 
 void Oscilloscope_API::setInternExtern(int option)
 {
@@ -200,13 +329,25 @@ void Oscilloscope_API::setMathChannels(const QList<QString> &list)
 		osc->add_math_channel(list.at(i).toStdString());
 }
 
-double Oscilloscope_API::getTimePos() const { return osc->timePosition->value(); }
+double Oscilloscope_API::getTimePos() const
+{
+	return osc->timePosition->value();
+}
 
-void Oscilloscope_API::setTimePos(double value) { osc->timePosition->setValue(value); }
+void Oscilloscope_API::setTimePos(double value)
+{
+	osc->timePosition->setValue(value);
+}
 
-double Oscilloscope_API::getTimeBase() const { return osc->timeBase->value(); }
+double Oscilloscope_API::getTimeBase() const
+{
+	return osc->timeBase->value();
+}
 
-void Oscilloscope_API::setTimeBase(double value) { osc->timeBase->setValue(value); }
+void Oscilloscope_API::setTimeBase(double value)
+{
+	osc->timeBase->setValue(value);
+}
 
 void Oscilloscope_API::setMemoryDepth(int val)
 {
@@ -236,19 +377,34 @@ int Oscilloscope_API::getMemoryDepth()
 	return bufferSize;
 }
 
-QString Oscilloscope_API::getNotes() { return osc->ui->instrumentNotes->getNotes(); }
-void Oscilloscope_API::setNotes(QString str) { osc->ui->instrumentNotes->setNotes(str); }
+QString Oscilloscope_API::getNotes()
+{
+	return osc->ui->instrumentNotes->getNotes();
+}
+void Oscilloscope_API::setNotes(QString str)
+{
+	osc->ui->instrumentNotes->setNotes(str);
+}
 
-void Oscilloscope_API::show() { Q_EMIT osc->showTool(); }
+void Oscilloscope_API::show()
+{
+	Q_EMIT osc->showTool();
+}
 
 bool Oscilloscope_API::running() const
 {
 	return osc->ui->runSingleWidget->runButtonChecked() || osc->ui->runSingleWidget->singleButtonChecked();
 }
 
-void Oscilloscope_API::run(bool en) { osc->ui->runSingleWidget->toggle(en); }
+void Oscilloscope_API::run(bool en)
+{
+	osc->ui->runSingleWidget->toggle(en);
+}
 
-bool Oscilloscope_API::isSingle() const { return osc->ui->runSingleWidget->singleButtonChecked(); }
+bool Oscilloscope_API::isSingle() const
+{
+	return osc->ui->runSingleWidget->singleButtonChecked();
+}
 void Oscilloscope_API::single(bool en)
 {
 	if(!osc->ui->runSingleWidget->singleButtonChecked())
@@ -339,7 +495,10 @@ void Oscilloscope_API::setStatisticEn(const QList<int> &list)
 	osc->onStatisticSelectionListChanged();
 }
 
-int Oscilloscope_API::getCurrentChannel() const { return osc->current_channel; }
+int Oscilloscope_API::getCurrentChannel() const
+{
+	return osc->current_channel;
+}
 
 void Oscilloscope_API::setCurrentChannel(int chn_id)
 {
@@ -354,28 +513,55 @@ void Oscilloscope_API::setCurrentChannel(int chn_id)
 	}
 }
 
-int Oscilloscope_API::getXyThickness() const { return osc->xy_plot.getLineWidth(0); }
+int Oscilloscope_API::getXyThickness() const
+{
+	return osc->xy_plot.getLineWidth(0);
+}
 void Oscilloscope_API::setXyThickness(int val)
 {
 	osc->gsettings_ui->xyLineThickness->setCurrentIndex(val);
 	osc->xy_plot.setLineWidth(0, val);
 }
 
-bool Oscilloscope_API::getFftEn() const { return osc->fft_is_visible; }
+bool Oscilloscope_API::getFftEn() const
+{
+	return osc->fft_is_visible;
+}
 
-void Oscilloscope_API::setFftEn(bool en) { osc->gsettings_ui->FFT_view->setChecked(en); }
+void Oscilloscope_API::setFftEn(bool en)
+{
+	osc->gsettings_ui->FFT_view->setChecked(en);
+}
 
-bool Oscilloscope_API::getXyEn() const { return osc->xy_is_visible; }
+bool Oscilloscope_API::getXyEn() const
+{
+	return osc->xy_is_visible;
+}
 
-void Oscilloscope_API::setXyEn(bool en) { osc->gsettings_ui->XY_view->setChecked(en); }
+void Oscilloscope_API::setXyEn(bool en)
+{
+	osc->gsettings_ui->XY_view->setChecked(en);
+}
 
-bool Oscilloscope_API::getHistEn() const { return osc->hist_is_visible; }
+bool Oscilloscope_API::getHistEn() const
+{
+	return osc->hist_is_visible;
+}
 
-void Oscilloscope_API::setHistEn(bool en) { osc->gsettings_ui->Histogram_view->setChecked(en); }
+void Oscilloscope_API::setHistEn(bool en)
+{
+	osc->gsettings_ui->Histogram_view->setChecked(en);
+}
 
-bool Oscilloscope_API::getExportAll() const { return osc->exportSettings->getExportAllButton()->isChecked(); }
+bool Oscilloscope_API::getExportAll() const
+{
+	return osc->exportSettings->getExportAllButton()->isChecked();
+}
 
-void Oscilloscope_API::setExportAll(bool en) { osc->exportSettings->getExportAllButton()->setChecked(en); }
+void Oscilloscope_API::setExportAll(bool en)
+{
+	osc->exportSettings->getExportAllButton()->setChecked(en);
+}
 
 int Oscilloscope_API::getCursorsPosition() const
 {
@@ -427,17 +613,35 @@ void Oscilloscope_API::setCursorsTransparency(int val)
 	osc->cr_ui->horizontalSlider->setValue(val);
 }
 
-bool Oscilloscope_API::gatingEnabled() const { return osc->measure_settings->m_ui->button_GatingEnable->isChecked(); }
+bool Oscilloscope_API::gatingEnabled() const
+{
+	return osc->measure_settings->m_ui->button_GatingEnable->isChecked();
+}
 
-void Oscilloscope_API::setGatingEnabled(bool en) { osc->measure_settings->m_ui->button_GatingEnable->setChecked(en); }
+void Oscilloscope_API::setGatingEnabled(bool en)
+{
+	osc->measure_settings->m_ui->button_GatingEnable->setChecked(en);
+}
 
-double Oscilloscope_API::cursorGateLeft() const { return osc->plot.getMeasurementGateBar1()->getPosition(); }
+double Oscilloscope_API::cursorGateLeft() const
+{
+	return osc->plot.getMeasurementGateBar1()->getPosition();
+}
 
-double Oscilloscope_API::cursorGateRight() const { return osc->plot.getMeasurementGateBar2()->getPosition(); }
+double Oscilloscope_API::cursorGateRight() const
+{
+	return osc->plot.getMeasurementGateBar2()->getPosition();
+}
 
-void Oscilloscope_API::setCursorGateLeft(double val) { osc->plot.getMeasurementGateBar1()->setPosition(val); }
+void Oscilloscope_API::setCursorGateLeft(double val)
+{
+	osc->plot.getMeasurementGateBar1()->setPosition(val);
+}
 
-void Oscilloscope_API::setCursorGateRight(double val) { osc->plot.getMeasurementGateBar2()->setPosition(val); }
+void Oscilloscope_API::setCursorGateRight(double val)
+{
+	osc->plot.getMeasurementGateBar2()->setPosition(val);
+}
 
 QVariantList Oscilloscope_API::getChannels()
 {

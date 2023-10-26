@@ -15,11 +15,20 @@ Cursor::Cursor(PlotWidget *p, PlotAxis *ax, QPen pen)
 
 Cursor::~Cursor() {}
 
-void Cursor::setCanLeavePlot(bool leave) { m_canLeavePlot = leave; }
+void Cursor::setCanLeavePlot(bool leave)
+{
+	m_canLeavePlot = leave;
+}
 
-PlotLineHandle *Cursor::cursorHandle() const { return m_cursorHandle; }
+PlotLineHandle *Cursor::cursorHandle() const
+{
+	return m_cursorHandle;
+}
 
-void Cursor::setAxis(PlotAxis *ax) { m_axis = ax; }
+void Cursor::setAxis(PlotAxis *ax)
+{
+	m_axis = ax;
+}
 
 void Cursor::setVisible(bool visible)
 {
@@ -27,6 +36,9 @@ void Cursor::setVisible(bool visible)
 	m_cursorBar->setVisible(visible);
 }
 
-bool Cursor::isVisible() { return m_cursorHandle->isVisible() || m_cursorBar->isVisible(); }
+bool Cursor::isVisible()
+{
+	return m_cursorHandle->isVisible() || m_cursorBar->isVisible();
+}
 
 #include "moc_cursor.cpp"

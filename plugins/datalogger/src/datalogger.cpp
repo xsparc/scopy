@@ -262,20 +262,35 @@ void DataLogger::createConnections(DataLoggerGenericMenu *mainMenu, DataLoggerGe
 	connect(menu, &DataLoggerGenericMenu::monitorColorChanged, monitor, &ChannelMonitorComponent::setMonitorColor);
 }
 
-scopy::gui::ToolView *DataLogger::getToolView() { return m_toolView; }
+scopy::gui::ToolView *DataLogger::getToolView()
+{
+	return m_toolView;
+}
 void DataLogger::setNativeDialogs(bool nativeDialogs)
 {
 	//	Tool::setNativeDialogs(nativeDialogs);
 	dataLoggerController->setUseNativeDialog(nativeDialogs);
 }
 
-QPushButton *DataLogger::getRunButton() { return m_toolView->getRunBtn(); }
+QPushButton *DataLogger::getRunButton()
+{
+	return m_toolView->getRunBtn();
+}
 
-int DataLogger::getPrecision() { return precisionValue->text().toInt(); }
+int DataLogger::getPrecision()
+{
+	return precisionValue->text().toInt();
+}
 
-void DataLogger::setPrecision(int precision) { precisionValue->setText(QString::number(precision)); }
+void DataLogger::setPrecision(int precision)
+{
+	precisionValue->setText(QString::number(precision));
+}
 
-int DataLogger::getValueReadingTimeInterval() { return VALUE_READING_TIME_INTERVAL; }
+int DataLogger::getValueReadingTimeInterval()
+{
+	return VALUE_READING_TIME_INTERVAL;
+}
 
 std::vector<libm2k::analog::DMM *> DataLogger::getDmmList(libm2k::context::Context *context)
 {

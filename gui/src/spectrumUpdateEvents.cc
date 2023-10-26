@@ -72,25 +72,55 @@ SpectrumUpdateEvent::~SpectrumUpdateEvent()
 	delete[] _imagDataTimeDomainPoints;
 }
 
-const float *SpectrumUpdateEvent::getFFTPoints() const { return _fftPoints; }
+const float *SpectrumUpdateEvent::getFFTPoints() const
+{
+	return _fftPoints;
+}
 
-const double *SpectrumUpdateEvent::getRealTimeDomainPoints() const { return _realDataTimeDomainPoints; }
+const double *SpectrumUpdateEvent::getRealTimeDomainPoints() const
+{
+	return _realDataTimeDomainPoints;
+}
 
-const double *SpectrumUpdateEvent::getImagTimeDomainPoints() const { return _imagDataTimeDomainPoints; }
+const double *SpectrumUpdateEvent::getImagTimeDomainPoints() const
+{
+	return _imagDataTimeDomainPoints;
+}
 
-uint64_t SpectrumUpdateEvent::getNumFFTDataPoints() const { return _numFFTDataPoints; }
+uint64_t SpectrumUpdateEvent::getNumFFTDataPoints() const
+{
+	return _numFFTDataPoints;
+}
 
-uint64_t SpectrumUpdateEvent::getNumTimeDomainDataPoints() const { return _numTimeDomainDataPoints; }
+uint64_t SpectrumUpdateEvent::getNumTimeDomainDataPoints() const
+{
+	return _numTimeDomainDataPoints;
+}
 
-gr::high_res_timer_type SpectrumUpdateEvent::getDataTimestamp() const { return _dataTimestamp; }
+gr::high_res_timer_type SpectrumUpdateEvent::getDataTimestamp() const
+{
+	return _dataTimestamp;
+}
 
-bool SpectrumUpdateEvent::getRepeatDataFlag() const { return _repeatDataFlag; }
+bool SpectrumUpdateEvent::getRepeatDataFlag() const
+{
+	return _repeatDataFlag;
+}
 
-bool SpectrumUpdateEvent::getLastOfMultipleUpdateFlag() const { return _lastOfMultipleUpdateFlag; }
+bool SpectrumUpdateEvent::getLastOfMultipleUpdateFlag() const
+{
+	return _lastOfMultipleUpdateFlag;
+}
 
-gr::high_res_timer_type SpectrumUpdateEvent::getEventGeneratedTimestamp() const { return _eventGeneratedTimestamp; }
+gr::high_res_timer_type SpectrumUpdateEvent::getEventGeneratedTimestamp() const
+{
+	return _eventGeneratedTimestamp;
+}
 
-int SpectrumUpdateEvent::getDroppedFFTFrames() const { return _droppedFFTFrames; }
+int SpectrumUpdateEvent::getDroppedFFTFrames() const
+{
+	return _droppedFFTFrames;
+}
 
 SpectrumWindowCaptionEvent::SpectrumWindowCaptionEvent(const QString &newLbl)
 	: QEvent(QEvent::Type(SpectrumWindowCaptionEventType))
@@ -100,7 +130,10 @@ SpectrumWindowCaptionEvent::SpectrumWindowCaptionEvent(const QString &newLbl)
 
 SpectrumWindowCaptionEvent::~SpectrumWindowCaptionEvent() {}
 
-QString SpectrumWindowCaptionEvent::getLabel() { return _labelString; }
+QString SpectrumWindowCaptionEvent::getLabel()
+{
+	return _labelString;
+}
 
 SpectrumWindowResetEvent::SpectrumWindowResetEvent()
 	: QEvent(QEvent::Type(SpectrumWindowResetEventType))
@@ -119,11 +152,20 @@ SpectrumFrequencyRangeEvent::SpectrumFrequencyRangeEvent(const double centerFreq
 
 SpectrumFrequencyRangeEvent::~SpectrumFrequencyRangeEvent() {}
 
-double SpectrumFrequencyRangeEvent::GetCenterFrequency() const { return _centerFrequency; }
+double SpectrumFrequencyRangeEvent::GetCenterFrequency() const
+{
+	return _centerFrequency;
+}
 
-double SpectrumFrequencyRangeEvent::GetStartFrequency() const { return _startFrequency; }
+double SpectrumFrequencyRangeEvent::GetStartFrequency() const
+{
+	return _startFrequency;
+}
 
-double SpectrumFrequencyRangeEvent::GetStopFrequency() const { return _stopFrequency; }
+double SpectrumFrequencyRangeEvent::GetStopFrequency() const
+{
+	return _stopFrequency;
+}
 
 /***************************************************************************/
 
@@ -156,11 +198,20 @@ TimeUpdateEvent::~TimeUpdateEvent()
 	}
 }
 
-const std::vector<double *> TimeUpdateEvent::getTimeDomainPoints() const { return _dataTimeDomainPoints; }
+const std::vector<double *> TimeUpdateEvent::getTimeDomainPoints() const
+{
+	return _dataTimeDomainPoints;
+}
 
-uint64_t TimeUpdateEvent::getNumTimeDomainDataPoints() const { return _numTimeDomainDataPoints; }
+uint64_t TimeUpdateEvent::getNumTimeDomainDataPoints() const
+{
+	return _numTimeDomainDataPoints;
+}
 
-const std::vector<std::vector<gr::tag_t>> TimeUpdateEvent::getTags() const { return _tags; }
+const std::vector<std::vector<gr::tag_t>> TimeUpdateEvent::getTags() const
+{
+	return _tags;
+}
 
 /***************************************************************************/
 
@@ -174,7 +225,10 @@ IdentifiableTimeUpdateEvent::IdentifiableTimeUpdateEvent(const std::vector<doubl
 
 IdentifiableTimeUpdateEvent::~IdentifiableTimeUpdateEvent() {}
 
-std::string IdentifiableTimeUpdateEvent::senderName() { return _senderName; }
+std::string IdentifiableTimeUpdateEvent::senderName()
+{
+	return _senderName;
+}
 
 /***************************************************************************/
 
@@ -203,9 +257,15 @@ FreqUpdateEvent::~FreqUpdateEvent()
 	}
 }
 
-const std::vector<double *> FreqUpdateEvent::getPoints() const { return _dataPoints; }
+const std::vector<double *> FreqUpdateEvent::getPoints() const
+{
+	return _dataPoints;
+}
 
-uint64_t FreqUpdateEvent::getNumDataPoints() const { return _numDataPoints; }
+uint64_t FreqUpdateEvent::getNumDataPoints() const
+{
+	return _numDataPoints;
+}
 
 SetFreqEvent::SetFreqEvent(const double centerFreq, const double bandwidth)
 	: QEvent(QEvent::Type(SpectrumFrequencyRangeEventType))
@@ -216,9 +276,15 @@ SetFreqEvent::SetFreqEvent(const double centerFreq, const double bandwidth)
 
 SetFreqEvent::~SetFreqEvent() {}
 
-double SetFreqEvent::getCenterFrequency() const { return _centerFrequency; }
+double SetFreqEvent::getCenterFrequency() const
+{
+	return _centerFrequency;
+}
 
-double SetFreqEvent::getBandwidth() const { return _bandwidth; }
+double SetFreqEvent::getBandwidth() const
+{
+	return _bandwidth;
+}
 
 /***************************************************************************/
 
@@ -251,11 +317,20 @@ ConstUpdateEvent::~ConstUpdateEvent()
 	}
 }
 
-const std::vector<double *> ConstUpdateEvent::getRealPoints() const { return _realDataPoints; }
+const std::vector<double *> ConstUpdateEvent::getRealPoints() const
+{
+	return _realDataPoints;
+}
 
-const std::vector<double *> ConstUpdateEvent::getImagPoints() const { return _imagDataPoints; }
+const std::vector<double *> ConstUpdateEvent::getImagPoints() const
+{
+	return _imagDataPoints;
+}
 
-uint64_t ConstUpdateEvent::getNumDataPoints() const { return _numDataPoints; }
+uint64_t ConstUpdateEvent::getNumDataPoints() const
+{
+	return _numDataPoints;
+}
 
 /***************************************************************************/
 
@@ -287,11 +362,20 @@ WaterfallUpdateEvent::~WaterfallUpdateEvent()
 	}
 }
 
-const std::vector<double *> WaterfallUpdateEvent::getPoints() const { return _dataPoints; }
+const std::vector<double *> WaterfallUpdateEvent::getPoints() const
+{
+	return _dataPoints;
+}
 
-uint64_t WaterfallUpdateEvent::getNumDataPoints() const { return _numDataPoints; }
+uint64_t WaterfallUpdateEvent::getNumDataPoints() const
+{
+	return _numDataPoints;
+}
 
-gr::high_res_timer_type WaterfallUpdateEvent::getDataTimestamp() const { return _dataTimestamp; }
+gr::high_res_timer_type WaterfallUpdateEvent::getDataTimestamp() const
+{
+	return _dataTimestamp;
+}
 
 /***************************************************************************/
 
@@ -320,9 +404,15 @@ TimeRasterUpdateEvent::~TimeRasterUpdateEvent()
 	}
 }
 
-const std::vector<double *> TimeRasterUpdateEvent::getPoints() const { return _dataPoints; }
+const std::vector<double *> TimeRasterUpdateEvent::getPoints() const
+{
+	return _dataPoints;
+}
 
-uint64_t TimeRasterUpdateEvent::getNumDataPoints() const { return _numDataPoints; }
+uint64_t TimeRasterUpdateEvent::getNumDataPoints() const
+{
+	return _numDataPoints;
+}
 
 /***************************************************************************/
 
@@ -351,9 +441,15 @@ HistogramUpdateEvent::~HistogramUpdateEvent()
 	}
 }
 
-const std::vector<double *> HistogramUpdateEvent::getDataPoints() const { return _points; }
+const std::vector<double *> HistogramUpdateEvent::getDataPoints() const
+{
+	return _points;
+}
 
-uint64_t HistogramUpdateEvent::getNumDataPoints() const { return _npoints; }
+uint64_t HistogramUpdateEvent::getNumDataPoints() const
+{
+	return _npoints;
+}
 
 /***************************************************************************/
 
@@ -365,6 +461,9 @@ NumberUpdateEvent::NumberUpdateEvent(const std::vector<float> &samples)
 
 NumberUpdateEvent::~NumberUpdateEvent() {}
 
-const std::vector<float> NumberUpdateEvent::getSamples() const { return _samples; }
+const std::vector<float> NumberUpdateEvent::getSamples() const
+{
+	return _samples;
+}
 
 #endif /* SPECTRUM_UPDATE_EVENTS_C */

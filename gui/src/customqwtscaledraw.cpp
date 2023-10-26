@@ -13,4 +13,7 @@ QwtText CustomQwtScaleDraw::label(double value) const
 		       m_prefixFormater.getFormatedMeasureUnit(value) + m_unitOfMeasure);
 }
 
-void CustomQwtScaleDraw::setUnitOfMeasure(QString unitOfMeasure) { m_unitOfMeasure = unitOfMeasure; }
+void CustomQwtScaleDraw::setUnitOfMeasure(QString unitOfMeasure)
+{
+	m_unitOfMeasure = unitOfMeasure;
+}

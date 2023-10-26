@@ -36,7 +36,10 @@ void TST_REGMAPPlugin::fileExists()
 	QVERIFY(ret);
 }
 
-void TST_REGMAPPlugin::isLibrary() { QVERIFY(QLibrary::isLibrary(FILENAME)); }
+void TST_REGMAPPlugin::isLibrary()
+{
+	QVERIFY(QLibrary::isLibrary(FILENAME));
+}
 
 void TST_REGMAPPlugin::className()
 {

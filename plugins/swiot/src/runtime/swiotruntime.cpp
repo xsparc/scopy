@@ -96,7 +96,10 @@ void SwiotRuntime::createDevicesMap()
 	}
 }
 
-void SwiotRuntime::onBackBtnPressed() { Q_EMIT writeModeAttribute("config"); }
+void SwiotRuntime::onBackBtnPressed()
+{
+	Q_EMIT writeModeAttribute("config");
+}
 
 void SwiotRuntime::modeAttributeChanged(std::string mode)
 {

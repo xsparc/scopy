@@ -115,7 +115,10 @@ void CursorReadouts::moveToPosition(CustomPlotPositionButton::ReadoutsPosition p
 	currentPosition = position;
 }
 
-CustomPlotPositionButton::ReadoutsPosition CursorReadouts::getCurrentPosition() { return currentPosition; }
+CustomPlotPositionButton::ReadoutsPosition CursorReadouts::getCurrentPosition()
+{
+	return currentPosition;
+}
 
 void CursorReadouts::showEvent(QShowEvent *event)
 {
@@ -124,9 +127,15 @@ void CursorReadouts::showEvent(QShowEvent *event)
 	QWidget::showEvent(event);
 }
 
-QwtPlot *CursorReadouts::plot() { return static_cast<QwtPlot *>(parent()); }
+QwtPlot *CursorReadouts::plot()
+{
+	return static_cast<QwtPlot *>(parent());
+}
 
-const QwtPlot *CursorReadouts::plot() const { return static_cast<const QwtPlot *>(parent()); }
+const QwtPlot *CursorReadouts::plot() const
+{
+	return static_cast<const QwtPlot *>(parent());
+}
 
 void CursorReadouts::setVoltageReadoutVisible(bool on)
 {
@@ -137,7 +146,10 @@ void CursorReadouts::setVoltageReadoutVisible(bool on)
 	}
 }
 
-bool CursorReadouts::isVoltageReadoutVisible() { return d_voltage_rd_visible; }
+bool CursorReadouts::isVoltageReadoutVisible()
+{
+	return d_voltage_rd_visible;
+}
 
 void CursorReadouts::setTimeReadoutVisible(bool on)
 {
@@ -148,39 +160,90 @@ void CursorReadouts::setTimeReadoutVisible(bool on)
 	}
 }
 
-bool CursorReadouts::isTimeReadoutVisible() { return d_time_rd_visible; }
+bool CursorReadouts::isTimeReadoutVisible()
+{
+	return d_time_rd_visible;
+}
 
-void CursorReadouts::setTopLeftStartingPoint(QPoint point) { d_topLeft = point; }
+void CursorReadouts::setTopLeftStartingPoint(QPoint point)
+{
+	d_topLeft = point;
+}
 
-QPoint CursorReadouts::topLeftStartingPoint() { return d_topLeft; }
+QPoint CursorReadouts::topLeftStartingPoint()
+{
+	return d_topLeft;
+}
 
-void CursorReadouts::setTimeCursor1Text(const QString &text) { ui->cursorT1->setText(text); }
+void CursorReadouts::setTimeCursor1Text(const QString &text)
+{
+	ui->cursorT1->setText(text);
+}
 
-QString CursorReadouts::timeCursor1Text() { return ui->cursorT1->text(); }
+QString CursorReadouts::timeCursor1Text()
+{
+	return ui->cursorT1->text();
+}
 
-void CursorReadouts::setTimeCursor2Text(const QString &text) { ui->cursorT2->setText(text); }
+void CursorReadouts::setTimeCursor2Text(const QString &text)
+{
+	ui->cursorT2->setText(text);
+}
 
-QString CursorReadouts::timeCursor2Text() { return ui->cursorT2->text(); }
+QString CursorReadouts::timeCursor2Text()
+{
+	return ui->cursorT2->text();
+}
 
-void CursorReadouts::setTimeDeltaText(const QString &text) { ui->timeDelta->setText(text); }
+void CursorReadouts::setTimeDeltaText(const QString &text)
+{
+	ui->timeDelta->setText(text);
+}
 
-QString CursorReadouts::timeDeltaText() { return ui->timeDelta->text(); }
+QString CursorReadouts::timeDeltaText()
+{
+	return ui->timeDelta->text();
+}
 
-void CursorReadouts::setFreqDeltaText(const QString &text) { ui->frequencyDelta->setText(text); }
+void CursorReadouts::setFreqDeltaText(const QString &text)
+{
+	ui->frequencyDelta->setText(text);
+}
 
-QString CursorReadouts::freqDeltaText() { return ui->frequencyDelta->text(); }
+QString CursorReadouts::freqDeltaText()
+{
+	return ui->frequencyDelta->text();
+}
 
-void CursorReadouts::setVoltageCursor1Text(const QString &text) { ui->cursorV1->setText(text); }
+void CursorReadouts::setVoltageCursor1Text(const QString &text)
+{
+	ui->cursorV1->setText(text);
+}
 
-QString CursorReadouts::voltageCursor1Text() { return ui->cursorV1->text(); }
+QString CursorReadouts::voltageCursor1Text()
+{
+	return ui->cursorV1->text();
+}
 
-void CursorReadouts::setVoltageCursor2Text(const QString &text) { ui->cursorV2->setText(text); }
+void CursorReadouts::setVoltageCursor2Text(const QString &text)
+{
+	ui->cursorV2->setText(text);
+}
 
-QString CursorReadouts::voltageCursor2Text() { return ui->cursorV2->text(); }
+QString CursorReadouts::voltageCursor2Text()
+{
+	return ui->cursorV2->text();
+}
 
-void CursorReadouts::setVoltageDeltaText(const QString &text) { ui->voltageDelta->setText(text); }
+void CursorReadouts::setVoltageDeltaText(const QString &text)
+{
+	ui->voltageDelta->setText(text);
+}
 
-QString CursorReadouts::voltageDeltaText() { return ui->voltageDelta->text(); }
+QString CursorReadouts::voltageDeltaText()
+{
+	return ui->voltageDelta->text();
+}
 
 void CursorReadouts::setTimeDeltaVisible(bool visible)
 {
@@ -195,27 +258,60 @@ void CursorReadouts::setFrequencyDeltaVisible(bool visible)
 	freq_delta_visible = visible;
 }
 
-void CursorReadouts::setTimeCursor1LabelText(const QString &text) { ui->cursorT1label->setText(text); }
+void CursorReadouts::setTimeCursor1LabelText(const QString &text)
+{
+	ui->cursorT1label->setText(text);
+}
 
-QString CursorReadouts::timeCursor1LabelText() { return ui->cursorT1label->text(); }
+QString CursorReadouts::timeCursor1LabelText()
+{
+	return ui->cursorT1label->text();
+}
 
-void CursorReadouts::setTimeCursor2LabelText(const QString &text) { ui->cursorT2label->setText(text); }
+void CursorReadouts::setTimeCursor2LabelText(const QString &text)
+{
+	ui->cursorT2label->setText(text);
+}
 
-QString CursorReadouts::timeCursor2LabelText() { return ui->cursorT2label->text(); }
+QString CursorReadouts::timeCursor2LabelText()
+{
+	return ui->cursorT2label->text();
+}
 
-void CursorReadouts::setTimeDeltaLabelText(const QString &text) { ui->timeDeltaLabel->setText(text); }
+void CursorReadouts::setTimeDeltaLabelText(const QString &text)
+{
+	ui->timeDeltaLabel->setText(text);
+}
 
-void CursorReadouts::setVoltageCursor1LabelText(const QString &text) { ui->cursorV1label->setText(text); }
+void CursorReadouts::setVoltageCursor1LabelText(const QString &text)
+{
+	ui->cursorV1label->setText(text);
+}
 
-QString CursorReadouts::voltageCursor1LabelText() { return ui->cursorV2label->text(); }
+QString CursorReadouts::voltageCursor1LabelText()
+{
+	return ui->cursorV2label->text();
+}
 
-void CursorReadouts::setVoltageCursor2LabelText(const QString &text) { ui->cursorV2label->setText(text); }
+void CursorReadouts::setVoltageCursor2LabelText(const QString &text)
+{
+	ui->cursorV2label->setText(text);
+}
 
-QString CursorReadouts::voltageCursor2LabelText() { return ui->cursorV2label->text(); }
+QString CursorReadouts::voltageCursor2LabelText()
+{
+	return ui->cursorV2label->text();
+}
 
-void CursorReadouts::setDeltaVoltageLabelText(const QString &text) { ui->deltaVlabel->setText(text); }
+void CursorReadouts::setDeltaVoltageLabelText(const QString &text)
+{
+	ui->deltaVlabel->setText(text);
+}
 
-QString CursorReadouts::deltaVoltageLabelText() { return ui->deltaVlabel->text(); }
+QString CursorReadouts::deltaVoltageLabelText()
+{
+	return ui->deltaVlabel->text();
+}
 
 void CursorReadouts::setAxis(QwtAxisId hAxis, QwtAxisId vAxis)
 {

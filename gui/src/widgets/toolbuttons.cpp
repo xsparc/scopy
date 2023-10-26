@@ -40,7 +40,10 @@ OpenLastMenuBtn::OpenLastMenuBtn(MenuHAnim *menu, bool opened, QWidget *parent)
 	});
 }
 
-QButtonGroup *OpenLastMenuBtn::getButtonGroup() { return grp; }
+QButtonGroup *OpenLastMenuBtn::getButtonGroup()
+{
+	return grp;
+}
 
 GearBtn::GearBtn(QWidget *parent)
 	: QPushButton(parent)

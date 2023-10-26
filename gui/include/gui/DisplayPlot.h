@@ -125,19 +125,40 @@ public:
 		updateDivision();
 	}
 
-	double divisionValue() { return m_currentDiv; }
+	double divisionValue()
+	{
+		return m_currentDiv;
+	}
 
-	void setMagnitudeStep(double newStep) { m_magnitude_step = newStep; }
+	void setMagnitudeStep(double newStep)
+	{
+		m_magnitude_step = newStep;
+	}
 
-	double magnitudeStep() { return m_magnitude_step; }
+	double magnitudeStep()
+	{
+		return m_magnitude_step;
+	}
 
-	void setLowerLimit(double limit) { m_divLowerLimit = limit; }
+	void setLowerLimit(double limit)
+	{
+		m_divLowerLimit = limit;
+	}
 
-	double lowerLimit() { return m_divLowerLimit; }
+	double lowerLimit()
+	{
+		return m_divLowerLimit;
+	}
 
-	void setUpperLimit(double limit) { m_divUpperLimit = limit; }
+	void setUpperLimit(double limit)
+	{
+		m_divUpperLimit = limit;
+	}
 
-	double upperLimit() { return m_divUpperLimit; }
+	double upperLimit()
+	{
+		return m_divUpperLimit;
+	}
 
 Q_SIGNALS:
 	void divisionChanged(double division);
@@ -739,7 +760,10 @@ public:
 	OscPlotZoomer(QwtAxisId xAxis, QwtAxisId yAxis, QWidget *parent, bool doReplot);
 	OscPlotZoomer(QWidget *, bool doReplot = true);
 
-	void cancel() { reset(); }
+	void cancel()
+	{
+		reset();
+	}
 
 Q_SIGNALS:
 	void zoomIn();

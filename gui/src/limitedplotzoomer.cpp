@@ -46,9 +46,15 @@ void LimitedPlotZoomer::resetZoom()
 	m_updateBaseNextZoom = true;
 }
 
-void LimitedPlotZoomer::popZoom() { QwtPlotZoomer::zoom(-1); }
+void LimitedPlotZoomer::popZoom()
+{
+	QwtPlotZoomer::zoom(-1);
+}
 
-void LimitedPlotZoomer::setBoundVertical(bool bound) { m_boundVertical = bound; }
+void LimitedPlotZoomer::setBoundVertical(bool bound)
+{
+	m_boundVertical = bound;
+}
 
 void LimitedPlotZoomer::zoom(const QRectF &rect)
 {

@@ -247,4 +247,7 @@ void ADCPlugin::initMetadata()
 )plugin");
 }
 
-QString ADCPlugin::version() { return "0.1"; }
+QString ADCPlugin::version()
+{
+	return "0.1";
+}

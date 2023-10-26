@@ -48,9 +48,15 @@ MarkerController::MarkerController(QwtPlot *plot)
 	connect(d_picker, SIGNAL(moved(QPoint)), this, SLOT(onPickerMoved(QPoint)));
 }
 
-bool MarkerController::enabled() const { return d_picker->isEnabled(); }
+bool MarkerController::enabled() const
+{
+	return d_picker->isEnabled();
+}
 
-void MarkerController::setEnabled(bool en) { d_picker->setEnabled(en); }
+void MarkerController::setEnabled(bool en)
+{
+	d_picker->setEnabled(en);
+}
 
 void MarkerController::onPickerSelected(QPointF pf)
 {
@@ -146,7 +152,10 @@ void MarkerController::unRegisterMarker(marker_sptr marker)
 	}
 }
 
-MarkerController::marker_sptr MarkerController::selectedMarker() const { return d_selected_mkr; }
+MarkerController::marker_sptr MarkerController::selectedMarker() const
+{
+	return d_selected_mkr;
+}
 
 void MarkerController::markerBringToFront(marker_sptr marker)
 {
@@ -157,9 +166,15 @@ void MarkerController::markerBringToFront(marker_sptr marker)
 	marker->setZ(d_mrks_default_z);
 }
 
-QwtPlot *MarkerController::plot() { return static_cast<QwtPlot *>(parent()); }
+QwtPlot *MarkerController::plot()
+{
+	return static_cast<QwtPlot *>(parent());
+}
 
-const QwtPlot *MarkerController::plot() const { return static_cast<const QwtPlot *>(parent()); }
+const QwtPlot *MarkerController::plot() const
+{
+	return static_cast<const QwtPlot *>(parent());
+}
 
 void MarkerController::selectMarker(marker_sptr marker)
 {

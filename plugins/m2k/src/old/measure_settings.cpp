@@ -152,7 +152,10 @@ MeasureSettings::MeasureSettings(QList<M2kMeasure *> *measures_list, QWidget *pa
 	}
 }
 
-MeasureSettings::~MeasureSettings() { delete m_ui; }
+MeasureSettings::~MeasureSettings()
+{
+	delete m_ui;
+}
 
 void MeasureSettings::onharmValueChanged(int id)
 {
@@ -196,7 +199,10 @@ void MeasureSettings::hide_measure_settings(bool is_time_domain)
 	}
 }
 
-QString MeasureSettings::channelName() const { return m_channelName; }
+QString MeasureSettings::channelName() const
+{
+	return m_channelName;
+}
 
 void MeasureSettings::setChannelName(const QString &name)
 {
@@ -204,7 +210,10 @@ void MeasureSettings::setChannelName(const QString &name)
 	m_ui->lblChanName->setText(name);
 }
 
-QColor MeasureSettings::channelUnderlineColor() const { return m_chnUnderlineColor; }
+QColor MeasureSettings::channelUnderlineColor() const
+{
+	return m_chnUnderlineColor;
+}
 
 void MeasureSettings::setChannelUnderlineColor(const QColor &color)
 {
@@ -214,13 +223,28 @@ void MeasureSettings::setChannelUnderlineColor(const QColor &color)
 	m_ui->line->setStyleSheet(stylesheet);
 }
 
-bool MeasureSettings::emitActivated() const { return m_emitActivated; }
-void MeasureSettings::setEmitActivated(bool en) { m_emitActivated = en; }
+bool MeasureSettings::emitActivated() const
+{
+	return m_emitActivated;
+}
+void MeasureSettings::setEmitActivated(bool en)
+{
+	m_emitActivated = en;
+}
 
-bool MeasureSettings::emitStatsChanged() const { return m_emitStatsChanged; }
-void MeasureSettings::setEmitStatsChanged(bool en) { m_emitStatsChanged = en; }
+bool MeasureSettings::emitStatsChanged() const
+{
+	return m_emitStatsChanged;
+}
+void MeasureSettings::setEmitStatsChanged(bool en)
+{
+	m_emitStatsChanged = en;
+}
 
-QList<MeasurementItem> MeasureSettings::measurementSelection() { return m_selectedMeasurements; }
+QList<MeasurementItem> MeasureSettings::measurementSelection()
+{
+	return m_selectedMeasurements;
+}
 
 void MeasureSettings::onMeasurementPropertyChanged(QStandardItem *item)
 {
@@ -513,9 +537,15 @@ void MeasureSettings::loadStatisticStatesForChannel(int chnIdx)
 	}
 }
 
-void MeasureSettings::on_button_StatisticsEn_toggled(bool checked) { Q_EMIT statisticsEnabled(checked); }
+void MeasureSettings::on_button_StatisticsEn_toggled(bool checked)
+{
+	Q_EMIT statisticsEnabled(checked);
+}
 
-void MeasureSettings::on_button_StatisticsReset_pressed() { Q_EMIT statisticsReset(); }
+void MeasureSettings::on_button_StatisticsReset_pressed()
+{
+	Q_EMIT statisticsReset();
+}
 
 void MeasureSettings::setColumnData(QStandardItemModel *model, int column, bool en)
 {
@@ -603,7 +633,10 @@ void MeasureSettings::on_button_statsDeleteAll_toggled(bool checked)
 	}
 }
 
-void MeasureSettings::on_button_GatingEnable_toggled(bool checked) { Q_EMIT gatingEnabled(checked); }
+void MeasureSettings::on_button_GatingEnable_toggled(bool checked)
+{
+	Q_EMIT gatingEnabled(checked);
+}
 
 void MeasureSettings::disableDisplayAll()
 {
@@ -615,7 +648,10 @@ void MeasureSettings::disableDisplayAll()
 	}
 }
 
-void MeasureSettings::activateDisplayAll() { m_ui->button_measDisplayAll->setChecked(m_enableDisplayAll); }
+void MeasureSettings::activateDisplayAll()
+{
+	m_ui->button_measDisplayAll->setChecked(m_enableDisplayAll);
+}
 
 void MeasureSettings::deleteAllStatistics()
 {

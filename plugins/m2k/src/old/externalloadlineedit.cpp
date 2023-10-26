@@ -16,11 +16,20 @@ ExternalLoadLineEdit::~ExternalLoadLineEdit(){
 
 };
 
-double ExternalLoadLineEdit::getValue() { return value; }
+double ExternalLoadLineEdit::getValue()
+{
+	return value;
+}
 
-void ExternalLoadLineEdit::setValue() { setValue(text().toDouble()); }
+void ExternalLoadLineEdit::setValue()
+{
+	setValue(text().toDouble());
+}
 
-void ExternalLoadLineEdit::setValue(QString val) { setValue(val.toDouble()); }
+void ExternalLoadLineEdit::setValue(QString val)
+{
+	setValue(val.toDouble());
+}
 void ExternalLoadLineEdit::setValue(double val)
 {
 	QString textVal;

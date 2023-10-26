@@ -18,11 +18,20 @@ DataLoggerController::DataLoggerController(bool lastValue, bool average, bool al
 	isRunningOn = false;
 }
 
-void DataLoggerController::startLogger() { dataLoggerModel->startLogger(dataLoggerView->isOverwrite()); }
+void DataLoggerController::startLogger()
+{
+	dataLoggerModel->startLogger(dataLoggerView->isOverwrite());
+}
 
-void DataLoggerController::stopLogger() { dataLoggerModel->stopLogger(); }
+void DataLoggerController::stopLogger()
+{
+	dataLoggerModel->stopLogger();
+}
 
-void DataLoggerController::setUseNativeDialog(bool nativeDialog) { dataLoggerView->setUseNativeDialog(nativeDialog); }
+void DataLoggerController::setUseNativeDialog(bool nativeDialog)
+{
+	dataLoggerView->setUseNativeDialog(nativeDialog);
+}
 
 void DataLoggerController::createChannel(QString name, CHANNEL_DATA_TYPE type)
 {
@@ -37,17 +46,35 @@ void DataLoggerController::createChannel(QString name, CHANNEL_DATA_TYPE type)
 	dataLoggerModel->createChannel(name, type, filter);
 }
 
-void DataLoggerController::destroyChannel(QString name) { dataLoggerModel->destroyChannel(name); }
+void DataLoggerController::destroyChannel(QString name)
+{
+	dataLoggerModel->destroyChannel(name);
+}
 
-void DataLoggerController::resetChannel(QString name) { dataLoggerModel->resetChannel(name); }
+void DataLoggerController::resetChannel(QString name)
+{
+	dataLoggerModel->resetChannel(name);
+}
 
-void DataLoggerController::receiveValue(QString name, QString value) { dataLoggerModel->receiveValue(name, value); }
+void DataLoggerController::receiveValue(QString name, QString value)
+{
+	dataLoggerModel->receiveValue(name, value);
+}
 
-QWidget *DataLoggerController::getWidget() { return dataLoggerView->getDataLoggerViewWidget(); }
+QWidget *DataLoggerController::getWidget()
+{
+	return dataLoggerView->getDataLoggerViewWidget();
+}
 
-bool DataLoggerController::isDataLoggerOn() { return dataLoggerView->isDataLoggingOn(); }
+bool DataLoggerController::isDataLoggerOn()
+{
+	return dataLoggerView->isDataLoggingOn();
+}
 
-void DataLoggerController::setWarningMessage(QString message) { dataLoggerView->setWarningMessage(message); }
+void DataLoggerController::setWarningMessage(QString message)
+{
+	dataLoggerView->setWarningMessage(message);
+}
 
 void DataLoggerController::setIsRunningOn(bool newIsRunningOn)
 {
@@ -90,13 +117,25 @@ void DataLoggerController::setPath(QString path)
 	dataLoggerModel->setPath(path);
 }
 
-QString DataLoggerController::getPath() { return dataLoggerView->getDataLoggerPath(); }
+QString DataLoggerController::getPath()
+{
+	return dataLoggerView->getDataLoggerPath();
+}
 
-bool DataLoggerController::isOverwrite() { return dataLoggerView->isOverwrite(); }
+bool DataLoggerController::isOverwrite()
+{
+	return dataLoggerView->isOverwrite();
+}
 
-void DataLoggerController::setOverwrite(bool en) { dataLoggerView->setOverwrite(en); }
+void DataLoggerController::setOverwrite(bool en)
+{
+	dataLoggerView->setOverwrite(en);
+}
 
-int DataLoggerController::getRecordingTimeInterval() { return dataLoggerView->getTimerInterval(); }
+int DataLoggerController::getRecordingTimeInterval()
+{
+	return dataLoggerView->getTimerInterval();
+}
 
 void DataLoggerController::setRecodingTimeInterval(int interval)
 {

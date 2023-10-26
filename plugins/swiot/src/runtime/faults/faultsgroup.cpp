@@ -99,13 +99,25 @@ FaultsGroup::FaultsGroup(QString name, const QString &path, QWidget *parent)
 	m_customColGrid->itemSizeChanged();
 }
 
-FaultsGroup::~FaultsGroup() { delete ui; }
+FaultsGroup::~FaultsGroup()
+{
+	delete ui;
+}
 
-const QVector<FaultWidget *> &FaultsGroup::getFaults() const { return m_faults; }
+const QVector<FaultWidget *> &FaultsGroup::getFaults() const
+{
+	return m_faults;
+}
 
-const QString &FaultsGroup::getName() const { return m_name; }
+const QString &FaultsGroup::getName() const
+{
+	return m_name;
+}
 
-void FaultsGroup::setName(const QString &name_) { FaultsGroup::m_name = name_; }
+void FaultsGroup::setName(const QString &name_)
+{
+	FaultsGroup::m_name = name_;
+}
 
 void FaultsGroup::setupDynamicUi()
 {
@@ -223,6 +235,12 @@ QJsonArray *FaultsGroup::getJsonArray(const QString &path)
 	return array;
 }
 
-std::set<unsigned int> FaultsGroup::getSelectedIndexes() { return this->m_currentlySelected; }
+std::set<unsigned int> FaultsGroup::getSelectedIndexes()
+{
+	return this->m_currentlySelected;
+}
 
-std::set<unsigned int> FaultsGroup::getActiveIndexes() { return m_actives; }
+std::set<unsigned int> FaultsGroup::getActiveIndexes()
+{
+	return m_actives;
+}

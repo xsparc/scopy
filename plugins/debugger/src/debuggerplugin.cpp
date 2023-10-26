@@ -41,7 +41,10 @@ void DebuggerPlugin::loadToolList()
 	ToolMenuEntry::findToolMenuEntryById(m_toolList, "debugger")->setVisible(true);
 }
 
-QString DebuggerPlugin::description() { return "IIO context explorer tool"; }
+QString DebuggerPlugin::description()
+{
+	return "IIO context explorer tool";
+}
 
 bool DebuggerPlugin::onConnect()
 {

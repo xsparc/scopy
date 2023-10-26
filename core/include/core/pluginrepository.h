@@ -16,7 +16,10 @@ public:
 	PluginRepository(QObject *parent);
 	~PluginRepository();
 	void init(QString location);
-	PluginManager *getPluginManager() { return pm; }
+	PluginManager *getPluginManager()
+	{
+		return pm;
+	}
 
 private:
 	PluginManager *pm;

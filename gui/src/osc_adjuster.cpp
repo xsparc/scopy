@@ -36,15 +36,30 @@ OscAdjuster::OscAdjuster(QWidget *parent, QwtAxisId axisId)
 
 OscAdjuster::~OscAdjuster() {}
 
-QWidget *OscAdjuster::parentWidget() { return qobject_cast<QWidget *>(parent()); }
+QWidget *OscAdjuster::parentWidget()
+{
+	return qobject_cast<QWidget *>(parent());
+}
 
-const QWidget *OscAdjuster::parentWidget() const { return qobject_cast<const QWidget *>(parent()); }
+const QWidget *OscAdjuster::parentWidget() const
+{
+	return qobject_cast<const QWidget *>(parent());
+}
 
-QwtAxisId OscAdjuster::axisId() { return d_axisId; }
+QwtAxisId OscAdjuster::axisId()
+{
+	return d_axisId;
+}
 
-void OscAdjuster::setMouseFactor(double factor) { d_mouseFactor = factor; }
+void OscAdjuster::setMouseFactor(double factor)
+{
+	d_mouseFactor = factor;
+}
 
-double OscAdjuster::mouseFactor() const { return d_mouseFactor; }
+double OscAdjuster::mouseFactor() const
+{
+	return d_mouseFactor;
+}
 
 void OscAdjuster::setEnabled(bool on)
 {
@@ -61,11 +76,20 @@ void OscAdjuster::setEnabled(bool on)
 	}
 }
 
-bool OscAdjuster::isEnabled() const { return d_isEnabled; }
+bool OscAdjuster::isEnabled() const
+{
+	return d_isEnabled;
+}
 
-void OscAdjuster::setMouseButton(Qt::MouseButton button) { d_mouseButton = button; }
+void OscAdjuster::setMouseButton(Qt::MouseButton button)
+{
+	d_mouseButton = button;
+}
 
-void OscAdjuster::getMouseButton(Qt::MouseButton &button) const { button = d_mouseButton; }
+void OscAdjuster::getMouseButton(Qt::MouseButton &button) const
+{
+	button = d_mouseButton;
+}
 
 bool OscAdjuster::eventFilter(QObject *object, QEvent *event)
 {

@@ -33,9 +33,15 @@ LcdNumber::LcdNumber(QWidget *parent, unsigned precision)
 	display(0.0);
 }
 
-void LcdNumber::setPrecision(unsigned precision) { this->precision = precision; }
+void LcdNumber::setPrecision(unsigned precision)
+{
+	this->precision = precision;
+}
 
-unsigned LcdNumber::getPrecision() { return precision; }
+unsigned LcdNumber::getPrecision()
+{
+	return precision;
+}
 
 void LcdNumber::display(double num)
 {

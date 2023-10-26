@@ -54,9 +54,15 @@ ToolMenuItem::ToolMenuItem(QString id, QString name, QString iconPath, QWidget *
 
 ToolMenuItem::~ToolMenuItem() {}
 
-QPushButton *ToolMenuItem::getToolBtn() const { return toolBtn; }
+QPushButton *ToolMenuItem::getToolBtn() const
+{
+	return toolBtn;
+}
 
-QPushButton *ToolMenuItem::getToolRunBtn() const { return toolRunBtn; }
+QPushButton *ToolMenuItem::getToolRunBtn() const
+{
+	return toolRunBtn;
+}
 
 // void ToolMenuItem::setToolEnabled(bool enabled)
 //{
@@ -111,7 +117,10 @@ void ToolMenuItem::hideText(bool hidden)
 	}
 }
 
-void ToolMenuItem::setDisabled(bool disabled) { BaseMenuItem::setDisabled(disabled); }
+void ToolMenuItem::setDisabled(bool disabled)
+{
+	BaseMenuItem::setDisabled(disabled);
+}
 
 void ToolMenuItem::mouseMoveEvent(QMouseEvent *event)
 {
@@ -121,7 +130,10 @@ void ToolMenuItem::mouseMoveEvent(QMouseEvent *event)
 #endif
 }
 
-const QString &ToolMenuItem::getId() const { return id; }
+const QString &ToolMenuItem::getId() const
+{
+	return id;
+}
 
 void ToolMenuItem::enterEvent(QEvent *event)
 {

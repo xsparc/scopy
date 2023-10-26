@@ -72,4 +72,7 @@ void BufferMenuController::attributesChanged(QString attrName, QString chnlType)
 	m_model->updateChnlAttributes(attributes, attrName, chnlType);
 }
 
-int BufferMenuController::getChnlIdx() { return m_chnlIdx; }
+int BufferMenuController::getChnlIdx()
+{
+	return m_chnlIdx;
+}

@@ -47,7 +47,10 @@ Calibration::Calibration(struct iio_context *ctx)
 	ScopyJS::GetInstance()->registerApi(m_api);
 }
 
-Calibration::~Calibration() { delete m_api; }
+Calibration::~Calibration()
+{
+	delete m_api;
+}
 
 bool Calibration::initialize()
 {
@@ -67,9 +70,15 @@ bool Calibration::initialize()
 	return m_initialized;
 }
 
-bool Calibration::isInitialized() const { return m_initialized; }
+bool Calibration::isInitialized() const
+{
+	return m_initialized;
+}
 
-bool Calibration::isCalibrated() { return m_m2k->isCalibrated(); }
+bool Calibration::isCalibrated()
+{
+	return m_m2k->isCalibrated();
+}
 
 bool Calibration::resetCalibration()
 {
@@ -115,15 +124,30 @@ calibration_fail:
 	return false;
 }
 
-bool Calibration::calibrateAdc() { return m_m2k->calibrateADC(); }
+bool Calibration::calibrateAdc()
+{
+	return m_m2k->calibrateADC();
+}
 
-bool Calibration::calibrateDac() { return m_m2k->calibrateDAC(); }
+bool Calibration::calibrateDac()
+{
+	return m_m2k->calibrateDAC();
+}
 
-void Calibration::cancelCalibration() { m_cancel = true; }
+void Calibration::cancelCalibration()
+{
+	m_cancel = true;
+}
 
-bool Calibration::hasContextCalibration() const { return m_m2k->hasContextCalibration(); }
+bool Calibration::hasContextCalibration() const
+{
+	return m_m2k->hasContextCalibration();
+}
 
-float Calibration::calibrateFromContext() { return m_m2k->calibrateFromContext(); }
+float Calibration::calibrateFromContext()
+{
+	return m_m2k->calibrateFromContext();
+}
 
 /* FIXME: TODO: Move this into a HW class / lib M2k */
 double Calibration::getIioDevTemp(const QString &devName) const

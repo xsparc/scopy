@@ -90,9 +90,15 @@ OscScaleDraw::OscScaleDraw(PrefixFormatter *formatter, const QString &unit)
 	m_formatter = formatter;
 }
 
-void OscScaleDraw::setFloatPrecision(unsigned int numDigits) { m_floatPrecision = numDigits; }
+void OscScaleDraw::setFloatPrecision(unsigned int numDigits)
+{
+	m_floatPrecision = numDigits;
+}
 
-unsigned int OscScaleDraw::getFloatPrecison() const { return m_floatPrecision; }
+unsigned int OscScaleDraw::getFloatPrecison() const
+{
+	return m_floatPrecision;
+}
 
 void OscScaleDraw::setUnitType(const QString &unit)
 {
@@ -104,13 +110,25 @@ void OscScaleDraw::setUnitType(const QString &unit)
 	}
 }
 
-QString OscScaleDraw::getUnitType() const { return m_unit; }
+QString OscScaleDraw::getUnitType() const
+{
+	return m_unit;
+}
 
-void OscScaleDraw::setColor(QColor color) { m_color = color; }
+void OscScaleDraw::setColor(QColor color)
+{
+	m_color = color;
+}
 
-void OscScaleDraw::setDisplayScale(double value) { m_displayScale = value; }
+void OscScaleDraw::setDisplayScale(double value)
+{
+	m_displayScale = value;
+}
 
-void OscScaleDraw::setFormatter(PrefixFormatter *formatter) { m_formatter = formatter; }
+void OscScaleDraw::setFormatter(PrefixFormatter *formatter)
+{
+	m_formatter = formatter;
+}
 
 void OscScaleDraw::enableDeltaLabel(bool enable)
 {
@@ -438,15 +456,30 @@ PlotAxisConfiguration::PlotAxisConfiguration(int axisPos, int axisIdx, DisplayPl
 
 PlotAxisConfiguration::~PlotAxisConfiguration() {}
 
-QwtAxisId &PlotAxisConfiguration::axis() { return d_axis; }
+QwtAxisId &PlotAxisConfiguration::axis()
+{
+	return d_axis;
+}
 
-void PlotAxisConfiguration::setPtsPerDiv(double value) { d_ptsPerDiv = value; }
+void PlotAxisConfiguration::setPtsPerDiv(double value)
+{
+	d_ptsPerDiv = value;
+}
 
-double PlotAxisConfiguration::ptsPerDiv() { return d_ptsPerDiv; }
+double PlotAxisConfiguration::ptsPerDiv()
+{
+	return d_ptsPerDiv;
+}
 
-void PlotAxisConfiguration::setOffset(double value) { d_offset = value; }
+void PlotAxisConfiguration::setOffset(double value)
+{
+	d_offset = value;
+}
 
-double PlotAxisConfiguration::offset() { return d_offset; }
+double PlotAxisConfiguration::offset()
+{
+	return d_offset;
+}
 
 void PlotAxisConfiguration::setCursorShapeOnHover(Qt::CursorShape shape)
 {
@@ -821,17 +854,35 @@ void DisplayPlot::onHorizCursorHandle2Changed(int value)
 	d_vBar2->setPixelPosition(value);
 }
 
-VertBar *DisplayPlot::vBar1() { return d_vBar1; }
+VertBar *DisplayPlot::vBar1()
+{
+	return d_vBar1;
+}
 
-VertBar *DisplayPlot::vBar2() { return d_vBar2; }
+VertBar *DisplayPlot::vBar2()
+{
+	return d_vBar2;
+}
 
-HorizHandlesArea *DisplayPlot::bottomHandlesArea() { return d_bottomHandlesArea; }
+HorizHandlesArea *DisplayPlot::bottomHandlesArea()
+{
+	return d_bottomHandlesArea;
+}
 
-QWidget *DisplayPlot::rightHandlesArea() { return d_rightHandlesArea; }
+QWidget *DisplayPlot::rightHandlesArea()
+{
+	return d_rightHandlesArea;
+}
 
-QWidget *DisplayPlot::leftHandlesArea() { return d_leftHandlesArea; }
+QWidget *DisplayPlot::leftHandlesArea()
+{
+	return d_leftHandlesArea;
+}
 
-QWidget *DisplayPlot::topHandlesArea() { return d_topHandlesArea; }
+QWidget *DisplayPlot::topHandlesArea()
+{
+	return d_topHandlesArea;
+}
 
 QString DisplayPlot::formatXValue(double value, int precision) const
 {
@@ -843,9 +894,15 @@ QString DisplayPlot::formatYValue(double value, int precision) const
 	return d_formatter->format(value, d_yAxisUnit, precision);
 }
 
-void DisplayPlot::onHbar1PixelPosChanged(int pos) { d_vCursorHandle1->setPositionSilenty(pos); }
+void DisplayPlot::onHbar1PixelPosChanged(int pos)
+{
+	d_vCursorHandle1->setPositionSilenty(pos);
+}
 
-void DisplayPlot::onHbar2PixelPosChanged(int pos) { d_vCursorHandle2->setPositionSilenty(pos); }
+void DisplayPlot::onHbar2PixelPosChanged(int pos)
+{
+	d_vCursorHandle2->setPositionSilenty(pos);
+}
 
 void DisplayPlot::onVbar1PixelPosChanged(int pos)
 {
@@ -859,7 +916,10 @@ void DisplayPlot::onVbar2PixelPosChanged(int pos)
 	displayIntersection();
 }
 
-struct cursorReadoutsText DisplayPlot::allCursorReadouts() const { return d_cursorReadoutsText; }
+struct cursorReadoutsText DisplayPlot::allCursorReadouts() const
+{
+	return d_cursorReadoutsText;
+}
 
 void DisplayPlot::onVCursor1Moved(double value)
 {
@@ -971,17 +1031,35 @@ void DisplayPlot::toggleCursors(bool en)
 	}
 }
 
-bool DisplayPlot::isLogaritmicPlot() const { return d_isLogaritmicPlot; }
+bool DisplayPlot::isLogaritmicPlot() const
+{
+	return d_isLogaritmicPlot;
+}
 
-void DisplayPlot::setPlotLogaritmic(bool value) { d_isLogaritmicPlot = value; }
+void DisplayPlot::setPlotLogaritmic(bool value)
+{
+	d_isLogaritmicPlot = value;
+}
 
-bool DisplayPlot::isLogaritmicYPlot() const { return d_isLogaritmicYPlot; }
+bool DisplayPlot::isLogaritmicYPlot() const
+{
+	return d_isLogaritmicYPlot;
+}
 
-void DisplayPlot::setPlotYLogaritmic(bool value) { d_isLogaritmicYPlot = value; }
+void DisplayPlot::setPlotYLogaritmic(bool value)
+{
+	d_isLogaritmicYPlot = value;
+}
 
-void DisplayPlot::setVertCursorsHandleEnabled(bool en) { d_vertCursorsHandleEnabled = en; }
+void DisplayPlot::setVertCursorsHandleEnabled(bool en)
+{
+	d_vertCursorsHandleEnabled = en;
+}
 
-bool DisplayPlot::vertCursorsEnabled() { return d_vertCursorsEnabled; }
+bool DisplayPlot::vertCursorsEnabled()
+{
+	return d_vertCursorsEnabled;
+}
 
 void DisplayPlot::setHorizCursorsEnabled(bool en)
 {
@@ -995,7 +1073,10 @@ void DisplayPlot::setHorizCursorsEnabled(bool en)
 	}
 }
 
-bool DisplayPlot::horizCursorsEnabled() { return d_horizCursorsEnabled; }
+bool DisplayPlot::horizCursorsEnabled()
+{
+	return d_horizCursorsEnabled;
+}
 
 void DisplayPlot::setCursorReadoutsVisible(bool en)
 {
@@ -1006,11 +1087,20 @@ void DisplayPlot::setCursorReadoutsVisible(bool en)
 	}
 }
 
-void DisplayPlot::setHorizCursorsLocked(bool value) { horizCursorsLocked = value; }
+void DisplayPlot::setHorizCursorsLocked(bool value)
+{
+	horizCursorsLocked = value;
+}
 
-void DisplayPlot::setVertCursorsLocked(bool value) { vertCursorsLocked = value; }
+void DisplayPlot::setVertCursorsLocked(bool value)
+{
+	vertCursorsLocked = value;
+}
 
-void DisplayPlot::setCursorReadoutsTransparency(int value) { d_cursorReadouts->setTransparency(value); }
+void DisplayPlot::setCursorReadoutsTransparency(int value)
+{
+	d_cursorReadouts->setTransparency(value);
+}
 
 void DisplayPlot::moveCursorReadouts(CustomPlotPositionButton::ReadoutsPosition position)
 {
@@ -1183,9 +1273,15 @@ void DisplayPlot::setXaxis(double min, double max)
 		d_zoomer[i]->setZoomBase();
 }
 
-void DisplayPlot::setLineLabel(int which, QString label) { d_plot_curve[which]->setTitle(label); }
+void DisplayPlot::setLineLabel(int which, QString label)
+{
+	d_plot_curve[which]->setTitle(label);
+}
 
-QString DisplayPlot::getLineLabel(int which) { return d_plot_curve[which]->title().text(); }
+QString DisplayPlot::getLineLabel(int which)
+{
+	return d_plot_curve[which]->title().text();
+}
 
 void DisplayPlot::setLineColor(int chnIdx, int colorIdx)
 {
@@ -1231,16 +1327,46 @@ QColor DisplayPlot::getLineColor(int which) const
 
 // Use a preprocessor macro to create a bunch of hooks for Q_PROPERTY and hence the stylesheet.
 #define SETUPLINE(i, im1)                                                                                              \
-	void DisplayPlot::setLineColor##i(QColor c) { setLineColor(im1, c); }                                          \
-	const QColor DisplayPlot::getLineColor##i() const { return getLineColor(im1); }                                \
-	void DisplayPlot::setLineWidth##i(int width) { setLineWidth(im1, width); }                                     \
-	int DisplayPlot::getLineWidth##i() const { return getLineWidth(im1); }                                         \
-	void DisplayPlot::setLineStyle##i(Qt::PenStyle ps) { setLineStyle(im1, ps); }                                  \
-	const Qt::PenStyle DisplayPlot::getLineStyle##i() const { return getLineStyle(im1); }                          \
-	void DisplayPlot::setLineMarker##i(QwtSymbol::Style ms) { setLineMarker(im1, ms); }                            \
-	const QwtSymbol::Style DisplayPlot::getLineMarker##i() const { return getLineMarker(im1); }                    \
-	void DisplayPlot::setMarkerAlpha##i(int alpha) { setMarkerAlpha(im1, alpha); }                                 \
-	int DisplayPlot::getMarkerAlpha##i() const { return getMarkerAlpha(im1); }
+	void DisplayPlot::setLineColor##i(QColor c)                                                                    \
+	{                                                                                                              \
+		setLineColor(im1, c);                                                                                  \
+	}                                                                                                              \
+	const QColor DisplayPlot::getLineColor##i() const                                                              \
+	{                                                                                                              \
+		return getLineColor(im1);                                                                              \
+	}                                                                                                              \
+	void DisplayPlot::setLineWidth##i(int width)                                                                   \
+	{                                                                                                              \
+		setLineWidth(im1, width);                                                                              \
+	}                                                                                                              \
+	int DisplayPlot::getLineWidth##i() const                                                                       \
+	{                                                                                                              \
+		return getLineWidth(im1);                                                                              \
+	}                                                                                                              \
+	void DisplayPlot::setLineStyle##i(Qt::PenStyle ps)                                                             \
+	{                                                                                                              \
+		setLineStyle(im1, ps);                                                                                 \
+	}                                                                                                              \
+	const Qt::PenStyle DisplayPlot::getLineStyle##i() const                                                        \
+	{                                                                                                              \
+		return getLineStyle(im1);                                                                              \
+	}                                                                                                              \
+	void DisplayPlot::setLineMarker##i(QwtSymbol::Style ms)                                                        \
+	{                                                                                                              \
+		setLineMarker(im1, ms);                                                                                \
+	}                                                                                                              \
+	const QwtSymbol::Style DisplayPlot::getLineMarker##i() const                                                   \
+	{                                                                                                              \
+		return getLineMarker(im1);                                                                             \
+	}                                                                                                              \
+	void DisplayPlot::setMarkerAlpha##i(int alpha)                                                                 \
+	{                                                                                                              \
+		setMarkerAlpha(im1, alpha);                                                                            \
+	}                                                                                                              \
+	int DisplayPlot::getMarkerAlpha##i() const                                                                     \
+	{                                                                                                              \
+		return getMarkerAlpha(im1);                                                                            \
+	}
 SETUPLINE(1, 0)
 SETUPLINE(2, 1)
 SETUPLINE(3, 2)
@@ -1259,7 +1385,10 @@ void DisplayPlot::setZoomerColor(QColor c)
 	}
 }
 
-QColor DisplayPlot::getZoomerColor() const { return d_zoomer[0]->rubberBandPen().color(); }
+QColor DisplayPlot::getZoomerColor() const
+{
+	return d_zoomer[0]->rubberBandPen().color();
+}
 
 void DisplayPlot::setPaletteColor(QColor c)
 {
@@ -1268,7 +1397,10 @@ void DisplayPlot::setPaletteColor(QColor c)
 	canvas()->setPalette(palette);
 }
 
-QColor DisplayPlot::getPaletteColor() const { return canvas()->palette().color(canvas()->backgroundRole()); }
+QColor DisplayPlot::getPaletteColor() const
+{
+	return canvas()->palette().color(canvas()->backgroundRole());
+}
 
 void DisplayPlot::setAxisLabelFontSize(int axisId, int fs)
 {
@@ -1279,7 +1411,10 @@ void DisplayPlot::setAxisLabelFontSize(int axisId, int fs)
 	axisWidget(axisId)->setTitle(axis_title);
 }
 
-int DisplayPlot::getAxisLabelFontSize(int axisId) const { return axisWidget(axisId)->title().font().pointSize(); }
+int DisplayPlot::getAxisLabelFontSize(int axisId) const
+{
+	return axisWidget(axisId)->title().font().pointSize();
+}
 
 void DisplayPlot::setYaxisLabelFontSize(int fs)
 {
@@ -1322,7 +1457,10 @@ int DisplayPlot::getYaxisLabelFontSize() const
 	return fs;
 }
 
-void DisplayPlot::setXaxisLabelFontSize(int fs) { setAxisLabelFontSize(QwtAxis::XBottom, fs); }
+void DisplayPlot::setXaxisLabelFontSize(int fs)
+{
+	setAxisLabelFontSize(QwtAxis::XBottom, fs);
+}
 
 int DisplayPlot::getXaxisLabelFontSize() const
 {
@@ -1467,7 +1605,10 @@ int DisplayPlot::getMarkerAlpha(int which) const
 	}
 }
 
-void DisplayPlot::setStop(bool on) { d_stop = on; }
+void DisplayPlot::setStop(bool on)
+{
+	d_stop = on;
+}
 
 void DisplayPlot::resizeSlot(QSize *s)
 {
@@ -1559,7 +1700,10 @@ void DisplayPlot::setHorizOffset(double offset)
 	horizAxis->setOffset(offset);
 }
 
-double DisplayPlot::HorizOffset() { return horizAxis->offset(); }
+double DisplayPlot::HorizOffset()
+{
+	return horizAxis->offset();
+}
 
 void DisplayPlot::setVertUnitsPerDiv(double upd, int axisIdx)
 {
@@ -1576,7 +1720,10 @@ void DisplayPlot::setVertUnitsPerDiv(double upd, int axisIdx)
 	}
 }
 
-double DisplayPlot::VertUnitsPerDiv(int axisIdx) { return vertAxes[axisIdx]->ptsPerDiv(); }
+double DisplayPlot::VertUnitsPerDiv(int axisIdx)
+{
+	return vertAxes[axisIdx]->ptsPerDiv();
+}
 
 void DisplayPlot::setHorizUnitsPerDiv(double upd)
 {
@@ -1593,9 +1740,15 @@ void DisplayPlot::setHorizUnitsPerDiv(double upd)
 	}
 }
 
-void DisplayPlot::enableColoredLabels(bool colored) { d_coloredLabels = colored; }
+void DisplayPlot::enableColoredLabels(bool colored)
+{
+	d_coloredLabels = colored;
+}
 
-void DisplayPlot::enableMouseGesturesOnScales(bool enable) { d_mouseGesturesEnabled = enable; }
+void DisplayPlot::enableMouseGesturesOnScales(bool enable)
+{
+	d_mouseGesturesEnabled = enable;
+}
 
 void DisplayPlot::setDisplayScale(double value)
 {
@@ -1663,9 +1816,15 @@ void DisplayPlot::adjustHandleAreasSize(bool cursors)
 	d_bottomHandlesArea->setLeftPadding(left_width);
 }
 
-int DisplayPlot::activeVertAxis() { return d_activeVertAxis; }
+int DisplayPlot::activeVertAxis()
+{
+	return d_activeVertAxis;
+}
 
-double DisplayPlot::HorizUnitsPerDiv() { return horizAxis->ptsPerDiv(); }
+double DisplayPlot::HorizUnitsPerDiv()
+{
+	return horizAxis->ptsPerDiv();
+}
 
 void DisplayPlot::DetachCurve(unsigned int curveIdx)
 {
@@ -1699,21 +1858,45 @@ QwtPlotCurve *DisplayPlot::Curve(unsigned int curveIdx)
 	return curve;
 }
 
-void DisplayPlot::setMinXaxisDivision(double minDivison) { this->d_hScaleDivisions.setLower(minDivison); }
+void DisplayPlot::setMinXaxisDivision(double minDivison)
+{
+	this->d_hScaleDivisions.setLower(minDivison);
+}
 
-double DisplayPlot::minXaxisDivision() { return this->d_hScaleDivisions.lower(); }
+double DisplayPlot::minXaxisDivision()
+{
+	return this->d_hScaleDivisions.lower();
+}
 
-void DisplayPlot::setMaxXaxisDivision(double maxDivison) { this->d_hScaleDivisions.setUpper(maxDivison); }
+void DisplayPlot::setMaxXaxisDivision(double maxDivison)
+{
+	this->d_hScaleDivisions.setUpper(maxDivison);
+}
 
-double DisplayPlot::maxXaxisDivision() { return this->d_hScaleDivisions.upper(); }
+double DisplayPlot::maxXaxisDivision()
+{
+	return this->d_hScaleDivisions.upper();
+}
 
-void DisplayPlot::setMinYaxisDivision(double minDivison) { this->d_vScaleDivisions.setLower(minDivison); }
+void DisplayPlot::setMinYaxisDivision(double minDivison)
+{
+	this->d_vScaleDivisions.setLower(minDivison);
+}
 
-double DisplayPlot::minYaxisDivision() { return this->d_vScaleDivisions.lower(); }
+double DisplayPlot::minYaxisDivision()
+{
+	return this->d_vScaleDivisions.lower();
+}
 
-void DisplayPlot::setMaxYaxisDivision(double maxDivision) { this->d_vScaleDivisions.setUpper(maxDivision); }
+void DisplayPlot::setMaxYaxisDivision(double maxDivision)
+{
+	this->d_vScaleDivisions.setUpper(maxDivision);
+}
 
-double DisplayPlot::maxYaxisDivision() { return this->d_vScaleDivisions.upper(); }
+double DisplayPlot::maxYaxisDivision()
+{
+	return this->d_vScaleDivisions.upper();
+}
 
 void DisplayPlot::onHorizAxisOffsetDecrease()
 {
@@ -1940,11 +2123,20 @@ void DisplayPlot::setLeftVertAxesCount(int count)
 	}
 }
 
-int DisplayPlot::leftVertAxesCount() { return vertAxes.size(); }
+int DisplayPlot::leftVertAxesCount()
+{
+	return vertAxes.size();
+}
 
-void DisplayPlot::setUsingLeftAxisScales(bool on) { d_usingLeftAxisScales = on; }
+void DisplayPlot::setUsingLeftAxisScales(bool on)
+{
+	d_usingLeftAxisScales = on;
+}
 
-bool DisplayPlot::usingLeftAxisScales() { return d_usingLeftAxisScales; }
+bool DisplayPlot::usingLeftAxisScales()
+{
+	return d_usingLeftAxisScales;
+}
 
 void DisplayPlot::configureAxis(int axisPos, int axisIdx)
 {
@@ -1966,13 +2158,28 @@ void DisplayPlot::resizeEvent(QResizeEvent *event)
 	Q_EMIT plotSizeChanged();
 }
 
-VertBar *DisplayPlot::getVBar1() const { return d_vBar1; }
+VertBar *DisplayPlot::getVBar1() const
+{
+	return d_vBar1;
+}
 
-VertBar *DisplayPlot::getVBar2() const { return d_vBar2; }
-HorizBar *DisplayPlot::getHBar1() const { return d_hBar1; }
-HorizBar *DisplayPlot::getHBar2() const { return d_hBar2; }
+VertBar *DisplayPlot::getVBar2() const
+{
+	return d_vBar2;
+}
+HorizBar *DisplayPlot::getHBar1() const
+{
+	return d_hBar1;
+}
+HorizBar *DisplayPlot::getHBar2() const
+{
+	return d_hBar2;
+}
 
-CursorReadouts *DisplayPlot::getCursorReadouts() const { return d_cursorReadouts; }
+CursorReadouts *DisplayPlot::getCursorReadouts() const
+{
+	return d_cursorReadouts;
+}
 
 void DisplayPlot::bottomHorizAxisInit()
 {
@@ -2003,15 +2210,30 @@ static QwtScaleDiv getEdgelessScaleDiv(const QwtScaleDiv &from_scaleDiv)
 	return QwtScaleDiv(lowerBound, upperBound, minorTicks, mediumTicks, majorTicks);
 }
 
-void DisplayPlot::setXaxisMajorTicksPos(QList<double> ticks) { d_majorTicks = ticks; }
+void DisplayPlot::setXaxisMajorTicksPos(QList<double> ticks)
+{
+	d_majorTicks = ticks;
+}
 
-QList<double> DisplayPlot::getXaxisMajorTicksPos() const { return d_majorTicks; }
+QList<double> DisplayPlot::getXaxisMajorTicksPos() const
+{
+	return d_majorTicks;
+}
 
-void DisplayPlot::setYaxisMajorTicksPos(QList<double> ticks) { d_majorTicksY = ticks; }
+void DisplayPlot::setYaxisMajorTicksPos(QList<double> ticks)
+{
+	d_majorTicksY = ticks;
+}
 
-QList<double> DisplayPlot::getYaxisMajorTicksPos() const { return d_majorTicksY; }
+QList<double> DisplayPlot::getYaxisMajorTicksPos() const
+{
+	return d_majorTicksY;
+}
 
-unsigned int DisplayPlot::xAxisNumDiv() const { return d_xAxisNumDiv; }
+unsigned int DisplayPlot::xAxisNumDiv() const
+{
+	return d_xAxisNumDiv;
+}
 
 void DisplayPlot::setXaxisNumDiv(unsigned int num)
 {
@@ -2022,7 +2244,10 @@ void DisplayPlot::setXaxisNumDiv(unsigned int num)
 	}
 }
 
-unsigned int DisplayPlot::yAxisNumDiv() const { return d_yAxisNumDiv; }
+unsigned int DisplayPlot::yAxisNumDiv() const
+{
+	return d_yAxisNumDiv;
+}
 
 void DisplayPlot::setYaxisNumDiv(unsigned int num)
 {
@@ -2033,7 +2258,10 @@ void DisplayPlot::setYaxisNumDiv(unsigned int num)
 	}
 }
 
-void DisplayPlot::setXaxisMouseGesturesEnabled(bool en) { horizAxis->setMouseGesturesEnabled(en); }
+void DisplayPlot::setXaxisMouseGesturesEnabled(bool en)
+{
+	horizAxis->setMouseGesturesEnabled(en);
+}
 
 void DisplayPlot::setYaxisMouseGesturesEnabled(int axisId, bool en)
 {

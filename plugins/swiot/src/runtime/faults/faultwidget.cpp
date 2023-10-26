@@ -47,9 +47,15 @@ FaultWidget::FaultWidget(unsigned int id, QString name, QString faultExplanation
 	this->ui->mainFrame->setMinimumSize(70, 90);
 }
 
-FaultWidget::~FaultWidget() { delete ui; }
+FaultWidget::~FaultWidget()
+{
+	delete ui;
+}
 
-bool FaultWidget::isStored() const { return m_stored; }
+bool FaultWidget::isStored() const
+{
+	return m_stored;
+}
 
 void FaultWidget::setStored(bool stored)
 {
@@ -58,7 +64,10 @@ void FaultWidget::setStored(bool stored)
 	this->ui->stored->setStyle(this->ui->stored->style());
 }
 
-bool FaultWidget::isActive() const { return m_active; }
+bool FaultWidget::isActive() const
+{
+	return m_active;
+}
 
 void FaultWidget::setActive(bool active)
 {
@@ -67,24 +76,45 @@ void FaultWidget::setActive(bool active)
 	this->ui->active->setStyle(this->ui->active->style());
 }
 
-const QString &FaultWidget::getName() const { return m_name; }
+const QString &FaultWidget::getName() const
+{
+	return m_name;
+}
 
-void FaultWidget::setName(const QString &name) { FaultWidget::m_name = name; }
+void FaultWidget::setName(const QString &name)
+{
+	FaultWidget::m_name = name;
+}
 
-const QString &FaultWidget::getFaultExplanation() const { return m_faultExplanation; }
+const QString &FaultWidget::getFaultExplanation() const
+{
+	return m_faultExplanation;
+}
 
 void FaultWidget::setFaultExplanation(const QString &faultExplanation)
 {
 	FaultWidget::m_faultExplanation = faultExplanation;
 }
 
-void FaultWidget::setFaultExplanationOptions(QJsonObject options) { m_faultExplanationOptions = options; }
+void FaultWidget::setFaultExplanationOptions(QJsonObject options)
+{
+	m_faultExplanationOptions = options;
+}
 
-unsigned int FaultWidget::getId() const { return m_id; }
+unsigned int FaultWidget::getId() const
+{
+	return m_id;
+}
 
-void FaultWidget::setId(unsigned int id) { FaultWidget::m_id = id; }
+void FaultWidget::setId(unsigned int id)
+{
+	FaultWidget::m_id = id;
+}
 
-bool FaultWidget::isPressed() const { return m_pressed; }
+bool FaultWidget::isPressed() const
+{
+	return m_pressed;
+}
 
 void FaultWidget::setPressed(bool pressed)
 {

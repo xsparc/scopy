@@ -73,13 +73,25 @@ void PlotCursors::setCanLeavePlot(bool leave)
 	getH2Cursor()->setCanLeavePlot(leave);
 }
 
-VCursor *PlotCursors::getV1Cursor() { return m_vCursors.first; }
+VCursor *PlotCursors::getV1Cursor()
+{
+	return m_vCursors.first;
+}
 
-VCursor *PlotCursors::getV2Cursor() { return m_vCursors.second; }
+VCursor *PlotCursors::getV2Cursor()
+{
+	return m_vCursors.second;
+}
 
-HCursor *PlotCursors::getH1Cursor() { return m_hCursors.first; }
+HCursor *PlotCursors::getH1Cursor()
+{
+	return m_hCursors.first;
+}
 
-HCursor *PlotCursors::getH2Cursor() { return m_hCursors.second; }
+HCursor *PlotCursors::getH2Cursor()
+{
+	return m_hCursors.second;
+}
 
 void PlotCursors::setVisible(bool visible)
 {

@@ -300,9 +300,15 @@ void Enum::commit()
 	}
 }
 
-void Enum::on_current_index_changed(int) { commit(); }
+void Enum::on_current_index_changed(int)
+{
+	commit();
+}
 
-void Enum::on_value_changed(int) { commit(); }
+void Enum::on_value_changed(int)
+{
+	commit();
+}
 
 } // namespace prop
 } // namespace scopy

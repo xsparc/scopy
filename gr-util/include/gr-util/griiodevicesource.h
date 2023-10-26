@@ -20,10 +20,22 @@ public:
 		, channelName(channelName)
 		, dev(dev)
 	{}
-	GRIIODeviceSource *getDeviceSrc() { return dev; }
-	QString getChannelName() { return channelName; }
-	virtual bool sampleRateAvailable() { return false; }
-	virtual double readSampleRate() { return -1; }
+	GRIIODeviceSource *getDeviceSrc()
+	{
+		return dev;
+	}
+	QString getChannelName()
+	{
+		return channelName;
+	}
+	virtual bool sampleRateAvailable()
+	{
+		return false;
+	}
+	virtual double readSampleRate()
+	{
+		return -1;
+	}
 	static QString findAttribute(QStringList possibleNames, iio_channel *);
 
 protected:

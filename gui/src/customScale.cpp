@@ -40,22 +40,40 @@ CustomScale::CustomScale(QWidget *parent)
 	connect(scaler, SIGNAL(updateScale(const QwtScaleDiv)), this, SLOT(updateScale(const QwtScaleDiv)));
 }
 
-CustomScale::~CustomScale() { delete scaler; }
+CustomScale::~CustomScale()
+{
+	delete scaler;
+}
 
 void CustomScale::addScale(double x1, double x2, int maxMajorSteps, int maxMinorSteps, double stepSize)
 {
 	scaler->addScaleDivs(scaleEngine()->divideScale(x1, x2, maxMajorSteps, maxMinorSteps, stepSize));
 }
 
-void CustomScale::updateScale(const QwtScaleDiv div) { setScale(div); }
+void CustomScale::updateScale(const QwtScaleDiv div)
+{
+	setScale(div);
+}
 
-bool CustomScale::getAutoScaler() const { return autoScale; }
+bool CustomScale::getAutoScaler() const
+{
+	return autoScale;
+}
 
-void CustomScale::setAutoScaler(bool newAutoScaler) { autoScale = newAutoScaler; }
+void CustomScale::setAutoScaler(bool newAutoScaler)
+{
+	autoScale = newAutoScaler;
+}
 
-void CustomScale::start() { scaler->startTimer(); }
+void CustomScale::start()
+{
+	scaler->startTimer();
+}
 
-void CustomScale::stop() { scaler->stopTimer(); }
+void CustomScale::stop()
+{
+	scaler->stopTimer();
+}
 
 int numDigits(double num)
 {

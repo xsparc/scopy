@@ -89,23 +89,50 @@ void ChnlInfo::readOffsetCommandFinished(Command *cmd)
 	}
 }
 
-iio_channel *ChnlInfo::iioChnl() const { return m_iioChnl; }
+iio_channel *ChnlInfo::iioChnl() const
+{
+	return m_iioChnl;
+}
 
-bool ChnlInfo::isOutput() const { return m_isOutput; }
+bool ChnlInfo::isOutput() const
+{
+	return m_isOutput;
+}
 
-bool ChnlInfo::isScanElement() const { return m_isScanElement; }
+bool ChnlInfo::isScanElement() const
+{
+	return m_isScanElement;
+}
 
-QString ChnlInfo::chnlId() const { return m_chnlId; }
+QString ChnlInfo::chnlId() const
+{
+	return m_chnlId;
+}
 
-std::pair<int, int> ChnlInfo::rangeValues() const { return m_rangeValues; }
+std::pair<int, int> ChnlInfo::rangeValues() const
+{
+	return m_rangeValues;
+}
 
-std::pair<double, double> ChnlInfo::offsetScalePair() const { return m_offsetScalePair; }
+std::pair<double, double> ChnlInfo::offsetScalePair() const
+{
+	return m_offsetScalePair;
+}
 
-bool ChnlInfo::isEnabled() const { return m_isEnabled; }
+bool ChnlInfo::isEnabled() const
+{
+	return m_isEnabled;
+}
 
-void ChnlInfo::setIsEnabled(bool newIsEnabled) { m_isEnabled = newIsEnabled; }
+void ChnlInfo::setIsEnabled(bool newIsEnabled)
+{
+	m_isEnabled = newIsEnabled;
+}
 
-QString ChnlInfo::unitOfMeasure() const { return m_plotUm; }
+QString ChnlInfo::unitOfMeasure() const
+{
+	return m_plotUm;
+}
 
 void ChnlInfo::initUnitOfMeasureFactor()
 {

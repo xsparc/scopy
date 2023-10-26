@@ -133,7 +133,10 @@ QPushButton *SwiotConfig::createConfigBtn()
 	return configBtn;
 }
 
-void SwiotConfig::onConfigBtnPressed() { Q_EMIT writeModeAttribute("runtime"); }
+void SwiotConfig::onConfigBtnPressed()
+{
+	Q_EMIT writeModeAttribute("runtime");
+}
 
 void SwiotConfig::modeAttributeChanged(std::string mode)
 {

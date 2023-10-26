@@ -38,7 +38,10 @@ void TST_M2k::fileExists()
 	QVERIFY(ret);
 }
 
-void TST_M2k::isLibrary() { QVERIFY(QLibrary::isLibrary(FILENAME)); }
+void TST_M2k::isLibrary()
+{
+	QVERIFY(QLibrary::isLibrary(FILENAME));
+}
 
 void TST_M2k::className()
 {

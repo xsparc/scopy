@@ -744,13 +744,25 @@ NetworkAnalyzer::~NetworkAnalyzer()
 	delete ui;
 }
 
-QPushButton *NetworkAnalyzer::getRunButton() { return ui->runSingleWidget->getRunButton(); }
+QPushButton *NetworkAnalyzer::getRunButton()
+{
+	return ui->runSingleWidget->getRunButton();
+}
 
-void NetworkAnalyzer::setOscilloscope(Oscilloscope *osc) { bufferPreviewer->setOscilloscope(osc); }
+void NetworkAnalyzer::setOscilloscope(Oscilloscope *osc)
+{
+	bufferPreviewer->setOscilloscope(osc);
+}
 
-bool NetworkAnalyzer::isIterationsThreadReady() { return iterationsThreadReady; }
+bool NetworkAnalyzer::isIterationsThreadReady()
+{
+	return iterationsThreadReady;
+}
 
-bool NetworkAnalyzer::isIterationsThreadCanceled() { return iterationsThreadCanceled; }
+bool NetworkAnalyzer::isIterationsThreadCanceled()
+{
+	return iterationsThreadCanceled;
+}
 
 void NetworkAnalyzer::onMinMaxPhaseChanged(double value)
 {
@@ -835,7 +847,10 @@ void NetworkAnalyzer::rightMenuFinished(bool opened)
 	}
 }
 
-void NetworkAnalyzer::showEvent(QShowEvent *event) { M2kTool::showEvent(event); }
+void NetworkAnalyzer::showEvent(QShowEvent *event)
+{
+	M2kTool::showEvent(event);
+}
 
 void NetworkAnalyzer::on_btnExport_clicked()
 {
@@ -1309,7 +1324,10 @@ void NetworkAnalyzer::goertzel()
 	Q_EMIT sweepDone();
 }
 
-void NetworkAnalyzer::onFrequencyBarMoved(int pos) { d_frequencyHandle->setPositionSilenty(pos); }
+void NetworkAnalyzer::onFrequencyBarMoved(int pos)
+{
+	d_frequencyHandle->setPositionSilenty(pos);
+}
 
 void NetworkAnalyzer::toggleBufferPreview(bool toggle)
 {
@@ -1741,12 +1759,27 @@ void NetworkAnalyzer::readPreferences()
 	//	autoAdjustGain = prefPanel->getNaGainUpdateEnabled();
 }
 
-void NetworkAnalyzer::onGraphIndexChanged(int index) { ui->stackedWidget->setCurrentIndex(index); }
+void NetworkAnalyzer::onGraphIndexChanged(int index)
+{
+	ui->stackedWidget->setCurrentIndex(index);
+}
 
-void NetworkAnalyzer::on_spinBox_averaging_valueChanged(int n) { m_nb_averaging = n; }
+void NetworkAnalyzer::on_spinBox_averaging_valueChanged(int n)
+{
+	m_nb_averaging = n;
+}
 
-void NetworkAnalyzer::validateSpinboxAveraging() { on_spinBox_averaging_valueChanged(ui->spinBox_averaging->value()); }
+void NetworkAnalyzer::validateSpinboxAveraging()
+{
+	on_spinBox_averaging_valueChanged(ui->spinBox_averaging->value());
+}
 
-void NetworkAnalyzer::on_spinBox_periods_valueChanged(int n) { m_nb_periods = n; }
+void NetworkAnalyzer::on_spinBox_periods_valueChanged(int n)
+{
+	m_nb_periods = n;
+}
 
-void NetworkAnalyzer::validateSpinboxPeriods() { on_spinBox_periods_valueChanged(ui->spinBox_periods->value()); }
+void NetworkAnalyzer::validateSpinboxPeriods()
+{
+	on_spinBox_periods_valueChanged(ui->spinBox_periods->value());
+}

@@ -153,4 +153,7 @@ RegisterMapSettingsMenu::RegisterMapSettingsMenu(QWidget *parent)
 	applyStyle();
 }
 
-void RegisterMapSettingsMenu::applyStyle() { RegmapStyleHelper::regmapSettingsMenu(this); }
+void RegisterMapSettingsMenu::applyStyle()
+{
+	RegmapStyleHelper::regmapSettingsMenu(this);
+}

@@ -143,9 +143,15 @@ void MeasurementController::disableStats(QString name)
 	qInfo() << "Stat " << name << "removed";
 }
 
-void MeasurementController::addMeasurement(MeasurementInfo v) { m_availableMeasurements.push_back(v); }
+void MeasurementController::addMeasurement(MeasurementInfo v)
+{
+	m_availableMeasurements.push_back(v);
+}
 
-QList<MeasurementInfo> MeasurementController::availableMeasurements() const { return m_availableMeasurements; }
+QList<MeasurementInfo> MeasurementController::availableMeasurements() const
+{
+	return m_availableMeasurements;
+}
 
 TimeChannelMeasurementController::TimeChannelMeasurementController(TimeMeasureModel *msr, QPen m_pen, QObject *parent)
 	: MeasurementController(m_pen, msr, parent)

@@ -39,13 +39,25 @@ using namespace scopy;
 using namespace scopy::logic;
 using namespace scopy::m2k::logic;
 
-double LogicAnalyzer_API::getSampleRate() const { return m_logic->m_sampleRateButton->value(); }
+double LogicAnalyzer_API::getSampleRate() const
+{
+	return m_logic->m_sampleRateButton->value();
+}
 
-void LogicAnalyzer_API::setSampleRate(double sampleRate) { m_logic->m_sampleRateButton->setValue(sampleRate); }
+void LogicAnalyzer_API::setSampleRate(double sampleRate)
+{
+	m_logic->m_sampleRateButton->setValue(sampleRate);
+}
 
-int LogicAnalyzer_API::getBufferSize() const { return m_logic->m_bufferSizeButton->value(); }
+int LogicAnalyzer_API::getBufferSize() const
+{
+	return m_logic->m_bufferSizeButton->value();
+}
 
-void LogicAnalyzer_API::setBufferSize(int bufferSize) { m_logic->m_bufferSizeButton->setValue(bufferSize); }
+void LogicAnalyzer_API::setBufferSize(int bufferSize)
+{
+	m_logic->m_bufferSizeButton->setValue(bufferSize);
+}
 
 QList<int> LogicAnalyzer_API::getEnabledChannels() const
 {
@@ -86,16 +98,25 @@ void LogicAnalyzer_API::setEnabledDecoders(const QStringList &decoders)
 	}
 }
 
-bool LogicAnalyzer_API::getStreamOrOneShot() const { return m_logic->ui->btnStreamOneShot->isChecked(); }
+bool LogicAnalyzer_API::getStreamOrOneShot() const
+{
+	return m_logic->ui->btnStreamOneShot->isChecked();
+}
 
 void LogicAnalyzer_API::setStreamOrOneShot(bool streamOrOneShot)
 {
 	m_logic->ui->btnStreamOneShot->setChecked(streamOrOneShot);
 }
 
-int LogicAnalyzer_API::getDelay() const { return m_logic->m_timePositionButton->value(); }
+int LogicAnalyzer_API::getDelay() const
+{
+	return m_logic->m_timePositionButton->value();
+}
 
-void LogicAnalyzer_API::setDelay(int delay) { m_logic->m_timePositionButton->setValue(delay); }
+void LogicAnalyzer_API::setDelay(int delay)
+{
+	m_logic->m_timePositionButton->setValue(delay);
+}
 
 QStringList LogicAnalyzer_API::getChannelNames() const
 {
@@ -397,17 +418,35 @@ void LogicAnalyzer_API::setDecoderSettings(const QList<QStringList> &decoderSett
 	}
 }
 
-QVector<QVector<int>> LogicAnalyzer_API::getCurrentGroups() const { return m_logic->m_plot.getAllGroups(); }
+QVector<QVector<int>> LogicAnalyzer_API::getCurrentGroups() const
+{
+	return m_logic->m_plot.getAllGroups();
+}
 
-void LogicAnalyzer_API::setCurrentGroups(const QVector<QVector<int>> &groups) { m_logic->m_plot.setGroups(groups); }
+void LogicAnalyzer_API::setCurrentGroups(const QVector<QVector<int>> &groups)
+{
+	m_logic->m_plot.setGroups(groups);
+}
 
-QString LogicAnalyzer_API::getNotes() { return m_logic->ui->instrumentNotes->getNotes(); }
+QString LogicAnalyzer_API::getNotes()
+{
+	return m_logic->ui->instrumentNotes->getNotes();
+}
 
-void LogicAnalyzer_API::setNotes(QString str) { m_logic->ui->instrumentNotes->setNotes(str); }
+void LogicAnalyzer_API::setNotes(QString str)
+{
+	m_logic->ui->instrumentNotes->setNotes(str);
+}
 
-bool LogicAnalyzer_API::hasCursors() const { return m_logic->ui->cursorsBox->isChecked(); }
+bool LogicAnalyzer_API::hasCursors() const
+{
+	return m_logic->ui->cursorsBox->isChecked();
+}
 
-void LogicAnalyzer_API::setCursors(bool en) { m_logic->ui->cursorsBox->setChecked(en); }
+void LogicAnalyzer_API::setCursors(bool en)
+{
+	m_logic->ui->cursorsBox->setChecked(en);
+}
 
 int LogicAnalyzer_API::getCursorsPosition() const
 {

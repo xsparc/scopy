@@ -111,7 +111,10 @@ void PlotWidget::setupHandlesArea()
 	m_layout->addWidget(m_plot, 2, 1);
 }
 
-void PlotWidget::addPlotInfoSlot(QWidget *w) { m_layout->addWidget(w, 0, 1); }
+void PlotWidget::addPlotInfoSlot(QWidget *w)
+{
+	m_layout->addWidget(w, 0, 1);
+}
 
 void PlotWidget::setupZoomer()
 {
@@ -208,15 +211,30 @@ void PlotWidget::addPlotChannel(PlotChannel *ch)
 	}
 }
 
-void PlotWidget::removePlotChannel(PlotChannel *ch) { m_plotChannels.removeAll(ch); }
+void PlotWidget::removePlotChannel(PlotChannel *ch)
+{
+	m_plotChannels.removeAll(ch);
+}
 
-void PlotWidget::addPlotAxisHandle(PlotAxisHandle *ax) { m_plotAxisHandles[ax->axis()->position()].append(ax); }
+void PlotWidget::addPlotAxisHandle(PlotAxisHandle *ax)
+{
+	m_plotAxisHandles[ax->axis()->position()].append(ax);
+}
 
-void PlotWidget::removePlotAxisHandle(PlotAxisHandle *ax) { m_plotAxisHandles[ax->axis()->position()].removeAll(ax); }
+void PlotWidget::removePlotAxisHandle(PlotAxisHandle *ax)
+{
+	m_plotAxisHandles[ax->axis()->position()].removeAll(ax);
+}
 
-void PlotWidget::addPlotAxis(PlotAxis *ax) { m_plotAxis[ax->position()].append(ax); }
+void PlotWidget::addPlotAxis(PlotAxis *ax)
+{
+	m_plotAxis[ax->position()].append(ax);
+}
 
-bool PlotWidget::getDisplayGraticule() const { return displayGraticule; }
+bool PlotWidget::getDisplayGraticule() const
+{
+	return displayGraticule;
+}
 
 void PlotWidget::setDisplayGraticule(bool newDisplayGraticule)
 {
@@ -265,15 +283,30 @@ bool PlotWidget::eventFilter(QObject *object, QEvent *event)
 	return QObject::eventFilter(object, event);
 }
 
-QList<PlotAxis *> &PlotWidget::plotAxis(int position) { return m_plotAxis[position]; }
+QList<PlotAxis *> &PlotWidget::plotAxis(int position)
+{
+	return m_plotAxis[position];
+}
 
-PlotAxis *PlotWidget::xAxis() { return m_xAxis; }
+PlotAxis *PlotWidget::xAxis()
+{
+	return m_xAxis;
+}
 
-PlotAxis *PlotWidget::yAxis() { return m_yAxis; }
+PlotAxis *PlotWidget::yAxis()
+{
+	return m_yAxis;
+}
 
-QwtPlot *PlotWidget::plot() const { return m_plot; }
+QwtPlot *PlotWidget::plot() const
+{
+	return m_plot;
+}
 
-void PlotWidget::replot() { m_plot->replot(); }
+void PlotWidget::replot()
+{
+	m_plot->replot();
+}
 
 void PlotWidget::hideAxisLabels()
 {
@@ -291,13 +324,25 @@ void PlotWidget::hideDefaultAxis()
 	m_plot->setAxisVisible(QwtAxisId(QwtAxis::YRight, 0), false);
 }
 
-bool PlotWidget::showYAxisLabels() const { return m_showYAxisLabels; }
+bool PlotWidget::showYAxisLabels() const
+{
+	return m_showYAxisLabels;
+}
 
-void PlotWidget::setShowYAxisLabels(bool newShowYAxisLabels) { m_showYAxisLabels = newShowYAxisLabels; }
+void PlotWidget::setShowYAxisLabels(bool newShowYAxisLabels)
+{
+	m_showYAxisLabels = newShowYAxisLabels;
+}
 
-bool PlotWidget::showXAxisLabels() const { return m_showXAxisLabels; }
+bool PlotWidget::showXAxisLabels() const
+{
+	return m_showXAxisLabels;
+}
 
-void PlotWidget::setShowXAxisLabels(bool newShowXAxisLabels) { m_showXAxisLabels = newShowXAxisLabels; }
+void PlotWidget::setShowXAxisLabels(bool newShowXAxisLabels)
+{
+	m_showXAxisLabels = newShowXAxisLabels;
+}
 
 void PlotWidget::showAxisLabels()
 {
@@ -318,16 +363,34 @@ void PlotWidget::selectChannel(PlotChannel *ch)
 	}
 }
 
-PlotChannel *PlotWidget::selectedChannel() const { return m_selectedChannel; }
+PlotChannel *PlotWidget::selectedChannel() const
+{
+	return m_selectedChannel;
+}
 
-VertHandlesArea *PlotWidget::leftHandlesArea() const { return m_leftHandlesArea; }
+VertHandlesArea *PlotWidget::leftHandlesArea() const
+{
+	return m_leftHandlesArea;
+}
 
-VertHandlesArea *PlotWidget::rightHandlesArea() const { return m_rightHandlesArea; }
+VertHandlesArea *PlotWidget::rightHandlesArea() const
+{
+	return m_rightHandlesArea;
+}
 
-HorizHandlesArea *PlotWidget::topHandlesArea() const { return m_topHandlesArea; }
+HorizHandlesArea *PlotWidget::topHandlesArea() const
+{
+	return m_topHandlesArea;
+}
 
-HorizHandlesArea *PlotWidget::bottomHandlesArea() const { return m_bottomHandlesArea; }
+HorizHandlesArea *PlotWidget::bottomHandlesArea() const
+{
+	return m_bottomHandlesArea;
+}
 
-SymbolController *PlotWidget::symbolCtrl() const { return m_symbolCtrl; }
+SymbolController *PlotWidget::symbolCtrl() const
+{
+	return m_symbolCtrl;
+}
 
 #include "moc_plotwidget.cpp"

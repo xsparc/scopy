@@ -26,9 +26,15 @@ CommandQueueRefCounter::~CommandQueueRefCounter()
 CommandQueueProvider *CommandQueueProvider::pinstance_{nullptr};
 std::mutex CommandQueueProvider::mutex_;
 
-CommandQueueProvider::CommandQueueProvider(QObject *parent) { qDebug(CAT_CMDQMGR) << "ctor"; }
+CommandQueueProvider::CommandQueueProvider(QObject *parent)
+{
+	qDebug(CAT_CMDQMGR) << "ctor";
+}
 
-CommandQueueProvider::~CommandQueueProvider() { qDebug(CAT_CMDQMGR) << "dtor"; }
+CommandQueueProvider::~CommandQueueProvider()
+{
+	qDebug(CAT_CMDQMGR) << "dtor";
+}
 
 CommandQueueProvider *scopy::CommandQueueProvider::GetInstance()
 {

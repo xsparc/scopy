@@ -82,7 +82,10 @@ public:
 	void stop_all();
 
 	/* Returns true if the GNU Radio flowgraph is running */
-	bool started() { return _started; }
+	bool started()
+	{
+		return _started;
+	}
 
 	/* Change the buffer size at runtime.
 	 * Warning: the flowgraph needs to be locked first! */

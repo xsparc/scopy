@@ -80,7 +80,10 @@ QWidget *Bool::get_widget(QWidget *parent, bool auto_commit)
 	return check_box_;
 }
 
-bool Bool::labeled_widget() const { return true; }
+bool Bool::labeled_widget() const
+{
+	return true;
+}
 
 void Bool::update_widget()
 {
@@ -111,7 +114,10 @@ void Bool::commit()
 	setter_(QVariant(check_box_->checkState() == Qt::Checked));
 }
 
-void Bool::on_state_changed(int) { commit(); }
+void Bool::on_state_changed(int)
+{
+	commit();
+}
 
 } // namespace prop
 } // namespace scopy

@@ -218,7 +218,10 @@ QVector<double> FileManager::read(int index)
 	return channel_data;
 }
 
-QVector<QVector<double>> FileManager::read() { return data; }
+QVector<QVector<double>> FileManager::read()
+{
+	return data;
+}
 
 void FileManager::setColumnName(int index, QString name)
 {
@@ -242,11 +245,20 @@ QString FileManager::getColumnName(int index)
 	return columnNames[index];
 }
 
-double FileManager::getSampleRate() const { return sampleRate; }
+double FileManager::getSampleRate() const
+{
+	return sampleRate;
+}
 
-void FileManager::setSampleRate(double sampleRate) { this->sampleRate = sampleRate; }
+void FileManager::setSampleRate(double sampleRate)
+{
+	this->sampleRate = sampleRate;
+}
 
-double FileManager::getNrOfSamples() const { return nrOfSamples; }
+double FileManager::getNrOfSamples() const
+{
+	return nrOfSamples;
+}
 
 int FileManager::getNrOfChannels() const
 {
@@ -384,13 +396,25 @@ void FileManager::performDecoderWrite(bool skip_empty_lines)
 	exportFile.close();
 }
 
-QStringList FileManager::getAdditionalInformation() const { return additionalInformation; }
+QStringList FileManager::getAdditionalInformation() const
+{
+	return additionalInformation;
+}
 
-void FileManager::setAdditionalInformation(const QString &value) { additionalInformation.push_back(value); }
+void FileManager::setAdditionalInformation(const QString &value)
+{
+	additionalInformation.push_back(value);
+}
 
-FileManager::FileFormat FileManager::getFormat() const { return format; }
+FileManager::FileFormat FileManager::getFormat() const
+{
+	return format;
+}
 
-void FileManager::setFormat(const FileManager::FileFormat &value) { format = value; }
+void FileManager::setFormat(const FileManager::FileFormat &value)
+{
+	format = value;
+}
 
 void FileManager::writeToFile(bool overwrite, QMap<QString, QVector<QString>> data)
 {

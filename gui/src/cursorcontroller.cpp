@@ -145,7 +145,10 @@ void CursorController::setVisible(bool visible)
 	cursorsSetVisible(visible);
 }
 
-void CursorController::readoutsSetVisible(bool visible) { hoverReadouts->setVisible(visible && (horizEn || vertEn)); }
+void CursorController::readoutsSetVisible(bool visible)
+{
+	hoverReadouts->setVisible(visible && (horizEn || vertEn));
+}
 
 void CursorController::cursorsSetVisible(bool visible)
 {
@@ -153,8 +156,14 @@ void CursorController::cursorsSetVisible(bool visible)
 	plotCursors->vertSetVisible(visible && vertEn);
 }
 
-CursorSettings *CursorController::getCursorSettings() { return cursorSettings; }
+CursorSettings *CursorController::getCursorSettings()
+{
+	return cursorSettings;
+}
 
-PlotCursors *CursorController::getPlotCursors() { return plotCursors; }
+PlotCursors *CursorController::getPlotCursors()
+{
+	return plotCursors;
+}
 
 #include "moc_cursorcontroller.cpp"

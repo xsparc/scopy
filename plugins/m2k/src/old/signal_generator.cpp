@@ -534,7 +534,10 @@ SignalGenerator::~SignalGenerator()
 	delete time_block_data;
 }
 
-void SignalGenerator::settingsLoaded() { updatePreview(); }
+void SignalGenerator::settingsLoaded()
+{
+	updatePreview();
+}
 
 void SignalGenerator::readPreferences()
 {
@@ -969,7 +972,10 @@ void SignalGenerator::waveformTypeChanged(int val)
 	}
 }
 
-QSharedPointer<signal_generator_data> SignalGenerator::getCurrentData() { return getData(channels[currentChannel]); }
+QSharedPointer<signal_generator_data> SignalGenerator::getCurrentData()
+{
+	return getData(channels[currentChannel]);
+}
 
 QSharedPointer<signal_generator_data> SignalGenerator::getData(QWidget *obj)
 {
@@ -1382,7 +1388,10 @@ void SignalGenerator::start()
 	m_m2k_analogout->push(buffers);
 }
 
-void SignalGenerator::run() { start(); }
+void SignalGenerator::run()
+{
+	start();
+}
 
 void SignalGenerator::stop()
 {
@@ -2153,7 +2162,10 @@ double SignalGenerator::get_best_ratio(double ratio, double max, double *fract)
 	return best_ratio;
 }
 
-QPushButton *SignalGenerator::getRunButton() { return ui->run_button->getRunButton(); }
+QPushButton *SignalGenerator::getRunButton()
+{
+	return ui->run_button->getRunButton();
+}
 
 std::vector<float> SignalGenerator::get_stairstep(int rise, int fall, float amplitude, float offset, int phase)
 {

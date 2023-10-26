@@ -39,9 +39,15 @@ NetworkAnalyzerBufferViewer::NetworkAnalyzerBufferViewer(QWidget *parent)
 	_setupPlot();
 }
 
-NetworkAnalyzerBufferViewer::~NetworkAnalyzerBufferViewer() { delete d_ui; }
+NetworkAnalyzerBufferViewer::~NetworkAnalyzerBufferViewer()
+{
+	delete d_ui;
+}
 
-void NetworkAnalyzerBufferViewer::setNumBuffers(unsigned int numBuffers) { d_numBuffers = numBuffers; }
+void NetworkAnalyzerBufferViewer::setNumBuffers(unsigned int numBuffers)
+{
+	d_numBuffers = numBuffers;
+}
 
 void NetworkAnalyzerBufferViewer::pushBuffers(QPair<Buffer, Buffer> buffers)
 {
@@ -157,7 +163,10 @@ void NetworkAnalyzerBufferViewer::setVisible(bool visible)
 	}
 }
 
-void NetworkAnalyzerBufferViewer::setOscilloscope(Oscilloscope *osc) { d_osc = osc; }
+void NetworkAnalyzerBufferViewer::setOscilloscope(Oscilloscope *osc)
+{
+	d_osc = osc;
+}
 
 void NetworkAnalyzerBufferViewer::clear()
 {

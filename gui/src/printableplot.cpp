@@ -40,7 +40,10 @@ void PrintablePlot::dropBackground(bool drop)
 	d_plotRenderer.setDiscardFlag(QwtPlotRenderer::DiscardCanvasBackground, drop);
 }
 
-void PrintablePlot::setUseNativeDialog(bool nativeDialog) { d_useNativeDialog = nativeDialog; }
+void PrintablePlot::setUseNativeDialog(bool nativeDialog)
+{
+	d_useNativeDialog = nativeDialog;
+}
 
 void PrintablePlot::printPlot(const QString &toolName)
 {

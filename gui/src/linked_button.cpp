@@ -21,8 +21,14 @@ LinkedButton::LinkedButton(QWidget *parent)
 	connect(this, SIGNAL(clicked()), this, SLOT(openUrl()));
 }
 
-void LinkedButton::openUrl() { QDesktopServices::openUrl(QUrl(this->url)); }
+void LinkedButton::openUrl()
+{
+	QDesktopServices::openUrl(QUrl(this->url));
+}
 
-void LinkedButton::setUrl(QString url) { this->url = url; }
+void LinkedButton::setUrl(QString url)
+{
+	this->url = url;
+}
 
 #include "moc_linked_button.cpp"

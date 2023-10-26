@@ -16,9 +16,15 @@ RegisterMapTemplate::RegisterMapTemplate(QObject *parent)
 	registerList = new QMap<uint32_t, RegisterModel *>();
 }
 
-RegisterMapTemplate::~RegisterMapTemplate() { delete registerList; }
+RegisterMapTemplate::~RegisterMapTemplate()
+{
+	delete registerList;
+}
 
-QMap<uint32_t, RegisterModel *> *RegisterMapTemplate::getRegisterList() const { return registerList; }
+QMap<uint32_t, RegisterModel *> *RegisterMapTemplate::getRegisterList() const
+{
+	return registerList;
+}
 
 RegisterModel *RegisterMapTemplate::getRegisterTemplate(uint32_t address)
 {

@@ -73,11 +73,20 @@ GRTimePlotAddon::GRTimePlotAddon(QString name, GRTopBlock *top, QObject *parent)
 
 GRTimePlotAddon::~GRTimePlotAddon() {}
 
-QString GRTimePlotAddon::getName() { return name; }
+QString GRTimePlotAddon::getName()
+{
+	return name;
+}
 
-QWidget *GRTimePlotAddon::getWidget() { return widget; }
+QWidget *GRTimePlotAddon::getWidget()
+{
+	return widget;
+}
 
-PlotWidget *GRTimePlotAddon::plot() { return m_plotWidget; }
+PlotWidget *GRTimePlotAddon::plot()
+{
+	return m_plotWidget;
+}
 
 void GRTimePlotAddon::enable() {}
 
@@ -219,7 +228,10 @@ void GRTimePlotAddon::replot()
 #endif
 }
 
-void GRTimePlotAddon::updateBufferPreviewer() { m_info->updateBufferPreviewer(); }
+void GRTimePlotAddon::updateBufferPreviewer()
+{
+	m_info->updateBufferPreviewer();
+}
 
 void GRTimePlotAddon::onInit()
 {
@@ -239,9 +251,15 @@ void GRTimePlotAddon::onDeinit()
 
 void GRTimePlotAddon::preFlowStart() {}
 
-void GRTimePlotAddon::postFlowStart() { startPlotRefresh(); }
+void GRTimePlotAddon::postFlowStart()
+{
+	startPlotRefresh();
+}
 
-void GRTimePlotAddon::preFlowStop() { stopPlotRefresh(); }
+void GRTimePlotAddon::preFlowStop()
+{
+	stopPlotRefresh();
+}
 
 void GRTimePlotAddon::postFlowStop() {}
 
@@ -350,9 +368,15 @@ void GRTimePlotAddon::setDrawPlotTags(bool b)
 	drawPlot();
 }
 
-double GRTimePlotAddon::sampleRate() { return m_currentSamplingInfo.sampleRate; }
+double GRTimePlotAddon::sampleRate()
+{
+	return m_currentSamplingInfo.sampleRate;
+}
 
-void GRTimePlotAddon::setSampleRate(double val) { m_currentSamplingInfo.sampleRate = val; }
+void GRTimePlotAddon::setSampleRate(double val)
+{
+	m_currentSamplingInfo.sampleRate = val;
+}
 
 void GRTimePlotAddon::setBufferSize(uint32_t size)
 {
@@ -396,6 +420,12 @@ void GRTimePlotAddon::setFrameRate(double val)
 	m_plotTimer->setInterval(timeout);
 }
 
-void GRTimePlotAddon::setXMode(int mode) { m_xmode = mode; }
+void GRTimePlotAddon::setXMode(int mode)
+{
+	m_xmode = mode;
+}
 
-int GRTimePlotAddon::xMode() { return m_xmode; }
+int GRTimePlotAddon::xMode()
+{
+	return m_xmode;
+}

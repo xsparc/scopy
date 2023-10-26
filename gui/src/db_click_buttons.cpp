@@ -59,9 +59,15 @@ DbClickButtons::DbClickButtons(QWidget *parent, int maxRowBtnCount)
 	}
 }
 
-DbClickButtons::~DbClickButtons() { delete ui; }
+DbClickButtons::~DbClickButtons()
+{
+	delete ui;
+}
 
-int DbClickButtons::selectedButton() const { return selected_btn; }
+int DbClickButtons::selectedButton() const
+{
+	return selected_btn;
+}
 
 void DbClickButtons::setSelectedButton(int btnId)
 {
@@ -83,7 +89,10 @@ void DbClickButtons::setSelectedButton(int btnId)
 	}
 }
 
-bool DbClickButtons::buttonChecked(int btnId) const { return btn_states[btnId]; }
+bool DbClickButtons::buttonChecked(int btnId) const
+{
+	return btn_states[btnId];
+}
 
 void DbClickButtons::setButtonChecked(int btnId, bool checked)
 {
@@ -94,7 +103,10 @@ void DbClickButtons::setButtonChecked(int btnId, bool checked)
 	Q_EMIT buttonToggled(btnId, checked);
 }
 
-int DbClickButtons::buttonCount() const { return btn_list.size(); }
+int DbClickButtons::buttonCount() const
+{
+	return btn_list.size();
+}
 
 void DbClickButtons::setButtonCount(int count)
 {
@@ -147,6 +159,9 @@ void DbClickButtons::onButtonClicked()
 	}
 }
 
-void DbClickButtons::toggleButton(int btnId) { setButtonChecked(btnId, !btn_states[btnId]); }
+void DbClickButtons::toggleButton(int btnId)
+{
+	setButtonChecked(btnId, !btn_states[btnId]);
+}
 
 #include "moc_db_click_buttons.cpp"

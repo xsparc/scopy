@@ -23,9 +23,15 @@ MenuComboWidget::MenuComboWidget(QString title, QWidget *parent)
 
 MenuComboWidget::~MenuComboWidget() {}
 
-QComboBox *MenuComboWidget::combo() { return m_combo->combo(); }
+QComboBox *MenuComboWidget::combo()
+{
+	return m_combo->combo();
+}
 
-void MenuComboWidget::applyStylesheet() { StyleHelper::MenuComboWidget(this, "menuComboWidget"); }
+void MenuComboWidget::applyStylesheet()
+{
+	StyleHelper::MenuComboWidget(this, "menuComboWidget");
+}
 
 MenuCombo::MenuCombo(QString title, QWidget *parent)
 	: QWidget(parent)
@@ -46,7 +52,10 @@ MenuCombo::MenuCombo(QString title, QWidget *parent)
 }
 
 MenuCombo::~MenuCombo() {}
-QComboBox *MenuCombo::combo() { return m_combo; }
+QComboBox *MenuCombo::combo()
+{
+	return m_combo;
+}
 
 void MenuCombo::applyStylesheet()
 {

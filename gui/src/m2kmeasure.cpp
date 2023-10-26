@@ -69,7 +69,10 @@ public:
 		, m_is_between_trholds(false)
 	{}
 
-	bool isBetweenThresholds() { return m_is_between_trholds; }
+	bool isBetweenThresholds()
+	{
+		return m_is_between_trholds;
+	}
 
 	virtual inline bool updateState(enum crossEvents crsEvent) = 0;
 
@@ -199,7 +202,10 @@ public:
 		, m_externList(NULL)
 	{}
 
-	double level() { return m_level; }
+	double level()
+	{
+		return m_level;
+	}
 
 	void setLevel(double level)
 	{
@@ -210,7 +216,10 @@ public:
 		}
 	}
 
-	double hysteresisSpan() { return m_hysteresis_span; }
+	double hysteresisSpan()
+	{
+		return m_hysteresis_span;
+	}
 
 	void setHysteresisSpan(double span)
 	{
@@ -221,9 +230,15 @@ public:
 		}
 	}
 
-	void setExternalList(QList<CrossPoint> *externList) { m_externList = externList; }
+	void setExternalList(QList<CrossPoint> *externList)
+	{
+		m_externList = externList;
+	}
 
-	QList<CrossPoint> detectedCrossings() { return m_detectedCrossings; }
+	QList<CrossPoint> detectedCrossings()
+	{
+		return m_detectedCrossings;
+	}
 
 	inline void store_closest_val_to_cross_lvl(double *data, size_t i, size_t &point)
 	{
@@ -457,7 +472,10 @@ private:
 		}
 	}
 
-	void clearMask(std::vector<int> &mask, int start, int end) { setMask(mask, start, end, 0); }
+	void clearMask(std::vector<int> &mask, int start, int end)
+	{
+		setMask(mask, start, end, 0);
+	}
 
 	void maskedSubset(std::vector<int> &indices, std::vector<int> &new_mask, std::vector<int> mask, int start,
 			  int end)
@@ -1157,23 +1175,50 @@ void M2kMeasure::measureSpectral()
 	m_measurements[SFDR]->setValue(sfdr);
 }
 
-double M2kMeasure::sampleRate() { return m_sample_rate; }
+double M2kMeasure::sampleRate()
+{
+	return m_sample_rate;
+}
 
-void M2kMeasure::setSampleRate(double value) { m_sample_rate = value; }
+void M2kMeasure::setSampleRate(double value)
+{
+	m_sample_rate = value;
+}
 
-unsigned int M2kMeasure::adcBitCount() { return m_adc_bit_count; }
+unsigned int M2kMeasure::adcBitCount()
+{
+	return m_adc_bit_count;
+}
 
-void M2kMeasure::setAdcBitCount(unsigned int val) { m_adc_bit_count = val; }
+void M2kMeasure::setAdcBitCount(unsigned int val)
+{
+	m_adc_bit_count = val;
+}
 
-double M2kMeasure::crossLevel() { return m_cross_level; }
+double M2kMeasure::crossLevel()
+{
+	return m_cross_level;
+}
 
-void M2kMeasure::setCrossLevel(double value) { m_cross_level = value; }
+void M2kMeasure::setCrossLevel(double value)
+{
+	m_cross_level = value;
+}
 
-double M2kMeasure::hysteresisSpan() { return m_hysteresis_span; }
+double M2kMeasure::hysteresisSpan()
+{
+	return m_hysteresis_span;
+}
 
-void M2kMeasure::setHysteresisSpan(double value) { m_hysteresis_span = value; }
+void M2kMeasure::setHysteresisSpan(double value)
+{
+	m_hysteresis_span = value;
+}
 
-int M2kMeasure::channel() const { return m_channel; }
+int M2kMeasure::channel() const
+{
+	return m_channel;
+}
 
 void M2kMeasure::setChannel(int channel)
 {
@@ -1185,11 +1230,20 @@ void M2kMeasure::setChannel(int channel)
 	}
 }
 
-void M2kMeasure::setStartIndex(int index) { m_startIndex = index; }
+void M2kMeasure::setStartIndex(int index)
+{
+	m_startIndex = index;
+}
 
-void M2kMeasure::setEndIndex(int index) { m_endIndex = index; }
+void M2kMeasure::setEndIndex(int index)
+{
+	m_endIndex = index;
+}
 
-void M2kMeasure::setGatingEnabled(bool enable) { m_gatingEnabled = enable; }
+void M2kMeasure::setGatingEnabled(bool enable)
+{
+	m_gatingEnabled = enable;
+}
 
 std::vector<int> M2kMeasure::LoadMaskfromFile(std::string file_name)
 {
@@ -1207,13 +1261,25 @@ std::vector<int> M2kMeasure::LoadMaskfromFile(std::string file_name)
 	return mask;
 }
 
-void M2kMeasure::setHarmonicNumber(int harmonics_number) { m_harmonics_number = harmonics_number; }
+void M2kMeasure::setHarmonicNumber(int harmonics_number)
+{
+	m_harmonics_number = harmonics_number;
+}
 
-void M2kMeasure::setMask(std::vector<int> mask) { std::vector<int> m_mask = mask; }
+void M2kMeasure::setMask(std::vector<int> mask)
+{
+	std::vector<int> m_mask = mask;
+}
 
-QList<std::shared_ptr<M2kMeasurementData>> M2kMeasure::measurments() { return m_measurements; }
+QList<std::shared_ptr<M2kMeasurementData>> M2kMeasure::measurments()
+{
+	return m_measurements;
+}
 
-std::shared_ptr<M2kMeasurementData> M2kMeasure::measurement(int id) { return m_measurements[id]; }
+std::shared_ptr<M2kMeasurementData> M2kMeasure::measurement(int id)
+{
+	return m_measurements[id];
+}
 
 int M2kMeasure::activeMeasurementsCount() const
 {
@@ -1254,9 +1320,15 @@ M2kMeasurementData::M2kMeasurementData(const QString &name, axisType axis, const
 		m_unitType = METRIC;
 }
 
-QString M2kMeasurementData::name() const { return m_name; }
+QString M2kMeasurementData::name() const
+{
+	return m_name;
+}
 
-double M2kMeasurementData::value() const { return m_value; }
+double M2kMeasurementData::value() const
+{
+	return m_value;
+}
 
 void M2kMeasurementData::setValue(double value)
 {
@@ -1264,23 +1336,50 @@ void M2kMeasurementData::setValue(double value)
 	m_measured = true;
 }
 
-bool M2kMeasurementData::measured() const { return m_measured; }
+bool M2kMeasurementData::measured() const
+{
+	return m_measured;
+}
 
-void M2kMeasurementData::setMeasured(bool state) { m_measured = state; }
+void M2kMeasurementData::setMeasured(bool state)
+{
+	m_measured = state;
+}
 
-bool M2kMeasurementData::enabled() const { return m_enabled; }
+bool M2kMeasurementData::enabled() const
+{
+	return m_enabled;
+}
 
-void M2kMeasurementData::setEnabled(bool en) { m_enabled = en; }
+void M2kMeasurementData::setEnabled(bool en)
+{
+	m_enabled = en;
+}
 
-QString M2kMeasurementData::unit() const { return m_unit; }
+QString M2kMeasurementData::unit() const
+{
+	return m_unit;
+}
 
-M2kMeasurementData::unitTypes M2kMeasurementData::unitType() const { return m_unitType; }
+M2kMeasurementData::unitTypes M2kMeasurementData::unitType() const
+{
+	return m_unitType;
+}
 
-int M2kMeasurementData::channel() const { return m_channel; }
+int M2kMeasurementData::channel() const
+{
+	return m_channel;
+}
 
-void M2kMeasurementData::setChannel(int channel) { m_channel = channel; }
+void M2kMeasurementData::setChannel(int channel)
+{
+	m_channel = channel;
+}
 
-M2kMeasurementData::axisType M2kMeasurementData::axis() const { return m_axis; }
+M2kMeasurementData::axisType M2kMeasurementData::axis() const
+{
+	return m_axis;
+}
 
 /*
  * Class Statistic implementation
@@ -1321,10 +1420,22 @@ void M2kStatistic::clear()
 	m_average = 0;
 }
 
-double M2kStatistic::average() const { return m_average; }
+double M2kStatistic::average() const
+{
+	return m_average;
+}
 
-double M2kStatistic::min() const { return m_min; }
+double M2kStatistic::min() const
+{
+	return m_min;
+}
 
-double M2kStatistic::max() const { return m_max; }
+double M2kStatistic::max() const
+{
+	return m_max;
+}
 
-double M2kStatistic::numPushedData() const { return m_dataCount; }
+double M2kStatistic::numPushedData() const
+{
+	return m_dataCount;
+}

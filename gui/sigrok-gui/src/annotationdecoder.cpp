@@ -286,7 +286,10 @@ void AnnotationDecoder::dataAvailable(uint64_t from, uint64_t to, uint16_t *data
 	}
 }
 
-std::vector<std::shared_ptr<logic::Decoder>> AnnotationDecoder::getDecoderStack() { return m_stack; }
+std::vector<std::shared_ptr<logic::Decoder>> AnnotationDecoder::getDecoderStack()
+{
+	return m_stack;
+}
 
 void AnnotationDecoder::unassignChannel(uint16_t chId)
 {
@@ -374,7 +377,10 @@ void AnnotationDecoder::assignChannel(uint16_t chId, uint16_t bitId)
 	startDecode();
 }
 
-int AnnotationDecoder::getNrOfChannels() const { return m_channels.size(); }
+int AnnotationDecoder::getNrOfChannels() const
+{
+	return m_channels.size();
+}
 
 void AnnotationDecoder::stackChanged()
 {

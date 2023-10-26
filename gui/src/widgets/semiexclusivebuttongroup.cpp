@@ -11,9 +11,15 @@ SemiExclusiveButtonGroup::SemiExclusiveButtonGroup(QObject *parent)
 	connect(this, SIGNAL(buttonClicked(QAbstractButton *)), SLOT(buttonClicked(QAbstractButton *)));
 }
 
-void SemiExclusiveButtonGroup::setExclusive(bool bExclusive) { m_exclusive = bExclusive; }
+void SemiExclusiveButtonGroup::setExclusive(bool bExclusive)
+{
+	m_exclusive = bExclusive;
+}
 
-bool SemiExclusiveButtonGroup::exclusive() const { return m_exclusive; }
+bool SemiExclusiveButtonGroup::exclusive() const
+{
+	return m_exclusive;
+}
 
 QAbstractButton *SemiExclusiveButtonGroup::getSelectedButton()
 {

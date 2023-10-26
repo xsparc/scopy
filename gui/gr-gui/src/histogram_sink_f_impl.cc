@@ -97,7 +97,10 @@ histogram_sink_f_impl::~histogram_sink_f_impl()
 	}
 }
 
-bool histogram_sink_f_impl::check_topology(int ninputs, int noutputs) { return ninputs == d_nconnections; }
+bool histogram_sink_f_impl::check_topology(int ninputs, int noutputs)
+{
+	return ninputs == d_nconnections;
+}
 
 void histogram_sink_f_impl::initialize()
 {
@@ -111,7 +114,10 @@ void histogram_sink_f_impl::initialize()
 	plot->setXaxis(d_xmin, d_xmax);
 }
 
-void histogram_sink_f_impl::exec_() { d_qApplication->exec(); }
+void histogram_sink_f_impl::exec_()
+{
+	d_qApplication->exec();
+}
 
 void histogram_sink_f_impl::set_update_time(double t)
 {
@@ -149,11 +155,20 @@ void histogram_sink_f_impl::set_bins(const int bins)
 	plot->setNumBins(d_bins);
 }
 
-int histogram_sink_f_impl::nsamps() const { return d_size; }
+int histogram_sink_f_impl::nsamps() const
+{
+	return d_size;
+}
 
-int histogram_sink_f_impl::bins() const { return d_bins; }
+int histogram_sink_f_impl::bins() const
+{
+	return d_bins;
+}
 
-void histogram_sink_f_impl::reset() { d_index = 0; }
+void histogram_sink_f_impl::reset()
+{
+	d_index = 0;
+}
 
 int histogram_sink_f_impl::work(int noutput_items, gr_vector_const_void_star &input_items,
 				gr_vector_void_star &output_items)

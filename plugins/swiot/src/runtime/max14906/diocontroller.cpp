@@ -67,4 +67,7 @@ QString DioController::getChannelType(unsigned int index)
 	return output ? "OUTPUT" : "INPUT";
 }
 
-iio_device *DioController::getDevice() const { return DioController::m_device; }
+iio_device *DioController::getDevice() const
+{
+	return DioController::m_device;
+}

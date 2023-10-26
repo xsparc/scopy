@@ -201,7 +201,10 @@ void BufferLogic::readChnlsSamplingFreqAttr()
 	m_commandQueue->enqueue(readSrCommand);
 }
 
-int BufferLogic::getPlotChnlsNo() { return m_plotChnlsNo; }
+int BufferLogic::getPlotChnlsNo()
+{
+	return m_plotChnlsNo;
+}
 
 QString BufferLogic::getPlotChnlUnitOfMeasure(int channel)
 {

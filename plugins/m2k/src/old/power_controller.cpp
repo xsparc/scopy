@@ -145,9 +145,15 @@ void PowerController::toggleRunButton(bool enabled)
 	}
 }
 
-void PowerController::showEvent(QShowEvent *event) { timer.start(TIMER_TIMEOUT_MS); }
+void PowerController::showEvent(QShowEvent *event)
+{
+	timer.start(TIMER_TIMEOUT_MS);
+}
 
-void PowerController::hideEvent(QHideEvent *event) { timer.stop(); }
+void PowerController::hideEvent(QHideEvent *event)
+{
+	timer.stop();
+}
 
 void PowerController::dac1_set_value(double value)
 {
@@ -220,7 +226,10 @@ void PowerController::sync_enabled(bool enabled)
 	valueNeg->setValue(-valuePos->value() * (double)ui->trackingRatio->value() / 100.0);
 }
 
-void PowerController::ratioChanged(int percent) { valueNeg->setValue(-valuePos->value() * (double)percent / 100.0); }
+void PowerController::ratioChanged(int percent)
+{
+	valueNeg->setValue(-valuePos->value() * (double)percent / 100.0);
+}
 
 void PowerController::update_lcd()
 {
@@ -260,8 +269,14 @@ void PowerController::update_lcd()
 	timer.start(TIMER_TIMEOUT_MS);
 }
 
-void PowerController::run() { startStop(true); }
-void PowerController::stop() { startStop(false); }
+void PowerController::run()
+{
+	startStop(true);
+}
+void PowerController::stop()
+{
+	startStop(false);
+}
 
 void PowerController::startStop(bool start)
 {

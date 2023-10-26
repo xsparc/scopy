@@ -26,19 +26,40 @@
 #include "ui_spectrum_analyzer.h"
 
 namespace scopy::m2k {
-int SpectrumChannel_API::type() { return spch->averageType(); }
+int SpectrumChannel_API::type()
+{
+	return spch->averageType();
+}
 
-int SpectrumChannel_API::window() { return spch->fftWindow(); }
+int SpectrumChannel_API::window()
+{
+	return spch->fftWindow();
+}
 
-int SpectrumChannel_API::averaging() { return spch->averaging(); }
+int SpectrumChannel_API::averaging()
+{
+	return spch->averaging();
+}
 
-float SpectrumChannel_API::lineThickness() { return spch->lineWidth(); }
+float SpectrumChannel_API::lineThickness()
+{
+	return spch->lineWidth();
+}
 
-bool SpectrumChannel_API::enabled() { return spch->widget()->enableButton()->isChecked(); }
+bool SpectrumChannel_API::enabled()
+{
+	return spch->widget()->enableButton()->isChecked();
+}
 
-void SpectrumChannel_API::enable(bool en) { spch->widget()->enableButton()->setChecked(en); }
+void SpectrumChannel_API::enable(bool en)
+{
+	spch->widget()->enableButton()->setChecked(en);
+}
 
-void SpectrumChannel_API::setType(int type) { spch->setAverageType((scopy::FftDisplayPlot::AverageType)type); }
+void SpectrumChannel_API::setType(int type)
+{
+	spch->setAverageType((scopy::FftDisplayPlot::AverageType)type);
+}
 
 void SpectrumChannel_API::setWindow(int win)
 {
@@ -46,9 +67,15 @@ void SpectrumChannel_API::setWindow(int win)
 	spch->setFftWindow((SpectrumAnalyzer::FftWinType)win, taps);
 }
 
-void SpectrumChannel_API::setAveraging(int avg) { spch->setAveraging(avg); }
+void SpectrumChannel_API::setAveraging(int avg)
+{
+	spch->setAveraging(avg);
+}
 
-void SpectrumChannel_API::setLineThickness(float val) { spch->setLinewidth(val); }
+void SpectrumChannel_API::setLineThickness(float val)
+{
+	spch->setLinewidth(val);
+}
 
 QList<double> SpectrumChannel_API::data() const
 {
@@ -71,13 +98,25 @@ QList<double> SpectrumChannel_API::freq() const
 	return frequency_data;
 }
 
-int SpectrumMarker_API::chId() { return m_chid; }
+int SpectrumMarker_API::chId()
+{
+	return m_chid;
+}
 
-void SpectrumMarker_API::setChId(int val) { m_chid = val; }
+void SpectrumMarker_API::setChId(int val)
+{
+	m_chid = val;
+}
 
-int SpectrumMarker_API::mkId() { return m_mkid; }
+int SpectrumMarker_API::mkId()
+{
+	return m_mkid;
+}
 
-void SpectrumMarker_API::setMkId(int val) { m_mkid = val; }
+void SpectrumMarker_API::setMkId(int val)
+{
+	m_mkid = val;
+}
 
 int SpectrumMarker_API::type()
 {
@@ -143,7 +182,10 @@ double SpectrumMarker_API::magnitude()
 	}
 }
 
-bool SpectrumMarker_API::enabled() { return sp->fft_plot->markerEnabled(m_chid, m_mkid); }
+bool SpectrumMarker_API::enabled()
+{
+	return sp->fft_plot->markerEnabled(m_chid, m_mkid);
+}
 
 void SpectrumMarker_API::setEnabled(bool en)
 {
@@ -157,11 +199,20 @@ void SpectrumMarker_API::setEnabled(bool en)
 	sp->channels[m_chid]->widget()->enableButton()->setChecked(enabled);
 }
 
-bool SpectrumMarker_API::visible() { return sp->fft_plot->markerVisible(m_chid, m_mkid); }
+bool SpectrumMarker_API::visible()
+{
+	return sp->fft_plot->markerVisible(m_chid, m_mkid);
+}
 
-void SpectrumMarker_API::setVisible(bool en) { sp->fft_plot->setMarkerVisible(m_chid, m_mkid, en); }
+void SpectrumMarker_API::setVisible(bool en)
+{
+	sp->fft_plot->setMarkerVisible(m_chid, m_mkid, en);
+}
 
-void SpectrumAnalyzer_API::show() { Q_EMIT sp->showTool(); }
+void SpectrumAnalyzer_API::show()
+{
+	Q_EMIT sp->showTool();
+}
 
 QVariantList SpectrumAnalyzer_API::getMarkers()
 {
@@ -174,16 +225,34 @@ QVariantList SpectrumAnalyzer_API::getMarkers()
 	return list;
 }
 
-bool SpectrumAnalyzer_API::hasCursors() const { return sp->ui->boxCursors->isChecked(); }
+bool SpectrumAnalyzer_API::hasCursors() const
+{
+	return sp->ui->boxCursors->isChecked();
+}
 
-void SpectrumAnalyzer_API::setCursors(bool en) { sp->ui->boxCursors->setChecked(en); }
+void SpectrumAnalyzer_API::setCursors(bool en)
+{
+	sp->ui->boxCursors->setChecked(en);
+}
 
-bool SpectrumAnalyzer_API::running() { return sp->ui->runSingleWidget->runButtonChecked(); }
+bool SpectrumAnalyzer_API::running()
+{
+	return sp->ui->runSingleWidget->runButtonChecked();
+}
 
-void SpectrumAnalyzer_API::run(bool chk) { sp->ui->runSingleWidget->toggle(chk); }
+void SpectrumAnalyzer_API::run(bool chk)
+{
+	sp->ui->runSingleWidget->toggle(chk);
+}
 
-bool SpectrumAnalyzer_API::isSingle() { return sp->ui->runSingleWidget->singleButtonChecked(); }
-void SpectrumAnalyzer_API::single(bool chk) { sp->ui->runSingleWidget->single(); }
+bool SpectrumAnalyzer_API::isSingle()
+{
+	return sp->ui->runSingleWidget->singleButtonChecked();
+}
+void SpectrumAnalyzer_API::single(bool chk)
+{
+	sp->ui->runSingleWidget->single();
+}
 
 QVariantList SpectrumAnalyzer_API::getChannels()
 {
@@ -196,7 +265,10 @@ QVariantList SpectrumAnalyzer_API::getChannels()
 	return list;
 }
 
-int SpectrumAnalyzer_API::currentChannel() { return (sp->crt_channel_id < 2 ? sp->crt_channel_id : 0); }
+int SpectrumAnalyzer_API::currentChannel()
+{
+	return (sp->crt_channel_id < 2 ? sp->crt_channel_id : 0);
+}
 
 void SpectrumAnalyzer_API::setCurrentChannel(int ch)
 {
@@ -204,18 +276,42 @@ void SpectrumAnalyzer_API::setCurrentChannel(int ch)
 	Q_EMIT sp->channels[ch]->widget()->selected(true);
 }
 
-double SpectrumAnalyzer_API::startFreq() { return sp->startStopRange->getStartValue(); }
-void SpectrumAnalyzer_API::setStartFreq(double val) { sp->startStopRange->setStartValue(val); }
+double SpectrumAnalyzer_API::startFreq()
+{
+	return sp->startStopRange->getStartValue();
+}
+void SpectrumAnalyzer_API::setStartFreq(double val)
+{
+	sp->startStopRange->setStartValue(val);
+}
 
-double SpectrumAnalyzer_API::stopFreq() { return sp->startStopRange->getStopValue(); }
-void SpectrumAnalyzer_API::setStopFreq(double val) { sp->startStopRange->setStopValue(val); }
+double SpectrumAnalyzer_API::stopFreq()
+{
+	return sp->startStopRange->getStopValue();
+}
+void SpectrumAnalyzer_API::setStopFreq(double val)
+{
+	sp->startStopRange->setStopValue(val);
+}
 
-QString SpectrumAnalyzer_API::resBW() { return sp->ui->cmb_rbw->currentText(); }
-void SpectrumAnalyzer_API::setResBW(QString s) { sp->ui->cmb_rbw->setCurrentText(s); }
+QString SpectrumAnalyzer_API::resBW()
+{
+	return sp->ui->cmb_rbw->currentText();
+}
+void SpectrumAnalyzer_API::setResBW(QString s)
+{
+	sp->ui->cmb_rbw->setCurrentText(s);
+}
 
-QString SpectrumAnalyzer_API::units() { return sp->ui->cmb_units->currentText(); }
+QString SpectrumAnalyzer_API::units()
+{
+	return sp->ui->cmb_units->currentText();
+}
 
-void SpectrumAnalyzer_API::setUnits(QString s) { sp->ui->cmb_units->setCurrentText(s); }
+void SpectrumAnalyzer_API::setUnits(QString s)
+{
+	sp->ui->cmb_units->setCurrentText(s);
+}
 
 double SpectrumAnalyzer_API::topScale()
 {
@@ -265,19 +361,40 @@ void SpectrumAnalyzer_API::setunitPerDiv(double val)
 	}
 }
 
-bool SpectrumAnalyzer_API::markerTableVisible() { return sp->ui->btnMarkerTable->isChecked(); }
+bool SpectrumAnalyzer_API::markerTableVisible()
+{
+	return sp->ui->btnMarkerTable->isChecked();
+}
 
-void SpectrumAnalyzer_API::setMarkerTableVisible(bool en) { sp->ui->btnMarkerTable->setChecked(en); }
+void SpectrumAnalyzer_API::setMarkerTableVisible(bool en)
+{
+	sp->ui->btnMarkerTable->setChecked(en);
+}
 
-bool SpectrumAnalyzer_API::horizontalCursors() const { return sp->cr_ui->hCursorsEnable->isChecked(); }
+bool SpectrumAnalyzer_API::horizontalCursors() const
+{
+	return sp->cr_ui->hCursorsEnable->isChecked();
+}
 
-void SpectrumAnalyzer_API::setHorizontalCursors(bool en) { sp->cr_ui->hCursorsEnable->setChecked(en); }
+void SpectrumAnalyzer_API::setHorizontalCursors(bool en)
+{
+	sp->cr_ui->hCursorsEnable->setChecked(en);
+}
 
-bool SpectrumAnalyzer_API::verticalCursors() const { return sp->cr_ui->vCursorsEnable->isChecked(); }
+bool SpectrumAnalyzer_API::verticalCursors() const
+{
+	return sp->cr_ui->vCursorsEnable->isChecked();
+}
 
-void SpectrumAnalyzer_API::setVerticalCursors(bool en) { sp->cr_ui->vCursorsEnable->setChecked(en); }
+void SpectrumAnalyzer_API::setVerticalCursors(bool en)
+{
+	sp->cr_ui->vCursorsEnable->setChecked(en);
+}
 
-bool SpectrumAnalyzer_API::getLogScale() const { return sp->fft_plot->getLogScale(); }
+bool SpectrumAnalyzer_API::getLogScale() const
+{
+	return sp->fft_plot->getLogScale();
+}
 
 int SpectrumAnalyzer_API::getCursorsPosition() const
 {
@@ -329,12 +446,27 @@ void SpectrumAnalyzer_API::setCursorsTransparency(int val)
 	sp->cr_ui->horizontalSlider->setValue(val);
 }
 
-void SpectrumAnalyzer_API::setLogScale(bool useLogScale) { sp->ui->logBtn->setChecked(useLogScale); }
+void SpectrumAnalyzer_API::setLogScale(bool useLogScale)
+{
+	sp->ui->logBtn->setChecked(useLogScale);
+}
 
-QString SpectrumAnalyzer_API::getNotes() { return sp->ui->instrumentNotes->getNotes(); }
-void SpectrumAnalyzer_API::setNotes(QString str) { sp->ui->instrumentNotes->setNotes(str); }
+QString SpectrumAnalyzer_API::getNotes()
+{
+	return sp->ui->instrumentNotes->getNotes();
+}
+void SpectrumAnalyzer_API::setNotes(QString str)
+{
+	sp->ui->instrumentNotes->setNotes(str);
+}
 
-bool SpectrumAnalyzer_API::getWaterfallVisible() const { return sp->waterfall_visible; }
+bool SpectrumAnalyzer_API::getWaterfallVisible() const
+{
+	return sp->waterfall_visible;
+}
 
-void SpectrumAnalyzer_API::setWaterfallVisible(bool en) { sp->ui->btnToggleWaterfall->setChecked(en); }
+void SpectrumAnalyzer_API::setWaterfallVisible(bool en)
+{
+	sp->ui->btnToggleWaterfall->setChecked(en);
+}
 } // namespace scopy::m2k

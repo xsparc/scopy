@@ -62,7 +62,10 @@ void PluginManager::add(QString pluginFileName)
 	}
 }
 
-int PluginManager::count() { return list.count(); }
+int PluginManager::count()
+{
+	return list.count();
+}
 
 void PluginManager::applyMetadata(Plugin *plugin, QJsonObject *metadata)
 {
@@ -81,7 +84,10 @@ void PluginManager::sort()
 	}
 }
 
-void PluginManager::clear() { list.clear(); }
+void PluginManager::clear()
+{
+	list.clear();
+}
 
 QList<Plugin *> PluginManager::getPlugins(QString category)
 {
@@ -114,7 +120,10 @@ QList<Plugin *> PluginManager::getCompatiblePlugins(QString param, QString categ
 	return comp;
 }
 
-void PluginManager::setMetadata(QJsonObject metadata) { m_metadata = metadata; }
+void PluginManager::setMetadata(QJsonObject metadata)
+{
+	m_metadata = metadata;
+}
 
 Plugin *PluginManager::loadPlugin(QString file)
 {
@@ -162,8 +171,14 @@ Plugin *PluginManager::loadPlugin(QString file)
 	return clone;
 }
 
-QList<Plugin *> PluginManager::getOriginalPlugins() const { return list; }
+QList<Plugin *> PluginManager::getOriginalPlugins() const
+{
+	return list;
+}
 
-QJsonObject PluginManager::metadata() const { return m_metadata; }
+QJsonObject PluginManager::metadata() const
+{
+	return m_metadata;
+}
 
 #include "moc_pluginmanager.cpp"

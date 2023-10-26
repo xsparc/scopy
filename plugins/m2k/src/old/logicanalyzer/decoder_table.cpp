@@ -85,7 +85,10 @@ QVector<GenericLogicPlotCurve *> DecoderTable::getDecoderCruves()
 	return temp_curves;
 }
 
-DecoderTableModel *DecoderTable::decoderModel() const { return dynamic_cast<DecoderTableModel *>(model()); }
+DecoderTableModel *DecoderTable::decoderModel() const
+{
+	return dynamic_cast<DecoderTableModel *>(model());
+}
 
 void DecoderTable::exportData()
 {
@@ -292,9 +295,15 @@ void DecoderTable::activate(bool logic)
 	}
 }
 
-void DecoderTable::deactivate() { m_active = false; }
+void DecoderTable::deactivate()
+{
+	m_active = false;
+}
 
-void DecoderTable::showEvent(QShowEvent *event) { tableModel->to_be_refreshed = true; }
+void DecoderTable::showEvent(QShowEvent *event)
+{
+	tableModel->to_be_refreshed = true;
+}
 
 void DecoderTable::groupValuesChanged(int value)
 {

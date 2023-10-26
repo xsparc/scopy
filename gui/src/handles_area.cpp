@@ -106,7 +106,10 @@ VertHandlesArea::VertHandlesArea(QWidget *parent)
 	bottom_padding = 50;
 }
 
-int VertHandlesArea::topPadding() { return top_padding; }
+int VertHandlesArea::topPadding()
+{
+	return top_padding;
+}
 
 void VertHandlesArea::setTopPadding(int new_padding)
 {
@@ -115,7 +118,10 @@ void VertHandlesArea::setTopPadding(int new_padding)
 	}
 }
 
-int VertHandlesArea::bottomPadding() { return bottom_padding; }
+int VertHandlesArea::bottomPadding()
+{
+	return bottom_padding;
+}
 
 void VertHandlesArea::setLargestChildHeight(int height)
 {
@@ -125,7 +131,10 @@ void VertHandlesArea::setLargestChildHeight(int height)
 	}
 }
 
-int VertHandlesArea::largestChildHeight() { return largest_child_height; }
+int VertHandlesArea::largestChildHeight()
+{
+	return largest_child_height;
+}
 
 void VertHandlesArea::setBottomPadding(int new_padding)
 {
@@ -152,7 +161,10 @@ HorizHandlesArea::HorizHandlesArea(QWidget *parent)
 	right_padding = 50;
 }
 
-int HorizHandlesArea::leftPadding() { return left_padding; }
+int HorizHandlesArea::leftPadding()
+{
+	return left_padding;
+}
 
 void HorizHandlesArea::setLeftPadding(int new_padding)
 {
@@ -161,7 +173,10 @@ void HorizHandlesArea::setLeftPadding(int new_padding)
 	}
 }
 
-int HorizHandlesArea::rightPadding() { return right_padding; }
+int HorizHandlesArea::rightPadding()
+{
+	return right_padding;
+}
 
 void HorizHandlesArea::setRightPadding(int new_padding)
 {
@@ -178,7 +193,10 @@ void HorizHandlesArea::setLargestChildWidth(int width)
 	}
 }
 
-int HorizHandlesArea::largestChildWidth() { return largest_child_width; }
+int HorizHandlesArea::largestChildWidth()
+{
+	return largest_child_width;
+}
 
 void HorizHandlesArea::resizeMask(QSize size)
 {

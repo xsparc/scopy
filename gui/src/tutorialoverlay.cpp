@@ -37,7 +37,10 @@ TutorialOverlay::TutorialOverlay(QWidget *parent)
 	overlay = nullptr;
 }
 
-TutorialOverlay::~TutorialOverlay() { qDebug(CAT_TUTORIALOVERLAY) << "dtor"; }
+TutorialOverlay::~TutorialOverlay()
+{
+	qDebug(CAT_TUTORIALOVERLAY) << "dtor";
+}
 
 TutorialChapter *TutorialOverlay::addChapter(const QList<QWidget *> &subjects, const QString &description,
 					     QWidget *mainWidget, int x_offset, int y_offset, HoverPosition anchor,
@@ -65,7 +68,10 @@ TutorialChapter *TutorialOverlay::addChapter(QWidget *subject, QString descripti
 	return addChapter(list, description, subject); // if there is only one widget, it will be the main widget
 }
 
-void TutorialOverlay::addChapter(TutorialChapter *ch) { chapter.append(ch); }
+void TutorialOverlay::addChapter(TutorialChapter *ch)
+{
+	chapter.append(ch);
+}
 
 void TutorialOverlay::start()
 {
@@ -182,9 +188,15 @@ void TutorialOverlay::cleanupChapter()
 	}
 }
 
-const QString &TutorialOverlay::getTitle() const { return title; }
+const QString &TutorialOverlay::getTitle() const
+{
+	return title;
+}
 
-void TutorialOverlay::setTitle(const QString &newTitle) { title = newTitle; }
+void TutorialOverlay::setTitle(const QString &newTitle)
+{
+	title = newTitle;
+}
 
 bool TutorialOverlay::eventFilter(QObject *watched, QEvent *event)
 {

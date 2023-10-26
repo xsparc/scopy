@@ -58,10 +58,22 @@ TitleSpinBox::~TitleSpinBox()
 	delete spinBox;
 }
 
-void TitleSpinBox::setTitle(QString title) { titleLabel->setText(title); }
+void TitleSpinBox::setTitle(QString title)
+{
+	titleLabel->setText(title);
+}
 
-QPushButton *TitleSpinBox::getSpinBoxUpButton() { return spinBoxUpButton; }
+QPushButton *TitleSpinBox::getSpinBoxUpButton()
+{
+	return spinBoxUpButton;
+}
 
-QPushButton *TitleSpinBox::getSpinBoxDownButton() { return spinBoxDownButton; }
+QPushButton *TitleSpinBox::getSpinBoxDownButton()
+{
+	return spinBoxDownButton;
+}
 
-QSpinBox *TitleSpinBox::getSpinBox() { return spinBox; }
+QSpinBox *TitleSpinBox::getSpinBox()
+{
+	return spinBox;
+}

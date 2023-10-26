@@ -14,7 +14,10 @@ TimePlotHDivInfo::TimePlotHDivInfo(QWidget *parent)
 
 TimePlotHDivInfo::~TimePlotHDivInfo() {}
 
-void TimePlotHDivInfo::update(double val) { setText(m_mpf->format(val, "s", 2) + "/div"); }
+void TimePlotHDivInfo::update(double val)
+{
+	setText(m_mpf->format(val, "s", 2) + "/div");
+}
 
 TimePlotSamplingInfo::TimePlotSamplingInfo(QWidget *parent)
 {
@@ -180,6 +183,9 @@ void TimePlotInfo::update(PlotSamplingInfo info)
 	m_bufferController->updateDataLimits(min, max);
 }
 
-void TimePlotInfo::updateBufferPreviewer() { m_bufferController->updateBufferPreviewer(); }
+void TimePlotInfo::updateBufferPreviewer()
+{
+	m_bufferController->updateBufferPreviewer();
+}
 
 #include "moc_plotinfo.cpp"

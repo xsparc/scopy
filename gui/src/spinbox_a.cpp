@@ -131,7 +131,10 @@ SpinBoxA::~SpinBoxA()
 	delete ui;
 }
 
-void SpinBoxA::updateCompletionCircle(double value) { ui->SBA_CompletionCircle->setValueDouble(value); }
+void SpinBoxA::updateCompletionCircle(double value)
+{
+	ui->SBA_CompletionCircle->setValueDouble(value);
+}
 
 void SpinBoxA::silentSetValue(double value)
 {
@@ -156,9 +159,15 @@ void SpinBoxA::silentSetMaxValue(double value)
 	setMaxValue(value);
 }
 
-void SpinBoxA::onUpButtonPressed() { stepUp(); }
+void SpinBoxA::onUpButtonPressed()
+{
+	stepUp();
+}
 
-void SpinBoxA::onDownButtonPressed() { stepDown(); }
+void SpinBoxA::onDownButtonPressed()
+{
+	stepDown();
+}
 
 void SpinBoxA::onComboboxIndexChanged(int index)
 {
@@ -231,21 +240,45 @@ bool SpinBoxA::isUnitMatched(const QString &unit, double value)
 	return false;
 }
 
-QPushButton *SpinBoxA::upButton() { return ui->SBA_UpButton; }
+QPushButton *SpinBoxA::upButton()
+{
+	return ui->SBA_UpButton;
+}
 
-QPushButton *SpinBoxA::downButton() { return ui->SBA_DownButton; }
+QPushButton *SpinBoxA::downButton()
+{
+	return ui->SBA_DownButton;
+}
 
-QLabel *SpinBoxA::nameLabel() { return ui->SBA_Label; }
+QLabel *SpinBoxA::nameLabel()
+{
+	return ui->SBA_Label;
+}
 
-QLineEdit *SpinBoxA::lineEdit() { return ui->SBA_LineEdit; }
+QLineEdit *SpinBoxA::lineEdit()
+{
+	return ui->SBA_LineEdit;
+}
 
-QFrame *SpinBoxA::line() { return ui->SBA_Line; }
+QFrame *SpinBoxA::line()
+{
+	return ui->SBA_Line;
+}
 
-QComboBox *SpinBoxA::comboBox() { return ui->SBA_Combobox; }
+QComboBox *SpinBoxA::comboBox()
+{
+	return ui->SBA_Combobox;
+}
 
-double SpinBoxA::value() { return m_value; }
+double SpinBoxA::value()
+{
+	return m_value;
+}
 
-static bool isZero(double value, double threshold) { return (value >= -threshold && value <= threshold); }
+static bool isZero(double value, double threshold)
+{
+	return (value >= -threshold && value <= threshold);
+}
 
 void SpinBoxA::setValue(double value)
 {
@@ -309,7 +342,10 @@ void SpinBoxA::setValue(double value)
 	}
 }
 
-double SpinBoxA::minValue() { return m_min_value; }
+double SpinBoxA::minValue()
+{
+	return m_min_value;
+}
 
 void SpinBoxA::setMinValue(double value)
 {
@@ -324,7 +360,10 @@ void SpinBoxA::setMinValue(double value)
 	ui->SBA_CompletionCircle->setMinimumDouble(value);
 }
 
-int SpinBoxA::decimalCount() const { return m_decimal_count; }
+int SpinBoxA::decimalCount() const
+{
+	return m_decimal_count;
+}
 
 void SpinBoxA::setDecimalCount(int count)
 {
@@ -333,7 +372,10 @@ void SpinBoxA::setDecimalCount(int count)
 	}
 }
 
-double SpinBoxA::maxValue() { return m_max_value; }
+double SpinBoxA::maxValue()
+{
+	return m_max_value;
+}
 
 void SpinBoxA::setMaxValue(double value)
 {
@@ -348,9 +390,15 @@ void SpinBoxA::setMaxValue(double value)
 	ui->SBA_CompletionCircle->setMaximumDouble(value);
 }
 
-bool SpinBoxA::isInFineMode() { return ui->SBA_CompletionCircle->toggledState(); }
+bool SpinBoxA::isInFineMode()
+{
+	return ui->SBA_CompletionCircle->toggledState();
+}
 
-void SpinBoxA::setFineMode(bool en) { ui->SBA_CompletionCircle->setToggled(en); }
+void SpinBoxA::setFineMode(bool en)
+{
+	ui->SBA_CompletionCircle->setToggled(en);
+}
 
 bool SpinBoxA::eventFilter(QObject *obj, QEvent *event)
 {
@@ -441,24 +489,54 @@ double SpinBoxA::findUnitOfValue(double val, int *posInUnitsList)
 	return m_units[index].second;
 }
 
-bool SpinBoxA::isCircleInverted() const { return ui->SBA_CompletionCircle->property("inverted").toBool(); }
+bool SpinBoxA::isCircleInverted() const
+{
+	return ui->SBA_CompletionCircle->property("inverted").toBool();
+}
 
-void SpinBoxA::setInvertCircle(bool invert) { ui->SBA_CompletionCircle->setProperty("inverted", QVariant(invert)); }
+void SpinBoxA::setInvertCircle(bool invert)
+{
+	ui->SBA_CompletionCircle->setProperty("inverted", QVariant(invert));
+}
 
-bool SpinBoxA::progressShown() const { return ui->SBA_CompletionCircle->isVisible(); }
+bool SpinBoxA::progressShown() const
+{
+	return ui->SBA_CompletionCircle->isVisible();
+}
 
-void SpinBoxA::showProgress(bool show) { ui->SBA_CompletionCircle->setVisible(show); }
+void SpinBoxA::showProgress(bool show)
+{
+	ui->SBA_CompletionCircle->setVisible(show);
+}
 
-bool SpinBoxA::fineModeAvailable() { return ui->SBA_CompletionCircle->toggleable(); }
-void SpinBoxA::setFineModeAvailable(bool tog) { ui->SBA_CompletionCircle->setToggleable(tog); }
+bool SpinBoxA::fineModeAvailable()
+{
+	return ui->SBA_CompletionCircle->toggleable();
+}
+void SpinBoxA::setFineModeAvailable(bool tog)
+{
+	ui->SBA_CompletionCircle->setToggleable(tog);
+}
 
-bool SpinBoxA::isStepDown() const { return m_is_step_down; }
+bool SpinBoxA::isStepDown() const
+{
+	return m_is_step_down;
+}
 
-void SpinBoxA::triggerCircleRedraw() { ui->SBA_CompletionCircle->setValueDouble(value()); }
+void SpinBoxA::triggerCircleRedraw()
+{
+	ui->SBA_CompletionCircle->setValueDouble(value());
+}
 
-QString SpinBoxA::getName() const { return ui->SBA_Label->text(); }
+QString SpinBoxA::getName() const
+{
+	return ui->SBA_Label->text();
+}
 
-void SpinBoxA::setName(const QString &name) { ui->SBA_Label->setText(name); }
+void SpinBoxA::setName(const QString &name)
+{
+	ui->SBA_Label->setText(name);
+}
 
 void SpinBoxA::setDisplayScale(double value)
 {
@@ -566,11 +644,20 @@ void ScaleSpinButton::setMaxValue(double value)
 	}
 }
 
-void ScaleSpinButton::enableNumberSeriesRebuild(bool enable) { m_numberSeriesRebuild = enable; }
+void ScaleSpinButton::enableNumberSeriesRebuild(bool enable)
+{
+	m_numberSeriesRebuild = enable;
+}
 
-void ScaleSpinButton::setIntegerDivider(int val) { integer_divider = val; }
+void ScaleSpinButton::setIntegerDivider(int val)
+{
+	integer_divider = val;
+}
 
-int ScaleSpinButton::getIntegerDivider() { return integer_divider; }
+int ScaleSpinButton::getIntegerDivider()
+{
+	return integer_divider;
+}
 
 void ScaleSpinButton::setValue(double newVal)
 {
@@ -672,9 +759,15 @@ PositionSpinButton::PositionSpinButton(vector<pair<QString, double>> units, cons
 	, m_step(1)
 {}
 
-double PositionSpinButton::step() { return m_step; }
+double PositionSpinButton::step()
+{
+	return m_step;
+}
 
-void PositionSpinButton::setStep(double step) { m_step = step; }
+void PositionSpinButton::setStep(double step)
+{
+	m_step = step;
+}
 
 void PositionSpinButton::stepUp()
 {
@@ -828,7 +921,10 @@ void PhaseSpinButton::setValue(double value)
 	}
 }
 
-void PhaseSpinButton::setComboboxIndex(int index) { ui->SBA_Combobox->setCurrentIndex(index); }
+void PhaseSpinButton::setComboboxIndex(int index)
+{
+	ui->SBA_Combobox->setCurrentIndex(index);
+}
 
 void PhaseSpinButton::onComboboxIndexChanged(int index)
 {
@@ -861,13 +957,25 @@ void PhaseSpinButton::onComboboxIndexChanged(int index)
 	setValue(m_value);
 }
 
-void PhaseSpinButton::setInSeconds(bool val) { m_inSeconds = val; }
+void PhaseSpinButton::setInSeconds(bool val)
+{
+	m_inSeconds = val;
+}
 
-bool PhaseSpinButton::inSeconds() { return m_inSeconds; }
+bool PhaseSpinButton::inSeconds()
+{
+	return m_inSeconds;
+}
 
-void PhaseSpinButton::setSecondsValue(double val) { m_secondsValue = val; }
+void PhaseSpinButton::setSecondsValue(double val)
+{
+	m_secondsValue = val;
+}
 
-double PhaseSpinButton::secondsValue() { return m_secondsValue; }
+double PhaseSpinButton::secondsValue()
+{
+	return m_secondsValue;
+}
 
 void PhaseSpinButton::setFrequency(double val)
 {
@@ -880,9 +988,15 @@ void PhaseSpinButton::setFrequency(double val)
 	m_frequency = val;
 }
 
-double PhaseSpinButton::frequency() { return m_frequency; }
+double PhaseSpinButton::frequency()
+{
+	return m_frequency;
+}
 
-double PhaseSpinButton::value() { return m_value; }
+double PhaseSpinButton::value()
+{
+	return m_value;
+}
 
 double PhaseSpinButton::changeValueFromDegreesToSeconds(double val)
 {
@@ -893,7 +1007,10 @@ double PhaseSpinButton::changeValueFromDegreesToSeconds(double val)
 	return valueInSeconds;
 }
 
-int PhaseSpinButton::indexValue() { return m_indexValue; }
+int PhaseSpinButton::indexValue()
+{
+	return m_indexValue;
+}
 
 void PhaseSpinButton::updatePhaseAfterFrequenceChanged(double val)
 {
@@ -989,7 +1106,10 @@ void PhaseSpinButton::stepDown()
 	setValue(newVal);
 }
 
-void PhaseSpinButton::setStep(double step) { m_step = step; }
+void PhaseSpinButton::setStep(double step)
+{
+	m_step = step;
+}
 
 #ifdef SPINBOX_API
 
@@ -1000,43 +1120,100 @@ SpinBoxA_API::SpinBoxA_API(SpinBoxA *sba)
 	ApiObjectManager::getInstance().registerApiObject(this);
 }
 
-SpinBoxA_API::~SpinBoxA_API() { ApiObjectManager::getInstance().unregisterApiObject(this); }
+SpinBoxA_API::~SpinBoxA_API()
+{
+	ApiObjectManager::getInstance().unregisterApiObject(this);
+}
 
-double SpinBoxA_API::value() const { return sba->value(); }
+double SpinBoxA_API::value() const
+{
+	return sba->value();
+}
 
-void SpinBoxA_API::setValue(double value) { sba->setValue(value); }
+void SpinBoxA_API::setValue(double value)
+{
+	sba->setValue(value);
+}
 
-double SpinBoxA_API::minValue() const { return sba->minValue(); }
+double SpinBoxA_API::minValue() const
+{
+	return sba->minValue();
+}
 
-void SpinBoxA_API::setMinValue(double value) { sba->setMinValue(value); }
+void SpinBoxA_API::setMinValue(double value)
+{
+	sba->setMinValue(value);
+}
 
-double SpinBoxA_API::maxValue() const { return sba->maxValue(); }
+double SpinBoxA_API::maxValue() const
+{
+	return sba->maxValue();
+}
 
-void SpinBoxA_API::setMaxValue(double value) { sba->setMaxValue(value); }
+void SpinBoxA_API::setMaxValue(double value)
+{
+	sba->setMaxValue(value);
+}
 
-int SpinBoxA_API::decimalCount() const { return sba->decimalCount(); }
+int SpinBoxA_API::decimalCount() const
+{
+	return sba->decimalCount();
+}
 
-void SpinBoxA_API::setDecimalCount(int count) { sba->setDecimalCount(count); }
+void SpinBoxA_API::setDecimalCount(int count)
+{
+	sba->setDecimalCount(count);
+}
 
-bool SpinBoxA_API::isInFineMode() { return sba->isInFineMode(); }
+bool SpinBoxA_API::isInFineMode()
+{
+	return sba->isInFineMode();
+}
 
-void SpinBoxA_API::setFineMode(bool enabled) { sba->setFineMode(enabled); }
+void SpinBoxA_API::setFineMode(bool enabled)
+{
+	sba->setFineMode(enabled);
+}
 
-bool SpinBoxA_API::isCircleInverted() const { return sba->isCircleInverted(); }
+bool SpinBoxA_API::isCircleInverted() const
+{
+	return sba->isCircleInverted();
+}
 
-void SpinBoxA_API::invertCircle(bool invert) { sba->invertCircle(invert); }
+void SpinBoxA_API::invertCircle(bool invert)
+{
+	sba->invertCircle(invert);
+}
 
-bool SpinBoxA_API::progressShown() const { return sba->progressShown(); }
+bool SpinBoxA_API::progressShown() const
+{
+	return sba->progressShown();
+}
 
-void SpinBoxA_API::showProgress(bool show) { sba->showProgress(show); }
+void SpinBoxA_API::showProgress(bool show)
+{
+	sba->showProgress(show);
+}
 
-bool SpinBoxA_API::fineModeAvailable() { return sba->fineModeAvailable(); }
+bool SpinBoxA_API::fineModeAvailable()
+{
+	return sba->fineModeAvailable();
+}
 
-void SpinBoxA_API::setFineModeAvailable(bool available) { sba->setFineModeAvailable(available); }
+void SpinBoxA_API::setFineModeAvailable(bool available)
+{
+	sba->setFineModeAvailable(available);
+}
 
-QString SpinBoxA_API::getName() const { return sba->getName(); }
+QString SpinBoxA_API::getName() const
+{
+	return sba->getName();
+}
 
-void SpinBoxA_API::setName(const QString &name) { sba->setName(name); }
+void SpinBoxA_API::setName(const QString &name)
+{
+	sba->setName(name);
+}
 #endif
 
 #include "moc_spinbox_a.cpp"

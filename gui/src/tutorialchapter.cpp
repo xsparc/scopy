@@ -49,13 +49,25 @@ TutorialChapter *TutorialChapter::build(const QList<QWidget *> &subjects, const 
 	return ch;
 }
 
-void TutorialChapter::addSubject(QWidget *s) { subjects.append(s); }
+void TutorialChapter::addSubject(QWidget *s)
+{
+	subjects.append(s);
+}
 
-const QString &TutorialChapter::getDescription() const { return description; }
+const QString &TutorialChapter::getDescription() const
+{
+	return description;
+}
 
-void TutorialChapter::setDescription(const QString &newDescription) { description = newDescription; }
+void TutorialChapter::setDescription(const QString &newDescription)
+{
+	description = newDescription;
+}
 
-QWidget *TutorialChapter::getMainSubject() const { return mainSubject; }
+QWidget *TutorialChapter::getMainSubject() const
+{
+	return mainSubject;
+}
 
 void TutorialChapter::setMainSubject(QWidget *newMainSubject)
 {
@@ -65,20 +77,44 @@ void TutorialChapter::setMainSubject(QWidget *newMainSubject)
 	this->mainSubject = newMainSubject;
 }
 
-int TutorialChapter::getXOffset() const { return x_offset; }
+int TutorialChapter::getXOffset() const
+{
+	return x_offset;
+}
 
-void TutorialChapter::setXOffset(int xOffset) { x_offset = xOffset; }
+void TutorialChapter::setXOffset(int xOffset)
+{
+	x_offset = xOffset;
+}
 
-int TutorialChapter::getYOffset() const { return y_offset; }
+int TutorialChapter::getYOffset() const
+{
+	return y_offset;
+}
 
-void TutorialChapter::setYOffset(int yOffset) { y_offset = yOffset; }
+void TutorialChapter::setYOffset(int yOffset)
+{
+	y_offset = yOffset;
+}
 
-scopy::HoverPosition TutorialChapter::getAnchor() const { return anchor; }
+scopy::HoverPosition TutorialChapter::getAnchor() const
+{
+	return anchor;
+}
 
-void TutorialChapter::setAnchor(scopy::HoverPosition newAnchor) { anchor = newAnchor; }
+void TutorialChapter::setAnchor(scopy::HoverPosition newAnchor)
+{
+	anchor = newAnchor;
+}
 
-scopy::HoverPosition TutorialChapter::getContent() const { return content; }
+scopy::HoverPosition TutorialChapter::getContent() const
+{
+	return content;
+}
 
-void TutorialChapter::setContent(scopy::HoverPosition newContent) { content = newContent; }
+void TutorialChapter::setContent(scopy::HoverPosition newContent)
+{
+	content = newContent;
+}
 
 #include "moc_tutorialchapter.cpp"

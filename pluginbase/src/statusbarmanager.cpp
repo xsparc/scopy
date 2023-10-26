@@ -42,7 +42,10 @@ StatusBarManager::StatusBarManager(QObject *parent)
 	});
 }
 
-StatusBarManager::~StatusBarManager() { delete m_itemQueue; }
+StatusBarManager::~StatusBarManager()
+{
+	delete m_itemQueue;
+}
 
 StatusBarManager *StatusBarManager::GetInstance()
 {
@@ -67,9 +70,15 @@ void StatusBarManager::pushUrgentMessage(const QString &message, int ms)
 	StatusBarManager::GetInstance()->_pushUrgentMessage(message, ms);
 }
 
-void StatusBarManager::setEnabled(bool enabled) { m_enabled = enabled; }
+void StatusBarManager::setEnabled(bool enabled)
+{
+	m_enabled = enabled;
+}
 
-bool StatusBarManager::isEnabled() const { return m_enabled; }
+bool StatusBarManager::isEnabled() const
+{
+	return m_enabled;
+}
 
 void StatusBarManager::processStatusMessage()
 {

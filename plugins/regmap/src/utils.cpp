@@ -52,9 +52,15 @@ QDir Utils::setXmlPath()
 	return QDir("");
 }
 
-int Utils::getBitsPerRow() { return bitsPerRow; }
+int Utils::getBitsPerRow()
+{
+	return bitsPerRow;
+}
 
-int Utils::getBitsPerRowDetailed() { return bitsPerRowDetailed; }
+int Utils::getBitsPerRowDetailed()
+{
+	return bitsPerRowDetailed;
+}
 
 JsonFormatedElement *Utils::getJsonTemplate(QString xml)
 {

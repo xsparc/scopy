@@ -82,9 +82,15 @@ waterfall_sink_impl::waterfall_sink_impl(int fftsize, std::vector<float> win, do
 	initialize();
 }
 
-waterfall_sink_impl::~waterfall_sink_impl() { delete d_main_gui; }
+waterfall_sink_impl::~waterfall_sink_impl()
+{
+	delete d_main_gui;
+}
 
-bool waterfall_sink_impl::check_topology(int ninputs, int noutputs) { return ninputs == d_nconnections; }
+bool waterfall_sink_impl::check_topology(int ninputs, int noutputs)
+{
+	return ninputs == d_nconnections;
+}
 
 // requests buffers with a max size of 8191 (useful at large fft sizes)
 void waterfall_sink_impl::forecast(int noutput_items, gr_vector_int &ninput_items_required)
@@ -104,9 +110,15 @@ void waterfall_sink_impl::initialize()
 	set_update_time(0.1);
 }
 
-QWidget *waterfall_sink_impl::qwidget() { return d_main_gui; }
+QWidget *waterfall_sink_impl::qwidget()
+{
+	return d_main_gui;
+}
 
-void waterfall_sink_impl::clear_data() { d_main_gui->clearData(); }
+void waterfall_sink_impl::clear_data()
+{
+	d_main_gui->clearData();
+}
 
 void waterfall_sink_impl::set_fft_size(const int fftsize)
 {
@@ -118,11 +130,20 @@ void waterfall_sink_impl::set_fft_size(const int fftsize)
 	fftresize();
 }
 
-void waterfall_sink_impl::set_fft_window(const std::vector<float> window) { d_window = window; }
+void waterfall_sink_impl::set_fft_window(const std::vector<float> window)
+{
+	d_window = window;
+}
 
-int waterfall_sink_impl::fft_size() const { return d_fftsize; }
+int waterfall_sink_impl::fft_size() const
+{
+	return d_fftsize;
+}
 
-float waterfall_sink_impl::fft_average() const { return d_fftavg; }
+float waterfall_sink_impl::fft_average() const
+{
+	return d_fftavg;
+}
 
 void waterfall_sink_impl::set_frequency_range(const double centerfreq, const double bandwidth)
 {
@@ -156,7 +177,10 @@ void waterfall_sink_impl::set_line_alpha(unsigned int which, double alpha)
 	d_main_gui->setAlpha(which, (int)(255.0 * alpha));
 }
 
-void waterfall_sink_impl::set_size(int width, int height) { d_main_gui->resize(QSize(width, height)); }
+void waterfall_sink_impl::set_size(int width, int height)
+{
+	d_main_gui->resize(QSize(width, height));
+}
 
 void waterfall_sink_impl::set_plot_pos_half(bool half)
 {
@@ -164,15 +188,30 @@ void waterfall_sink_impl::set_plot_pos_half(bool half)
 	d_main_gui->setPlotPosHalf(half);
 }
 
-double waterfall_sink_impl::line_alpha(unsigned int which) { return (double)(d_main_gui->getAlpha(which)) / 255.0; }
+double waterfall_sink_impl::line_alpha(unsigned int which)
+{
+	return (double)(d_main_gui->getAlpha(which)) / 255.0;
+}
 
-void waterfall_sink_impl::auto_scale() { d_main_gui->autoScale(); }
+void waterfall_sink_impl::auto_scale()
+{
+	d_main_gui->autoScale();
+}
 
-double waterfall_sink_impl::min_intensity(unsigned int which) { return d_main_gui->getMinIntensity(which); }
+double waterfall_sink_impl::min_intensity(unsigned int which)
+{
+	return d_main_gui->getMinIntensity(which);
+}
 
-double waterfall_sink_impl::max_intensity(unsigned int which) { return d_main_gui->getMaxIntensity(which); }
+double waterfall_sink_impl::max_intensity(unsigned int which)
+{
+	return d_main_gui->getMaxIntensity(which);
+}
 
-void waterfall_sink_impl::disable_legend() { d_main_gui->disableLegend(); }
+void waterfall_sink_impl::disable_legend()
+{
+	d_main_gui->disableLegend();
+}
 
 void waterfall_sink_impl::fft(float *data_out, gr_complex *data_in, int size)
 {
@@ -246,7 +285,10 @@ void waterfall_sink_impl::set_trigger_mode(trigger_mode mode, int channel, const
 	_reset();
 }
 
-void waterfall_sink_impl::set_time_per_fft(double t) { d_main_gui->setUpdateTime(t); }
+void waterfall_sink_impl::set_time_per_fft(double t)
+{
+	d_main_gui->setUpdateTime(t);
+}
 
 void waterfall_sink_impl::_test_trigger_tags(int nitems)
 {
@@ -280,7 +322,10 @@ void waterfall_sink_impl::reset()
 	_reset();
 }
 
-void waterfall_sink_impl::set_displayOneBuffer(bool val) { d_displayOneBuffer = val; }
+void waterfall_sink_impl::set_displayOneBuffer(bool val)
+{
+	d_displayOneBuffer = val;
+}
 
 void waterfall_sink_impl::_reset()
 {

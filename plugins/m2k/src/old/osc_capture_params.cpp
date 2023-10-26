@@ -79,11 +79,20 @@ void SymmetricBufferMode::setSampleRates(const std::vector<double> &sampleRates)
 	std::sort(m_sampleRates.begin(), m_sampleRates.end());
 }
 
-void SymmetricBufferMode::setEntireBufferMaxSize(unsigned long maxSize) { m_entireBufferMaxSize = maxSize; }
+void SymmetricBufferMode::setEntireBufferMaxSize(unsigned long maxSize)
+{
+	m_entireBufferMaxSize = maxSize;
+}
 
-void SymmetricBufferMode::setTriggerBufferMaxSize(unsigned long maxSize) { m_triggerBufferMaxSize = maxSize; }
+void SymmetricBufferMode::setTriggerBufferMaxSize(unsigned long maxSize)
+{
+	m_triggerBufferMaxSize = maxSize;
+}
 
-void SymmetricBufferMode::setTimeDivisionCount(int count) { m_timeDivsCount = count; }
+void SymmetricBufferMode::setTimeDivisionCount(int count)
+{
+	m_timeDivsCount = count;
+}
 
 void SymmetricBufferMode::setTimeBase(double secsPerDiv)
 {
@@ -99,9 +108,15 @@ void SymmetricBufferMode::setCustomBufferSize(unsigned long customSize)
 	configParamsOnCustomSizeChanged();
 }
 
-bool SymmetricBufferMode::isEnhancedMemDepth() { return m_enhancedMemoryDepth; }
+bool SymmetricBufferMode::isEnhancedMemDepth()
+{
+	return m_enhancedMemoryDepth;
+}
 
-void SymmetricBufferMode::setEnhancedMemDepth(bool val) { m_enhancedMemoryDepth = val; }
+void SymmetricBufferMode::setEnhancedMemDepth(bool val)
+{
+	m_enhancedMemoryDepth = val;
+}
 
 void SymmetricBufferMode::setTriggerPos(double pos)
 {

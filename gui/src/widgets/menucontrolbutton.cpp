@@ -48,7 +48,10 @@ void MenuControlButton::setCheckBoxStyle(CheckboxStyle cs)
 	applyStylesheet();
 }
 
-void MenuControlButton::setName(QString s) { m_label->setText(s); }
+void MenuControlButton::setName(QString s)
+{
+	m_label->setText(s);
+}
 
 void MenuControlButton::setDoubleClickToOpenMenu(bool b)
 {
@@ -100,9 +103,15 @@ void MenuControlButton::mousePressEvent(QMouseEvent *e)
 	QAbstractButton::mousePressEvent(e);
 }
 
-QCheckBox *MenuControlButton::checkBox() { return m_chk; }
+QCheckBox *MenuControlButton::checkBox()
+{
+	return m_chk;
+}
 
-QPushButton *MenuControlButton::button() { return m_btn; }
+QPushButton *MenuControlButton::button()
+{
+	return m_btn;
+}
 
 void MenuControlButton::applyStylesheet()
 {
@@ -157,6 +166,9 @@ void CollapsableMenuControlButton::add(QWidget *ch)
 	m_contLayout->addWidget(ch);
 }
 
-MenuControlButton *CollapsableMenuControlButton::getControlBtn() { return m_ctrl; }
+MenuControlButton *CollapsableMenuControlButton::getControlBtn()
+{
+	return m_ctrl;
+}
 
 #include "moc_menucontrolbutton.cpp"

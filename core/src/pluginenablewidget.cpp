@@ -32,6 +32,9 @@ void PluginEnableWidget::setDescription(QString description)
 	m_descriptionLabel->setText(description);
 }
 
-QCheckBox *PluginEnableWidget::checkBox() const { return m_checkBox; }
+QCheckBox *PluginEnableWidget::checkBox() const
+{
+	return m_checkBox;
+}
 
 #include "moc_pluginenablewidget.cpp"

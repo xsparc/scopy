@@ -39,24 +39,57 @@ BitFieldModel::~BitFieldModel()
 	if(options)
 		delete options;
 }
-QString BitFieldModel::getName() const { return name; }
+QString BitFieldModel::getName() const
+{
+	return name;
+}
 
-QString BitFieldModel::getAccess() const { return access; }
+QString BitFieldModel::getAccess() const
+{
+	return access;
+}
 
-int BitFieldModel::getDefaultValue() const { return defaultValue; }
+int BitFieldModel::getDefaultValue() const
+{
+	return defaultValue;
+}
 
-QString BitFieldModel::getDescription() const { return description; }
+QString BitFieldModel::getDescription() const
+{
+	return description;
+}
 
-QString BitFieldModel::getVisibility() const { return visibility; }
+QString BitFieldModel::getVisibility() const
+{
+	return visibility;
+}
 
-int BitFieldModel::getWidth() const { return width; }
+int BitFieldModel::getWidth() const
+{
+	return width;
+}
 
-QString BitFieldModel::getNotes() const { return notes; }
+QString BitFieldModel::getNotes() const
+{
+	return notes;
+}
 
-int BitFieldModel::getBitOffset() const { return bitOffset; }
+int BitFieldModel::getBitOffset() const
+{
+	return bitOffset;
+}
 
-int BitFieldModel::getRegOffset() const { return regOffset; }
+int BitFieldModel::getRegOffset() const
+{
+	return regOffset;
+}
 
-int BitFieldModel::getSliceWidth() const { return sliceWidth; }
+int BitFieldModel::getSliceWidth() const
+{
+	return sliceWidth;
+}
 
-QVector<BitFieldOption *> *BitFieldModel::getOptions() const { return options; }
+QVector<BitFieldOption *> *BitFieldModel::getOptions() const
+{
+	return options;
+}

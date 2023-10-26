@@ -50,7 +50,10 @@ public:
 
 	virtual ~FftDisplayZoomer() {}
 
-	virtual void updateTrackerText() { updateDisplay(); }
+	virtual void updateTrackerText()
+	{
+		updateDisplay();
+	}
 
 protected:
 	using QwtPlotZoomer::trackerText;
@@ -196,7 +199,10 @@ FftDisplayPlot::~FftDisplayPlot()
 	canvas()->removeEventFilter(d_symbolCtrl);
 }
 
-void FftDisplayPlot::initChannelMeasurement(int nplots) { Q_EMIT channelAdded(nplots); }
+void FftDisplayPlot::initChannelMeasurement(int nplots)
+{
+	Q_EMIT channelAdded(nplots);
+}
 
 void FftDisplayPlot::replot()
 {
@@ -216,7 +222,10 @@ bool FftDisplayPlot::isReferenceWaveform(unsigned int chnIdx)
 	return d_ref_curves.values().contains(curve);
 }
 
-size_t FftDisplayPlot::getCurveSize(unsigned int chnIdx) { return Curve(chnIdx)->data()->size(); }
+size_t FftDisplayPlot::getCurveSize(unsigned int chnIdx)
+{
+	return Curve(chnIdx)->data()->size();
+}
 
 QString FftDisplayPlot::formatXValue(double value, int precision) const
 {
@@ -419,7 +428,10 @@ void FftDisplayPlot::setZoomerEnabled()
 	}
 }
 
-void FftDisplayPlot::setNumPoints(uint64_t num_points) { d_numPoints = num_points; }
+void FftDisplayPlot::setNumPoints(uint64_t num_points)
+{
+	d_numPoints = num_points;
+}
 
 QColor FftDisplayPlot::getChannelColor()
 {
@@ -568,15 +580,30 @@ void FftDisplayPlot::useLogFreq(bool use_log_freq)
 	replot();
 }
 
-std::vector<double *> FftDisplayPlot::getOrginal_data() { return y_original_data; }
+std::vector<double *> FftDisplayPlot::getOrginal_data()
+{
+	return y_original_data;
+}
 
-int64_t FftDisplayPlot::getYdata_size() { return y_data.size(); }
+int64_t FftDisplayPlot::getYdata_size()
+{
+	return y_data.size();
+}
 
-std::vector<double *> FftDisplayPlot::getRef_data() { return d_refYdata; }
+std::vector<double *> FftDisplayPlot::getRef_data()
+{
+	return d_refYdata;
+}
 
-std::vector<double> FftDisplayPlot::getScaleFactor() { return y_scale_factor; }
+std::vector<double> FftDisplayPlot::getScaleFactor()
+{
+	return y_scale_factor;
+}
 
-int64_t FftDisplayPlot::getNumPoints() { return d_numPoints; }
+int64_t FftDisplayPlot::getNumPoints()
+{
+	return d_numPoints;
+}
 
 void FftDisplayPlot::plotData(const std::vector<double *> &pts, uint64_t num_points)
 {
@@ -852,7 +879,10 @@ void FftDisplayPlot::customEvent(QEvent *e)
 	}
 }
 
-bool FftDisplayPlot::getLogScale() const { return d_logScaleEnabled; }
+bool FftDisplayPlot::getLogScale() const
+{
+	return d_logScaleEnabled;
+}
 
 void FftDisplayPlot::setSampleRate(double sr, double units, const std::string &strunits)
 {
@@ -864,9 +894,15 @@ void FftDisplayPlot::setSampleRate(double sr, double units, const std::string &s
 	_resetXAxisPoints();
 }
 
-double FftDisplayPlot::sampleRate() { return d_sampl_rate; }
+double FftDisplayPlot::sampleRate()
+{
+	return d_sampl_rate;
+}
 
-void FftDisplayPlot::presetSampleRate(double sr) { d_preset_sampl_rate = sr; }
+void FftDisplayPlot::presetSampleRate(double sr)
+{
+	d_preset_sampl_rate = sr;
+}
 
 FftDisplayPlot::AverageType FftDisplayPlot::averageType(uint chIdx) const
 {
@@ -952,7 +988,10 @@ FftDisplayPlot::average_sptr FftDisplayPlot::getNewAvgObject(enum AverageType av
 	}
 }
 
-QString FftDisplayPlot::leftVerAxisUnit() const { return d_yAxisUnit; }
+QString FftDisplayPlot::leftVerAxisUnit() const
+{
+	return d_yAxisUnit;
+}
 
 void FftDisplayPlot::setLeftVertAxisUnit(const QString &unit)
 {
@@ -966,7 +1005,10 @@ void FftDisplayPlot::setLeftVertAxisUnit(const QString &unit)
 	}
 }
 
-QString FftDisplayPlot::btmHorAxisUnit() const { return d_xAxisUnit; }
+QString FftDisplayPlot::btmHorAxisUnit() const
+{
+	return d_xAxisUnit;
+}
 
 void FftDisplayPlot::setBtmHorAxisUnit(const QString &unit)
 {
@@ -1184,7 +1226,10 @@ void FftDisplayPlot::setPeakCount(uint chIdx, uint count)
 	}
 }
 
-uint FftDisplayPlot::markerCount(uint chIdx) const { return d_markers[chIdx].size(); }
+uint FftDisplayPlot::markerCount(uint chIdx) const
+{
+	return d_markers[chIdx].size();
+}
 
 void FftDisplayPlot::setMarkerCount(uint chIdx, uint count)
 {
@@ -1206,7 +1251,10 @@ void FftDisplayPlot::setMarkerCount(uint chIdx, uint count)
 	}
 }
 
-bool FftDisplayPlot::markerEnabled(uint chIdx, uint mkIdx) const { return !!d_markers[chIdx][mkIdx].data; }
+bool FftDisplayPlot::markerEnabled(uint chIdx, uint mkIdx) const
+{
+	return !!d_markers[chIdx][mkIdx].data;
+}
 
 bool FftDisplayPlot::markerVisible(uint chIdx, uint mkIdx) const
 {
@@ -1436,7 +1484,10 @@ void FftDisplayPlot::setStartStop(double start, double stop)
 	setXaxisMajorTicksPos(div.ticks(2));
 }
 
-void FftDisplayPlot::setVisiblePeakSearch(bool enabled) { m_visiblePeakSearch = enabled; }
+void FftDisplayPlot::setVisiblePeakSearch(bool enabled)
+{
+	m_visiblePeakSearch = enabled;
+}
 
 void FftDisplayPlot::marker_to_next_lower_mag_peak(uint chIdx, uint mkIdx)
 {
@@ -1593,11 +1644,20 @@ int FftDisplayPlot::markerType(uint chIdx, uint mkIdx) const
 	return d_markers[chIdx][mkIdx].data->type;
 }
 
-double FftDisplayPlot::channelScaleFactor(int chIdx) const { return y_scale_factor[chIdx]; }
+double FftDisplayPlot::channelScaleFactor(int chIdx) const
+{
+	return y_scale_factor[chIdx];
+}
 
-void FftDisplayPlot::setScaleFactor(int chIdx, double scale) { y_scale_factor[chIdx] = scale; }
+void FftDisplayPlot::setScaleFactor(int chIdx, double scale)
+{
+	y_scale_factor[chIdx] = scale;
+}
 
-FftDisplayPlot::MagnitudeType FftDisplayPlot::magnitudeType() const { return d_magType; }
+FftDisplayPlot::MagnitudeType FftDisplayPlot::magnitudeType() const
+{
+	return d_magType;
+}
 
 void FftDisplayPlot::setMagnitudeType(enum MagnitudeType type)
 {

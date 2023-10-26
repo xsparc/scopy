@@ -38,9 +38,15 @@ M2kMeasurementGui::M2kMeasurementGui()
 
 M2kMeasurementGui::~M2kMeasurementGui() {}
 
-QString M2kMeasurementGui::name() const { return m_name; }
+QString M2kMeasurementGui::name() const
+{
+	return m_name;
+}
 
-QString M2kMeasurementGui::value() const { return m_value; }
+QString M2kMeasurementGui::value() const
+{
+	return m_value;
+}
 
 void M2kMeasurementGui::setLabelsColor(const QColor &color)
 {
