@@ -78,6 +78,7 @@
 #include <gnuradio/m2k/mixed_signal_source.h>
 
 #include <QLoggingCategory>
+#include <mouseplotmagnifier.hpp>
 
 #include <functional>
 #include <gui/utils.h>
@@ -279,6 +280,7 @@ Oscilloscope::Oscilloscope(struct iio_context *ctx, Filter *filt, ToolMenuEntry 
 
 	// plot.setZoomerEnabled(true);
 	fft_plot.setZoomerEnabled();
+	fft_plot.setMagnifierEnabled(false);
 	create_add_channel_panel();
 
 	/* Gnuradio Blocks Connections */
@@ -483,6 +485,8 @@ Oscilloscope::Oscilloscope(struct iio_context *ctx, Filter *filt, ToolMenuEntry 
 	for(unsigned int i = 0; i < nb_channels; i++) {
 		plot.Curve(i)->setAxes(QwtAxisId(QwtAxis::XBottom, 0), QwtAxisId(QwtAxis::YLeft, i));
 		plot.addZoomer(i);
+		plot.addMagnifier(i);
+		connect(plot.getMagnifierList()[i], &MousePlotMagnifier::zoomed, this, &Oscilloscope::updateBufferPreviewer);
 		probe_attenuation.push_back(1);
 		auto multiply = gr::blocks::multiply_const_ff::make(1);
 		auto null_sink = gr::blocks::null_sink::make(sizeof(float));
@@ -1047,6 +1051,8 @@ void Oscilloscope::add_ref_waveform(QString name, QVector<double> xData, QVector
 	plot.Curve(curve_id)->setAxes(QwtAxisId(QwtAxis::XBottom, 0), QwtAxisId(QwtAxis::YLeft, curve_id));
 	plot.Curve(curve_id)->setTitle("REF " + QString::number(nb_ref_channels + 1));
 	plot.addZoomer(curve_id);
+	plot.addMagnifier(curve_id);
+	connect(plot.getMagnifierList()[curve_id], &MousePlotMagnifier::zoomed, this, &Oscilloscope::updateBufferPreviewer);
 	plot.replot();
 
 	nb_ref_channels++;
@@ -1154,6 +1160,8 @@ void Oscilloscope::add_ref_waveform(unsigned int chIdx)
 	plot.Curve(curve_id)->setAxes(QwtAxisId(QwtAxis::XBottom, 0), QwtAxisId(QwtAxis::YLeft, curve_id));
 	plot.Curve(curve_id)->setTitle("REF " + QString::number(nb_ref_channels + 1));
 	plot.addZoomer(curve_id);
+	plot.addMagnifier(curve_id);
+	connect(plot.getMagnifierList()[curve_id], &MousePlotMagnifier::zoomed, this, &Oscilloscope::updateBufferPreviewer);
 	plot.replot();
 
 	nb_ref_channels++;
@@ -2389,6 +2397,8 @@ void Oscilloscope::add_math_channel(const std::string &function)
 	plot.Curve(curve_id)->setAxes(QwtAxisId(QwtAxis::XBottom, 0), QwtAxisId(QwtAxis::YLeft, curve_id));
 	plot.Curve(curve_id)->setTitle("M " + QString::number(curve_number + 1));
 	plot.addZoomer(curve_id);
+	plot.addMagnifier(curve_id);
+	connect(plot.getMagnifierList()[curve_id], &MousePlotMagnifier::zoomed, this, &Oscilloscope::updateBufferPreviewer);
 	plot.replot();
 
 	/* We added a Math channel that is enabled by default,

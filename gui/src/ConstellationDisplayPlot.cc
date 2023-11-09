@@ -103,6 +103,12 @@ ConstellationDisplayPlot::ConstellationDisplayPlot(int nplots, QWidget *parent)
 	d_zoomer[0]->setRubberBandPen(c);
 	d_zoomer[0]->setTrackerPen(c);
 
+	d_magnifier.push_back(new MousePlotMagnifier(canvas()));
+	connect(d_magnifier[0], &MousePlotMagnifier::reset, this, [=](){
+		d_zoomer[0]->zoom(0);
+	});
+	d_magnifier[0]->setEnabled(true);
+
 	//  setAxisScaleEngine(QwtAxis::XBottom, new QwtLinearScaleEngine);
 	//  set_xaxis(-2.0, 2.0);
 	//  setAxisTitle(QwtAxis::XBottom, "In-phase");

@@ -137,6 +137,8 @@ PatternGenerator::PatternGenerator(struct iio_context *ctx, Filter *filt, ToolMe
 
 	// Add propper zoomer
 	m_plot.addZoomer(0);
+	m_plot.addMagnifier(0);
+	m_plot.getMagnifier()->setAxes(QwtAxis::YLeft, false);
 	m_plot.setZoomerParams(true, 20);
 	m_plot.zoomBaseUpdate();
 
@@ -808,6 +810,7 @@ void PatternGenerator::generateBuffer()
 	m_plot.setHorizOffset(1.0 / m_sampleRate * m_bufferSize / 2.0);
 	m_plot.cancelZoom();
 	m_plot.zoomBaseUpdate(true);
+	m_plot.getMagnifier()->setZoomBase(m_plot.getZoomer()->zoomBase());
 
 	for(QPair<QVector<int>, PatternUI *> &pattern : m_enabledPatterns) {
 		pattern.second->get_pattern()->generate_pattern(sr, bufferSize, pattern.first.size());

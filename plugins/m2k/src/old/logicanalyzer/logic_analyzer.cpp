@@ -198,6 +198,7 @@ LogicAnalyzer::LogicAnalyzer(struct iio_context *ctx, Filter *filt, ToolMenuEntr
 
 	// Add propper zoomer
 	m_plot.addZoomer(0);
+	m_plot.addMagnifier(0);
 
 	m_plot.setZoomerParams(true, 20);
 

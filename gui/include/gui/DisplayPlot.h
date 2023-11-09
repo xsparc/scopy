@@ -72,6 +72,7 @@
 
 #include <cmath>
 #include <cstdio>
+#include <iostream>
 #include <stdint.h>
 #include <vector>
 
@@ -81,6 +82,7 @@ Q_DECLARE_METATYPE(QColorList)
 #if QWT_VERSION < 0x060100
 #include <qwt_legend_item.h>
 #else /* QWT_VERSION < 0x060100 */
+#include <mouseplotmagnifier.hpp>
 #include <qwt_legend_data.h>
 #include <qwt_legend_label.h>
 #endif /* QWT_VERSION < 0x060100 */
@@ -414,6 +416,9 @@ public:
 
 	void adjustHandleAreasSize(bool cursors = false);
 
+	MousePlotMagnifier *getMagnifier();
+	QVector<MousePlotMagnifier*> getMagnifierList();
+
 public Q_SLOTS:
 	virtual void disableLegend();
 	virtual void setYaxis(double min, double max);
@@ -604,6 +609,8 @@ protected:
 
 	QwtPlotPanner *d_panner;
 	QVector<QwtPlotZoomer *> d_zoomer;
+	QVector<MousePlotMagnifier *> d_magnifier;
+
 	QwtPlotGrid *d_grid;
 
 	QwtDblClickPlotPicker *d_picker;
@@ -738,8 +745,6 @@ class SCOPY_GUI_EXPORT OscPlotZoomer : public ExtendingPlotZoomer
 public:
 	OscPlotZoomer(QwtAxisId xAxis, QwtAxisId yAxis, QWidget *parent, bool doReplot);
 	OscPlotZoomer(QWidget *, bool doReplot = true);
-
-	void cancel() { reset(); }
 
 Q_SIGNALS:
 	void zoomIn();

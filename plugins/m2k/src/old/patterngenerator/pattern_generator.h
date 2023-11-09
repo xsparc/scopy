@@ -32,6 +32,7 @@
 #include <QQueue>
 #include <QScrollBar>
 #include <QTimer>
+#include <mouseplotmagnifier.hpp>
 
 #include <libm2k/contextbuilder.hpp>
 #include <libm2k/digital/m2kdigital.hpp>

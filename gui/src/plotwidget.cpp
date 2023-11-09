@@ -115,20 +115,34 @@ void PlotWidget::addPlotInfoSlot(QWidget *w) { m_layout->addWidget(w, 0, 1); }
 
 void PlotWidget::setupZoomer()
 {
+//	m_plotNavigator = new PlotNavigator(plot());
+//	m_plotNavigator->setZoomerEnabled(true);
+
+//	std::cout << m_plotNavigator->getZoomer()->isEnabled() << std::endl;
+
 	// zoomer
 	// OscPlotZoomer - need constructor -
-	m_zoomer = new ExtendingPlotZoomer(xAxis()->axisId(), yAxis()->axisId(), m_plot->canvas(), false);
+//	m_plot->setAxisVisible(xAxis()->axisId(), true);
+//	m_plot->setAxisVisible(QwtAxisId(QwtAxis::YLeft, 2), true);
 
-	m_zoomer->setMousePattern(QwtEventPattern::MouseSelect2, Qt::RightButton, Qt::ControlModifier);
-	m_zoomer->setMousePattern(QwtEventPattern::MouseSelect3, Qt::RightButton);
-	m_zoomer->setTrackerMode(QwtPicker::ActiveOnly);
-	const QColor c("#999999");
-	m_zoomer->setRubberBandPen(c);
-	m_zoomer->setTrackerPen(c);
+//	m_zoomer = new BoundedPlotZoomer(xAxis()->axisId(), QwtAxisId(QwtAxis::YLeft, 2), m_plot);
 
-	m_zoomer->setEnabled(true);
-	m_zoomer->setZoomBase(false);
-	m_plot->setMouseTracking(true);
+//	m_zoomer->setMousePattern(QwtEventPattern::MouseSelect2, Qt::RightButton, Qt::ControlModifier);
+//	m_zoomer->setMousePattern(QwtEventPattern::MouseSelect3, Qt::RightButton);
+//	m_zoomer->setTrackerMode(QwtPicker::ActiveOnly);
+//	const QColor c("#999999");
+//	m_zoomer->setRubberBandPen(c);
+//	m_zoomer->setTrackerPen(c);
+
+//	m_zoomer->setEnabled(true);
+
+////	// Load up the new base zoom settings
+////	QRectF zbase = m_zoomer->zoomBase();
+////	m_zoomer->setZoom(zbase);
+////	m_zoomer->setZoomBase(zbase);
+//	m_zoomer->setZoomBase();
+////	m_zoomer->resetZoom();
+////	m_plot->setMouseTracking(true);
 
 	/*connect(m_zoomer,&ExtendingPlotZoomer::zoomed,this, [=](const QRectF &rect ) {
 		for(int i = 0; i < 4;i++) {

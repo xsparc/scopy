@@ -167,6 +167,13 @@ WaterfallDisplayPlot::WaterfallDisplayPlot(int nplots, QWidget *parent)
 	font.setWeight(75);
 	d_zoomer[0]->setTrackerFont(font);
 
+	d_magnifier.push_back(new MousePlotMagnifier(canvas()));
+	d_magnifier[0]->setEnabled(true);
+	d_magnifier[0]->setAxisEnabled(QwtAxis::YLeft, false);
+	connect(d_magnifier[0], &MousePlotMagnifier::reset, this, [=](){
+		d_zoomer[0]->zoom(0);
+	});
+
 	_updateIntensityRangeDisplay();
 
 	// offset between fft plot and waterfall plot raw values
@@ -936,6 +943,8 @@ void WaterfallDisplayPlot::updateZoomerBase()
 	getZoomer()->setZoomBase(rect);
 	getZoomer()->QwtPlotZoomer::zoom(rect);
 	getZoomer()->blockSignals(false);
+
+	getMagnifier()->setZoomBase(rect);
 }
 
 void WaterfallDisplayPlot::customEvent(QEvent *e)

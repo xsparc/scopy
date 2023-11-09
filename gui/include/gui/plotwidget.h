@@ -1,5 +1,6 @@
 #ifndef PLOT_H
 #define PLOT_H
+#include "boundedplotzoomer.hpp"
 #include "handles_area.hpp"
 #include "plotchannel.h"
 #include "scopy-gui_export.h"
@@ -8,6 +9,7 @@
 #include <QWidget>
 #include <QwtPlot>
 #include <QwtPlotZoomer>
+#include <plotnavigator.hpp>
 
 #include <buffer_previewer.hpp>
 #include <graticule.h>
@@ -113,6 +115,8 @@ private:
 	VertHandlesArea *m_leftHandlesArea;
 
 	BufferPreviewer *m_bufferPreviewer;
+
+	PlotNavigator *m_plotNavigator;
 
 	void setAxisScalesVisible(bool visible);
 	void setupAxisScales();

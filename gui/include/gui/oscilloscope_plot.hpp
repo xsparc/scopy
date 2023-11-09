@@ -52,7 +52,7 @@ public:
 
 class SCOPY_GUI_EXPORT CapturePlot : public OscilloscopePlot
 {
-	friend class Oscilloscope_API;
+	friend class Oscilloscope_APkI;
 	friend class LogicAnalyzer_API;
 	friend class Channel_API;
 

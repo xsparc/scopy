@@ -278,6 +278,13 @@ HistogramDisplayPlot::HistogramDisplayPlot(int nplots, QWidget *parent)
 		d_zoomer.push_back(new HistogramDisplayZoomer(canvas(), 0, getLineColor(i)));
 		d_zoomer[i]->setAxes(QwtAxisId(QwtAxis::XBottom, i), QwtAxisId(QwtAxis::YLeft, i));
 
+		d_magnifier.push_back(new MousePlotMagnifier(canvas()));
+		d_magnifier[i]->setAxisEnabled(QwtAxisId(QwtAxis::XBottom, i), true);
+		d_magnifier[i]->setAxisEnabled(QwtAxisId(QwtAxis::YLeft, i), true);
+		connect(d_magnifier[i], &MousePlotMagnifier::reset, this, [=](){
+			d_zoomer[i]->zoom(0);
+		});
+
 		connect(d_zoomer[i], SIGNAL(zoomed(QRectF)), this, SLOT(_onZoom(QRectF)));
 	}
 
@@ -638,12 +645,14 @@ void HistogramDisplayPlot::_orientationChanged()
 
 	for(int i = 0; i < d_zoomer.size(); ++i) {
 		d_zoomer[i]->setEnabled(d_orientation == Qt::Horizontal ? false : true);
+		d_magnifier[i]->setEnabled(d_orientation == Qt::Horizontal ? false : true);
 	}
 }
 
 void HistogramDisplayPlot::_resetZoom()
 {
 	for(int i = 0; i < d_zoomer.size(); ++i) {
+		Q_EMIT d_magnifier[i]->reset();
 		static_cast<LimitedPlotZoomer *>(d_zoomer[i])->resetZoom();
 	}
 }

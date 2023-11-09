@@ -487,6 +487,7 @@ SignalGenerator::SignalGenerator(struct iio_context *_ctx, Filter *filt, ToolMen
 	connect(ui->refreshBtn, SIGNAL(clicked()), this, SLOT(loadFileCurrentChannelData()));
 
 	m_plot->addZoomer(0);
+	m_plot->addMagnifier(0);
 	resetZoom();
 
 	auto ptr = getCurrentData();

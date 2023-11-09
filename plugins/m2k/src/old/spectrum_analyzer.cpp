@@ -316,6 +316,8 @@ SpectrumAnalyzer::SpectrumAnalyzer(struct iio_context *ctx, Filter *filt, ToolMe
 	fft_plot->setAxisVisible(QwtAxis::XTop, false);
 	fft_plot->setUsingLeftAxisScales(false);
 
+	fft_plot->setMagnifierEnabled(true);
+
 	ui->gridLayout_plot->addWidget(centralWidget, 1, 0, 1, 1);
 
 	fft_plot->enableXaxisLabels();
@@ -1601,6 +1603,11 @@ void SpectrumAnalyzer::cursor_panel_init()
 
 void SpectrumAnalyzer::connectZoomers()
 {
+	// PlotMagnifiers
+	connect(fft_plot->getMagnifier(), &MousePlotMagnifier::zoomed, waterfall_plot->getMagnifier(), &MousePlotMagnifier::silentZoom);
+	connect(waterfall_plot->getMagnifier(), &MousePlotMagnifier::zoomed, fft_plot->getMagnifier(), &MousePlotMagnifier::silentZoom);
+
+	// PlotZoomers
 	fft_plot->getZoomer()->zoom(0);
 	waterfall_plot->getZoomer()->zoom(0);
 

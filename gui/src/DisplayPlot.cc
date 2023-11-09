@@ -41,6 +41,7 @@
 
 #include "DisplayPlot.h"
 
+#include "mouseplotmagnifier.hpp"
 #include "osc_scale_engine.h"
 
 #include <QColor>
@@ -594,6 +595,19 @@ DisplayPlot::DisplayPlot(int nplots, QWidget *parent, bool isdBgraph, unsigned i
 	setupReadouts();
 }
 
+MousePlotMagnifier *DisplayPlot::getMagnifier()
+{
+	if(d_magnifier.size())
+		return d_magnifier[0];
+	return nullptr;
+}
+
+QVector<MousePlotMagnifier*> DisplayPlot::getMagnifierList()
+{
+	return d_magnifier;
+}
+
+
 void DisplayPlot::setupDisplayPlotDiv(bool isdBgraph)
 {
 	if(!isdBgraph) {
@@ -973,7 +987,14 @@ void DisplayPlot::toggleCursors(bool en)
 
 bool DisplayPlot::isLogaritmicPlot() const { return d_isLogaritmicPlot; }
 
-void DisplayPlot::setPlotLogaritmic(bool value) { d_isLogaritmicPlot = value; }
+void DisplayPlot::setPlotLogaritmic(bool value)
+{
+	d_isLogaritmicPlot = value;
+
+	for(auto magnifier: d_magnifier) {
+		magnifier->setLogarithmic(value);
+	}
+}
 
 bool DisplayPlot::isLogaritmicYPlot() const { return d_isLogaritmicYPlot; }
 
@@ -1162,8 +1183,10 @@ void DisplayPlot::setAllYAxis(double min, double max)
 	}
 
 	if(!d_autoscale_state) {
-		for(int i = 0; i < d_zoomer.size(); ++i)
+		for(int i = 0; i < d_zoomer.size(); ++i) {
 			d_zoomer[i]->setZoomBase();
+			d_magnifier[i]->setZoomBase(d_zoomer[i]->zoomBase());
+		}
 	}
 }
 
@@ -1171,16 +1194,20 @@ void DisplayPlot::setYaxis(double min, double max)
 {
 	setAxisScale(m_qwtYAxis, min, max);
 	if(!d_autoscale_state) {
-		for(unsigned int i = 0; i < d_zoomer.size(); ++i)
+		for(unsigned int i = 0; i < d_zoomer.size(); ++i) {
 			d_zoomer[i]->setZoomBase();
+			d_magnifier[i]->setZoomBase(d_zoomer[i]->zoomBase());
+		}
 	}
 }
 
 void DisplayPlot::setXaxis(double min, double max)
 {
 	setAxisScale(QwtAxis::XBottom, min, max);
-	for(unsigned int i = 0; i < d_zoomer.size(); ++i)
+	for(unsigned int i = 0; i < d_zoomer.size(); ++i) {
 		d_zoomer[i]->setZoomBase();
+		d_magnifier[i]->setZoomBase(d_zoomer[i]->zoomBase());
+	}
 }
 
 void DisplayPlot::setLineLabel(int which, QString label) { d_plot_curve[which]->setTitle(label); }
@@ -1507,8 +1534,14 @@ void DisplayPlot::onPickerPointSelected6(const QPointF &p)
 
 void DisplayPlot::zoomBaseUpdate(bool force)
 {
-	for(unsigned int i = 0; i < d_zoomer.size(); ++i)
+	for(unsigned int i = 0; i < d_zoomer.size(); ++i) {
 		d_zoomer[i]->setZoomBase(force);
+		d_magnifier[i]->setZoomBase(d_zoomer[i]->zoomBase());
+//		auto c = d_zoomer[i]->zoomBase();
+//		auto k = d_magnifier[i]->zoomBase();
+//		std::cout << c.bottom() << ", " << c.top() << " |  " << c.left() << "," << c.right() << std::endl;
+//		std::cout << k.bottom() << ", " << k.top() << " || " << k.left() << "," << k.right() << std::endl;
+	}
 }
 
 void DisplayPlot::AddAxisOffset(int axisPos, int axisIdx, double offset)
@@ -1538,6 +1571,9 @@ void DisplayPlot::AddAxisOffset(int axisPos, int axisIdx, double offset)
 	QwtAxisId axisId(axisPos, axisIdx);
 
 	setAxisScale(axisId, min + offset, max + offset, axisStepSize(axisId));
+
+//	std::cout << "d_xAxisMin: " << d_xAxisMin << " ----- " << ptsPerDiv << std::endl;
+//	std::cout << "d_xAxisMax: " << d_xAxisMax << " ----- " << ptsPerDiv << std::endl;
 }
 
 void DisplayPlot::setVertOffset(double offset, int axisIdx)
@@ -1818,6 +1854,7 @@ void DisplayPlot::mousePressEvent(QMouseEvent *event)
 		for(unsigned int i = 0; i < d_zoomer.size(); ++i) {
 			OscPlotZoomer *zoomer = static_cast<OscPlotZoomer *>(d_zoomer[i]);
 			zoomer->popZoom();
+			Q_EMIT d_magnifier[i]->reset();
 		}
 	}
 }
@@ -1840,6 +1877,7 @@ void DisplayPlot::setZoomerParams(bool bounded, int maxStackDepth)
 	auto zoomer = dynamic_cast<LimitedPlotZoomer *>(d_zoomer[0]);
 	zoomer->setMaxStackDepth(maxStackDepth);
 	zoomer->setBoundVertical(bounded);
+	d_magnifier[0]->setBounded(bounded);
 }
 
 void DisplayPlot::horizAxisScaleIncrease()

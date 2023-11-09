@@ -23,6 +23,7 @@
 #include <gui/widgets/toolbuttons.h>
 #include <gui/widgets/verticalchannelmanager.h>
 #include <widgets/hoverwidget.h>
+#include <boundedplotzoomer.hpp>
 
 using namespace scopy;
 
@@ -216,6 +217,30 @@ TestTool::TestTool(QWidget *parent)
 		hv->setVisible(b);
 		hv->raise();
 	});
+
+
+
+	plot->plot()->setAxisVisible(QwtAxis::XBottom, true);
+	plot->plot()->setAxisVisible(QwtAxisId(QwtAxis::YLeft, 2), true);
+
+	auto m_zoomer = new BoundedPlotZoomer(QwtAxisId(QwtAxis::XBottom), QwtAxisId(QwtAxis::YLeft, 2), plot->plot());
+
+	m_zoomer->setMousePattern(QwtEventPattern::MouseSelect2, Qt::RightButton, Qt::ControlModifier);
+	m_zoomer->setMousePattern(QwtEventPattern::MouseSelect3, Qt::RightButton);
+	m_zoomer->setTrackerMode(QwtPicker::ActiveOnly);
+	const QColor c("#999999");
+	m_zoomer->setRubberBandPen(c);
+	m_zoomer->setTrackerPen(c);
+
+	m_zoomer->setEnabled(true);
+
+//	// Load up the new base zoom settings
+//	QRectF zbase = m_zoomer->zoomBase();
+//	m_zoomer->setZoom(zbase);
+//	m_zoomer->setZoomBase(zbase);
+	m_zoomer->setZoomBase();
+//	m_zoomer->resetZoom();
+//	m_plot->setMouseTracking(true);
 }
 
 QWidget *TestTool::createMenu(QWidget *parent)

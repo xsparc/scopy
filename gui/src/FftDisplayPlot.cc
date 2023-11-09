@@ -419,6 +419,18 @@ void FftDisplayPlot::setZoomerEnabled()
 	}
 }
 
+void FftDisplayPlot::setMagnifierEnabled(bool enabled)
+{
+	d_magnifier.push_back(new MousePlotMagnifier(canvas()));
+	d_magnifier[0]->setEnabled(enabled);
+	d_magnifier[0]->setAxisEnabled(QwtAxis::YLeft, false);
+	connect(d_magnifier[0], &MousePlotMagnifier::reset, this, [=](){
+		d_zoomer[0]->zoom(0);
+	});
+
+	d_magnifier[0]->setZoomBase(d_zoomer[0]->zoomBase());
+}
+
 void FftDisplayPlot::setNumPoints(uint64_t num_points) { d_numPoints = num_points; }
 
 QColor FftDisplayPlot::getChannelColor()
@@ -841,6 +853,8 @@ void FftDisplayPlot::updateZoomerBase()
 	getZoomer()->setZoomBase(rect);
 	getZoomer()->QwtPlotZoomer::zoom(rect);
 	getZoomer()->blockSignals(false);
+
+	getMagnifier()->setZoomBase(rect);
 }
 
 void FftDisplayPlot::customEvent(QEvent *e)
