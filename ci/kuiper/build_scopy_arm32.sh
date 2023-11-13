@@ -83,6 +83,12 @@ instal_apt() {
 	sudo apt-get update
 	sudo apt-get -y upgrade
 	sudo apt-get install libsndfile-dev -y
+	sudo apt install qt5-default
+	sudo apt install qtbase5-dev qtchooser qt5-qmake qtbase5-dev-tools
+	sudo apt-get install libqt5svg5*
+	sudo apt-get install qtdeclarative5-dev
+	sudo apt-get install qtmultimedia5-dev qt-quickcontrols2-5-dev qml-module-qtquick-controls
+	sudo apt-get install lib64qt5core-devel lib64qt5core5 lib64qt5gui-devel lib64qt5gui5 qttools5 
 }
 
 build_libiio() {

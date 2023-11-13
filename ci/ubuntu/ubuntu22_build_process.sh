@@ -29,7 +29,7 @@ LIBTINYIIOD_BRANCH=master
 
 QMAKE_BIN=$QT/bin/qmake
 CMAKE_BIN=/bin/cmake
-JOBS=-j8
+JOBS=-j14
 ARCH=x86_64
 
 if [ ! -z "$USE_STAGING" ] && [ "$USE_STAGING" == "ON" ]
@@ -51,6 +51,7 @@ if [ ! -z "$USE_STAGING" ] && [ "$USE_STAGING" == "ON" ]
 		echo  -- STAGING_DIR $STAGING_AREA_DEPS
 	else
 		echo -- NO STAGING
+		STAGING_AREA=$PWD/staging
 		export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$QT/lib
 		CMAKE_OPTS=(\
 			-DCMAKE_PREFIX_PATH=$QT \
@@ -81,6 +82,7 @@ clone() {
 	git clone --recursive https://github.com/cseci/qwt.git -b $QWT_BRANCH qwt
 	git clone --recursive https://github.com/sigrokproject/libsigrokdecode.git -b $LIBSIGROKDECODE_BRANCH libsigrokdecode
 	git clone --recursive https://github.com/analogdevicesinc/libtinyiiod.git -b $LIBTINYIIOD_BRANCH libtinyiiod
+	git clone --recursive https://github.com/analogdevicesinc/iio-emu.git -b $IIO_EMU iio-emu
 	popd
 }
 
@@ -94,7 +96,7 @@ build_with_cmake() {
 	cd $BUILD_FOLDER
 	$CMAKE $CURRENT_BUILD_CMAKE_OPTS ../
 	make $JOBS
-	if [ $INSTALL = "ON" ]
+	if [ "$INSTALL" == "ON" ]
 		then
 		sudo make $JOBS install
 		sudo ldconfig
@@ -304,6 +306,5 @@ build_deps(){
 #clone
 #update
 #install_apt
-#install_qt
 #build_deps
 #build_scopy

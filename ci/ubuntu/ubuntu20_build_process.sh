@@ -6,14 +6,14 @@ if [ "$CI_SCRIPT" == "ON" ]
 		git config --global --add safe.directory '*'
 		QT=/home/runner/Qt/5.15.2/gcc_64 # this is used to force the use of Qt5.15 for qt_add_resources
 	else
-		set -x
+		set -ex
 		SRC_DIR=$(git rev-parse --show-toplevel)
 		QT=/opt/Qt/5.15.2/gcc_64
 fi
 
 USE_STAGING=$1
 
-LIBIIO_VERSION=master
+LIBIIO_VERSION=v0.25
 LIBAD9361_BRANCH=master
 GLOG_BRANCH=v0.4.0
 
@@ -26,19 +26,20 @@ GRM2K_BRANCH=master
 LIBSIGROKDECODE_BRANCH=master
 QWT_BRANCH=qwt-multiaxes
 LIBTINYIIOD_BRANCH=master
+IIO_EMU=master
 
 QMAKE_BIN=$QT/bin/qmake
 CMAKE_BIN=/bin/cmake
-JOBS=-j8
+JOBS=-j14
 ARCH=x86_64
+
+STAGING_AREA=$PWD/staging
 
 if [ ! -z "$USE_STAGING" ] && [ "$USE_STAGING" == "ON" ]
 	then
 		echo -- USING STAGING
-		STAGING_AREA=$PWD/staging
 		STAGING_AREA_DEPS=$STAGING_AREA/dependencies
-		mkdir -p $STAGING_AREA_DEPS
-		export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$STAGING_AREA_DEPS/lib:$QT/lib
+		export LD_LIBRARY_PATH=$STAGING_AREA_DEPS/lib:$QT/lib:$LD_LIBRARY_PATH
 		CMAKE_OPTS=(\
 			-DCMAKE_LIBRARY_PATH=$STAGING_AREA_DEPS \
 			-DCMAKE_INSTALL_PREFIX=$STAGING_AREA_DEPS \
@@ -51,7 +52,7 @@ if [ ! -z "$USE_STAGING" ] && [ "$USE_STAGING" == "ON" ]
 		echo  -- STAGING_DIR $STAGING_AREA_DEPS
 	else
 		echo -- NO STAGING
-		export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$QT/lib
+		export LD_LIBRARY_PATH=$QT/lib:$LD_LIBRARY_PATH:
 		CMAKE_OPTS=(\
 			-DCMAKE_PREFIX_PATH=$QT \
 			-DCMAKE_BUILD_TYPE=RelWithDebInfo \
@@ -67,7 +68,11 @@ echo -- USING QMAKE: $QMAKE_BIN
 
 clone() {
 	echo "#######CLONE#######"
-	mkdir -p $STAGING_AREA
+	if [ ! -z "$USE_STAGING" ] && [ "$USE_STAGING" == "ON" ]; then
+		mkdir -p $STAGING_AREA_DEPS
+		else
+		mkdir -p $STAGING_AREA
+	fi
 	pushd $STAGING_AREA
 	git clone --recursive https://github.com/analogdevicesinc/libiio.git -b $LIBIIO_VERSION libiio
 	git clone --recursive https://github.com/analogdevicesinc/libad9361-iio.git -b $LIBAD9361_BRANCH libad9361
@@ -81,23 +86,20 @@ clone() {
 	git clone --recursive https://github.com/cseci/qwt.git -b $QWT_BRANCH qwt
 	git clone --recursive https://github.com/sigrokproject/libsigrokdecode.git -b $LIBSIGROKDECODE_BRANCH libsigrokdecode
 	git clone --recursive https://github.com/analogdevicesinc/libtinyiiod.git -b $LIBTINYIIOD_BRANCH libtinyiiod
+	git clone --recursive https://github.com/analogdevicesinc/iio-emu.git -b $IIO_EMU iio-emu
 	popd
 }
-
 
 build_with_cmake() {
 	echo $PWD
 	BUILD_FOLDER=$PWD/build-${ARCH}
 	rm -rf $BUILD_FOLDER
-	git clean -xdf
 	mkdir -p $BUILD_FOLDER
 	cd $BUILD_FOLDER
 	$CMAKE $CURRENT_BUILD_CMAKE_OPTS ../
 	make $JOBS
-	if [ $INSTALL = "ON" ]
-		then
-		sudo make $JOBS install
-		sudo ldconfig
+	if [ $INSTALL = "ON" ]; then
+		make $JOBS install
 	fi
 	INSTALL=""
 	CURRENT_BUILD_CMAKE_OPTS=""
@@ -109,14 +111,19 @@ update(){
 }
 
 install_apt() {
-	sudo DEBIAN_FRONTEND=noninteractive apt-get -y install keyboard-configuration
-	sudo apt-get -y install vim git wget libxcb-xinerama0 cmake libgmp3-dev libboost-all-dev libxml2-dev libxml2 flex bison swig \
-	libpython3-all-dev python3 python3-pip python3-numpy libfftw3-bin libfftw3-dev libfftw3-3 liblog4cpp5v5 \
-	liblog4cpp5-dev g++ autoconf libzip-dev libglib2.0-dev libsigc++-2.0-dev libglibmm-2.4-dev \
-	libclang1-9 doxygen curl libmatio-dev liborc-0.4-dev subversion mesa-common-dev libgl1-mesa-dev libserialport0 \
-	libserialport-dev libusb-1.0 libusb-1.0-0 libusb-1.0-0-dev libtool libaio-dev libzmq3-dev libsndfile1-dev \
-	libavahi-client-dev graphviz unzip xserver-xorg openjdk-11-jre   build-essential pkg-config \
-	autogen python-dev gettext texinfo libxkbcommon-x11-0 libqt5gui5 libncurses5 autoconf-archive mm-common
+	sudo DEBIAN_FRONTEND=noninteractive apt-get -y install 
+
+	sudo apt-get -y install \
+		python3 python-dev python3-pip libpython3-all-dev python3-numpy \
+		keyboard-configuration vim git wget  unzip\
+		g++ build-essential cmake curl autogen autoconf autoconf-archive pkg-config flex bison swig \
+		subversion mesa-common-dev graphviz xserver-xorg gettext texinfo mm-common doxygen \
+		libboost-all-dev libfftw3-bin libfftw3-dev libfftw3-3 liblog4cpp5v5 liblog4cpp5-dev \
+		libxcb-xinerama0  libgmp3-dev libzip-dev libglib2.0-dev libglibmm-2.4-dev libsigc++-2.0-dev \
+		libclang1-9 libmatio-dev liborc-0.4-dev libgl1-mesa-dev libserialport0 libserialport-dev \
+		libusb-1.0 libusb-1.0-0 libusb-1.0-0-dev libavahi-client-dev libsndfile1-dev \
+		libxkbcommon-x11-0 libqt5gui5 libncurses5 libtool libaio-dev libzmq3-dev  \
+
 	pip3 install mako
 	pip3 install packaging
 }
@@ -270,6 +277,15 @@ build_libtinyiiod() {
 	echo "### Building libtinyiiod - branch $LIBTINYIIOD_BRANCH"
 	pushd $STAGING_AREA/libtinyiiod
 	CURRENT_BUILD_CMAKE_OPTS="-DBUILD_EXAMPLES=OFF"
+	INSTALL="ON"
+	build_with_cmake
+	popd
+}
+
+build_iio-emu() {
+	echo "### Building iio-emu - branch $IIO_EMU"
+	pushd $STAGING_AREA/iio-emu
+	INSTALL="ON"
 	build_with_cmake
 	popd
 }
@@ -282,9 +298,13 @@ build_scopy() {
 		-DENABLE_PLUGIN_TEST=ON \
 		-DENABLE_TESTING=ON
 		"
-	INSTALL="OFF"
+	INSTALL="ON"
 	build_with_cmake 
 	popd
+}
+
+build_appimage(){
+	$SRC_DIR/ci/ubuntu/makeScopyAppImage.sh
 }
 
 build_deps(){
@@ -300,11 +320,12 @@ build_deps(){
 	build_qwt
 	build_libsigrokdecode
 	build_libtinyiiod
+	build_iio-emu
 }
 
-#clone
-#update
-#install_apt
-#install_qt
-#build_deps
-#build_scopy
+update
+install_apt
+clone
+build_deps
+build_scopy
+build_appimage

@@ -36,6 +36,7 @@ build/*
 .vscode/*
 ci/ubuntu/staging
 ci/macOS/staging
+ci/ubuntu/ScopyAppDir
 windows/*
 core/include/scopy-core_config.h
 core/include/scopy-core_export.h
