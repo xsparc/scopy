@@ -6,7 +6,9 @@ STAGING_AREA_DEPS=$STAGING_AREA/dependencies
 JOBS=-j4
 REPO_SRC=$BUILD_REPOSITORY_LOCALPATH
 
-QT_PATH="$(brew --prefix ${QT_FORMULAE})/bin"
+#QT_PATH="$(brew --prefix ${QT_FORMULAE})/bin"
+QT_PATH="/usr/local/Qt-5.15.2/5.15.2/clang_64/lib:/usr/local/Qt-5.15.2/5.15.2/clang_64/bin"
+
 export PATH="${QT_PATH}:$PATH"
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH;$STAGING_AREA_DEPS;$STAGING_AREA_DEPS/lib"
 

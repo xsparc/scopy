@@ -17,9 +17,8 @@ GLOG_BRANCH=v0.4.0
 SPDLOG_BRANCH=v1.x
 
 PYTHON="python3"
-QT_FORMULAE=qt@5
 
-PACKAGES=" ${QT_FORMULAE} volk spdlog boost pkg-config cmake fftw bison gettext autoconf automake libtool libzip glib libusb glog "
+PACKAGES=" $volk spdlog boost pkg-config cmake fftw bison gettext autoconf automake libtool libzip glib libusb glog "
 PACKAGES="$PACKAGES doxygen wget gnu-sed libmatio dylibbundler libxml2 ghr libserialport libsndfile"
 
 STAGING_AREA=$PWD/staging
@@ -29,7 +28,7 @@ STAGINGDIR=$STAGING_AREA/dependencies
 source ${REPO_SRC}/ci/macOS/before_install_lib.sh
 
 install_packages() {
-	brew search ${QT_FORMULAE}
+#	brew search ${QT_FORMULAE}
 	brew install $PACKAGES
 	for pkg in gcc bison gettext cmake python; do
 		brew link --overwrite --force $pkg
@@ -38,8 +37,17 @@ install_packages() {
 	pip3 install mako
 }
 
+install_qt() {
+#  install with aqt
+  PYTHON -m ensurepip
+  PYTHON -m pip install --upgrade pip
+
+  pip install aqtinstall && sudo python3 -m aqt install-qt --outputdir /usr/local/Qt-5.15.2 mac desktop 5.15.2
+}
+
 export_paths(){
-	QT_PATH="$(brew --prefix ${QT_FORMULAE})/bin"
+#	QT_PATH="$(brew --prefix ${QT_FORMULAE})/bin"
+  QT_PATH="/usr/local/Qt-5.15.2/5.15.2/clang_64/lib:/usr/local/Qt-5.15.2/5.15.2/clang_64/bin"
 	export PATH="/usr/local/bin:$PATH"
 	export PATH="/usr/local/opt/bison/bin:$PATH"
 	export PATH="${QT_PATH}:$PATH"
@@ -243,6 +251,7 @@ build_deps(){
 }
 
 install_packages
+install_qt
 export_paths
 clone
 generate_status_file

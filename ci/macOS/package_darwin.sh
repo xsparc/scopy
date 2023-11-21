@@ -131,10 +131,11 @@ sudo install_name_tool -change ${iiorpath} @executable_path/../Frameworks/${iioi
 sudo install_name_tool -change ${m2krpath} @executable_path/../Frameworks/${m2kid} ./Scopy.app/Contents/Frameworks/libgnuradio-m2k*
 sudo install_name_tool -change ${m2krpath} @executable_path/../Frameworks/${m2kid} ./Scopy.app/Contents/Frameworks/libgnuradio-scopy*
 
-if command -v brew ; then
-	QT_PATH="$(brew --prefix ${QT_FORMULAE})/bin"
-	export PATH="${QT_PATH}:$PATH"
-fi
+#if command -v brew ; then
+#	QT_PATH="$(brew --prefix ${QT_FORMULAE})/bin"
+QT_PATH="/usr/local/Qt-5.15.2/5.15.2/clang_64/lib:/usr/local/Qt-5.15.2/5.15.2/clang_64/bin"
+export PATH="${QT_PATH}:$PATH"
+#fi
 
 echo "=== Fixing iio-emu + libtinyiiod"
 cp $REPO_SRC/iio-emu/build/iio-emu ./Scopy.app/Contents/MacOS/
