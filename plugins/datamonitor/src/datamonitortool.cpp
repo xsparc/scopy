@@ -1,5 +1,6 @@
 #include "datamonitortoolsettings.hpp"
 #include "datamonitortool.hpp"
+#include "datamonitorsettings.hpp"
 
 #include <QBoxLayout>
 #include <flexgridlayout.hpp>
@@ -124,6 +125,58 @@ void DataMonitorTool::generateMonitor(DataMonitorModel *model, CollapsableMenuCo
 	m_monitors->insert(controllerId, dataMonitorController);
 	// add the monitor to layout
 	m_flexGridLayout->addWidget(controllerId);
+
+	// Generate settings
+	DataMonitorSettings *dataMonitorSettings = new DataMonitorSettings(this);
+	dataMonitorSettings->init(model->getTitle(), model->getColor());
+
+	tool->rightStack()->add(QString::number(controllerId), dataMonitorSettings);
+
+	// Generate handler
+	MenuControlButton *dataMonitorHandler = new MenuControlButton(this);
+	dataMonitorHandler->setName(model->getTitle());
+	dataMonitorHandler->setCheckBoxStyle(MenuControlButton::CS_CIRCLE);
+	dataMonitorHandler->setColor(model->getColor());
+	dataMonitorHandler->checkBox()->setChecked(true);
+	dataMonitorHandler->button()->setVisible(false);
+
+	grp->addButton(dataMonitorHandler);
+
+	// connect hanlder to monitor
+
+	// TODO ?enable/disable data collection
+	connect(dataMonitorHandler->checkBox(), &QCheckBox::toggled, this, [=](bool toggled) {
+		if(toggled) {
+			m_flexGridLayout->addWidget(controllerId);
+		} else {
+			m_flexGridLayout->removeWidget(controllerId);
+			dataMonitorHandler->click();
+		}
+	});
+
+	// connect handler to settings
+	connect(dataMonitorHandler, &QAbstractButton::clicked, this,
+		[=]() { tool->requestMenu(QString::number(controllerId)); });
+
+	channelManager->add(dataMonitorHandler);
+	// connect monitor settings signals
+
+	// peak holder settings
+	connect(dataMonitorSettings, &DataMonitorSettings::togglePeakHolder,
+		dataMonitorController->getDataMonitorView(), &DataMonitorView::togglePeakHolder);
+	connect(dataMonitorSettings, &DataMonitorSettings::resetPeakHolder, dataMonitorController->getModel(),
+		&DataMonitorModel::resetMinMax);
+	// plot settings
+	connect(dataMonitorSettings, &DataMonitorSettings::toggleHistory, dataMonitorController->getDataMonitorView(),
+		&DataMonitorView::togglePlot);
+	connect(dataMonitorSettings, &DataMonitorSettings::lineStyleChanged,
+		dataMonitorController->getDataMonitorView(), &DataMonitorView::updateCurveStyle);
+
+	// connect tool settings signals
+	connect(generalSettings, &DataMonitorToolSettings::toggleAll, dataMonitorHandler->checkBox(),
+		&QCheckBox::toggle);
+	connect(generalSettings, &DataMonitorToolSettings::precisionChanged,
+		dataMonitorController->getDataMonitorView(), &DataMonitorView::updatePrecision);
 }
 
 void DataMonitorTool::initDataMonitor() {}
