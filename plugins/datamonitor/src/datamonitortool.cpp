@@ -1,3 +1,4 @@
+#include "datamonitortoolsettings.hpp"
 #include "datamonitortool.hpp"
 
 #include <QBoxLayout>
@@ -48,6 +49,11 @@ DataMonitorTool::DataMonitorTool(QWidget *parent)
 
 	grp = static_cast<OpenLastMenuBtn *>(openLatMenuBtn)->getButtonGroup();
 	grp->addButton(settingsButton);
+
+	generalSettings = new DataMonitorToolSettings();
+	generalSettings->init("Settings", StyleHelper::getColor("ScopyBlue"));
+	tool->rightStack()->add("settings", generalSettings);
+	connect(settingsButton, &QAbstractButton::clicked, this, [=]() { tool->requestMenu("settings"); });
 
 	// channel monitors layout
 	m_scrollArea = new QScrollArea(this);

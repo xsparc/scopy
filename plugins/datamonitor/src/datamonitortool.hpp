@@ -17,6 +17,7 @@ namespace datamonitor {
 
 class DataMonitorModel;
 class DataMonitorController;
+class DataMonitorToolSettings;
 
 class DataMonitorTool : public QWidget
 {
@@ -38,6 +39,9 @@ private:
 
 	FlexGridLayout *m_flexGridLayout;
 	QScrollArea *m_scrollArea;
+
+	DataMonitorToolSettings *generalSettings;
+
 	QMap<int, DataMonitorController *> *m_monitors;
 	void generateMonitor(DataMonitorModel *model, CollapsableMenuControlButton *channelManager);
 
