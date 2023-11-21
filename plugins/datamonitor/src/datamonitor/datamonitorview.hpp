@@ -15,6 +15,7 @@ namespace datamonitor {
 
 class DataMonitorView : public QFrame
 {
+	friend class DataMonitorStyleHelper;
 	Q_OBJECT
 public:
 	explicit DataMonitorView(DataMonitorModel *dataMonitorModel, QWidget *parent = nullptr);

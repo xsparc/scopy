@@ -1,5 +1,7 @@
 #include "datamonitorview.hpp"
 
+#include <src/datamonitorstylehelper.hpp>
+
 using namespace scopy;
 using namespace datamonitor;
 
@@ -71,6 +73,8 @@ DataMonitorView::DataMonitorView(DataMonitorModel *dataMonitorModel, QWidget *pa
 	m_timeInterval = 1;
 	m_sampleRate = 1;
 	m_numSamples = 1;
+
+	DataMonitorStyleHelper::DataMonitorViewStyle(this, dataMonitorModel->getColor());
 }
 
 PlotWidget *DataMonitorView::getPlot() const { return m_plot; }
