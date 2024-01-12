@@ -15,7 +15,7 @@ BasicPlot::BasicPlot(QWidget *parent)
 	, debug(false)
 	, replotFrameRate(60)
 {
-	useOpenGlCanvas = true; //= getToolLauncherInstance()->isOpenGlLoaded();
+	useOpenGlCanvas = false; //= getToolLauncherInstance()->isOpenGlLoaded();
 	connect(&replotTimer, SIGNAL(timeout()), this, SLOT(replotNow()));
 
 	if(useOpenGlCanvas) {
