@@ -10,6 +10,8 @@
 
 #include <src/dataacquisition/dataacquisitionmanager.hpp>
 
+#include <src/datamonitor/datamonitorcontroller.hpp>
+
 namespace scopy {
 
 class CollapsableMenuControlButton;
@@ -41,6 +43,10 @@ private:
 	QButtonGroup *grp;
 
 	DataAcquisitionManager *m_dataAcquisitionManager;
+	QMap<int, DataMonitorController *> *m_monitorControllers;
+
+	// TODO remove
+	void addMonitor();
 };
 } // namespace datamonitor
 } // namespace scopy

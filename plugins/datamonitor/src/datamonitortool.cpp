@@ -57,6 +57,14 @@ DataMonitorTool::DataMonitorTool(QWidget *parent)
 	tool->addWidgetToCentralContainerHelper(m_scrollArea);
 
 	initDataMonitor();
+
+	QPushButton *addMonitorButton = new QPushButton(this);
+	addMonitorButton->setText("+");
+	// TODO add monitor button style
+	StyleHelper::BlueButton(addMonitorButton);
+	tool->addWidgetToTopContainerHelper(addMonitorButton, TTA_LEFT);
+
+	connect(addMonitorButton, &QPushButton::clicked, this, &DataMonitorTool::addMonitor);
 }
 
 RunBtn *DataMonitorTool::getRunButton() const { return runBtn; }
@@ -64,6 +72,9 @@ RunBtn *DataMonitorTool::getRunButton() const { return runBtn; }
 void DataMonitorTool::initDataMonitor()
 {
 	tool->addWidgetToTopContainerHelper(infoBtn, TTA_LEFT);
+
+	m_monitorControllers = new QMap<int, DataMonitorController *>();
+
 	m_dataAcquisitionManager = new DataAcquisitionManager(this);
 	// TODO read strategy will be replaced to DMM read strategy
 	m_dataAcquisitionManager->setReadStrategy(new TestReadStrategy());
@@ -81,4 +92,15 @@ void DataMonitorTool::initDataMonitor()
 
 	connect(clearBtn, &QPushButton::clicked, m_dataAcquisitionManager,
 		[=]() { m_dataAcquisitionManager->getDataMonitorHanlder()->clearMonitorsData(); });
+}
+
+void DataMonitorTool::addMonitor()
+{
+	DataMonitorController *monitorController = new DataMonitorController(this);
+	monitorController->setMonitors(m_dataAcquisitionManager->getDataMonitorHanlder());
+
+	int controllerId = m_flexGridLayout->addQWidgetToList(monitorController->getDataMonitorView());
+	m_flexGridLayout->addWidget(controllerId);
+
+	m_monitorControllers->insert(controllerId, monitorController);
 }
