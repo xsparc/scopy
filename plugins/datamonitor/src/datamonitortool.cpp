@@ -92,6 +92,16 @@ void DataMonitorTool::initDataMonitor()
 
 	connect(clearBtn, &QPushButton::clicked, m_dataAcquisitionManager,
 		[=]() { m_dataAcquisitionManager->getDataMonitorHanlder()->clearMonitorsData(); });
+
+	// TODO get a list of DataMonitorModel for each device we want to add
+	// ?? use de generateMonitor function outside the tool ? tool->generateMonitor( monitor data ) ;
+	for(int i = 0; i < 4; i++) {
+		DataMonitorModel *dataModel = new DataMonitorModel("test:" + QString::number(i),
+								   StyleHelper::getColor("CH" + QString::number(i)),
+								   new UnitOfMeasurement("Volt", "V"));
+
+		m_dataAcquisitionManager->getDataMonitorHanlder()->addMonitor(dataModel);
+	}
 }
 
 void DataMonitorTool::addMonitor()
@@ -103,4 +113,35 @@ void DataMonitorTool::addMonitor()
 	m_flexGridLayout->addWidget(controllerId);
 
 	m_monitorControllers->insert(controllerId, monitorController);
+
+	tool->rightStack()->add(QString::number(controllerId), monitorController->getDataMonitorSettings());
+
+	connect(monitorController->getDataMonitorView(), &DataMonitorView::widgetClicked, this, [=]() {
+		tool->openRightContainerHelper(true);
+		tool->requestMenu(QString::number(controllerId));
+
+		if(m_monitorControllers->contains(activeMonitor)) {
+			m_monitorControllers->value(activeMonitor)->getDataMonitorView()->toggleSelected();
+		}
+		activeMonitor = controllerId;
+		m_monitorControllers->value(activeMonitor)->getDataMonitorView()->toggleSelected();
+	});
+
+	monitorController->getDataMonitorSettings()->addMonitorsList(
+		m_dataAcquisitionManager->getDataMonitorHanlder()->getMonitors());
+
+	connect(monitorController->getDataMonitorSettings(), &DataMonitorSettings::removeMonitor, [=]() {
+		m_flexGridLayout->removeWidget(controllerId);
+		tool->rightStack()->remove(QString::number(controllerId));
+		tool->openRightContainerHelper(false);
+		m_monitorControllers->remove(controllerId);
+		delete monitorController;
+	});
+
+	// settings active monitors update
+	connect(monitorController->getDataMonitorSettings(), &DataMonitorSettings::monitorToggled,
+		m_dataAcquisitionManager, &DataAcquisitionManager::updateActiveMonitors);
+
+	/// TODO
+	// connect tool general settings signals
 }

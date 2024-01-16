@@ -57,3 +57,20 @@ void DataMonitorStyleHelper::DataMonitorViewStyle(DataMonitorView *dataMonitorVi
 
 	dataMonitorView->setStyleSheet(style);
 }
+
+void DataMonitorStyleHelper::DataMonitorSettingsStyle(DataMonitorSettings *dataMonitorSettings)
+{
+	QString style = QString(R"css(
+						QWidget {
+							background-color : &&backgroundColor&& ;
+						}
+						)css");
+
+	style.replace("&&backgroundColor&&", StyleHelper::getColor("Transparent"));
+
+	StyleHelper::MenuComboWidget(dataMonitorSettings->plotSize);
+	StyleHelper::BlueButton(dataMonitorSettings->peakHolderReset);
+	StyleHelper::BlueButton(dataMonitorSettings->deleteMonitor);
+
+	dataMonitorSettings->setStyleSheet(style);
+}

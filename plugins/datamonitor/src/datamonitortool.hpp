@@ -44,6 +44,7 @@ private:
 
 	DataAcquisitionManager *m_dataAcquisitionManager;
 	QMap<int, DataMonitorController *> *m_monitorControllers;
+	int activeMonitor = -1;
 
 	// TODO remove
 	void addMonitor();

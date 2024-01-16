@@ -3,6 +3,7 @@
 
 #include <QObject>
 
+#include <src/datamonitor/datamonitorsettings.hpp>
 #include <src/datamonitor/datamonitorview.hpp>
 
 namespace scopy {
@@ -15,6 +16,7 @@ public:
 	explicit DataMonitorStyleHelper(QObject *parent = nullptr);
 
 	static void DataMonitorViewStyle(DataMonitorView *dataMonitorView, QColor color);
+	static void DataMonitorSettingsStyle(DataMonitorSettings *dataMonitorSettings);
 
 signals:
 };

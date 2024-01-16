@@ -6,6 +6,7 @@
 #include <src/dataacquisition/datamonitorhandler.hpp>
 
 #include "datamonitormodel.hpp"
+#include "datamonitorsettings.hpp"
 #include "datamonitorview.hpp"
 
 namespace scopy {
@@ -20,12 +21,14 @@ public:
 	~DataMonitorController();
 
 	DataMonitorView *getDataMonitorView();
+	DataMonitorSettings *getDataMonitorSettings() const;
 
 	void setMonitors(DataMonitorHandler *dataMonitorHanlder);
 
 private:
 	DataMonitorView *dataMonView;
 	DataMonitorHandler *m_dataMonitorHanlder;
+	DataMonitorSettings *dataMonitorSettings = nullptr;
 };
 } // namespace datamonitor
 } // namespace scopy
