@@ -56,4 +56,8 @@ DataMonitorTool::DataMonitorTool(QWidget *parent)
 
 RunBtn *DataMonitorTool::getRunButton() const { return runBtn; }
 
-void DataMonitorTool::initDataMonitor() {}
+void DataMonitorTool::initDataMonitor()
+{
+	tool->addWidgetToTopContainerHelper(infoBtn, TTA_LEFT);
+	m_dataAcquisitionManager = new DataAcquisitionManager(this);
+}

@@ -8,6 +8,8 @@
 #include <QMap>
 #include <QScrollArea>
 
+#include <src/dataacquisition/dataacquisitionmanager.hpp>
+
 namespace scopy {
 
 class CollapsableMenuControlButton;
@@ -37,6 +39,8 @@ private:
 	QScrollArea *m_scrollArea;
 
 	QButtonGroup *grp;
+
+	DataAcquisitionManager *m_dataAcquisitionManager;
 };
 } // namespace datamonitor
 } // namespace scopy
