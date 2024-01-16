@@ -3,7 +3,10 @@
 #include <QBoxLayout>
 #include <flexgridlayout.hpp>
 #include <menucontrolbutton.h>
+#include <stylehelper.h>
 #include <verticalchannelmanager.h>
+
+#include <src/dataacquisition/testreadstrategy.hpp>
 
 using namespace scopy;
 using namespace datamonitor;
@@ -33,13 +36,15 @@ DataMonitorTool::DataMonitorTool(QWidget *parent)
 	settingsButton = new GearBtn(this);
 	infoBtn = new InfoBtn(this);
 	runBtn = new RunBtn(this);
-	singleBtn = new SingleShotBtn(this);
+	clearBtn = new QPushButton("Clear", this);
+	// TODO create a style for clear button
+	StyleHelper::BlueButton(clearBtn);
 
 	tool->addWidgetToTopContainerMenuControlHelper(openLatMenuBtn, TTA_RIGHT);
 	tool->addWidgetToTopContainerMenuControlHelper(settingsButton, TTA_LEFT);
 
 	tool->addWidgetToTopContainerHelper(runBtn, TTA_RIGHT);
-	tool->addWidgetToTopContainerHelper(singleBtn, TTA_RIGHT);
+	tool->addWidgetToTopContainerHelper(clearBtn, TTA_RIGHT);
 
 	grp = static_cast<OpenLastMenuBtn *>(openLatMenuBtn)->getButtonGroup();
 	grp->addButton(settingsButton);
@@ -60,4 +65,20 @@ void DataMonitorTool::initDataMonitor()
 {
 	tool->addWidgetToTopContainerHelper(infoBtn, TTA_LEFT);
 	m_dataAcquisitionManager = new DataAcquisitionManager(this);
+	// TODO read strategy will be replaced to DMM read strategy
+	m_dataAcquisitionManager->setReadStrategy(new TestReadStrategy());
+	// TODO timer will be handled from general settings time interval
+	m_dataAcquisitionManager->setTimer(new QTimer());
+	m_dataAcquisitionManager->setTimerInterval(1000);
+
+	connect(runBtn, &QAbstractButton::toggled, m_dataAcquisitionManager, [=](bool toggled) {
+		if(toggled) {
+			m_dataAcquisitionManager->startTimer();
+		} else {
+			m_dataAcquisitionManager->stopTimer();
+		}
+	});
+
+	connect(clearBtn, &QPushButton::clicked, m_dataAcquisitionManager,
+		[=]() { m_dataAcquisitionManager->getDataMonitorHanlder()->clearMonitorsData(); });
 }

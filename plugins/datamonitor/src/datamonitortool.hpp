@@ -33,7 +33,7 @@ private:
 	GearBtn *settingsButton;
 	InfoBtn *infoBtn;
 	RunBtn *runBtn;
-	SingleShotBtn *singleBtn;
+	QPushButton *clearBtn;
 
 	FlexGridLayout *m_flexGridLayout;
 	QScrollArea *m_scrollArea;
