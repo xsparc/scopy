@@ -74,3 +74,18 @@ void DataMonitorStyleHelper::DataMonitorSettingsStyle(DataMonitorSettings *dataM
 
 	dataMonitorSettings->setStyleSheet(style);
 }
+
+void DataMonitorStyleHelper::DataMonitorToolSettingsStyle(DataMonitorToolSettings *dataMonitorToolSettings)
+{
+	QString style = QString(R"css(
+						QWidget {
+							background-color : &&backgroundColor&& ;
+						}
+						)css");
+
+	style.replace("&&backgroundColor&&", StyleHelper::getColor("Transparent"));
+
+	StyleHelper::SmallBlueButton(dataMonitorToolSettings->precisionBtn);
+	StyleHelper::MenuSpinBox(dataMonitorToolSettings->recordingTimer);
+	dataMonitorToolSettings->setStyleSheet(style);
+}

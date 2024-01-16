@@ -1,6 +1,8 @@
 #ifndef DATAMONITORTOOL_HPP
 #define DATAMONITORTOOL_HPP
 
+#include "datamonitortoolsettings.hpp"
+
 #include <QPushButton>
 #include <QWidget>
 #include <tooltemplate.h>
@@ -42,6 +44,7 @@ private:
 
 	QButtonGroup *grp;
 
+	DataMonitorToolSettings *generalSettings;
 	DataAcquisitionManager *m_dataAcquisitionManager;
 	QMap<int, DataMonitorController *> *m_monitorControllers;
 	int activeMonitor = -1;

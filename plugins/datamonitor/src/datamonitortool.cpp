@@ -49,6 +49,12 @@ DataMonitorTool::DataMonitorTool(QWidget *parent)
 	grp = static_cast<OpenLastMenuBtn *>(openLatMenuBtn)->getButtonGroup();
 	grp->addButton(settingsButton);
 
+	// TOOL SETTINGS
+	generalSettings = new DataMonitorToolSettings();
+	generalSettings->init("Settings", StyleHelper::getColor("ScopyBlue"));
+	tool->rightStack()->add("settings", generalSettings);
+	connect(settingsButton, &QAbstractButton::clicked, this, [=]() { tool->requestMenu("settings"); });
+
 	// channel monitors layout
 	m_scrollArea = new QScrollArea(this);
 	m_scrollArea->setWidgetResizable(true);
