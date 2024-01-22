@@ -32,8 +32,8 @@
 #include <iioutil/commandqueueprovider.h>
 #include <QLoggingCategory>
 
-#define ATTR_BUFFER_SIZE 256
 using namespace scopy;
+#define ATTR_BUFFER_SIZE 256
 Q_LOGGING_CATEGORY(CAT_ATTRFACTORY, "AttrFactory")
 
 IIOWidgetFactory::IIOWidgetFactory(QObject *parent)
