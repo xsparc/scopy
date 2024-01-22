@@ -10,8 +10,12 @@ IIOStandardItem::IIOStandardItem(struct iio_context *context, const QString &tex
 	, m_context(context)
 {
 	if(type == IIOStandardItemType::Context) {
-
+		m_iioWidgets = m_factory->buildAllAttrsForContext(context);
 	} else if(type == IIOStandardItemType::ContextAttribute) {
+		m_iioWidgets.append(m_factory->buildSingle(IIOWidgetFactory::EditableUi |
+								   IIOWidgetFactory::InstantSave |
+								   IIOWidgetFactory::ContextAttrData,
+							   {.context = context, .data = text}));
 	}
 }
 
@@ -25,6 +29,9 @@ IIOStandardItem::IIOStandardItem(struct iio_device *device, const QString &text,
 	if(type == IIOStandardItemType::Device) {
 		m_iioWidgets = m_factory->buildAllAttrsForDevice(device);
 	} else if(type == IIOStandardItemType::DeviceAttribute) {
+		m_iioWidgets.append(m_factory->buildSingle(
+			IIOWidgetFactory::EditableUi | IIOWidgetFactory::InstantSave | IIOWidgetFactory::DeviceAttrData,
+			{.device = device, .data = text}));
 	}
 }
 
@@ -35,18 +42,12 @@ IIOStandardItem::IIOStandardItem(struct iio_channel *channel, const QString &tex
 	, m_factory(new IIOWidgetFactory())
 	, m_channel(channel)
 {
-	QString title = text;
-	int dataIndex = title.indexOf(' ');
-	if(dataIndex != -1) {
-		title.remove(dataIndex, title.length() - dataIndex);
-	}
-
 	if(type == IIOStandardItemType::Channel) {
 		m_iioWidgets = m_factory->buildAllAttrsForChannel(channel);
 	} else if(type == IIOStandardItemType::ChannelAttribute) {
 		m_iioWidgets.append(m_factory->buildSingle(
 			IIOWidgetFactory::EditableUi | IIOWidgetFactory::InstantSave | IIOWidgetFactory::AttrData,
-			{.channel = channel, .data = title}));
+			{.channel = channel, .data = text}));
 	}
 }
 

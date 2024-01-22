@@ -16,9 +16,12 @@ class IIOStandardItem : public QStandardItem
 {
 public:
 	// TODO: make more classes, this is not right, but it'll do for now
-	explicit IIOStandardItem(struct iio_context *context, const QString &text, IIOStandardItemType type = IIOStandardItemType::Undefined);
-	explicit IIOStandardItem(struct iio_device *device, const QString &text, IIOStandardItemType type = IIOStandardItemType::Undefined);
-	explicit IIOStandardItem(struct iio_channel *channel, const QString &text, IIOStandardItemType type = IIOStandardItemType::Undefined);
+	explicit IIOStandardItem(struct iio_context *context, const QString &text,
+				 IIOStandardItemType type = IIOStandardItemType::Undefined);
+	explicit IIOStandardItem(struct iio_device *device, const QString &text,
+				 IIOStandardItemType type = IIOStandardItemType::Undefined);
+	explicit IIOStandardItem(struct iio_channel *channel, const QString &text,
+				 IIOStandardItemType type = IIOStandardItemType::Undefined);
 	~IIOStandardItem() override;
 
 	QList<IIOWidget *> getIIOWidgets();

@@ -1,13 +1,15 @@
 #include "detailsview.h"
 #include <QVBoxLayout>
-#include <QLoggingCategory>
 
 using namespace scopy::iiodebugplugin;
 
 DetailsView::DetailsView(QWidget *parent)
 	: QWidget(parent)
 	, m_titleLabel(new QLabel("Select an IIO item.", this))
-	, m_topSeparator(new gui::SubsectionSeparator(this))
+	, m_attrSeparator(new gui::SubsectionSeparator(this))
+	, m_detailsSeparator(new gui::SubsectionSeparator(this))
+	, m_scrollArea(new QScrollArea(this))
+	, m_scrollAreaContents(new QWidget(this))
 {
 	setLayout(new QVBoxLayout(this));
 
@@ -15,14 +17,20 @@ DetailsView::DetailsView(QWidget *parent)
 	m_titleLabel->setStyleSheet("color: white;");
 	m_titleLabel->setAlignment(Qt::AlignCenter);
 
+	m_scrollAreaContents->setLayout(new QVBoxLayout(m_scrollAreaContents));
+	m_scrollArea->setWidget(m_scrollAreaContents);
+	m_scrollArea->setWidgetResizable(true);
+
+	m_attrSeparator->setLabel("Attributes");
+	m_attrSeparator->getContentWidget()->layout()->addWidget(m_scrollArea);
+
 	// FIXME: once this get in scopy, fix some of this style
-	//	m_topSeparator->setButtonVisible(false);
-	m_topSeparator->setLabelVisible(false);
-	m_topSeparator->setLabel("Device info.");
-	m_topSeparator->getContentWidget()->layout()->addWidget(new QLabel("The device is buffer capable."));
+	m_detailsSeparator->setLabel("Device info");
+	m_detailsSeparator->getContentWidget()->layout()->addWidget(new QLabel("The device is buffer capable."));
 
 	layout()->addWidget(m_titleLabel);
-	layout()->addWidget(m_topSeparator);
+	layout()->addWidget(m_attrSeparator);
+	layout()->addWidget(m_detailsSeparator);
 	layout()->addItem(new QSpacerItem(0, 0, QSizePolicy::Preferred, QSizePolicy::Expanding));
 }
 
@@ -35,19 +43,22 @@ void DetailsView::setTitle(QString title)
 	m_titleLabel->setText(title);
 }
 
-void DetailsView::setIIOStandardItem(IIOStandardItem *item) {
+void DetailsView::setIIOStandardItem(IIOStandardItem *item)
+{
+	// FIXME: this whole system of displaying stuff is wrong, it is supposed to just demonstrate how this looks
 	setTitle(item->text());
 	clearWidgets();
 	auto iioWidgets = item->getIIOWidgets();
-	for (auto widget: iioWidgets) {
+	for(auto widget : iioWidgets) {
 		widget->show();
 		m_currentWidgets.append(widget);
-		layout()->addWidget(widget);
+		m_scrollAreaContents->layout()->addWidget(widget);
 	}
 }
 
-void DetailsView::clearWidgets() {
-	for (auto widget: m_currentWidgets) {
+void DetailsView::clearWidgets()
+{
+	for(auto widget : m_currentWidgets) {
 		widget->hide();
 	}
 	m_currentWidgets.clear();

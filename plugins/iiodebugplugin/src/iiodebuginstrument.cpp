@@ -22,6 +22,7 @@ IIODebugInstrument::~IIODebugInstrument() {}
 void IIODebugInstrument::setupUi()
 {
 	auto *bottom_container = new QWidget(this);
+	auto *tree_view_container = new QWidget(bottom_container);
 	auto *right_container = new QWidget(bottom_container);
 	auto *details_container = new QWidget(right_container);
 	auto *watch_list = new QWidget(right_container);
@@ -31,8 +32,10 @@ void IIODebugInstrument::setupUi()
 	bottom_container->setLayout(new QHBoxLayout(bottom_container));
 
 	right_container->setLayout(new QVBoxLayout(right_container));
+	right_container->layout()->setContentsMargins(0, 0, 0, 0);
 	details_container->setLayout(new QVBoxLayout(details_container));
 	watch_list->setLayout(new QVBoxLayout(watch_list));
+	tree_view_container->setLayout(new QVBoxLayout(tree_view_container));
 
 	watch_list->setMaximumHeight(100);
 	watch_list->layout()->addWidget(new QLabel("var 1"));
@@ -45,14 +48,17 @@ void IIODebugInstrument::setupUi()
 	m_searchBar = new SearchBar(m_iioModel->getEntries(), this);
 	m_detailsView = new DetailsView(details_container);
 
-	StyleHelper::BackgroundWidget(m_treeView, "TreeView");
+	StyleHelper::BackgroundPage(details_container, "DetailsContainer");
+	StyleHelper::BackgroundPage(watch_list, "WatchListContainer");
+	StyleHelper::BackgroundPage(tree_view_container, "TreeViewContainer");
+	//	right_container->setStyleSheet("background-color: red");
 
 	//	QObject::connect(search_bar->getLineEdit(), &QLineEdit::textChanged, [&](const QString &text) {
 	//		iio_filter_proxy->setFilterPath(text);
 	//	});
 	//	iio_filter_proxy->setSourceModel(iio_model->getModel());
 
-	m_treeView->setMaximumWidth(400);
+	tree_view_container->setMaximumWidth(400);
 	m_treeView->setStyleSheet("color: white;");
 	m_treeView->setModel(m_iioModel->getModel());
 	QObject::connect(m_treeView->selectionModel(), &QItemSelectionModel::selectionChanged,
@@ -74,9 +80,10 @@ void IIODebugInstrument::setupUi()
 
 	details_container->layout()->addWidget(m_detailsView);
 
+	tree_view_container->layout()->addWidget(m_treeView);
 	layout()->addWidget(m_searchBar);
 	layout()->addWidget(bottom_container);
-	bottom_container->layout()->addWidget(m_treeView);
+	bottom_container->layout()->addWidget(tree_view_container);
 	bottom_container->layout()->addWidget(right_container);
 	right_container->layout()->addWidget(details_container);
 	right_container->layout()->addWidget(watch_list);

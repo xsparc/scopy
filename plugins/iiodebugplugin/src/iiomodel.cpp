@@ -37,8 +37,7 @@ void IIOModel::iioTreeSetup()
 		}
 
 		m_entries.append(rootString + PATH_DELIMITER + name);
-		auto *attrItem = new IIOStandardItem(m_ctx, QString(name) + " (" + QString(value) + ")",
-						     IIOStandardItemType::ContextAttribute);
+		auto *attrItem = new IIOStandardItem(m_ctx, QString(name), IIOStandardItemType::ContextAttribute);
 		attrItem->setEditable(false);
 		rootItem->appendRow(attrItem);
 	}
@@ -86,8 +85,8 @@ void IIOModel::iioTreeSetup()
 
 				m_entries.append(rootString + PATH_DELIMITER + device_name + PATH_DELIMITER +
 						 channel_name + PATH_DELIMITER + attr_name);
-				auto *attr_item = new IIOStandardItem(channel, attr_name,
-								      IIOStandardItemType::ChannelAttribute);
+				auto *attr_item =
+					new IIOStandardItem(channel, attr_name, IIOStandardItemType::ChannelAttribute);
 				attr_item->setEditable(false);
 				channel_item->appendRow(attr_item);
 			}

@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QLabel>
+#include <QScrollArea>
 #include "iiostandarditem.h"
 #include <gui/subsection_separator.hpp>
 
@@ -18,7 +19,10 @@ public:
 
 private:
 	QLabel *m_titleLabel;
-	gui::SubsectionSeparator *m_topSeparator;
+	gui::SubsectionSeparator *m_attrSeparator;
+	gui::SubsectionSeparator *m_detailsSeparator;
+	QScrollArea *m_scrollArea;
+	QWidget *m_scrollAreaContents;
 	QList<IIOWidget *> m_currentWidgets;
 
 	void clearWidgets();

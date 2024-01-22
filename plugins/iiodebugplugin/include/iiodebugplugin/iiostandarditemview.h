@@ -5,7 +5,8 @@
 #include "iiostandarditemtypes.h"
 
 namespace scopy::iiodebugplugin {
-class IIOStandardItemView : public QWidget {
+class IIOStandardItemView : public QWidget
+{
 	Q_OBJECT
 public:
 	explicit IIOStandardItemView(IIOStandardItemType type, QWidget *parent = nullptr);
@@ -13,6 +14,6 @@ public:
 private:
 	IIOStandardItemType m_type;
 };
-}
+} // namespace scopy::iiodebugplugin
 
 #endif // SCOPY_IIOSTANDARDITEMVIEW_H
