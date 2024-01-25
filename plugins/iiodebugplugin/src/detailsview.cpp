@@ -26,7 +26,8 @@ DetailsView::DetailsView(QWidget *parent)
 
 	// FIXME: once this get in scopy, fix some of this style
 	m_detailsSeparator->setLabel("Device info");
-	m_detailsSeparator->getContentWidget()->layout()->addWidget(new QLabel("The device is buffer capable."));
+	//	m_detailsSeparator->getContentWidget()->layout()->addWidget(new QLabel("The device is buffer
+	//capable."));
 
 	layout()->addWidget(m_titleLabel);
 	layout()->addWidget(m_attrSeparator);
@@ -54,12 +55,26 @@ void DetailsView::setIIOStandardItem(IIOStandardItem *item)
 		m_currentWidgets.append(widget);
 		m_scrollAreaContents->layout()->addWidget(widget);
 	}
+
+	auto details = item->getDetails();
+	for (const auto& detail: details) {
+		auto label = new QLabel(detail);
+		label->show();
+		m_detailsList.append(label);
+		m_detailsSeparator->getContentWidget()->layout()->addWidget(label);
+	}
 }
 
 void DetailsView::clearWidgets()
 {
+	// FIXME: This is functional mess
 	for(auto widget : m_currentWidgets) {
 		widget->hide();
 	}
 	m_currentWidgets.clear();
+
+	for(auto detail : m_detailsList) {
+		detail->hide();
+	}
+	m_detailsList.clear();
 }

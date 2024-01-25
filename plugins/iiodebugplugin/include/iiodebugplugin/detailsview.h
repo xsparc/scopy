@@ -24,6 +24,7 @@ private:
 	QScrollArea *m_scrollArea;
 	QWidget *m_scrollAreaContents;
 	QList<IIOWidget *> m_currentWidgets;
+	QList<QLabel *> m_detailsList;
 
 	void clearWidgets();
 };

@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QStandardItemModel>
+#include <iio-widgets/iiowidgetfactory.h>
 #include <iio.h>
 
 namespace scopy::iiodebugplugin {
@@ -18,6 +19,7 @@ public:
 private:
 	void iioTreeSetup();
 
+	IIOWidgetFactory *m_factory;
 	QStandardItemModel *m_model;
 	struct iio_context *m_ctx;
 	QStringList m_entries;

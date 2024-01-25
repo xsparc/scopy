@@ -2,60 +2,43 @@
 
 using namespace scopy::iiodebugplugin;
 
-IIOStandardItem::IIOStandardItem(struct iio_context *context, const QString &text, IIOStandardItemType type)
+IIOStandardItem::IIOStandardItem(QList<IIOWidget *> widgets, const QString &text)
 	: QStandardItem(text)
-	, m_itemModel(new IIOStandardItemModel(type))
-	, m_itemView(new IIOStandardItemView(type))
-	, m_factory(new IIOWidgetFactory())
-	, m_context(context)
+	, m_iioWidgets(widgets)
 {
-	if(type == IIOStandardItemType::Context) {
-		m_iioWidgets = m_factory->buildAllAttrsForContext(context);
-	} else if(type == IIOStandardItemType::ContextAttribute) {
-		m_iioWidgets.append(m_factory->buildSingle(IIOWidgetFactory::EditableUi |
-								   IIOWidgetFactory::InstantSave |
-								   IIOWidgetFactory::ContextAttrData,
-							   {.context = context, .data = text}));
+	if(!m_iioWidgets.empty()) {
+		auto widget = m_iioWidgets[0];
+		// for now, details are only available for channel attributes
+		struct iio_channel *channel = widget->getRecipe().channel;
+		struct iio_device *device = widget->getRecipe().device;
+		if(channel != nullptr) {
+			bool scan_element = iio_channel_is_scan_element(channel);
+			m_details.append((scan_element) ? "Is scan element." : "It is NOT scan element.");
+
+			bool output = iio_channel_is_output(channel);
+			m_details.append((output) ? "Is output." : "Is input.");
+
+			bool is_enabled = iio_channel_is_enabled(channel);
+			m_details.append((is_enabled) ? "Is enabled." : "Is not enabled.");
+
+			QString filename =
+				iio_channel_attr_get_filename(channel, widget->getRecipe().data.toStdString().c_str());
+			m_details.append("Filename: " + filename);
+		}
+
+		if(device != nullptr) {
+			bool is_hwmon = iio_device_is_hwmon(device);
+			m_details.append((is_hwmon) ? "Device is hardware monitor."
+						    : "Device is NOT hardware monitor.");
+
+			bool is_trigger = iio_device_is_trigger(device);
+			m_details.append((is_trigger) ? "Device is trigger." : "Device is NOT trigger.");
+		}
 	}
 }
 
-IIOStandardItem::IIOStandardItem(struct iio_device *device, const QString &text, IIOStandardItemType type)
-	: QStandardItem(text)
-	, m_itemModel(new IIOStandardItemModel(type))
-	, m_itemView(new IIOStandardItemView(type))
-	, m_factory(new IIOWidgetFactory())
-	, m_device(device)
-{
-	if(type == IIOStandardItemType::Device) {
-		m_iioWidgets = m_factory->buildAllAttrsForDevice(device);
-	} else if(type == IIOStandardItemType::DeviceAttribute) {
-		m_iioWidgets.append(m_factory->buildSingle(
-			IIOWidgetFactory::EditableUi | IIOWidgetFactory::InstantSave | IIOWidgetFactory::DeviceAttrData,
-			{.device = device, .data = text}));
-	}
-}
-
-IIOStandardItem::IIOStandardItem(struct iio_channel *channel, const QString &text, IIOStandardItemType type)
-	: QStandardItem(text)
-	, m_itemModel(new IIOStandardItemModel(type))
-	, m_itemView(new IIOStandardItemView(type))
-	, m_factory(new IIOWidgetFactory())
-	, m_channel(channel)
-{
-	if(type == IIOStandardItemType::Channel) {
-		m_iioWidgets = m_factory->buildAllAttrsForChannel(channel);
-	} else if(type == IIOStandardItemType::ChannelAttribute) {
-		m_iioWidgets.append(m_factory->buildSingle(
-			IIOWidgetFactory::EditableUi | IIOWidgetFactory::InstantSave | IIOWidgetFactory::AttrData,
-			{.channel = channel, .data = text}));
-	}
-}
-
-IIOStandardItem::~IIOStandardItem()
-{
-	delete m_itemModel;
-	delete m_itemView;
-	delete m_factory;
-}
+IIOStandardItem::~IIOStandardItem() {}
 
 QList<scopy::IIOWidget *> IIOStandardItem::getIIOWidgets() { return m_iioWidgets; }
+
+QStringList IIOStandardItem::getDetails() { return m_details; }

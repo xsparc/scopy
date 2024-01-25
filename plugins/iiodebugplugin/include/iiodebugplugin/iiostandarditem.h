@@ -15,28 +15,15 @@ namespace scopy::iiodebugplugin {
 class IIOStandardItem : public QStandardItem
 {
 public:
-	// TODO: make more classes, this is not right, but it'll do for now
-	explicit IIOStandardItem(struct iio_context *context, const QString &text,
-				 IIOStandardItemType type = IIOStandardItemType::Undefined);
-	explicit IIOStandardItem(struct iio_device *device, const QString &text,
-				 IIOStandardItemType type = IIOStandardItemType::Undefined);
-	explicit IIOStandardItem(struct iio_channel *channel, const QString &text,
-				 IIOStandardItemType type = IIOStandardItemType::Undefined);
-	~IIOStandardItem() override;
+	explicit IIOStandardItem(QList<IIOWidget *> widgets, const QString& text);
 
+	~IIOStandardItem() override;
 	QList<IIOWidget *> getIIOWidgets();
+	QStringList getDetails();
 
 private:
-	IIOStandardItemModel *m_itemModel;
-	IIOStandardItemView *m_itemView;
-
-	IIOWidgetFactory *m_factory;
-
-	struct iio_context *m_context = nullptr;
-	struct iio_device *m_device = nullptr;
-	struct iio_channel *m_channel = nullptr;
-
 	QList<IIOWidget *> m_iioWidgets;
+	QStringList m_details;
 };
 } // namespace scopy::iiodebugplugin
 
