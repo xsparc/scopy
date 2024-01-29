@@ -14,6 +14,7 @@ class DetailsView : public QWidget
 public:
 	explicit DetailsView(QWidget *parent);
 
+	void setupUi();
 	void setTitle(QString title);
 	void setIIOStandardItem(IIOStandardItem *item);
 

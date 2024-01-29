@@ -19,7 +19,6 @@ public:
 private:
 	void iioTreeSetup();
 
-	IIOWidgetFactory *m_factory;
 	QStandardItemModel *m_model;
 	struct iio_context *m_ctx;
 	QStringList m_entries;

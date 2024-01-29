@@ -11,7 +11,6 @@ using namespace scopy::iiodebugplugin;
 IIOModel::IIOModel(struct iio_context *context, QObject *parent)
 	: QObject(parent)
 	, m_ctx(context)
-	, m_factory(new IIOWidgetFactory)
 {
 	m_model = new QStandardItemModel(this);
 	iioTreeSetup();
@@ -22,7 +21,7 @@ QStandardItemModel *IIOModel::getModel() { return m_model; }
 void IIOModel::iioTreeSetup()
 {
 	QString rootString = iio_context_get_name(m_ctx);
-	QList<IIOWidget *> ctxList = m_factory->buildAllAttrsForContext(m_ctx);
+	QList<IIOWidget *> ctxList = IIOWidgetFactory::buildAllAttrsForContext(m_ctx);
 	auto *rootItem = new IIOStandardItem(ctxList, rootString);
 	rootItem->setEditable(false);
 
@@ -37,7 +36,7 @@ void IIOModel::iioTreeSetup()
 	uint ctx_devices_count = iio_context_get_devices_count(m_ctx);
 	for(int i = 0; i < ctx_devices_count; ++i) {
 		struct iio_device *device = iio_context_get_device(m_ctx, i);
-		QList<IIOWidget *> devList = m_factory->buildAllAttrsForDevice(device);
+		QList<IIOWidget *> devList = IIOWidgetFactory::buildAllAttrsForDevice(device);
 		QString device_name = iio_device_get_name(device);
 		bool is_trigger = iio_device_is_trigger(device);
 		IIOStandardItem *device_item;
@@ -64,7 +63,7 @@ void IIOModel::iioTreeSetup()
 		uint device_channels_count = iio_device_get_channels_count(device);
 		for(int j = 0; j < device_channels_count; ++j) {
 			struct iio_channel *channel = iio_device_get_channel(device, j);
-			QList<IIOWidget *> chnList = m_factory->buildAllAttrsForChannel(channel);
+			QList<IIOWidget *> chnList = IIOWidgetFactory::buildAllAttrsForChannel(channel);
 			QString channel_name = iio_channel_get_id(channel);
 			auto *channel_item = new IIOStandardItem(chnList, channel_name);
 			channel_item->setEditable(false);

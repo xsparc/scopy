@@ -11,23 +11,31 @@ DetailsView::DetailsView(QWidget *parent)
 	, m_scrollArea(new QScrollArea(this))
 	, m_scrollAreaContents(new QWidget(this))
 {
+	setupUi();
+}
+
+void DetailsView::setupUi()
+{
 	setLayout(new QVBoxLayout(this));
+//	setStyleSheet("border: 2px solid green");
 
 	m_titleLabel->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
 	m_titleLabel->setStyleSheet("color: white;");
 	m_titleLabel->setAlignment(Qt::AlignCenter);
 
 	m_scrollAreaContents->setLayout(new QVBoxLayout(m_scrollAreaContents));
+	m_scrollAreaContents->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
 	m_scrollArea->setWidget(m_scrollAreaContents);
 	m_scrollArea->setWidgetResizable(true);
+	m_scrollArea->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
 
 	m_attrSeparator->setLabel("Attributes");
 	m_attrSeparator->getContentWidget()->layout()->addWidget(m_scrollArea);
+	m_attrSeparator->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
 
-	// FIXME: once this get in scopy, fix some of this style
 	m_detailsSeparator->setLabel("Device info");
-	//	m_detailsSeparator->getContentWidget()->layout()->addWidget(new QLabel("The device is buffer
-	//capable."));
+	m_detailsSeparator->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
+	m_detailsSeparator->setStyleSheet("border: 2px solid red");
 
 	layout()->addWidget(m_titleLabel);
 	layout()->addWidget(m_attrSeparator);
@@ -57,7 +65,7 @@ void DetailsView::setIIOStandardItem(IIOStandardItem *item)
 	}
 
 	auto details = item->getDetails();
-	for (const auto& detail: details) {
+	for(const auto &detail : details) {
 		auto label = new QLabel(detail);
 		label->show();
 		m_detailsList.append(label);
