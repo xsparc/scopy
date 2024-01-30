@@ -5,6 +5,7 @@
 #include "iiomodel.h"
 #include "detailsview.h"
 #include "searchbar.h"
+#include "iiosortfilterproxymodel.h"
 
 #include <iio.h>
 #include <QWidget>
@@ -18,14 +19,23 @@ public:
 	IIODebugInstrument(struct iio_context *context, QWidget *parent = nullptr);
 	~IIODebugInstrument();
 
+private Q_SLOTS:
+	void applySelection(const QItemSelection &selected, const QItemSelection &deselected);
+	void filterAndExpand(const QString &text);
+
 private:
 	void setupUi();
+
+	// Recursive function to find an item in the source model
+	IIOStandardItem* findItemRecursive(QStandardItem* currentItem, QStandardItem* targetItem);
+	void recursiveExpandItems(QStandardItem* item, const QString& text);
 
 	struct iio_context *m_context;
 	QTreeView *m_treeView;
 	IIOModel *m_iioModel;
 	DetailsView *m_detailsView;
 	SearchBar *m_searchBar;
+	IIOSortFilterProxyModel *m_proxyModel;
 };
 } // namespace scopy::iiodebugplugin
 #endif // IIODEBUGINSTRUMENT_H

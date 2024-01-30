@@ -24,23 +24,23 @@ void DetailsView::setupUi()
 	m_titleLabel->setAlignment(Qt::AlignCenter);
 
 	m_scrollAreaContents->setLayout(new QVBoxLayout(m_scrollAreaContents));
-	m_scrollAreaContents->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
+//	m_scrollAreaContents->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
 	m_scrollArea->setWidget(m_scrollAreaContents);
 	m_scrollArea->setWidgetResizable(true);
-	m_scrollArea->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
+//	m_scrollArea->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
 
 	m_attrSeparator->setLabel("Attributes");
 	m_attrSeparator->getContentWidget()->layout()->addWidget(m_scrollArea);
-	m_attrSeparator->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
+	m_attrSeparator->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Minimum);
 
 	m_detailsSeparator->setLabel("Device info");
 	m_detailsSeparator->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
-	m_detailsSeparator->setStyleSheet("border: 2px solid red");
+//	m_detailsSeparator->setStyleSheet("border: 2px solid red");
 
 	layout()->addWidget(m_titleLabel);
 	layout()->addWidget(m_attrSeparator);
 	layout()->addWidget(m_detailsSeparator);
-	layout()->addItem(new QSpacerItem(0, 0, QSizePolicy::Preferred, QSizePolicy::Expanding));
+//	layout()->addItem(new QSpacerItem(0, 0, QSizePolicy::Preferred, QSizePolicy::MinimumExpanding));
 }
 
 void DetailsView::setTitle(QString title)

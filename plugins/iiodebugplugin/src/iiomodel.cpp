@@ -3,7 +3,6 @@
 #include <QLoggingCategory>
 
 #define BUFFER_SIZE 256
-#define PATH_DELIMITER "/"
 
 Q_LOGGING_CATEGORY(CAT_IIOMODEL, "IIOModel")
 using namespace scopy::iiodebugplugin;
@@ -13,6 +12,7 @@ IIOModel::IIOModel(struct iio_context *context, QObject *parent)
 	, m_ctx(context)
 {
 	m_model = new QStandardItemModel(this);
+	m_model->setHorizontalHeaderItem(0, new QStandardItem("IIO Tree"));
 	iioTreeSetup();
 }
 
@@ -26,7 +26,7 @@ void IIOModel::iioTreeSetup()
 	rootItem->setEditable(false);
 
 	for(auto & ctxWidget : ctxList) {
-		m_entries.append(rootString + PATH_DELIMITER + ctxWidget->getRecipe().data);
+		m_entries.insert(ctxWidget->getRecipe().data);
 		auto *attrItem = new IIOStandardItem({ctxWidget}, ctxWidget->getRecipe().data);
 		attrItem->setEditable(false);
 		rootItem->appendRow(attrItem);
@@ -47,13 +47,13 @@ void IIOModel::iioTreeSetup()
 			device_item = new IIOStandardItem(devList, device_name);
 		}
 		device_item->setEditable(false);
-		m_entries.append(rootString + PATH_DELIMITER + device_name);
+		m_entries.insert(device_name);
 
 		// add all attrs to current device
 		for(int j = 0; j < devList.size(); ++j) {
 			QString device_attr = iio_device_get_attr(device, j);
 
-			m_entries.append(rootString + PATH_DELIMITER + device_name + PATH_DELIMITER + device_attr);
+			m_entries.insert(device_attr);
 			auto *attrItem = new IIOStandardItem({devList[j]}, devList[j]->getRecipe().data);
 			attrItem->setEditable(false);
 			device_item->appendRow(attrItem);
@@ -67,14 +67,13 @@ void IIOModel::iioTreeSetup()
 			QString channel_name = iio_channel_get_id(channel);
 			auto *channel_item = new IIOStandardItem(chnList, channel_name);
 			channel_item->setEditable(false);
-			m_entries.append(rootString + PATH_DELIMITER + device_name + PATH_DELIMITER + channel_name);
+			m_entries.insert(channel_name);
 
 			// add all attrs from channel
 			for(int k = 0; k < chnList.size(); ++k) {
 				QString attr_name = iio_channel_get_attr(channel, k);
 
-				m_entries.append(rootString + PATH_DELIMITER + device_name + PATH_DELIMITER +
-						 channel_name + PATH_DELIMITER + attr_name);
+				m_entries.insert(attr_name);
 				auto *attr_item =
 					new IIOStandardItem({chnList[k]}, chnList[k]->getRecipe().data);
 				attr_item->setEditable(false);
@@ -92,4 +91,4 @@ void IIOModel::iioTreeSetup()
 	m_model->appendRow(rootItem);
 }
 
-QStringList IIOModel::getEntries() { return m_entries; }
+QSet<QString> IIOModel::getEntries() { return m_entries; }

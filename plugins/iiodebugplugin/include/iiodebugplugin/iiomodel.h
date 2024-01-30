@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QStandardItemModel>
+#include <QSet>
 #include <iio-widgets/iiowidgetfactory.h>
 #include <iio.h>
 
@@ -14,14 +15,14 @@ public:
 	explicit IIOModel(struct iio_context *context, QObject *parent = nullptr);
 
 	QStandardItemModel *getModel();
-	QStringList getEntries();
+	QSet<QString> getEntries();
 
 private:
 	void iioTreeSetup();
 
 	QStandardItemModel *m_model;
 	struct iio_context *m_ctx;
-	QStringList m_entries;
+	QSet<QString> m_entries;
 };
 } // namespace scopy::iiodebugplugin
 

@@ -1,14 +1,18 @@
 #include "searchbar.h"
 #include <QHBoxLayout>
+#include "stylehelper.h"
 
 using namespace scopy::iiodebugplugin;
 
-SearchBar::SearchBar(const QStringList &options, QWidget *parent)
+SearchBar::SearchBar(QSet<QString> options, QWidget *parent)
 	: QWidget(parent)
 	, m_lineEdit(new QLineEdit(this))
 	, m_label(new QLabel("Filter", this))
-	, m_completer(new QCompleter(options, this))
+	, m_completer(new QCompleter(options.values(), this))
 {
+	StyleHelper::BackgroundPage(m_label, "FilterLabel");
+	StyleHelper::BackgroundPage(m_lineEdit, "FilterLineEdit");
+
 	m_completer->setCaseSensitivity(Qt::CaseInsensitive);
 	m_completer->setFilterMode(Qt::MatchContains);
 	m_lineEdit->setCompleter(m_completer);
