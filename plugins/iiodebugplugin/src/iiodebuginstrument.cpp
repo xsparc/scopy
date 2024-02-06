@@ -40,22 +40,19 @@ void IIODebugInstrument::setupUi()
 	tree_view_container->setLayout(new QVBoxLayout(tree_view_container));
 	search_bar_container->setLayout(new QVBoxLayout(search_bar_container));
 
-	watch_list->setMaximumHeight(100);
-	watch_list->layout()->addWidget(new QLabel("var 1"));
-	watch_list->layout()->addWidget(new QLabel("var 2"));
-	watch_list->layout()->addWidget(new QLabel("var 3"));
-
 	m_proxyModel = new IIOSortFilterProxyModel(this);
 	m_treeView = new QTreeView(bottom_container);
 	m_iioModel = new IIOModel(m_context, m_treeView);
 	m_searchBar = new SearchBar(m_iioModel->getEntries(), this);
 	m_detailsView = new DetailsView(details_container);
+	m_watchListView = new WatchListView(watch_list);
+
+	watch_list->setFixedHeight(100);
+	watch_list->layout()->setContentsMargins(0, 0, 0, 0);
+	watch_list->layout()->addWidget(m_watchListView);
 
 	m_proxyModel->setSourceModel(m_iioModel->getModel());
 	m_proxyModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
-
-	QObject::connect(m_searchBar->getLineEdit(), &QLineEdit::textChanged, this,
-			 &IIODebugInstrument::filterAndExpand);
 
 	StyleHelper::BackgroundPage(details_container, "DetailsContainer");
 	StyleHelper::BackgroundPage(watch_list, "WatchListContainer");
@@ -65,8 +62,37 @@ void IIODebugInstrument::setupUi()
 	tree_view_container->setMaximumWidth(400);
 	m_treeView->setStyleSheet("color: white;");
 	m_treeView->setModel(m_proxyModel);
+
+	QObject::connect(m_searchBar->getLineEdit(), &QLineEdit::textChanged, this, [this](QString text) {
+		// TODO: when the user clears the search bar, it should only open the context item, everything should be
+		// collapsed
+		filterAndExpand(text);
+		if(text.isEmpty()) {
+			m_treeView->expand(m_proxyModel->index(0, 0));
+		}
+	});
+
 	QObject::connect(m_treeView->selectionModel(), &QItemSelectionModel::selectionChanged, this,
 			 &IIODebugInstrument::applySelection);
+
+	QObject::connect(m_detailsView, &DetailsView::addToWatchlist, this, [this](IIOStandardItem *item) {
+		qWarning(CAT_IIODEBUGINSTRUMENT) << "sending item to watchlist";
+		m_watchListView->addToWatchlist(item);
+	});
+
+	QObject::connect(m_detailsView, &DetailsView::removeFromWatchlist, this, [this](IIOStandardItem *item) {
+		qWarning(CAT_IIODEBUGINSTRUMENT) << "removing item from watchlist";
+		m_watchListView->removeFromWatchlist(item);
+	});
+
+	QObject::connect(m_watchListView, &WatchListView::selectedItem, this, [this](IIOStandardItem *item) {
+		qWarning(CAT_IIODEBUGINSTRUMENT) << "Expanding item" << item->getTitle();
+		// TODO: set the item selection for this
+		// TODO: add style to the watchlist infrastructure
+		auto sourceModel = qobject_cast<QStandardItemModel *>(m_proxyModel->sourceModel());
+		recursiveExpandItem(sourceModel->invisibleRootItem(), item);
+		m_detailsView->setIIOStandardItem(item);
+	});
 
 	// expand the root element, better visual experience
 	m_treeView->expand(m_proxyModel->index(0, 0));
@@ -107,11 +133,43 @@ void IIODebugInstrument::recursiveExpandItems(QStandardItem *item, const QString
 
 		// Check if the item's data contains the filter string
 		if(childItem && childItem->text().contains(text, Qt::CaseInsensitive)) {
-			m_treeView->setExpanded(m_proxyModel->mapFromSource(childItem->index()).parent(), true);
+			QModelIndex proxyIndex = m_proxyModel->mapFromSource(childItem->index());
+
+			// Expand all parents from the root to the current element
+			QModelIndex parent = proxyIndex.parent();
+			while(parent.isValid()) {
+				m_treeView->expand(parent);
+				parent = parent.parent();
+			}
 		}
 
 		// Recursively process children
 		recursiveExpandItems(childItem, text);
+	}
+}
+
+void IIODebugInstrument::recursiveExpandItem(QStandardItem *item, QStandardItem *searchItem)
+{
+	for(int row = 0; row < item->rowCount(); ++row) {
+		QStandardItem *childItem = item->child(row);
+
+		if(childItem == searchItem) {
+			QModelIndex index = m_proxyModel->mapFromSource(childItem->index());
+			QModelIndex parent = index.parent();
+
+			// Recursively expand all parents once the item was found
+			while(parent.isValid()) {
+				m_treeView->expand(parent);
+				parent = parent.parent();
+			}
+
+			// Highlight the selected item
+			QItemSelectionModel *selectionModel = m_treeView->selectionModel();
+			selectionModel->select(index, QItemSelectionModel::ClearAndSelect);
+			return;
+		}
+
+		recursiveExpandItem(childItem, searchItem);
 	}
 }
 
@@ -149,7 +207,7 @@ void IIODebugInstrument::filterAndExpand(const QString &text)
 	m_proxyModel->setFilterRegExp(QRegExp(text, Qt::CaseInsensitive, QRegExp::FixedString));
 	m_proxyModel->invalidate(); // Trigger re-filtering
 
-	if (text.isEmpty()) {
+	if(text.isEmpty()) {
 		qDebug(CAT_IIODEBUGINSTRUMENT) << "Text is empty, will not recursively expand items.";
 		return;
 	}

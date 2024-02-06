@@ -25,7 +25,7 @@ void IIOModel::iioTreeSetup()
 	auto *rootItem = new IIOStandardItem(ctxList, rootString);
 	rootItem->setEditable(false);
 
-	for(auto & ctxWidget : ctxList) {
+	for(auto &ctxWidget : ctxList) {
 		m_entries.insert(ctxWidget->getRecipe().data);
 		auto *attrItem = new IIOStandardItem({ctxWidget}, ctxWidget->getRecipe().data);
 		attrItem->setEditable(false);
@@ -41,8 +41,9 @@ void IIOModel::iioTreeSetup()
 		bool is_trigger = iio_device_is_trigger(device);
 		IIOStandardItem *device_item;
 		if(is_trigger) {
-			device_item =
-				new IIOStandardItem({}, device_name + " (trigger)");
+			// IIOWidget *triggerWidget = IIOWidgetFactory::buildSingle(IIOWidgetFactory::TriggerData |
+			// IIOWidgetFactory::ComboUi, {.device = device, .data = ""});
+			device_item = new IIOStandardItem({}, device_name + " (trigger)");
 		} else {
 			device_item = new IIOStandardItem(devList, device_name);
 		}
@@ -74,8 +75,7 @@ void IIOModel::iioTreeSetup()
 				QString attr_name = iio_channel_get_attr(channel, k);
 
 				m_entries.insert(attr_name);
-				auto *attr_item =
-					new IIOStandardItem({chnList[k]}, chnList[k]->getRecipe().data);
+				auto *attr_item = new IIOStandardItem({chnList[k]}, chnList[k]->getRecipe().data);
 				attr_item->setEditable(false);
 				channel_item->appendRow(attr_item);
 			}

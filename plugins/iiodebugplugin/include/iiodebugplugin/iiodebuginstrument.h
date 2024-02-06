@@ -6,6 +6,7 @@
 #include "detailsview.h"
 #include "searchbar.h"
 #include "iiosortfilterproxymodel.h"
+#include "watchlistview.h"
 
 #include <iio.h>
 #include <QWidget>
@@ -27,8 +28,9 @@ private:
 	void setupUi();
 
 	// Recursive function to find an item in the source model
-	IIOStandardItem* findItemRecursive(QStandardItem* currentItem, QStandardItem* targetItem);
-	void recursiveExpandItems(QStandardItem* item, const QString& text);
+	IIOStandardItem *findItemRecursive(QStandardItem *currentItem, QStandardItem *targetItem);
+	void recursiveExpandItems(QStandardItem *item, const QString &text);
+	void recursiveExpandItem(QStandardItem *item, QStandardItem *searchItem);
 
 	struct iio_context *m_context;
 	QTreeView *m_treeView;
@@ -36,6 +38,7 @@ private:
 	DetailsView *m_detailsView;
 	SearchBar *m_searchBar;
 	IIOSortFilterProxyModel *m_proxyModel;
+	WatchListView *m_watchListView;
 };
 } // namespace scopy::iiodebugplugin
 #endif // IIODEBUGINSTRUMENT_H

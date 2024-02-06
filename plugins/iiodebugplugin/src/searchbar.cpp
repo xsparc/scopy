@@ -10,8 +10,7 @@ SearchBar::SearchBar(QSet<QString> options, QWidget *parent)
 	, m_label(new QLabel("Filter", this))
 	, m_completer(new QCompleter(options.values(), this))
 {
-	StyleHelper::BackgroundPage(m_label, "FilterLabel");
-	StyleHelper::BackgroundPage(m_lineEdit, "FilterLineEdit");
+	StyleHelper::BackgroundPage(this, "SearchBar");
 
 	m_completer->setCaseSensitivity(Qt::CaseInsensitive);
 	m_completer->setFilterMode(Qt::MatchContains);
@@ -20,8 +19,6 @@ SearchBar::SearchBar(QSet<QString> options, QWidget *parent)
 	setLayout(new QHBoxLayout(this));
 	layout()->addWidget(m_label);
 	layout()->addWidget(m_lineEdit);
-	setStyleSheet("color: white; background-color: #272730");
-	m_label->setStyleSheet("color: white; background-color: #272730");
 }
 
 QLineEdit *SearchBar::getLineEdit() { return m_lineEdit; }

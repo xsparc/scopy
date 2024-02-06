@@ -3,9 +3,6 @@
 
 #include <QWidget>
 #include <QStandardItem>
-#include "iiostandarditemmodel.h"
-#include "iiostandarditemtypes.h"
-#include "iiostandarditemview.h"
 
 #include <iio.h>
 #include <iio-widgets/iiowidgetfactory.h>
@@ -15,15 +12,22 @@ namespace scopy::iiodebugplugin {
 class IIOStandardItem : public QStandardItem
 {
 public:
-	explicit IIOStandardItem(QList<IIOWidget *> widgets, const QString& text);
+	explicit IIOStandardItem(QList<IIOWidget *> widgets, const QString &text);
 
 	~IIOStandardItem() override;
 	QList<IIOWidget *> getIIOWidgets();
+
 	QStringList getDetails();
+	QString getTitle();
+
+	bool isWatched();
+	void setWatched(bool isWatched);
 
 private:
 	QList<IIOWidget *> m_iioWidgets;
 	QStringList m_details;
+	QString m_title;
+	bool m_isWatched;
 };
 } // namespace scopy::iiodebugplugin
 

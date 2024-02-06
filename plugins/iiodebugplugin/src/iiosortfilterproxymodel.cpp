@@ -28,5 +28,4 @@ bool IIOSortFilterProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex 
 
 IIOSortFilterProxyModel::IIOSortFilterProxyModel(QObject *parent)
 	: QSortFilterProxyModel(parent)
-{
-}
+{}

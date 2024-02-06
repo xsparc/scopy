@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QLabel>
 #include <QScrollArea>
+#include <QPushButton>
 #include "iiostandarditem.h"
 #include <gui/subsection_separator.hpp>
 
@@ -18,8 +19,14 @@ public:
 	void setTitle(QString title);
 	void setIIOStandardItem(IIOStandardItem *item);
 
+Q_SIGNALS:
+	void addToWatchlist(IIOStandardItem *item);
+	void removeFromWatchlist(IIOStandardItem *item);
+
 private:
+	IIOStandardItem *m_currentItem;
 	QLabel *m_titleLabel;
+	QPushButton *m_watchlistButton;
 	gui::SubsectionSeparator *m_attrSeparator;
 	gui::SubsectionSeparator *m_detailsSeparator;
 	QScrollArea *m_scrollArea;

@@ -5,6 +5,8 @@ using namespace scopy::iiodebugplugin;
 IIOStandardItem::IIOStandardItem(QList<IIOWidget *> widgets, const QString &text)
 	: QStandardItem(text)
 	, m_iioWidgets(widgets)
+	, m_title(text)
+	, m_isWatched(false)
 {
 	if(!m_iioWidgets.empty()) {
 		auto widget = m_iioWidgets[0];
@@ -38,8 +40,14 @@ IIOStandardItem::IIOStandardItem(QList<IIOWidget *> widgets, const QString &text
 	}
 }
 
-IIOStandardItem::~IIOStandardItem() {}
+IIOStandardItem::~IIOStandardItem() = default;
 
 QList<scopy::IIOWidget *> IIOStandardItem::getIIOWidgets() { return m_iioWidgets; }
 
 QStringList IIOStandardItem::getDetails() { return m_details; }
+
+QString IIOStandardItem::getTitle() { return m_title; }
+
+bool IIOStandardItem::isWatched() { return m_isWatched; }
+
+void IIOStandardItem::setWatched(bool isWatched) { m_isWatched = isWatched; }
