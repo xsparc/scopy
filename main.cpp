@@ -54,7 +54,8 @@ void initLogging()
 						 "CyclicalTask.debug=false\n"
 						 "SWIOTPlugin.debug=true\n"
 						 "AD74413R.debug=true\n"
-						 "ScopyTranslations.debug=true\n");
+						 "ScopyTranslations.debug=true\n"
+						 "qt.qpa.gl=true");
 	}
 	if(!getenv("QT_MESSAGE_PATTERN")) {
 		SetScopyQDebugMessagePattern();
