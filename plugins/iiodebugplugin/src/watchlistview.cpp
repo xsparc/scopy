@@ -1,4 +1,5 @@
 #include "watchlistview.h"
+#include "watchlistentry.h"
 #include <QVBoxLayout>
 #include <QPushButton>
 #include <QLoggingCategory>
@@ -15,7 +16,7 @@ void WatchListView::setupUi() { setLayout(new QVBoxLayout(this)); }
 
 void WatchListView::addToWatchlist(IIOStandardItem *item)
 {
-	auto pushButton = new QPushButton(item->getTitle());
+	auto pushButton = new WatchListEntry(item);
 	QObject::connect(pushButton, &QPushButton::clicked, this, [this, item]() {
 		qWarning() << "selected item from watchlist";
 		Q_EMIT selectedItem(item);
@@ -30,7 +31,7 @@ void WatchListView::removeFromWatchlist(IIOStandardItem *item)
 	for(int i = 0; i < count; ++i) {
 		QLayoutItem *currentItem = layout()->itemAt(i);
 		QWidget *currentWidget = currentItem->widget();
-		auto currentButton = dynamic_cast<QPushButton *>(currentWidget);
+		auto currentButton = dynamic_cast<WatchListEntry *>(currentWidget);
 		if(!currentButton) {
 			continue;
 		}

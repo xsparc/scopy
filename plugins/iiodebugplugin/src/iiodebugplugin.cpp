@@ -64,7 +64,7 @@ void IIODebugPlugin::unload()
 { /*delete m_infoPage;*/
 }
 
-QString IIODebugPlugin::description() { return "Write the plugin description here"; }
+QString IIODebugPlugin::description() { return "Tool for interacting with IIO attributes."; }
 
 bool IIODebugPlugin::onConnect()
 {
