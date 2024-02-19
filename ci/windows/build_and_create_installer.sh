@@ -15,7 +15,10 @@ BUILD_TARGET=x86_64
 TOOLS_FOLDER=$WORKDIR/scopy-mingw-build-deps
 pushd $TOOLS_FOLDER
 source ./mingw_toolchain.sh $BUILD_TARGET OFF  # USING_STAGING = OFF
+pacman --noconfirm --needed -S mingw-w64-x86_64-mesa
 popd
+
+
 
 export DEST_FOLDER=$WORKDIR/scopy_$ARCH
 BUILD_FOLDER=$WORKDIR/build_$ARCH
