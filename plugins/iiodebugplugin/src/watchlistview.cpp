@@ -36,7 +36,7 @@ void WatchListView::removeFromWatchlist(IIOStandardItem *item)
 			continue;
 		}
 
-		if(currentButton->text() == item->getTitle()) {
+		if(currentButton->text() == item->title()) {
 			layout()->removeItem(currentItem);
 			currentButton->deleteLater();
 			return;

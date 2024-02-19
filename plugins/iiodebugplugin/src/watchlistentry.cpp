@@ -9,7 +9,7 @@ WatchListEntry::WatchListEntry(IIOStandardItem *item, QWidget *parent)
 	, m_item(item)
 {
 	setupUi();
-	m_name = item->getTitle();
+	m_name = item->title();
 
 	auto widgets = item->getIIOWidgets();
 	qWarning() << "size: " << widgets.size();

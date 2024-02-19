@@ -2,10 +2,11 @@
 
 using namespace scopy::iiodebugplugin;
 
-IIOStandardItem::IIOStandardItem(QList<IIOWidget *> widgets, const QString &text)
-	: QStandardItem(text)
+IIOStandardItem::IIOStandardItem(QList<IIOWidget *> widgets, const QString &title, const QString &fullTitle)
+	: QStandardItem(title)
 	, m_iioWidgets(widgets)
-	, m_title(text)
+	, m_title(title)
+	, m_fullTitle(fullTitle)
 	, m_isWatched(false)
 {
 	if(!m_iioWidgets.empty()) {
@@ -44,9 +45,11 @@ IIOStandardItem::~IIOStandardItem() = default;
 
 QList<scopy::IIOWidget *> IIOStandardItem::getIIOWidgets() { return m_iioWidgets; }
 
-QStringList IIOStandardItem::getDetails() { return m_details; }
+QStringList IIOStandardItem::details() { return m_details; }
 
-QString IIOStandardItem::getTitle() { return m_title; }
+QString IIOStandardItem::title() { return m_title; }
+
+QString IIOStandardItem::fullTitle() { return m_fullTitle; }
 
 bool IIOStandardItem::isWatched() { return m_isWatched; }
 

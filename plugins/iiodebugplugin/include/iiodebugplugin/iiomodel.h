@@ -12,7 +12,7 @@ class IIOModel : public QObject
 {
 	Q_OBJECT
 public:
-	explicit IIOModel(struct iio_context *context, QObject *parent = nullptr);
+	explicit IIOModel(struct iio_context *context, QString uri, QObject *parent = nullptr);
 
 	QStandardItemModel *getModel();
 	QSet<QString> getEntries();
@@ -23,6 +23,7 @@ private:
 	QStandardItemModel *m_model;
 	struct iio_context *m_ctx;
 	QSet<QString> m_entries;
+	QString m_uri;
 };
 } // namespace scopy::iiodebugplugin
 

@@ -12,13 +12,14 @@ namespace scopy::iiodebugplugin {
 class IIOStandardItem : public QStandardItem
 {
 public:
-	explicit IIOStandardItem(QList<IIOWidget *> widgets, const QString &text);
+	explicit IIOStandardItem(QList<IIOWidget *> widgets, const QString &title, const QString &fullTitle);
 
 	~IIOStandardItem() override;
 	QList<IIOWidget *> getIIOWidgets();
 
-	QStringList getDetails();
-	QString getTitle();
+	QStringList details();
+	QString title();
+	QString fullTitle();
 
 	bool isWatched();
 	void setWatched(bool isWatched);
@@ -27,6 +28,7 @@ private:
 	QList<IIOWidget *> m_iioWidgets;
 	QStringList m_details;
 	QString m_title;
+	QString m_fullTitle;
 	bool m_isWatched;
 };
 } // namespace scopy::iiodebugplugin

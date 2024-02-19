@@ -74,7 +74,7 @@ bool IIODebugPlugin::onConnect()
 
 	auto *cp = ContextProvider::GetInstance();
 	struct iio_context *context = cp->open(m_param);
-	auto *iio_debugger = new IIODebugInstrument(context);
+	auto *iio_debugger = new IIODebugInstrument(context, m_param);
 	m_toolList[0]->setTool(iio_debugger);
 	m_toolList[0]->setEnabled(true);
 	m_toolList[0]->setRunBtnVisible(true);

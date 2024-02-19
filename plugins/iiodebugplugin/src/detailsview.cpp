@@ -69,7 +69,7 @@ void DetailsView::setIIOStandardItem(IIOStandardItem *item)
 	m_currentItem = item;
 	// FIXME: this whole system of displaying stuff is kind of wrong, it is supposed to just demonstrate how this
 	// looks
-	setTitle(item->text());
+	setTitle(item->fullTitle());
 	clearWidgets();
 	auto iioWidgets = item->getIIOWidgets();
 	for(auto widget : iioWidgets) {
@@ -78,7 +78,7 @@ void DetailsView::setIIOStandardItem(IIOStandardItem *item)
 		m_scrollAreaContents->layout()->addWidget(widget);
 	}
 
-	auto details = item->getDetails();
+	auto details = item->details();
 	for(const auto &detail : details) {
 		auto label = new QLabel(detail);
 		label->show();

@@ -17,7 +17,7 @@ class SCOPY_IIODEBUGPLUGIN_EXPORT IIODebugInstrument : public QWidget
 {
 	Q_OBJECT
 public:
-	IIODebugInstrument(struct iio_context *context, QWidget *parent = nullptr);
+	IIODebugInstrument(struct iio_context *context, QString uri, QWidget *parent = nullptr);
 	~IIODebugInstrument();
 
 private Q_SLOTS:
@@ -26,6 +26,7 @@ private Q_SLOTS:
 
 private:
 	void setupUi();
+	void connectSignalsAndSlots();
 
 	// Recursive function to find an item in the source model
 	IIOStandardItem *findItemRecursive(QStandardItem *currentItem, QStandardItem *targetItem);
@@ -33,6 +34,7 @@ private:
 	void recursiveExpandItem(QStandardItem *item, QStandardItem *searchItem);
 
 	struct iio_context *m_context;
+	QString m_uri;
 	QTreeView *m_treeView;
 	IIOModel *m_iioModel;
 	DetailsView *m_detailsView;
