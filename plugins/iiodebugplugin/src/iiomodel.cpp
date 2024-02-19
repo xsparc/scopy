@@ -1,5 +1,4 @@
 #include "iiomodel.h"
-#include "iiostandarditem.h"
 #include <QLoggingCategory>
 
 #define BUFFER_SIZE 256
@@ -20,84 +19,110 @@ IIOModel::IIOModel(struct iio_context *context, QString uri, QObject *parent)
 
 QStandardItemModel *IIOModel::getModel() { return m_model; }
 
+QSet<QString> IIOModel::getEntries() { return m_entries; }
+
 void IIOModel::iioTreeSetup()
 {
-	QString rootString = m_uri;
-	QList<IIOWidget *> ctxList = IIOWidgetFactory::buildAllAttrsForContext(m_ctx);
-	auto *rootItem = new IIOStandardItem(ctxList, rootString, rootString);
-	rootItem->setEditable(false);
-
-	for(auto &ctxWidget : ctxList) {
-		m_entries.insert(ctxWidget->getRecipe().data);
-		auto *attrItem = new IIOStandardItem({ctxWidget}, ctxWidget->getRecipe().data,
-						     rootString + SEPARATOR + ctxWidget->getRecipe().data);
-		attrItem->setEditable(false);
-		rootItem->appendRow(attrItem);
-	}
+	m_rootString = m_uri;
+	generateCtxAttributes();
 
 	// add all devices from context, dfs
 	uint ctx_devices_count = iio_context_get_devices_count(m_ctx);
-	for(int i = 0; i < ctx_devices_count; ++i) {
-		struct iio_device *device = iio_context_get_device(m_ctx, i);
-		QList<IIOWidget *> devList = IIOWidgetFactory::buildAllAttrsForDevice(device);
-		QString device_name = iio_device_get_name(device);
-		bool is_trigger = iio_device_is_trigger(device);
-		IIOStandardItem *device_item;
-		if(is_trigger) {
-			// IIOWidget *triggerWidget = IIOWidgetFactory::buildSingle(IIOWidgetFactory::TriggerData |
-			// IIOWidgetFactory::ComboUi, {.device = device, .data = ""});
-			device_item = new IIOStandardItem({}, device_name + " (trigger)",
-							  rootString + SEPARATOR + device_name);
-		} else {
-			device_item = new IIOStandardItem(devList, device_name, rootString + SEPARATOR + device_name);
-		}
-		device_item->setEditable(false);
-		m_entries.insert(device_name);
-
-		// add all attrs to current device
-		for(int j = 0; j < devList.size(); ++j) {
-			QString device_attr = iio_device_get_attr(device, j);
-
-			m_entries.insert(device_attr);
-			auto *attrItem =
-				new IIOStandardItem({devList[j]}, devList[j]->getRecipe().data,
-						    rootString + SEPARATOR + device_name + SEPARATOR + device_attr);
-			attrItem->setEditable(false);
-			device_item->appendRow(attrItem);
-		}
+	for(m_currentDeviceIndex = 0; m_currentDeviceIndex < ctx_devices_count; ++m_currentDeviceIndex) {
+		setupCurrentDevice();
+		generateDeviceAttributes();
 
 		// add all channels to current device
-		uint device_channels_count = iio_device_get_channels_count(device);
-		for(int j = 0; j < device_channels_count; ++j) {
-			struct iio_channel *channel = iio_device_get_channel(device, j);
-			QList<IIOWidget *> chnList = IIOWidgetFactory::buildAllAttrsForChannel(channel);
-			QString channel_name = iio_channel_get_id(channel);
-			auto *channel_item = new IIOStandardItem(
-				chnList, channel_name, rootString + SEPARATOR + device_name + SEPARATOR + channel_name);
-			channel_item->setEditable(false);
-			m_entries.insert(channel_name);
-
-			// add all attrs from channel
-			for(int k = 0; k < chnList.size(); ++k) {
-				QString attr_name = iio_channel_get_attr(channel, k);
-
-				m_entries.insert(attr_name);
-				auto *attr_item = new IIOStandardItem({chnList[k]}, chnList[k]->getRecipe().data,
-								      rootString + SEPARATOR + device_name + SEPARATOR +
-									      channel_name + SEPARATOR + attr_name);
-				attr_item->setEditable(false);
-				channel_item->appendRow(attr_item);
-			}
+		uint device_channels_count = iio_device_get_channels_count(m_currentDevice);
+		for(m_currentChannelIndex = 0; m_currentChannelIndex < device_channels_count; ++m_currentChannelIndex) {
+			setupCurrentChannel();
+			generateChannelAttributes();
 
 			// add channel to device
-			device_item->appendRow(channel_item);
+			m_currentDeviceItem->appendRow(m_currentChannelItem);
 		}
 
 		// add device to ctx
-		rootItem->appendRow(device_item);
+		m_rootItem->appendRow(m_currentDeviceItem);
 	}
 
-	m_model->appendRow(rootItem);
+	m_model->appendRow(m_rootItem);
 }
 
-QSet<QString> IIOModel::getEntries() { return m_entries; }
+void IIOModel::generateCtxAttributes()
+{
+	QList<IIOWidget *> ctxList = IIOWidgetFactory::buildAllAttrsForContext(m_ctx);
+	m_rootItem = new IIOStandardItem(ctxList, m_rootString, m_rootString);
+	m_rootItem->setEditable(false);
+
+	// add attrs from context
+	for(auto &ctxWidget : ctxList) {
+		m_entries.insert(ctxWidget->getRecipe().data);
+		auto *attrItem = new IIOStandardItem({ctxWidget}, ctxWidget->getRecipe().data,
+						     m_rootString + SEPARATOR + ctxWidget->getRecipe().data);
+		attrItem->setEditable(false);
+		m_rootItem->appendRow(attrItem);
+	}
+}
+
+void IIOModel::setupCurrentDevice()
+{
+	m_currentDevice = iio_context_get_device(m_ctx, m_currentDeviceIndex);
+	m_devList = IIOWidgetFactory::buildAllAttrsForDevice(m_currentDevice);
+	m_currentDeviceName = iio_device_get_name(m_currentDevice);
+	bool is_trigger = iio_device_is_trigger(m_currentDevice);
+	if(is_trigger) {
+		// IIOWidget *triggerWidget = IIOWidgetFactory::buildSingle(IIOWidgetFactory::TriggerData |
+		// IIOWidgetFactory::ComboUi, {.device = device, .data = ""});
+		m_currentDeviceItem = new IIOStandardItem({}, m_currentDeviceName + " (trigger)",
+							  m_rootString + SEPARATOR + m_currentDeviceName);
+	} else {
+		m_currentDeviceItem = new IIOStandardItem(m_devList, m_currentDeviceName,
+							  m_rootString + SEPARATOR + m_currentDeviceName);
+	}
+	m_currentDeviceItem->setEditable(false);
+	m_entries.insert(m_currentDeviceName);
+}
+
+void IIOModel::generateDeviceAttributes()
+{
+	// add all attrs to current device
+	for(int j = 0; j < m_devList.size(); ++j) {
+		QString device_attr = iio_device_get_attr(m_currentDevice, j);
+
+		m_entries.insert(device_attr);
+		auto *attrItem =
+			new IIOStandardItem({m_devList[j]}, m_devList[j]->getRecipe().data,
+					    m_rootString + SEPARATOR + m_currentDeviceName + SEPARATOR + device_attr);
+		attrItem->setEditable(false);
+		m_currentDeviceItem->appendRow(attrItem);
+	}
+}
+
+void IIOModel::setupCurrentChannel()
+{
+	m_currentChannel = iio_device_get_channel(m_currentDevice, m_currentChannelIndex);
+	m_chnlList = IIOWidgetFactory::buildAllAttrsForChannel(m_currentChannel);
+	m_currentChannelName = iio_channel_get_id(m_currentChannel);
+	m_currentChannelItem =
+		new IIOStandardItem(m_chnlList, m_currentChannelName,
+				    m_rootString + SEPARATOR + m_currentDeviceName + SEPARATOR + m_currentChannelName);
+	m_currentChannelItem->setEditable(false);
+	m_entries.insert(m_currentChannelName);
+}
+
+void IIOModel::generateChannelAttributes()
+{
+	// add all attrs from channel
+	for(int i = 0; i < m_chnlList.size(); ++i) {
+		QString attr_name = iio_channel_get_attr(m_currentChannel, i);
+
+		m_entries.insert(attr_name);
+		QString attrName = m_chnlList[i]->getRecipe().data;
+		auto *attr_item = new IIOStandardItem({m_chnlList[i]}, attrName,
+						      m_rootString + SEPARATOR + m_currentDeviceName + SEPARATOR +
+							      m_currentChannelName + SEPARATOR + attrName);
+		attr_item->setEditable(false);
+		m_currentChannelItem->appendRow(attr_item);
+	}
+}
