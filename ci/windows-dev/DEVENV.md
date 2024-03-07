@@ -2,9 +2,11 @@ This is a guide for installing the dependencies and setting up the environment f
 
 1. Install [MSYS2](https://www.msys2.org/) using the default settings. **Do not change the directory locations.**
 
-2. Create folder with the following directory *C:\msys64\home\docker*
+2. **Only applicable to virtual machines.** Open **Microsoft Store** and search for **OpenCL, OpenGL, and Vulkan Compatibility Pack**. This would install the packages needed in rendering the graphics of the software. Without this, Scopy would just crash.
 
-3. Execute the following commands using the CMD and **not MINGW64**: 
+3. Create folder with the following directory *C:\msys64\home\docker*
+
+4. Execute the following commands using the CMD and **not MINGW64**: 
 
         cd C:/msys64/home/docker/
         setx PATH C:\msys64\bin;C:\msys64\mingw64\bin;C:\msys64\usr\bin;%PATH%
@@ -30,8 +32,10 @@ This is a guide for installing the dependencies and setting up the environment f
 
         C:\msys64\usr\bin\bash.exe -lc "cd /home/docker/scopy-mingw-build-deps && source build.sh x86_64 OFF && build_deps"
 
-4. Clone **scopy** using tag **v2.0.0-alpha** to the directory: *C:\msys64\home\docker*
-5. Install VS Code and install the **C/C++ Extension Pack**
-6. On your VS Code, go to the toolbar on your left and locate the CMake tooltip. Use the tool.
-7. In the tool, click the **Configure All Projects**. This will instruct CMake to build the scripts necessary in building the source code.
-8. Go to the bottom toolbar and hit **Build**.
+5. Clone **scopy** using tag **v2.0.0-alpha** to the directory: *C:\msys64\home\docker*
+6. Install VS Code and install the **C/C++ Extension Pack**
+7. On your VS Code, go to the toolbar on your left and locate the CMake tooltip. Use the tool.
+8. In the tool, click the **Configure All Projects**. This will instruct CMake to build the scripts necessary in building the source code.
+9. Go to the bottom toolbar and hit **Build All**.
+10. **Only applicable to virtual machines.** Open **Microsoft Store** and search for **OpenCL, OpenGL, and Vulkan Compatibility Pack**. This would install the packages needed in rendering the graphics of the software. Without this, Scopy would just crash.
+11. Copy the following dlls from the subfolders to the directory where Scopy.exe is located. **libscopy-common.dll, libscopy-core.dll, libscopy-gui.dll, libscopy-iioutil.dll, libscopy-pluginbase.dll**.
