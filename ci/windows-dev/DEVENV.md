@@ -22,16 +22,16 @@ This is a guide for installing the dependencies and setting up the environment f
         C:\msys64\usr\bin\bash.exe -lc "pacman --noconfirm --needed -Sy git"
         C:\msys64\usr\bin\bash.exe -lc "git clone https://github.com/analogdevicesinc/scopy-mingw-build-deps --branch ci-for-scopy2"
 
-        C:\msys64\usr\bin\bash.exe -c "cd /home/docker/scopy-mingw-build-deps && ls && echo Building for x86_64 && ./init_staging.sh x86_64 OFF"
+        C:\msys64\usr\bin\bash.exe -lc "cd /home/docker/scopy-mingw-build-deps && ls && echo Building for x86_64 && ./init_staging.sh x86_64 OFF"
 
-        C:\msys64\usr\bin\bash.exe -c "cd /home/docker/scopy-mingw-build-deps && source build.sh x86_64 OFF && install_tools && install_deps && recurse_submodules"
+        C:\msys64\usr\bin\bash.exe -lc "cd /home/docker/scopy-mingw-build-deps && source build.sh x86_64 OFF && install_tools && install_deps && recurse_submodules"
 
         C:\msys64\home\docker\scopy-mingw-build-deps\is.exe /VERYSILENT /SP- /SUPPRESSMSGBOXES /NORESTART /LOG=C:\msys64\home\docker\iss.log /DIR=C:\innosetup
 
-        C:\msys64\usr\bin\bash.exe -c "cd /home/docker/scopy-mingw-build-deps && source build.sh x86_64 OFF && build_deps"
+        C:\msys64\usr\bin\bash.exe -lc "cd /home/docker/scopy-mingw-build-deps && source build.sh x86_64 OFF && build_deps"
 
 4. Clone **scopy** using tag **v2.0.0-alpha** to the directory: *C:\msys64\home\docker*
 5. Install VS Code and install the **C/C++ Extension Pack**
 6. On your VS Code, go to the toolbar on your left and locate the CMake tooltip. Use the tool.
-7. In the tool, click the **Configure All Projects**. This will instruct CMake to build the scripts necessary in building the tool.
+7. In the tool, click the **Configure All Projects**. This will instruct CMake to build the scripts necessary in building the source code.
 8. Go to the bottom toolbar and hit **Build**.
