@@ -39,4 +39,6 @@ This is a guide for installing the dependencies and setting up the environment f
 9. Go to the bottom toolbar and hit **Build All**.
 10. **Only applicable to virtual machines.** Open **Microsoft Store** and search for **OpenCL, OpenGL, and Vulkan Compatibility Pack**. This would install the packages needed in rendering the graphics of the software. Without this, Scopy would just crash.
 11. Copy the following dlls from the subfolders to the directory where Scopy.exe is located. **libscopy-common.dll, libscopy-core.dll, libscopy-gui.dll, libscopy-iioutil.dll, libscopy-pluginbase.dll**.
-12. Launch Scopy.
+12. Install GDB under MINGW64. Either install this [link](https://packages.msys2.org/package/mingw-w64-x86_64-gdb) or use this command using MINGW64. 
+        
+        pacman -S mingw-w64-x86_64-gdb
